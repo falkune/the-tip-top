@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {margin: 0;
   padding: 0;
   font-family:'Open Sans', sans-serif; ;
@@ -76,12 +77,22 @@ footer{
 }
 html,
 
+=======
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+>>>>>>> d83cbc9 (initialisation du repository)
 
 a {
   color: inherit;
   text-decoration: none;
 }
 
+<<<<<<< HEAD
 button {
 
   animation: pulse 1s infinite;
@@ -119,6 +130,8 @@ button {
 }
 
 >>>>>>> a4a8112 (add loader)
+=======
+>>>>>>> d83cbc9 (initialisation du repository)
 * {
   box-sizing: border-box;
 }

@@ -11,6 +11,7 @@
   "dependencies": {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@material/drawer": "^13.0.0",
@@ -55,11 +56,21 @@
     "react-dom": "17.0.2",
     "react-spinners": "^0.11.0"
 >>>>>>> a4a8112 (add loader)
+=======
+    "next": "12.1.0",
+    "react": "17.0.2",
+    "react-dom": "17.0.2"
+>>>>>>> d83cbc9 (initialisation du repository)
   },
   "devDependencies": {
     "@types/node": "17.0.21",
     "@types/react": "17.0.39",
     "eslint": "8.10.0",
+<<<<<<< HEAD
     "eslint-config-next": "12.1.0"
+=======
+    "eslint-config-next": "12.1.0",
+    "typescript": "4.6.2"
+>>>>>>> d83cbc9 (initialisation du repository)
   }
 }

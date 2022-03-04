@@ -34,5 +34,10 @@ yarn-error.log*
 # vercel
 .vercel
 
+<<<<<<< HEAD
 .package-lock.json
 .yarn.lock
+=======
+# typescript
+*.tsbuildinfo
+>>>>>>> d83cbc9 (initialisation du repository)
