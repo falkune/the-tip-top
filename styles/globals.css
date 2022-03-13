@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 body {margin: 0;
   padding: 0;
   font-family:'Open Sans', sans-serif; ;
@@ -132,6 +133,16 @@ button {
 >>>>>>> a4a8112 (add loader)
 =======
 >>>>>>> d83cbc9 (initialisation du repository)
+=======
+>>>>>>> be51fba (commit Dockerfile creation page)
 * {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 1.1em;
+}
+
+.index-image-liste{
+  display: flex;
+  justify-content: space-between;
 }
