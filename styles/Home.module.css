@@ -16,6 +16,17 @@
   align-items: center;
 }
 
+.block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:100% ;
+  padding-bottom: 10px;
+  min-height: 100vh;
+  text-align: center;
+
+}
+
 
 
 
@@ -107,6 +118,38 @@ max-width:500px ;
   margin: 15px;
 
 }
+
+
+.bingo{
+
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 90%;
+max-width: 500px;
+padding-top: 25px;
+border-top: solid 1px  #D2D2D2;
+margin-top: 15px;
+
+}
+
+.block small{
+
+ text-decoration: underline;
+  
+  }
+
+
+.bingo input{
+  height: 50px;
+  margin: 10px;
+  width: 90%;
+  max-width: 500px;
+  padding-left: 25px;
+  font-size: 16px;
+  outline: none;
+  border: solid 1px #40EFD7
+  }
 
 @media (max-width: 600px) {
   .grid {
