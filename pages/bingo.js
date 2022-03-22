@@ -126,6 +126,15 @@ export default function Bingo() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+      <section className={styles.block}>
+        <h1 className={styles.h1}>Bingo ticket</h1>
+        <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
+        <small>Voir les differents lots</small>
+        <form className={styles.bingo}>
+          <input type="text" placeholder="Veuillez rentrer vos 10 numéros" />
+          <button className={styles.action} style={{margin:25}} type="submit">Valider</button>
+        </form>
+      </section>
       <Footer/>
     </div>
   )
