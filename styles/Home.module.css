@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 82befde (first page)
 .main {
   font-family:'Open Sans', sans-serif; ;
   min-height: 100vh;
@@ -11,12 +15,17 @@
   font-family: 'Open Sans', sans-serif;
   ;
   min-height: 100vh;
+<<<<<<< HEAD
+=======
+  padding-top: 100px;
+>>>>>>> 82befde (first page)
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 
+<<<<<<< HEAD
 .elm {
   padding-top: 100px;
   display: flex;
@@ -49,6 +58,23 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+=======
+.container {
+  min-height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+.social{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+>>>>>>> 82befde (first page)
   width:100% ;
   margin-top: 10px;
   margin-bottom: 25px;
@@ -60,11 +86,19 @@
   margin-top: 15px;
   font-size: 16px;
   position: relative;
+<<<<<<< HEAD
   font-size: 16;
+=======
+}
+
+.social button img{
+  position:absolute;
+>>>>>>> 82befde (first page)
 }
 
 
 
+<<<<<<< HEAD
 .cards2{
 display: flex;
 flex-wrap: wrap;
@@ -117,6 +151,8 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
           color:white
           }
 
+=======
+>>>>>>> 82befde (first page)
 
 .part{
   display: flex;
@@ -124,10 +160,20 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
   justify-content: center;
   align-items: center;
   width:100% ;
+<<<<<<< HEAD
   padding: 10px;
-  text-align: center;
+=======
+  padding-bottom: 10px;
 }
 
+.part p{
+>>>>>>> 82befde (first page)
+  text-align: center;
+  color: #40EFD7;
+
+}
+
+<<<<<<< HEAD
 .part p{
   text-align: center;
   color: #41D8C2;
@@ -187,12 +233,31 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
   color: #41D8C2;
 }
 
+=======
+  .part ul{
+    color: #40EFD7;
+
+  }
+
+
+.h1{
+  color: #40EFD7;
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.h2{
+  color: #40EFD7;
+}
+
+>>>>>>> 82befde (first page)
 .login{
 display: flex;
 flex-direction: column;
 width: 80%;
 max-width:500px ;
 
+<<<<<<< HEAD
 }
 
 .login input{
@@ -352,6 +417,34 @@ margin-top: 15px;
   100% {
     transform: translatey(0px);
   }
+=======
+}
+
+.login input{
+  height: 50px;
+  margin: 10px;
+  width: 90%;
+  max-width: 500px;
+  padding-left: 25px;
+  font-size: 18px;
+  outline: none;
+  border: solid 1px #40EFD7
+  }
+  
+
+
+.action{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  background-color: #40EFD7;
+  border: none;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0px 0px 0px 8px rgba(64,239,215,0.52);
+  margin: 15px;
+
+>>>>>>> 82befde (first page)
 }
 
 

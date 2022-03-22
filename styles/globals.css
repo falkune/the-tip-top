@@ -88,6 +88,7 @@ button {
 
 }
 
+<<<<<<< HEAD
 .pulse{
 
   animation: pulse 1s infinite;
@@ -98,6 +99,8 @@ button {
   position: fixed;
 }
 
+=======
+>>>>>>> 82befde (first page)
 * {
   box-sizing: border-box;
 }
