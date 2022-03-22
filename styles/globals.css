@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
   margin: 0;
@@ -61,3 +62,27 @@ footer{
   margin: 5px;
   border-radius: 10px; 
 }
+=======
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+
+  animation: pulse 1s infinite;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+>>>>>>> 82befde0cf0a2467c36dce93a9adfb69fa7aa083

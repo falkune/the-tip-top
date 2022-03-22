@@ -1,0 +1,116 @@
+
+.main {
+  min-height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  min-height: 100vh;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+.social{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:100% ;
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+.social button{
+  width:225px ;
+  height: 50px;
+  border: none;
+  margin-top: 15px;
+  font-size: 16px;
+  position: relative;
+}
+
+.social button img{
+  position:absolute;
+}
+
+
+
+
+.part{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100% ;
+  padding-bottom: 10px;
+}
+
+.part p{
+  text-align: center;
+  color: #40EFD7;
+
+}
+
+  .part ul{
+    color: #40EFD7;
+
+  }
+
+
+.h1{
+  color: #40EFD7;
+  font-size: 30px;
+  margin-bottom: 0;
+}
+
+.h2{
+  color: #40EFD7;
+}
+
+.login{
+display: flex;
+flex-direction: column;
+width: 80%;
+max-width:500px ;
+
+}
+
+.login input{
+  height: 50px;
+  margin: 10px;
+  width: 90%;
+  max-width: 500px;
+  padding-left: 25px;
+  font-size: 18px;
+  outline: none;
+  border: solid 1px #40EFD7
+  }
+  
+
+
+.action{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  background-color: #40EFD7;
+  border: none;
+  color: white;
+  font-size: 18px;
+  box-shadow: 0px 0px 0px 8px rgba(64,239,215,0.52);
+  margin: 15px;
+
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
