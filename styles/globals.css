@@ -11,6 +11,12 @@ a {
   text-decoration: none;
 }
 
+button {
+
+  animation: pulse 1s infinite;
+
+}
+
 * {
   box-sizing: border-box;
 }
