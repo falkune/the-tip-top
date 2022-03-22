@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Header from '../Components/Header'
+import Navigation from '../components/navigation'
 import Image from 'next/image'
 
 const Home: NextPage = () => {
@@ -12,7 +12,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header />
+      <Navigation />
 
       <div className="container">
         <h1>Thé Bingo</h1>
@@ -42,7 +42,7 @@ const Home: NextPage = () => {
         </div>
         <p>Attention le jeu concours a lieu pendant 30 jours pendant lesquels 1 500 000 tickets maximums pourront gagner À l’issue du jeu-concours, un tirage au sort sera effectué parmi tous les participants afin de déterminer le gagnant d’un an de thé d’une valeur de 360€.</p>
 
-        <a type="button" className="btn btn-secondary" href='accueil'>Jouez</a>
+        <a type="button" className="btn btn-secondary" href='/connexion'>Jouez</a>
       </div>
     </>
   )
