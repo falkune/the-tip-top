@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 body {margin: 0;
   padding: 0;
   font-family:'Open Sans', sans-serif; ;
@@ -135,6 +136,8 @@ button {
 >>>>>>> d83cbc9 (initialisation du repository)
 =======
 >>>>>>> be51fba (commit Dockerfile creation page)
+=======
+>>>>>>> 608057c (modification des extentions)
 * {
   box-sizing: border-box;
   margin: 0;
@@ -197,4 +200,30 @@ footer{
   /* width: 300px;*/
   margin: 5px;
   border-radius: 10px; 
+<<<<<<< HEAD
 }
+=======
+}
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+
+  animation: pulse 1s infinite;
+
+}
+
+* {
+  box-sizing: border-box;
+}
+>>>>>>> 608057c (modification des extentions)

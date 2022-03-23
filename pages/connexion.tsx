@@ -251,6 +251,7 @@ export default function Connexion() {
             </span>
             Connexion
           </button>
+<<<<<<< HEAD:pages/connexion.js
           <button 
             style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
             onClick={() => signInWith(GoogleProvider)}>
@@ -258,6 +259,11 @@ export default function Connexion() {
               <Image src={google} width="40" height="40" /> 
             </span>
             Connexion
+=======
+        <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>
+        <Image src={google} width="25" height="25" /> 
+          Connexion
+>>>>>>> 608057c (modification des extentions):pages/connexion.tsx
           </button>
         </div>
       </section>
