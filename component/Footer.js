@@ -44,8 +44,12 @@ const styles = {
         backgroundColor:"#40EFD7",
         height:70,
         display:"flex",
+<<<<<<< HEAD
         justifyContent:"space between",
 >>>>>>> 82befde (first page)
+=======
+        justifyContent:"space-evenly",
+>>>>>>> bbb5a45 (add first page and login page)
         alignItems:"center",
     },
     nav:{

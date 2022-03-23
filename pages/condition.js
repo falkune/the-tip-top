@@ -16,6 +16,9 @@ export default function Conditions() {
       <section className={styles.part}>
         <h1 className={styles.h1}>Conditions générales de vente</h1>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bbb5a45 (add first page and login page)
         <p>
         POLITIQUE DE CONFIDENTIALITE DES DONNEES DU SITE 
 
@@ -209,8 +212,11 @@ ARTICLE 19 DROIT APPLICABLE ET LANGUE
 La présente Politique de Confidentialité est régie par le droit français et Suisse. Elles sont rédigées en français. Dans le cas où elles seraient traduites en une ou plusieurs langues, seul le texte français ferait foi en cas de litige. La nullité d’une clause n’entraîne pas la nullité de la Politique de confidentialité. L’inapplication temporaire ou permanente d’une ou plusieurs clauses des présentes par l’Editeur ne saurait valoir renonciation de sa part aux autres clauses des présentes qui continuent à produire leurs effets.
 
         </p>
+<<<<<<< HEAD
 =======
 >>>>>>> 82befde (first page)
+=======
+>>>>>>> bbb5a45 (add first page and login page)
       </section>
 
       <Footer/>
