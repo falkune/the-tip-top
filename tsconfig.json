@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/firebase.js", "pages/api/auth/[...nextauth].ts", "pages/login.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/firebase.js", "pages/api/auth/[...nextauth].ts", "pages/login.js", "pages/tickets.tsx", "pages/politique.tsx"],
   "exclude": ["node_modules"]
 }

@@ -32,7 +32,7 @@ export default function Connexion() {
           Connexion
           </button>
         <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>
-        <Image src={google} width="25" height="25" style={{position:"absolute",left:0}} /> 
+        <Image src={google} width="25" height="25" /> 
           Connexion
           </button>
       </div>
