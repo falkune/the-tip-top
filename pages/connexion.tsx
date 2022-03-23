@@ -176,6 +176,7 @@ import Footer from "../component/Footer"
 import Link from "next/link"
 import google from "../image/google.svg"
 import facebook from "../image/facebook.png"
+<<<<<<< HEAD
 import { useRouter } from 'next/router'
 import {firebaseApp} from '../config/firebase'
 import { 
@@ -226,6 +227,16 @@ export default function Connexion() {
     router.push('/bingo')
   }
 
+=======
+import signInWith from '../config/service';
+import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getProviders, signIn } from "next-auth/react"
+
+
+export default function Connexion() {
+  const GoogleProvider = new GoogleAuthProvider();
+  const FacebookProvider = new FacebookAuthProvider();
+>>>>>>> e5668b0 (mise en place de l'authentification fgoogle et facebook)
   return (
     <div>
     <div className={styles.container}>
@@ -236,6 +247,7 @@ export default function Connexion() {
       </Head>
       <Header/>
       <section className={styles.login}>
+<<<<<<< HEAD
         <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
           <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
           <input type="text" placeholder="Email" />
@@ -262,6 +274,25 @@ export default function Connexion() {
 =======
         <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>
         <Image src={google} width="25" height="25" /> 
+=======
+      <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
+      <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
+        <input type="text" placeholder="Email" />
+        <input type="text" placeholder="Mot de passe" />
+        <button type="submit" className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
+      </form>
+      <div className={styles.social} >
+        <button 
+          style={{backgroundColor:"#437BFF",color:"white"}}
+          onClick={() => signInWith(FacebookProvider)}>
+          <Image src={facebook} width="25" height="25" /> 
+          Connexion
+          </button>
+        <button 
+          style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
+          onClick={() => signInWith(GoogleProvider)}>
+          <Image src={google} width="25" height="25" /> 
+>>>>>>> e5668b0 (mise en place de l'authentification fgoogle et facebook)
           Connexion
 >>>>>>> 608057c (modification des extentions):pages/connexion.tsx
           </button>
@@ -278,3 +309,4 @@ export default function Connexion() {
   )
 >>>>>>> 82befde (first page)
 }
+
