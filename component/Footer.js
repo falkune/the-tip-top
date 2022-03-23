@@ -32,7 +32,7 @@ const styles = {
         backgroundColor:"#40EFD7",
         height:70,
         display:"flex",
-        justifyContent:"space between",
+        justifyContent:"space-evenly",
         alignItems:"center",
     },
     nav:{

@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Link from "next/link"
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
@@ -16,7 +17,9 @@ export default function Bingo() {
       <section className={styles.block}>
         <h1 className={styles.h1}>Bingo ticket</h1>
         <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
-        <small>Voir les differents lots</small>
+        <Link href="/#lots"> 
+            <small>Voir les differents lots</small>
+        </Link>
         <form className={styles.bingo}>
           <input type="text" placeholder="Veuillez rentrer vos 10 numéros" />
           <button className={styles.action} style={{margin:25}} type="submit">Valider</button>
