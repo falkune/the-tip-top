@@ -6,10 +6,14 @@ import Footer from "../component/Footer"
 import Link from "next/link"
 import google from "../image/google.svg"
 import facebook from "../image/facebook.png"
+import signInWith from '../config/service';
+import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
+import { getProviders, signIn } from "next-auth/react"
 
 
 export default function Connexion() {
-
+  const GoogleProvider = new GoogleAuthProvider();
+  const FacebookProvider = new FacebookAuthProvider();
   return (
     <div>
     <div className={styles.container}>
@@ -27,12 +31,16 @@ export default function Connexion() {
         <button type="submit" className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
       </form>
       <div className={styles.social} >
-        <button style={{backgroundColor:"#437BFF",color:"white"}}>
-        <Image src={facebook} width="25" height="25" /> 
+        <button 
+          style={{backgroundColor:"#437BFF",color:"white"}}
+          onClick={() => signInWith(FacebookProvider)}>
+          <Image src={facebook} width="25" height="25" /> 
           Connexion
           </button>
-        <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>
-        <Image src={google} width="25" height="25" /> 
+        <button 
+          style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
+          onClick={() => signInWith(GoogleProvider)}>
+          <Image src={google} width="25" height="25" /> 
           Connexion
           </button>
       </div>
@@ -44,3 +52,4 @@ export default function Connexion() {
     </div>
   )
 }
+
