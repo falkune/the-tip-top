@@ -6,9 +6,15 @@ import Footer from "../component/Footer"
 import Link from "next/link"
 import google from "../image/google.svg"
 import facebook from "../image/facebook.png"
+import { useRouter } from 'next/router'
 
 
 export default function Connexion() {
+  const router = useRouter()
+    const goBingo = () => {
+      router.push('/bingo')
+
+    }
 
   return (
     <div>
@@ -24,11 +30,11 @@ export default function Connexion() {
       <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
         <input type="text" placeholder="Email" />
         <input type="text" placeholder="Mot de passe" />
-        <button type="submit" className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
+        <button type="submit" onClick={()=> goBingo()} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
       </form>
       <div className={styles.social} >
         <button style={{backgroundColor:"#437BFF",color:"white"}}>
-        <Image src={facebook} width="25" height="25" /> 
+         <Image src={facebook} width="25" height="25" /> 
           Connexion
           </button>
         <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>

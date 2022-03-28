@@ -17,6 +17,13 @@ button {
 
 }
 
+.pulse{
+  
+  animation: pulse 1s infinite;
+
+  
+}
+
 * {
   box-sizing: border-box;
 }

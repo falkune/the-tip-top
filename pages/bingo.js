@@ -4,8 +4,14 @@ import Link from "next/link"
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
+import { useRouter } from 'next/router'
 
 export default function Bingo() {
+  const router = useRouter()
+  const goResult = () => {
+    router.push('/resultat')
+
+  }
   return (
     <div className={styles.container}>
       <Head>
@@ -18,11 +24,11 @@ export default function Bingo() {
         <h1 className={styles.h1}>Bingo ticket</h1>
         <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
         <Link href="/#lots"> 
-            <small>Voir les differents lots</small>
+            <small style={{color:"#40EFD7"}}>Voir les differents lots</small>
         </Link>
-        <form className={styles.bingo}>
+        <form onSubmit={goResult} className={styles.bingo}>
           <input type="text" placeholder="Veuillez rentrer vos 10 numéros" />
-          <button className={styles.action} style={{margin:25}} type="submit">Valider</button>
+          <button type="submit" onClick={() => goResult()} className={styles.action} style={{margin:25}}>Valider</button>
         </form>
       </section>
       <Footer/>

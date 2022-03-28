@@ -8,6 +8,14 @@
   align-items: center;
 }
 
+.elm {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   min-height: 100vh;
   padding-top: 100px;
@@ -46,6 +54,7 @@
 
 .social button img{
   position:absolute;
+  z-index: 100000;
 }
 
 
@@ -126,7 +135,7 @@ padding: 15px;
 
 .h1{
   color: #40EFD7;
-  font-size: 30px;
+  font-size: 45px;
   margin-bottom: 0;
 }
 
@@ -168,9 +177,18 @@ max-width:500px ;
 
 }
 
+.action2{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  border: none;
+  font-size: 18px;
+  margin: 15px;
+
+}
+
 
 .bingo{
-
 display: flex;
 flex-direction: column;
 align-items: center;
