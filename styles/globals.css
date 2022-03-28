@@ -89,6 +89,7 @@ button {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 .pulse{
 
   animation: pulse 1s infinite;
@@ -101,6 +102,15 @@ button {
 
 =======
 >>>>>>> 82befde (first page)
+=======
+.pulse{
+  
+  animation: pulse 1s infinite;
+
+  
+}
+
+>>>>>>> ddce213 (add ticket page)
 * {
   box-sizing: border-box;
 }

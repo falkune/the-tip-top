@@ -2,6 +2,7 @@ import React from "react"
 import Image from 'next/image'
 import Link from "next/link"
 import logo from "../image/logo.png"
+<<<<<<< HEAD
 import tea1 from "../image/tea1.png"
 import tea2 from "../image/tea2.png"
 import tea3 from "../image/tea3.png"
@@ -30,6 +31,19 @@ const Ticket = (props) => {
          {/* lot 5 */}
             { props.lot === 5 && <Image src={tea4} height={100} width={100} alt="lot 5"/>}
             { props.lot === 5 && <p style={styles.text}>   Un coffret découverte d’une valeur de 69€  </p>}
+=======
+
+const Ticket = () => {
+  return (
+    <div style={styles.ticket}>   
+      <div style={styles.bloc}>
+          <p>27/01/2022</p>
+          <p>N 215414789</p>
+      </div>
+      <div style={styles.bloc2}>
+        <p>1 thé infusion</p>
+        <p>Jack Atlas</p>     
+>>>>>>> ddce213 (add ticket page)
       </div>
     </div>
   )
@@ -41,14 +55,22 @@ const styles = {
 
     ticket:{
         width:"100%",
+<<<<<<< HEAD
         backgroundColor:"#46E8D1",
+=======
+        backgroundColor:"#40EFD7",
+>>>>>>> ddce213 (add ticket page)
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
         color:"white",
         margin:10,
+<<<<<<< HEAD
         padding:8,
         borderRadius:8,
+=======
+        padding:8
+>>>>>>> ddce213 (add ticket page)
     },
     bloc:{
         display:"flex",
@@ -65,6 +87,7 @@ const styles = {
         flexDirection:"column",
         alignItems:"center",
         borderLeft:"solid 1px white",
+<<<<<<< HEAD
         backgroundColor:"white",
         width:"50%",
         borderRadius:8,
@@ -77,4 +100,19 @@ const styles = {
       textAlign:'center',
       padding:8
   }
+=======
+        width:"50%"
+
+
+    },
+ 
+ 
+
+ 
+
+
+
+
+
+>>>>>>> ddce213 (add ticket page)
 }

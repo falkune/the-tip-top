@@ -10,12 +10,18 @@
   },
   "dependencies": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "@emotion/react": "^11.10.0",
     "@emotion/styled": "^11.10.0",
     "@material/drawer": "^13.0.0",
     "@mui/material": "^5.10.0",
     "@mui/x-data-grid": "^5.15.3",
     "ag-grid-react": "^28.2.0",
+=======
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
+    "@mui/material": "^5.5.2",
+>>>>>>> ddce213 (add ticket page)
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
     "chart.js": "^3.8.2",

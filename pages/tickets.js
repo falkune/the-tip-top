@@ -62,9 +62,16 @@ import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
+import Ticket from "../component/Ticket"
 
 export default function Tickets() {
+<<<<<<< HEAD
 >>>>>>> 82befde (first page)
+=======
+
+  const number = 4  
+
+>>>>>>> ddce213 (add ticket page)
   return (
     <div className={styles.container}>
       <Head>
@@ -124,8 +131,41 @@ const stylez = {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+      <h1 className={styles.h1}>Mes tickets</h1>
+      <p>{`Vous avez ${number} tickets gagnants`}</p>
+        <div style={stylez.gain}>
+              <Ticket />
+              <Ticket />
+        </div>
       <Footer/>
     </div>
   )
 }
+<<<<<<< HEAD
 >>>>>>> 82befde (first page)
+=======
+
+ const stylez = {
+
+  gain : {
+
+    display:"flex",
+    flexDirection:"column",
+    alignItems:"center",
+    width:"90%",
+    maxWidth:360,
+    minHeight:"100vh"
+
+
+
+
+  }
+
+
+
+
+
+
+
+}
+>>>>>>> ddce213 (add ticket page)

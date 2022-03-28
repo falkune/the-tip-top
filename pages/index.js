@@ -19,7 +19,6 @@ import login from "../image/login.gif";
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Link from "next/link"
 import logo from "../image/logo.png"
 import ticket from "../image/tickets.svg"
 import computer from "../image/computer.svg"
@@ -29,15 +28,15 @@ import tea1 from "../image/tea1.png"
 import tea2 from "../image/tea2.png"
 import tea3 from "../image/tea3.png"
 import tea4 from "../image/tea4.png"
-
-
 import Header from '../component/Header'
 import Footer from "../component/Footer"
+import { useRouter } from 'next/router'
 import 'animate.css';
 
 >>>>>>> 82befde (first page)
 
 export default function Home() {
+<<<<<<< HEAD
   const router = useRouter();
   // const role = getCookie('pro');
   const goConnexion = () => {
@@ -45,6 +44,18 @@ export default function Home() {
       router.push("/bingo");
     } else router.push("/connexion");
   };
+=======
+  const router = useRouter()
+
+  const goBingo = () => {
+    router.push('/bingo')
+
+
+
+
+  }
+
+>>>>>>> ddce213 (add ticket page)
 
   return (
 <<<<<<< HEAD
@@ -173,9 +184,7 @@ export default function Home() {
         <h1 className={styles.h1}>Gagner des lots magique</h1>
 
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
-       <Link href="/connexion"> 
-          <button className={styles.action} style={{margin:25}}>Commencer</button>
-        </Link>
+          <button type='button' onClick={() => router.push('/connexion')} className={styles.action} style={{margin:25}}>Commencer</button>
       </section>
 
       <section className={styles.part} style={{backgroundColor:"#40EFD7",color:"white",minHeight:400,paddingTop:50,paddingBottom:50}}>
@@ -191,7 +200,7 @@ export default function Home() {
 
          <span>
             <strong style={{fontSize:50}}>2</strong>
-            <Image src={computer} width="50" height="50" /> 
+            <Image  src={computer} width="50" height="50" /> 
              Connectez vous sur note plateforme
          </span>
 
@@ -228,26 +237,26 @@ export default function Home() {
            </span>
 
          <span>
-            <Image src={tea2} width="150" height="150" objectFit='cover' /> 
+            <Image src={tea2} width="150" height="150" objectFit='contain' /> 
             <p>
             Une boite de 100g d’un thé détox ou d’infusion         
             </p>
             </span>
 
          <span>
-         <Image src={tea3} width="150" height="150" objectFit='cover' /> 
+         <Image src={tea3} width="150" height="150" objectFit='contain' /> 
          <p>
          Une boite de 100g d’un thé signature
          </p>
          </span>
 
          <span>
-         <Image src={tea4} width="150" height="150" objectFit='cover' /> 
+         <Image src={tea4} width="150" height="150" objectFit='contain' /> 
               Un coffret découverte d’une valeur de 39€         
          </span>
 
          <span>
-         <Image src={tea4} width="150" height="150" objectFit='cover' /> 
+         <Image src={tea4} width="150" height="150" objectFit='contain' /> 
              un coffret découverte d’une valeur de 69€         
          </span>
 

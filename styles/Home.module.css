@@ -26,6 +26,9 @@
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> ddce213 (add ticket page)
 .elm {
   padding-top: 100px;
   display: flex;
@@ -34,6 +37,7 @@
   align-items: center;
 }
 
+<<<<<<< HEAD
 .container {
   font-family:'Open Sans', sans-serif; 
   min-height: 100vh;
@@ -59,6 +63,8 @@
   flex-direction: column;
   align-items: center;
 =======
+=======
+>>>>>>> ddce213 (add ticket page)
 .container {
   min-height: 100vh;
   padding-top: 100px;
@@ -101,7 +107,11 @@
 
 .social button img{
   position:absolute;
+<<<<<<< HEAD
 >>>>>>> 82befde (first page)
+=======
+  z-index: 100000;
+>>>>>>> ddce213 (add ticket page)
 }
 
 
@@ -306,7 +316,7 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
 
 .h1{
   color: #40EFD7;
-  font-size: 30px;
+  font-size: 45px;
   margin-bottom: 0;
 }
 
@@ -511,13 +521,22 @@ margin-top: 15px;
 >>>>>>> 82befde (first page)
 }
 
+.action2{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  border: none;
+  font-size: 18px;
+  margin: 15px;
+
+}
+
 
 <<<<<<< HEAD
 
 
 =======
 .bingo{
-
 display: flex;
 flex-direction: column;
 align-items: center;

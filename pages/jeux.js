@@ -4,12 +4,16 @@ import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
 <<<<<<< HEAD
+<<<<<<< HEAD
 import Count from "../component/Countdown"
 import tea1 from "../image/tea1.png"
 import ClipLoader from "react-spinners/ClockLoader";
 
 =======
 >>>>>>> 82befde (first page)
+=======
+import Count from "../component/Countdown"
+>>>>>>> ddce213 (add ticket page)
 
 export default function Jeux() {
   return (
@@ -51,7 +55,35 @@ export default function Jeux() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
+<<<<<<< HEAD
 >>>>>>> 82befde (first page)
+=======
+      <section className={styles.block} style={{borderBottom:"solid 1px white"}}>
+      <div style={{display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        width:"100%",
+        padding:15,
+        backgroundColor:"#40EFD7" }} >
+        <h1 className={styles.h1} style={{color:"white"}}>Grand jeux concour</h1>
+        <p style={{fontSize:20,color:"white"}}>Le tirage au sort dans</p>
+        < Count />
+        
+      </div>
+
+        <div style={{display:"flex",
+        flexDirection:"column",
+        justifyContent:"center",
+        padding:15,
+        borderTop:"solid 1px white",
+        margin:30 }} >
+          <h2 className={styles.h2} >Vous avez été sélectionné pour le grand tirage au sort</h2>
+          <p>Le 22 avril 2022 un candidat sera sélectionné et bénéficiera de :  </p>
+           
+      </div>
+      </section>
+
+>>>>>>> ddce213 (add ticket page)
       <Footer/>
     </div>
   )
