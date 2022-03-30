@@ -29,12 +29,12 @@ export default function Connexion() {
       <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
       <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
         <input type="text" placeholder="Email" />
-        <input type="text" placeholder="Mot de passe" />
-        <button type="submit" onClick={()=> goBingo()} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
+        <input type="password" placeholder="Mot de passe" />
+        <button type="button" onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
       </form>
       <div className={styles.social} >
-        <button style={{backgroundColor:"#437BFF",color:"white"}}>
-         <Image src={facebook} width="25" height="25" /> 
+        <button style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}>
+         <Image className="imageConnexion" src={facebook} width="25" height="25" /> 
           Connexion
           </button>
         <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>
@@ -43,7 +43,7 @@ export default function Connexion() {
           </button>
       </div>
       </section>
- 
+    <small>Pas encore de compte ?<strong style={{color:"red"}}> S'inscrire</strong></small>
     </div>
     <Footer/>
 

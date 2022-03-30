@@ -8,19 +8,22 @@ import Drawer from '@mui/material/Drawer';
 
 const Header = () => {
     const [width, setWidth] = useState(0);
-    const [isOpen, setIsOpen] = useState(false);
-    const handleResize = () => setWidth(window.innerWidth);
+    const [open, setOpen] = React.useState(false);
+    const [user, setUser] = React.useState("client");
 
-    const toggleDrawer = () => {
-        setIsOpen(!isOpen)
-        }
-    
-    // useEffect(() => {
-    //   window.addEventListener('resize', handleResize);
-    //   return () => window.removeEventListener('resize', handleResize);
-    // }, [handleResize]);
-    // return width;
-    // };
+
+    const toggleDrawer = (newOpen) => () => {
+        setOpen(newOpen);
+      };
+
+    const updateDimensions = () => {
+        setWidth(window.innerWidth);
+    }
+        useEffect(() => {
+            updateDimensions()
+            window.addEventListener('resize', updateDimensions);
+            return () => window.removeEventListener('resize', updateDimensions)
+        }, [width])
 
   return (
     <header style={styles.header}>
@@ -33,29 +36,58 @@ const Header = () => {
             <Link href="/"> 
                 <Image src={logo} width="55" height="60" /> 
             </Link>   
-                <nav>
+              {width > 650 ? <nav>
                     <ul style={styles.nav}>
-                    <Link href="/bingo"> 
+                   { user && user ==="client" && <Link href="/bingo"> 
                         <li style={styles.li}>Bingo ticket</li>
-                    </Link>
+                    </Link> }
 
-                    <Link href="/jeux"> 
+                    { user && user ==="client" && <Link href="/jeux"> 
                         <li style={styles.li}>Grand jeux concours</li>
-                    </Link>
+                    </Link> }
 
-                    <Link href="/tickets">
-                        <li style={styles.li}>Mes ticket</li>
-                    </Link>
+                    { user && user ==="client" && <Link href="/tickets">
+                        <li style={styles.li}>Mes tickets</li>
+                    </Link>}
+
+                    {user && user ==="pro" && <Link href="/tickets">
+                        <li style={styles.li}>Mes emails</li>
+                    </Link> }
+                   {user && user ==="pro" && <Link href="/tickets">
+                        <li style={styles.li}>Mes stats</li>
+                    </Link>}
                     </ul>
-                </nav>  
-
-                <Drawer
-                 anchor={"left"}
-                 open={isOpen}
-                 onClose={()=> toggleDrawer}>
-                </Drawer>
-                <Image src={menu} width="30" height="30" /> 
+                </nav> :
+                <Image onClick={toggleDrawer(true)} src={menu} width="30" height="30" />
+                 }
          </div>
+         <Drawer
+                    anchor={"right"}
+                    open={open}                    
+                    onClose={toggleDrawer(false)}
+                    onOpen={toggleDrawer(true)}>
+             <ul style={styles.draw}>
+                    { user && user ==="client" && <Link href="/bingo"> 
+                        <li style={styles.li2}>Bingo ticket</li>
+                    </Link> }
+
+                    { user && user ==="client" && <Link href="/jeux"> 
+                        <li style={styles.li2}>Grand jeux concours</li>
+                    </Link> }
+
+                    { user && user ==="client" && <Link href="/tickets">
+                        <li style={styles.li2}>Mes tickets</li>
+                    </Link>}
+
+                    {user && user ==="pro" && <Link href="/tickets">
+                        <li style={styles.li2}>Mes emails</li>
+                    </Link> }
+                   {user && user ==="pro" && <Link href="/tickets">
+                        <li style={styles.li2}>Mes stats</li>
+                    </Link>}
+                
+                </ul>
+            </Drawer>
     </header>
    )
   }
@@ -75,7 +107,8 @@ const styles = {
         boxShadow:"0px 4px 15px 0px rgba(0,0,0,0.10)",
         position:"fixed",
         top:0,
-        zIndex:99999999999999999
+        zIndex: 45739863
+
     },
     nav:{
      display:"flex",
@@ -83,13 +116,29 @@ const styles = {
      color:"#AEAEAE"
     },
 
+    draw:{
+        flex:"flex",
+        flexDirection:"column",
+        width:"100%",
+        padding:25,
+        height:700,
+        paddingTop:100,
+        zIndex:999999999999999999,
+        justifyContent:"center"
+
+       },
+
     li:{
     marginLeft:15,
     listStyleType:"none"
+    },
 
-
-
-    }
+    li2:{
+        margin:15,
+        fontSize:20,
+        listStyleType:"none"
+        }
+    
 
 
 

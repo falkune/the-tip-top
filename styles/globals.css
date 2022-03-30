@@ -18,10 +18,15 @@ button {
 }
 
 .pulse{
-  
+
   animation: pulse 1s infinite;
 
   
+}
+
+.imageConnexion{
+
+  position: fixed;
 }
 
 * {

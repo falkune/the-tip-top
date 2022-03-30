@@ -5,9 +5,9 @@ import Header from '../component/Header'
 import Footer from "../component/Footer"
 import Ticket from "../component/Ticket"
 
-export default function Tickets() {
+export default function Emails() {
 
-  const number = 4  
+  const number = 10245
 
   return (
     <div className={styles.container}>
@@ -17,8 +17,8 @@ export default function Tickets() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <h1 className={styles.h1}>Mes tickets</h1>
-        <p style={{fontSize:18,color:"grey"}}>Vous avez <strong style={{color:"#40EFD7"}}>{number} </strong>{`tickets gagnants`}</p>
+      <h1 className={styles.h1}>Emails</h1>
+        <p style={{fontSize:18,color:"grey"}}><strong style={{color:"#40EFD7"}}>{number} </strong>{`emails`}</p>
           <div style={stylez.gain}>
                 <Ticket />
                 <Ticket />

@@ -2,6 +2,7 @@ import React from "react"
 import Image from 'next/image'
 import Link from "next/link"
 import logo from "../image/logo.png"
+import { padding } from "@mui/system"
 
 const Footer = () => {
   return (
@@ -37,12 +38,12 @@ const styles = {
     },
     nav:{
      display:"flex",
-     marginRight :25,
-     color:"white"
+     color:"white",
+     padding:0,
     },
 
     li:{
-    marginLeft:15,
+    margin:10,
     listStyleType:"none",
     fontSize:13
     }
