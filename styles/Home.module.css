@@ -372,6 +372,18 @@ max-width:500px ;
 
 }
 
+.noaction{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  background-color: grey;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 15px;
+
+}
+
 .action2{
   padding:15px;
   border-radius: 100px;

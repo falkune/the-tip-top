@@ -104,13 +104,21 @@ button {
 >>>>>>> 82befde (first page)
 =======
 .pulse{
-  
+
   animation: pulse 1s infinite;
 
   
 }
 
+<<<<<<< HEAD
 >>>>>>> ddce213 (add ticket page)
+=======
+.imageConnexion{
+
+  position: fixed;
+}
+
+>>>>>>> a4a8112 (add loader)
 * {
   box-sizing: border-box;
 }

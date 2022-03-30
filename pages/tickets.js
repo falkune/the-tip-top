@@ -132,11 +132,11 @@ const stylez = {
       </Head>
       <Header/>
       <h1 className={styles.h1}>Mes tickets</h1>
-      <p>{`Vous avez ${number} tickets gagnants`}</p>
-        <div style={stylez.gain}>
-              <Ticket />
-              <Ticket />
-        </div>
+        <p style={{fontSize:18,color:"grey"}}>Vous avez <strong style={{color:"#40EFD7"}}>{number} </strong>{`tickets gagnants`}</p>
+          <div style={stylez.gain}>
+                <Ticket />
+                <Ticket />
+          </div>
       <Footer/>
     </div>
   )

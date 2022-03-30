@@ -25,6 +25,13 @@ const styles = {
          display:"flex",
          alignItems:'center',
          justifyContent:"center",
+<<<<<<< HEAD
          backgroundColor:"#41D8C2"
     },
+=======
+         backgroundColor:"#40EFD7"
+
+    },
+ 
+>>>>>>> a4a8112 (add loader)
 }

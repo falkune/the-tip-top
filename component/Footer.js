@@ -5,7 +5,11 @@ import Link from "next/link"
 import Image from 'next/image'
 import Link from "next/link"
 import logo from "../image/logo.png"
+<<<<<<< HEAD
 >>>>>>> 82befde (first page)
+=======
+import { padding } from "@mui/system"
+>>>>>>> a4a8112 (add loader)
 
 const Footer = () => {
   return (
@@ -55,6 +59,7 @@ const styles = {
     nav:{
      display:"flex",
 <<<<<<< HEAD
+<<<<<<< HEAD
      color:"white",
      padding:0,
     },
@@ -66,10 +71,14 @@ const styles = {
 =======
      marginRight :25,
      color:"white"
+=======
+     color:"white",
+     padding:0,
+>>>>>>> a4a8112 (add loader)
     },
 
     li:{
-    marginLeft:15,
+    margin:10,
     listStyleType:"none",
     fontSize:13
     }

@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
@@ -111,6 +112,9 @@ export default function Bingo() {
 
 // https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/
 =======
+=======
+import React, { useEffect, useState } from "react";
+>>>>>>> a4a8112 (add loader)
 import Head from 'next/head'
 import Image from 'next/image'
 import Link from "next/link"
@@ -120,11 +124,12 @@ import Footer from "../component/Footer"
 import { useRouter } from 'next/router'
 
 export default function Bingo() {
+  const [num, setNum]   = useState(null);
   const router = useRouter()
   const goResult = () => {
     router.push('/resultat')
-
   }
+
   return (
     <div className={styles.container}>
       <Head>
@@ -139,9 +144,23 @@ export default function Bingo() {
         <Link href="/#lots"> 
             <small style={{color:"#40EFD7"}}>Voir les differents lots</small>
         </Link>
-        <form onSubmit={goResult} className={styles.bingo}>
-          <input type="text" placeholder="Veuillez rentrer vos 10 numéros" />
-          <button type="submit" onClick={() => goResult()} className={styles.action} style={{margin:25}}>Valider</button>
+        <form className={styles.bingo}>
+          <input type="text"  name="numero"  autoComplete="off"
+           placeholder="Veuillez rentrer vos 10 numéros" 
+           maxlength={10}
+           onChange={(e) => {
+            setNum(e.target.value)}}
+            value={num}
+            
+            />
+         { num !== null && num.length < 10 && <small style={{color:"red",textDecoration:"none"}}>Numéro invalide</small>}
+         { num !== null && num.length === 10 && <small style={{color:"green",textDecoration:"none"}}>Numéro valide</small>}
+         { num !== null && num.length === 10 ? <button  onClick={goResult}
+           className={styles.action} 
+           style={{margin:25}}>Valider</button>:
+           <button disabled={true} 
+           className={styles.noaction} style={{margin:25}}>Valider</button> }
+        
         </form>
       </section>
       <Footer/>
