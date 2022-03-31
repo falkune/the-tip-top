@@ -29,7 +29,7 @@ export default function Connexion() {
       <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
         <input type="text" placeholder="Email" />
         <input type="password" placeholder="Mot de passe" />
-        <button type="button" onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
+        <button onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
       </form>
       <div className={styles.social} >
         <button style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}>
