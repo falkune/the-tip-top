@@ -50,12 +50,9 @@
   margin-top: 15px;
   font-size: 16px;
   position: relative;
+  font-size: 16;
 }
 
-.social button img{
-  position:absolute;
-  z-index: 100000;
-}
 
 
 .cards2{
@@ -228,6 +225,22 @@ margin-top: 15px;
   font-size: 16px;
   outline: none;
   border: solid 1px #40EFD7
+  }
+ .export {
+ 
+  position: relative;
+  background-color: red;
+
+ }
+
+
+  .export img {
+
+    margin: 25px;
+
+  
+
+
   }
 
 @media (max-width: 600px) {

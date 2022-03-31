@@ -50,7 +50,7 @@ const Header = () => {
                         <li style={styles.li}>Mes tickets</li>
                     </Link>}
 
-                    {user && user ==="pro" && <Link href="/tickets">
+                    {user && user ==="client" && <Link href="/emails">
                         <li style={styles.li}>Mes emails</li>
                     </Link> }
                    {user && user ==="pro" && <Link href="/tickets">
@@ -79,7 +79,7 @@ const Header = () => {
                         <li style={styles.li2}>Mes tickets</li>
                     </Link>}
 
-                    {user && user ==="pro" && <Link href="/tickets">
+                    {user && user ==="client" && <Link href="/emails">
                         <li style={styles.li2}>Mes emails</li>
                     </Link> }
                    {user && user ==="pro" && <Link href="/tickets">
