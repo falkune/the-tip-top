@@ -8,6 +8,14 @@
   align-items: center;
 }
 
+.elm {
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
 .container {
   min-height: 100vh;
   padding-top: 100px;
@@ -16,8 +24,16 @@
   align-items: center;
 }
 
+.block{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:100% ;
+  padding-bottom: 10px;
+  min-height: 100vh;
+  text-align: center;
 
-
+}
 
 .social{
   display: flex;
@@ -34,13 +50,62 @@
   margin-top: 15px;
   font-size: 16px;
   position: relative;
-}
-
-.social button img{
-  position:absolute;
+  font-size: 16;
 }
 
 
+
+.cards2{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+padding: 15px;
+}
+
+.cards2 span{
+  background-color: #EFEFEF;
+  margin: 10px;
+  width: 250px;
+  height: 250px;
+  padding: 8px;
+  color :#40EFD7;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  }
+
+  .cards2 p{
+    margin-top: 15px;
+    color:white
+    }
+  
+    .cards{
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 15px;
+      }
+      
+      .cards span{
+        background-color: white;
+        margin: 10px;
+        width: 250px;
+        height: 250px;
+        padding: 5px;
+        color :#40EFD7;
+        box-shadow: 0px 0px 0px 5px rgba(255,255,255,0.46);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        }
+      
+        .cards p{
+          color:white
+          }
 
 
 .part{
@@ -49,7 +114,8 @@
   justify-content: center;
   align-items: center;
   width:100% ;
-  padding-bottom: 10px;
+  padding: 10px;
+  text-align: center;
 }
 
 .part p{
@@ -66,7 +132,7 @@
 
 .h1{
   color: #40EFD7;
-  font-size: 30px;
+  font-size: 45px;
   margin-bottom: 0;
 }
 
@@ -107,6 +173,75 @@ max-width:500px ;
   margin: 15px;
 
 }
+
+.noaction{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  background-color: grey;
+  border: none;
+  color: white;
+  font-size: 18px;
+  margin: 15px;
+
+}
+
+.action2{
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  border: none;
+  font-size: 18px;
+  margin: 15px;
+
+}
+
+
+.bingo{
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 90%;
+max-width: 500px;
+padding-top: 25px;
+border-top: solid 1px  #D2D2D2;
+margin-top: 15px;
+
+}
+
+.block small{
+
+ text-decoration: underline;
+  
+  }
+
+
+.bingo input{
+  height: 50px;
+  margin: 10px;
+  width: 90%;
+  max-width: 500px;
+  padding-left: 25px;
+  font-size: 16px;
+  outline: none;
+  border: solid 1px #40EFD7
+  }
+ .export {
+ 
+  position: relative;
+  background-color: red;
+
+ }
+
+
+  .export img {
+
+    margin: 25px;
+
+  
+
+
+  }
 
 @media (max-width: 600px) {
   .grid {

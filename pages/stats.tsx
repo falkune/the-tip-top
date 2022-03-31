@@ -5,7 +5,7 @@ import Footer from "../component/Footer"
 import Ticket from "../component/Ticket"
 import { billets } from "../component/Data"
 
-export default function Tickets() {
+export default function Stats() {
 
   const number = billets.length
   console.log(billets)
@@ -17,7 +17,7 @@ export default function Tickets() {
         <link rel="icon" href="/fav.png" />
       </Head>
       <Header/>
-      <h1 className={styles.h1}>Mes tickets</h1>
+      <h1 className={styles.h1}>Mes Stats</h1>
         <p style={{fontSize:18,color:"grey"}}>Vous avez <strong style={{color:"#40EFD7"}}>{number} </strong>{`tickets gagnants`}</p>
           <div style={stylez.gain}>
           {billets.map((i,index) => (

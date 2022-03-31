@@ -16,7 +16,8 @@ export default NextAuth({
     // ...add more providers here
   ],
   pages: {
-    signIn: '/connexion'
+    signIn: '/connexion',
+    newUser: '/inscription' 
   },
   callbacks: {
     async signIn({ user, account, profile, email, credentials }){
