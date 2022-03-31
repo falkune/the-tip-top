@@ -1,5 +1,6 @@
-import {firebaseApp} from './firebase';
-import { AuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {firebaseApp} from './firebase'
+import { AuthProvider, getAuth, signInWithPopup } from "firebase/auth"
+import { signIn } from "next-auth/react"
 
 const signInWith = (provider: AuthProvider) => {
   const firebaseAuth = getAuth(firebaseApp);
@@ -23,4 +24,11 @@ const signInWith = (provider: AuthProvider) => {
     }
   })
 }
+
+const registerWith = (providerId: string) => {
+  console.log("signing In ...")
+  signIn(providerId)
+}
+
+export {registerWith}
 export default signInWith;

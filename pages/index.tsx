@@ -31,12 +31,10 @@ export default function Home() {
       <section className={styles.part}>
        <h2 className={styles.h2}>Comment participer ?</h2>
        <ul>
-          <li>Vous avez reçu un numéro à 10 chiffres</li>
-          <li>Connecter-vous au site</li>
-          <li>Rentrer vos numéro dans le champs pour vérifié votre lot</li>
+        <li>Vous avez reçu un numéro à 10 chiffres</li>
+        <li>Connecter-vous au site</li>
+        <li>Rentrer vos numéro dans le champs pour vérifié votre lot</li>
        </ul>
-
-
       </section>
 
       <section className={styles.part} style={{background:"red"}}>

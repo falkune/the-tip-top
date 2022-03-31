@@ -2,18 +2,29 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
-import Footer from "../component/Footer"
-import Link from "next/link"
 import google from "../image/google.svg"
 import facebook from "../image/facebook.png"
-import signInWith from '../config/service';
-import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
-import { getProviders, signIn } from "next-auth/react"
+import signInWith from '../config/service'
+import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth"
+import { useSession, getProviders } from "next-auth/react"
+import Footer from '../component/Footer'
+import { registerWith } from '../config/service'
 
 
-export default function Connexion() {
-  const GoogleProvider = new GoogleAuthProvider();
-  const FacebookProvider = new FacebookAuthProvider();
+export default function Connexion({ providers }:{providers: any}) {
+  const { data: session, status } = useSession()
+  const GoogleProvider = new GoogleAuthProvider()
+  const FacebookProvider = new FacebookAuthProvider()
+  // console.log(session)
+
+  if(status === "loading") {
+    return <p>Loading...</p>
+  }
+
+  // if (status === "unauthenticated") {
+  //   return <p>Access Denied</p>
+  // }
+
   return (
     <div>
     <div className={styles.container}>
@@ -42,14 +53,28 @@ export default function Connexion() {
           onClick={() => signInWith(GoogleProvider)}>
           <Image src={google} width="25" height="25" /> 
           Connexion
-          </button>
+        </button>
       </div>
+      <div>
+      {Object.values(providers).map((provider: any) => (
+        <div key={provider.name}>
+          <button onClick={() => registerWith(provider.id )}>
+            Sign in with {provider.name}
+          </button>
+        </div>
+      ))}
+    </div>
       </section>
- 
     </div>
     <Footer/>
-
     </div>
   )
 }
 
+
+export async function getServerSideProps(context: any) {
+  const providers = await getProviders()
+  return {
+    props: { providers },
+  }
+}

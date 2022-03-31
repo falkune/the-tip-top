@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import FacebookProvider from "next-auth/providers/facebook";
+import NextAuth from "next-auth"
+import GoogleProvider from "next-auth/providers/google"
+import FacebookProvider from "next-auth/providers/facebook"
 
 export default NextAuth({
   // Configure one or more authentication providers
@@ -15,4 +15,17 @@ export default NextAuth({
     })
     // ...add more providers here
   ],
+  pages: {
+    signIn: '/connexion'
+  },
+  callbacks: {
+    async signIn({ user, account, profile, email, credentials }){
+      const isAllowedToSignIn = true
+      if (isAllowedToSignIn){
+        return true
+      } else {
+        return false
+      }
+    }
+  }
 })
