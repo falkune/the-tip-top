@@ -59,6 +59,7 @@ export default function Connexion({ providers }:{providers: any}) {
       {Object.values(providers).map((provider: any) => (
         <div key={provider.name}>
           <button onClick={() => registerWith(provider.id )}>
+            <Image src={google} width="25" height="25" /> 
             Sign in with {provider.name}
           </button>
         </div>
