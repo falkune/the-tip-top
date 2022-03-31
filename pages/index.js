@@ -47,8 +47,8 @@ export default function Home() {
 =======
   const router = useRouter()
 
-  const goBingo = () => {
-    router.push('/bingo')
+  const goConnexion = () => {
+    router.push('/connexion')
 
 
 
@@ -184,7 +184,7 @@ export default function Home() {
         <h1 className={styles.h1}>Gagner des lots magique</h1>
 
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
-          <button type='button' onClick={() => router.push('/connexion')} className={styles.action} style={{margin:25}}>Commencer</button>
+          <button type='button' onClick={goConnexion} className={styles.action} style={{margin:25}}>Commencer</button>
       </section>
 
       <section className={styles.part} style={{backgroundColor:"#40EFD7",color:"white",minHeight:400,paddingTop:50,paddingBottom:50}}>

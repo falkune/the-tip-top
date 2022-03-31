@@ -126,9 +126,12 @@ import { useRouter } from 'next/router'
 export default function Bingo() {
   const [num, setNum]   = useState(null);
   const router = useRouter()
+  console.log(num,"num")
   const goResult = () => {
-    console.log('Voici le numéro',num)
-    router.push('/resultat')
+    if (num === 10 ){
+      router.push('/resultat')
+    }
+    else console.log("perdu")
   }
 
   return (
@@ -145,8 +148,8 @@ export default function Bingo() {
         <Link href="/#lots"> 
             <small style={{color:"#40EFD7"}}>Voir les differents lots</small>
         </Link>
-        <form className={styles.bingo}>
-          <input type="text"  name="numero"  autoComplete="off"
+        <form  className={styles.bingo}>
+          <input type="text" name="numero"  autoComplete="off"
            placeholder="Veuillez rentrer vos 10 numéros" 
            maxlength={10}
            onChange={(e) => {
@@ -154,12 +157,12 @@ export default function Bingo() {
             value={num} />
          { num !== null && num.length < 10 && <small style={{color:"red",textDecoration:"none"}}>Numéro invalide</small>}
          { num !== null && num.length === 10 && <small style={{color:"green",textDecoration:"none"}}>Numéro valide</small>}
-         { num !== null && num.length === 10 ? <button  onClick={goResult}
+         { num !== null && num.length === 10 ? <button type="button"
+          onClick={goResult}
            className={styles.action} 
            style={{margin:25}}>Valider</button>:
            <button disabled={true} 
            className={styles.noaction} style={{margin:25}}>Valider</button> }
-        
         </form>
       </section>
       <Footer/>
