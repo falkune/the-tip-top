@@ -101,6 +101,7 @@
   font-size: 16px;
   position: relative;
 <<<<<<< HEAD
+<<<<<<< HEAD
   font-size: 16;
 =======
 }
@@ -113,6 +114,11 @@
   z-index: 100000;
 >>>>>>> ddce213 (add ticket page)
 }
+=======
+  font-size: 16;
+}
+
+>>>>>>> cc647dd (count down)
 
 
 .cards2{
@@ -516,6 +522,7 @@ margin-top: 15px;
   outline: none;
   border: solid 1px #40EFD7
   }
+<<<<<<< HEAD
   
 
 
@@ -578,6 +585,24 @@ margin-top: 15px;
   border: solid 1px #40EFD7
   }
 >>>>>>> 06eb735 (bingo page)
+=======
+ .export {
+ 
+  position: relative;
+  background-color: red;
+
+ }
+
+
+  .export img {
+
+    margin: 25px;
+
+  
+
+
+  }
+>>>>>>> cc647dd (count down)
 
 @media (max-width: 600px) {
   .grid {

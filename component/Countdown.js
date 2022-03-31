@@ -37,16 +37,22 @@ const countDownInterval = setInterval (() => {
   return (
     <div style={styles.count}>   
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cc647dd (count down)
        <p style={{fontSize:45,color:"grey",textAlign:"center",margin:0}}>  
         <strong style={{color:"white"}}>{tdays}</strong>J{" "} 
          <strong style={{color:"white"}}>{thours}</strong>H {" "}  
         <strong style={{color:"white"}}>{tminutes}</strong>M {" "}
         <strong style={{color:"white"}}>{tseconds}</strong>S{" "}
         </p>
+<<<<<<< HEAD
 =======
        <p style={{fontSize:45,color:"white",textAlign:"center"}}>  
         {`${tdays}j ${thours}h ${tminutes}m ${tseconds}s`}</p>
 >>>>>>> ddce213 (add ticket page)
+=======
+>>>>>>> cc647dd (count down)
     </div>
   )
 }
@@ -58,11 +64,16 @@ const styles = {
     count:{
         display:"flex",
 <<<<<<< HEAD
+<<<<<<< HEAD
         justifyContent:'center',
         marginBottom:30
 =======
         justifyContent:'center'
 >>>>>>> ddce213 (add ticket page)
+=======
+        justifyContent:'center',
+        marginBottom:30
+>>>>>>> cc647dd (count down)
     } 
 
 }
