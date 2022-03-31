@@ -172,10 +172,9 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
-import Footer from "../component/Footer"
-import Link from "next/link"
 import google from "../image/google.svg"
 import facebook from "../image/facebook.png"
+<<<<<<< HEAD
 <<<<<<< HEAD
 import { useRouter } from 'next/router'
 import {firebaseApp} from '../config/firebase'
@@ -237,6 +236,29 @@ export default function Connexion() {
   const GoogleProvider = new GoogleAuthProvider();
   const FacebookProvider = new FacebookAuthProvider();
 >>>>>>> e5668b0 (mise en place de l'authentification fgoogle et facebook)
+=======
+import signInWith from '../config/service'
+import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth"
+import { useSession, getProviders } from "next-auth/react"
+import Footer from '../component/Footer'
+import { registerWith } from '../config/service'
+
+
+export default function Connexion({ providers }:{providers: any}) {
+  const { data: session, status } = useSession()
+  const GoogleProvider = new GoogleAuthProvider()
+  const FacebookProvider = new FacebookAuthProvider()
+  // console.log(session)
+
+  if(status === "loading") {
+    return <p>Loading...</p>
+  }
+
+  // if (status === "unauthenticated") {
+  //   return <p>Access Denied</p>
+  // }
+
+>>>>>>> bd3cdc4 (next auth for authenticate with google or facebook)
   return (
     <div>
     <div className={styles.container}>
@@ -294,6 +316,7 @@ export default function Connexion() {
           <Image src={google} width="25" height="25" /> 
 >>>>>>> e5668b0 (mise en place de l'authentification fgoogle et facebook)
           Connexion
+<<<<<<< HEAD
 >>>>>>> 608057c (modification des extentions):pages/connexion.tsx
           </button>
         </div>
@@ -302,11 +325,31 @@ export default function Connexion() {
         Pas encore de compte ?
         <strong style={{color:"#437BFF"}}> <Link href="/inscription">  S'inscrire</Link></strong>
       </small>
+=======
+        </button>
+      </div>
+      <div>
+      {Object.values(providers).map((provider: any) => (
+        <div key={provider.name}>
+          <button onClick={() => registerWith(provider.id )}>
+            Sign in with {provider.name}
+          </button>
+        </div>
+      ))}
+    </div>
+      </section>
+>>>>>>> bd3cdc4 (next auth for authenticate with google or facebook)
     </div>
     <Footer/>
-
     </div>
   )
 >>>>>>> 82befde (first page)
 }
 
+
+export async function getServerSideProps(context: any) {
+  const providers = await getProviders()
+  return {
+    props: { providers },
+  }
+}
