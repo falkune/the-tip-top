@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> dded1f6 (Update the dockignore and infra folders)
 # dependencies
 /node_modules
 /.pnp
@@ -32,6 +35,7 @@ yarn-error.log*
 
 # vercel
 .vercel
+<<<<<<< HEAD
 
 package-lock.json
 =======
@@ -39,3 +43,5 @@ node_modules
 Jenkinsfile
 infra
 >>>>>>> be51fba (commit Dockerfile creation page)
+=======
+>>>>>>> dded1f6 (Update the dockignore and infra folders)

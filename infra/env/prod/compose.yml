@@ -1,9 +1,10 @@
 version: "3.8"
 
 networks:
-  prod:
+  preprod:
      external: true  
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 #volumes:
 #  code:
@@ -35,24 +36,38 @@ services:
 volumes:
   db-data-prod:
     external: true
+=======
+#volumes:
+  #code:
+>>>>>>> dded1f6 (Update the dockignore and infra folders)
 
 services:
-  db:
-    image: ${BASE_IMG}/stable/db:${DB_STABLE_TAG}
-    container_name: db
-    volumes:
-      - db-data-prod:/data/db
-    networks:
-      - prod 
-  api:
-    image: ${BASE_IMG}/stable/api:${API_STABLE_TAG}
-    container_name: api
+  front-release:
+    image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
+    environment:
+      - TZ=Europe/Paris
+    #volumes:
+    #    - /etc/localtime:/etc/localtime:ro
+    #   - code:/usr/src/app
+    #   - /usr/src/app/node_modules
+    restart: unless-stopped
+    links:
+      - api-release:api
+    container_name: frontend-release
+    depends_on:
+      - api
     labels:
         - traefik.enable=true
+<<<<<<< HEAD
         - traefik.http.routers.api.rule=Host(`api.${DOMAIN_BASE}`)
         - traefik.http.routers.api.entrypoints=websecure
         - traefik.http.routers.api.service=registry-web
         - traefik.http.services.api.loadbalancer.server.port=3000
 >>>>>>> 34a778e (Set up infra as code)
+=======
+        - traefik.http.routers.api-release.rule=Host(`dev.${DOMAIN_BASE}`)
+        - traefik.http.routers.api-release.entrypoints=websecure
+        - traefik.http.services.api-release.loadbalancer.server.port=3000
+>>>>>>> dded1f6 (Update the dockignore and infra folders)
     networks:
-      - prod
+      - preprod
