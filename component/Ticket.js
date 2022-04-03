@@ -141,13 +141,6 @@ const styles = {
       textAlign:'center',
       padding:8
   }
- 
-
- 
-
-
-
-
 
 >>>>>>> ddce213 (add ticket page)
 }

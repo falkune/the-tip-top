@@ -43,6 +43,7 @@ const styles = {
     justifyContent: "center"
   }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 
@@ -50,4 +51,6 @@ const styles = {
 
 
 >>>>>>> ddce213 (add ticket page)
+=======
+>>>>>>> efc371d (cleaning dev)
 }
