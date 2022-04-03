@@ -30,7 +30,7 @@ pipeline{
                      }
               }
 
-        stage("private docker hub") {
+        stage("private docker") {
                 //when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                 stages {
 
