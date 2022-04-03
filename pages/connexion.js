@@ -177,13 +177,54 @@ import Link from "next/link"
 import google from "../image/google.svg"
 import facebook from "../image/facebook.png"
 import { useRouter } from 'next/router'
+import {firebaseApp} from '../config/firebase'
+import { 
+  AuthProvider, 
+  getAuth, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  FacebookAuthProvider 
+} from "firebase/auth"
 
 
 export default function Connexion() {
+  
+  const [email, setEmail] = useState('')
+  const [passWord, setPassword] = useState('')
+
+  const GoogleProvider = new GoogleAuthProvider()
+  const FacebookProvider = new FacebookAuthProvider()
+
+  const connexion = () => {
+    // signIn function contact the backend API service  
+  }
+  
+  const signInWith = (provider) => {
+    // this function connect user withn with his google or facebook account
+    const firebaseAuth = getAuth(firebaseApp);
+    signInWithPopup(firebaseAuth, provider)
+    .then((res) => {
+      const user = res.user;
+      console.log(user)
+      const displayName = user.displayName;
+      const email = user.email;
+      const uid = user.uid;
+      // contacter API
+    })
+    .catch((err) => {
+      const errorCode = err.code;
+      const errorMessage = err.message;
+      // console.log(errorMessage)
+      if(err.code === 'auth/account-exists-with-different-credential'){
+        console.log("error");
+      }
+    })
+  }
+
   const router = useRouter()
-    const goBingo = () => {
-      router.push('/bingo')
-    }
+  const goBingo = () => {
+    router.push('/bingo')
+  }
 
   return (
     <div>
@@ -195,28 +236,35 @@ export default function Connexion() {
       </Head>
       <Header/>
       <section className={styles.login}>
-      <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
-      <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
-        <input type="text" placeholder="Email" />
-        <input type="password" placeholder="Mot de passe" />
-        <button onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
-      </form>
-      <div className={styles.social} >
-        <button style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}>
-        <span  style={{position:"absolute",left:20,bottom:1}}>
-             <Image src={facebook} width="16" height="40" objectFit='contain' /> 
-          </span>
-          Connexion
+        <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
+          <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
+          <input type="text" placeholder="Email" />
+          <input type="password" placeholder="Mot de passe" />
+          <button onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
+        </form>
+        <div className={styles.social} >
+          <button 
+            style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}
+            onClick={() => signInWith(FacebookProvider)}>
+            <span  style={{position:"absolute",left:20,bottom:1}}>
+              <Image src={facebook} width="16" height="40" objectFit='contain' /> 
+            </span>
+            Connexion
           </button>
-        <button style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}>
-          <span  style={{position:"absolute",left:8,bottom:1}}>
-             <Image src={google} width="40" height="40" /> 
-          </span>
-          Connexion
+          <button 
+            style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
+            onClick={() => signInWith(GoogleProvider)}>
+            <span  style={{position:"absolute",left:8,bottom:1}}>
+              <Image src={google} width="40" height="40" /> 
+            </span>
+            Connexion
           </button>
-      </div>
+        </div>
       </section>
-    <small>Pas encore de compte ?<strong style={{color:"#437BFF"}}> <Link href="/inscription">  S'inscrire</Link></strong></small>
+      <small>
+        Pas encore de compte ?
+        <strong style={{color:"#437BFF"}}> <Link href="/inscription">  S'inscrire</Link></strong>
+      </small>
     </div>
     <Footer/>
 

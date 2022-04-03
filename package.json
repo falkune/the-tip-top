@@ -23,6 +23,7 @@
     "@mui/material": "^5.5.2",
 >>>>>>> ddce213 (add ticket page)
     "animate.css": "^4.1.1",
+<<<<<<< HEAD
     "axios": "^0.27.2",
     "chart.js": "^3.8.2",
     "crypto-js": "^4.1.1",
@@ -34,6 +35,9 @@
 =======
     "animate.css": "^4.1.1",
 >>>>>>> 82befde (first page)
+=======
+    "firebase": "^9.6.10",
+>>>>>>> 376006d (fix some problems)
     "next": "12.1.0",
 <<<<<<< HEAD
     "react": "^17.0.2",
