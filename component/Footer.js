@@ -1,8 +1,5 @@
 import React from "react"
-import Image from 'next/image'
 import Link from "next/link"
-import logo from "../image/logo.png"
-import { padding } from "@mui/system"
 
 const Footer = () => {
   return (
@@ -27,7 +24,6 @@ const Footer = () => {
 export default Footer
 
 const styles = {
-
     footer:{
         width:"100%",
         backgroundColor:"#40EFD7",
@@ -41,15 +37,9 @@ const styles = {
      color:"white",
      padding:0,
     },
-
     li:{
     margin:10,
     listStyleType:"none",
     fontSize:13
     }
-
-
-
-
-
 }

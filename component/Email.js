@@ -4,7 +4,6 @@ import React from "react"
 const Email = (props) => {
   return (
     <div style={styles.email}>  
-    
          <small style={styles.date}>{props.date}</small>     
           <p style={styles.elem}>{props.name}</p>
           <p style={styles.elem}>{props.email}</p>
@@ -38,13 +37,4 @@ const styles = {
         borderBottom:"solid 1px white",
         marginBottom:5
     }
- 
- 
-
- 
-
-
-
-
-
 }

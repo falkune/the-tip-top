@@ -1,0 +1,30 @@
+version: "3.8"
+
+volumes:
+  db-data:
+
+services:
+  db:
+    build: 
+      dockerfile: ./infra/build/db/Dockerfile
+      context: .
+    image: local/db:latest
+    container_name: db
+    volumes:
+      - db-data:/data/db
+
+  api:
+    build: 
+      context: .
+      target: developpement
+      dockerfile: ./infra/build/api/Dockerfile
+    command: npm run start:debug
+    container_name: api
+    image: local/api:latest
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
+    ports:
+      - 80:3000

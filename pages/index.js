@@ -21,10 +21,6 @@ export default function Home() {
 
   const goConnexion = () => {
     router.push('/connexion')
-
-
-
-
   }
 
 
@@ -73,13 +69,7 @@ export default function Home() {
             <Image src={store} width="50" height="50" /> 
             Aller chercher votre lot en magasin 
          </span>
-
-
-
-
         </div>
-
-
       </section>
 
       <section  id="lots" className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
@@ -117,16 +107,8 @@ export default function Home() {
          <Image src={tea4} width="150" height="150" objectFit='contain' /> 
              un coffret découverte d’une valeur de 69€         
          </span>
-
-
-
-
-
         </div>
-
-
       </section>
-
       <Footer/>
     </div>
   )

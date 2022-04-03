@@ -1,3 +1,66 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.index-image-liste{
+  display: flex;
+  justify-content: space-between;
+}
+
+.login{
+  display: flex;
+  justify-content: space-around;
+}
+
+.login-form{
+  width: 40%;
+}
+
+.login-btn{
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.navbar{
+  padding: 0 30px;
+}
+
+.login-form{
+  width:60%;
+  margin: auto;
+}
+
+header{
+  height: 90px;
+  background-color: gainsboro;
+}
+
+footer{
+  text-align: center;
+  height: 100px;
+  padding: 100px 0;
+  background-color: darkslategray;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.boutton-login{
+  text-align: center;
+}
+
+.boutton-login button{
+  /* width: 300px;*/
+  margin: 5px;
+  border-radius: 10px; 
+}
 html,
 body {
   padding: 0;
