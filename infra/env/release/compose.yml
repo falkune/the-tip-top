@@ -2,6 +2,7 @@ version: "3.8"
 
 networks:
 <<<<<<< HEAD
+<<<<<<< HEAD
   preprod:
      external: true  
 
@@ -28,14 +29,17 @@ services:
     container_name: frontend-release
 =======
   prod:
+=======
+  preprod:
+>>>>>>> 8aea497 (Update docker compose file for differents envs)
      external: true  
 
 #volumes:
   #code:
 
 services:
-  frontend:
-    image: ${IMAGE_BASE}/stable/frontend:${FRONTEND_RELEASE_TAG}
+  front-release:
+    image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
     environment:
       - TZ=Europe/Paris
     #volumes:
@@ -44,13 +48,19 @@ services:
     #   - /usr/src/app/node_modules
     restart: unless-stopped
     links:
+<<<<<<< HEAD
       - api
     container_name: frontend
 >>>>>>> 34a778e (Set up infra as code)
+=======
+      - api-release:api
+    container_name: frontend-release
+>>>>>>> 8aea497 (Update docker compose file for differents envs)
     depends_on:
       - api
     labels:
         - traefik.enable=true
+<<<<<<< HEAD
 <<<<<<< HEAD
         - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)
         - traefik.http.routers.frontend-release.entrypoints=websecure
@@ -64,3 +74,10 @@ services:
     networks:
       - prod
 >>>>>>> 34a778e (Set up infra as code)
+=======
+        - traefik.http.routers.api-release.rule=Host(`dev.${DOMAIN_BASE}`)
+        - traefik.http.routers.api-release.entrypoints=websecure
+        - traefik.http.services.api-release.loadbalancer.server.port=3000
+    networks:
+      - preprod
+>>>>>>> 8aea497 (Update docker compose file for differents envs)
