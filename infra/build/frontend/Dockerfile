@@ -1,31 +1,15 @@
-# FROM node:17.6.0-alpine3.14 as development
-
-# WORKDIR /app
-
-# COPY ./package.json ./
-
-# COPY ./yarn.lock ./
-
-# RUN npm install
-
-# COPY . .
-
-# EXPOSE 3000
-
-# RUN npm run build
-
-
-FROM node:17.6.0-alpine3.14 as development
+FROM node:alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
-FROM node:17.6.0-alpine3.14 as builder
+FROM node:alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN yarn build
 
-FROM node:17.6.0-alpine3.14 as runner
+FROM node:alpine as runner
 WORKDIR /my-project
 ENV NODE_ENV production
 # If you are using a custom next.config.js file, uncomment this line.

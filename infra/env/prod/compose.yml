@@ -1,0 +1,29 @@
+version: "3.8"
+
+networks:
+  prod:
+     external: true  
+
+volumes:
+  db-data-prod:
+    external: true
+
+services:
+  db:
+    image: ${BASE_IMG}/stable/db:${DB_STABLE_TAG}
+    container_name: db
+    volumes:
+      - db-data-prod:/data/db
+    networks:
+      - prod 
+  api:
+    image: ${BASE_IMG}/stable/api:${API_STABLE_TAG}
+    container_name: api
+    labels:
+        - traefik.enable=true
+        - traefik.http.routers.api.rule=Host(`api.${DOMAIN_BASE}`)
+        - traefik.http.routers.api.entrypoints=websecure
+        - traefik.http.routers.api.service=registry-web
+        - traefik.http.services.api.loadbalancer.server.port=3000
+    networks:
+      - prod
