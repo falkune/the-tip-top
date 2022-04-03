@@ -13,6 +13,10 @@ formated_image=${DOCKER_PRIVATE_REGISTER}/${type}/${image}:${tag}
 
 formated_image_latest=${DOCKER_PRIVATE_REGISTER}/${type}/${image}:"latest"
 
+<<<<<<< HEAD
 docker build --no-cache -t "${formated_image}" -f infra/build/"${image}"/Dockerfile .
+=======
+docker build -t "${formated_image}" -f infra/build/"${image}"/Dockerfile .
+>>>>>>> 34a778e (Set up infra as code)
 
 docker tag "${formated_image}" "${formated_image_latest}"

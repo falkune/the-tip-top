@@ -5,15 +5,26 @@ pipeline{
       DOCKER_PRIVATE_REGISTER="registry.dsp-archiwebo21-ct-df-an-cd.fr"
       REGISTRY_CRED=credentials('jenkins-registry-credential')
       IMAGE_TAG=sh(returnStdout: true, script: 'cat infra/build/version | tail -1').trim()
+<<<<<<< HEAD
+=======
+
+>>>>>>> 34a778e (Set up infra as code)
     }
     stages{
 
         stage("build") {
+<<<<<<< HEAD
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                     parallel {
                   
                          stage("release"){  
                                 when {branch 'release'}
+=======
+                    parallel {
+                  
+                         stage("release"){  
+                                //when {branch 'release'}
+>>>>>>> 34a778e (Set up infra as code)
                                   steps{
                                     sh "infra/scripts/build.sh frontend release"  
                                  }
@@ -30,8 +41,13 @@ pipeline{
                      }
               }
 
+<<<<<<< HEAD
         stage("registry") {
                 when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+=======
+        stage("private docker hub") {
+                //when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+>>>>>>> 34a778e (Set up infra as code)
                 stages {
 
                       stage("login"){
@@ -59,20 +75,41 @@ pipeline{
              }
 
         stage("test"){
+<<<<<<< HEAD
             when {branch "dev"}
             agent {docker {image "node:14-alpine"}}
 
             stages {
                 stage("setup"){
+=======
+            agent {
+                docker {
+                    image "node:alpine"
+                }
+            }
+
+            stages {
+                stage("install packages"){
+                   when {
+                       branch "dev"
+                   }
+>>>>>>> 34a778e (Set up infra as code)
                    steps{
                            sh "node --version"
                            sh "npm version"
                            sh "npm install"
+<<<<<<< HEAD
                            sh "npm run build"
+=======
+>>>>>>> 34a778e (Set up infra as code)
                        }
                    
                 }
                  stage("coverage") {
+<<<<<<< HEAD
+=======
+                    when {branch "dev"}
+>>>>>>> 34a778e (Set up infra as code)
                     steps{
                      echo "Any  cov test to achieve"
                      //sh "npm run test:cov"
@@ -105,10 +142,16 @@ pipeline{
         }
 
         stage("deploy"){ 
+<<<<<<< HEAD
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
             parallel{
                 stage ('release'){
                     when{ branch 'release'}
+=======
+            parallel{
+                stage ('release'){
+                    //when{ branch 'release'}
+>>>>>>> 34a778e (Set up infra as code)
                     steps{
                         sshagent(credentials: ['devops-sshkey-private']) {
                                echo "copy release infra folder env on prod remote"
@@ -131,11 +174,14 @@ pipeline{
                 }
             }                 
         }
+<<<<<<< HEAD
 
         stage("end") {
             steps{
                 echo "Successful end"
             }
         }
+=======
+>>>>>>> 34a778e (Set up infra as code)
     }
 }
