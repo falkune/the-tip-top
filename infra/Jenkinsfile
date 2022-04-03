@@ -42,10 +42,14 @@ pipeline{
               }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
         stage("registry") {
                 when { expression { BRANCH_NAME ==~ /(main|release)/ } }
 =======
         stage("private docker hub") {
+=======
+        stage("private docker") {
+>>>>>>> ea7e253 (Update the jenkinsFile)
                 //when { expression { BRANCH_NAME ==~ /(main|release)/ } }
 >>>>>>> 34a778e (Set up infra as code)
                 stages {
