@@ -76,12 +76,5 @@ const styles = {
       textAlign:'center',
       padding:8
   }
- 
-
- 
-
-
-
-
 
 }
