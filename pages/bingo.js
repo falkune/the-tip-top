@@ -12,7 +12,11 @@ export default function Bingo() {
   const router = useRouter()
   console.log(num,"num")
   const goResult = () => {
+<<<<<<< HEAD
     if(num.length === 10 ){
+=======
+    if (num.length === 10 ){
+>>>>>>> 81512f0 (develop start)
       router.push('/resultat')
     }
     else console.log("perdu")
