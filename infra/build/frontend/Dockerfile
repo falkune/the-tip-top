@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
@@ -13,18 +14,25 @@ RUN npm run build
 FROM node:14-alpine as runner
 =======
 FROM node:alpine as dependencies
+=======
+FROM node:14-alpine as dependencies
+>>>>>>> 1523c38 (Change the node image to 14-alpine)
 WORKDIR /my-project
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
 
-FROM node:alpine as builder
+FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN yarn build
 
+<<<<<<< HEAD
 FROM node:alpine as runner
 >>>>>>> 34a778e (Set up infra as code)
+=======
+FROM node:14-alpine as runner
+>>>>>>> 1523c38 (Change the node image to 14-alpine)
 WORKDIR /my-project
 ENV NODE_ENV production
 # If you are using a custom next.config.js file, uncomment this line.
