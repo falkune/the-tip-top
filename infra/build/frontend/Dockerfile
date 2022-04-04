@@ -10,6 +10,7 @@ COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
@@ -29,12 +30,15 @@ RUN yarn install
 =======
 RUN yarn install && npm install
 >>>>>>> a7a813a (add npm install in dockerFile)
+=======
+RUN npm install && npm install sharp
+>>>>>>> fe59f4f (Use NPM for default package)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN yarn build
+RUN npm build
 
 FROM node:14-alpine as runner
 =======
@@ -78,6 +82,7 @@ CMD ["npm", "start"]
 EXPOSE 3000
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMD ["yarn", "start"]
 >>>>>>> 34a778e (Set up infra as code)
 =======
@@ -86,3 +91,6 @@ CMD ["npm run", "start"]
 =======
 CMD ["yarn", "start"]
 >>>>>>> c033253 (Set the default Dockerfile)
+=======
+CMD ["npm", "start"]
+>>>>>>> fe59f4f (Use NPM for default package)
