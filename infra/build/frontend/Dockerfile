@@ -3,6 +3,7 @@
 FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
+<<<<<<< HEAD
 RUN npm install
 
 FROM node:14-alpine as builder
@@ -20,6 +21,9 @@ FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
 RUN yarn install --frozen-lockfile
+=======
+RUN yarn install
+>>>>>>> 792a8f1 (Update dockerFile: remove frozen)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
