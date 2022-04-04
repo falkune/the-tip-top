@@ -9,6 +9,7 @@ COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
@@ -25,6 +26,9 @@ RUN yarn install && yarn add sharp
 =======
 RUN yarn install
 >>>>>>> 372b9b5 (get some update from docker file)
+=======
+RUN yarn install && npm install
+>>>>>>> a7a813a (add npm install in dockerFile)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
