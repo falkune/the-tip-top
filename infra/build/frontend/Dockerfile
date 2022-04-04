@@ -6,6 +6,7 @@ COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
@@ -13,6 +14,9 @@ RUN npm install
 =======
 RUN yarn install --frozen-lockfile
 >>>>>>> c033253 (Set the default Dockerfile)
+=======
+RUN yarn install
+>>>>>>> 94c401f (Set the default Dockerfile)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
