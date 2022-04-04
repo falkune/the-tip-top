@@ -60,9 +60,14 @@ services:
 =======
       - api-release:api
     container_name: frontend-release
+<<<<<<< HEAD
 >>>>>>> 8aea497 (Update docker compose file for differents envs)
     depends_on:
       - api
+=======
+    #depends_on:
+    #  - api
+>>>>>>> 87dddb9 (Add no cache to build)
     labels:
         - traefik.enable=true
 <<<<<<< HEAD
