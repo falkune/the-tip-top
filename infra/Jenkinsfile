@@ -132,6 +132,7 @@ pipeline{
                            sh "npm version"
                            sh "npm install"
 <<<<<<< HEAD
+<<<<<<< HEAD
                            sh "npm run build"
 =======
 >>>>>>> 34a778e (Set up infra as code)
@@ -143,6 +144,9 @@ pipeline{
                            sh "npm version"
                            sh "npm install"
 >>>>>>> 35413ac (add package.lock.json to gitignore)
+=======
+                           sh "npm run build"
+>>>>>>> dea6564 (update jenkinsFile)
                        }
                    
                 }
