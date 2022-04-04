@@ -67,8 +67,8 @@ pipeline{
                 stage("setup"){
                    steps{
                            sh "node --version"
-                           //sh "npm version"
-                           sh "yarn install"
+                           sh "npm version"
+                           sh "npm install"
                        }
                    
                 }
