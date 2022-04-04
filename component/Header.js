@@ -137,6 +137,5 @@ const styles = {
         margin:15,
         fontSize:20,
         listStyleType:"none"
-        }
-    
+    }
 }

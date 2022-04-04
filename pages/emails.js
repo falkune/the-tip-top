@@ -68,13 +68,5 @@ export default function Emails() {
       justifyContent:"center",
       alignItems:"center",
       position:"relative"
-
   }
-
-
-
-
-
-
-
 }

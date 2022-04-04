@@ -45,16 +45,5 @@ export default function Tickets() {
     width:"90%",
     maxWidth:360,
     minHeight:"100vh"
-
-
-
-
   }
-
-
-
-
-
-
-
 }

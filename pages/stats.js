@@ -38,23 +38,11 @@ export default function Stats() {
  const stylez = {
 
   gain : {
-
     display:"flex",
     flexDirection:"column",
     alignItems:"center",
     width:"90%",
     maxWidth:360,
     minHeight:"100vh"
-
-
-
-
   }
-
-
-
-
-
-
-
 }
