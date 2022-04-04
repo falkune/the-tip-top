@@ -2,14 +2,19 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   "extends": "next/core-web-vitals",
 =======
   "extends": "next/core-web-vitals", 
 >>>>>>> 5dca966 (Add rules to eslintrc.json)
+=======
+  "extends": "next/core-web-vitals",
+>>>>>>> e300be1 (Add rules)
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"
   }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
   "extends": "next/core-web-vitals"
@@ -19,4 +24,6 @@
 =======
   "extends": "next/core-web-vitals"
 >>>>>>> cf2926b (Update dockerFile)
+=======
+>>>>>>> e300be1 (Add rules)
 }
