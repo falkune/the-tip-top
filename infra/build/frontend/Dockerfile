@@ -83,6 +83,9 @@ COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 254c7de (add volume in dockerfile)
 VOLUME [ "/my-project" ]
 EXPOSE 3000
 CMD ["npm", "start"]
