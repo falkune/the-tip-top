@@ -20,8 +20,8 @@ services:
     links:
       - api-release:api
     container_name: frontend-release
-    depends_on:
-      - api
+    #depends_on:
+    #  - api
     labels:
         - traefik.enable=true
         - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)
