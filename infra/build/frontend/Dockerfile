@@ -1,7 +1,7 @@
 FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+RUN yarn install
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
