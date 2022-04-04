@@ -18,6 +18,6 @@ COPY --from=builder /my-project/public ./public
 COPY --from=builder /my-project/.next ./.next
 COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
-VOLUME [ "." ]
+VOLUME [ "/my-project" ]
 EXPOSE 3000
 CMD ["npm", "start"]
