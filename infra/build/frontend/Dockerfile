@@ -1,13 +1,13 @@
 FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
-RUN yarn install && npm install
+RUN npm install && npm install sharp
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN yarn build
+RUN npm build
 
 FROM node:14-alpine as runner
 WORKDIR /my-project
@@ -20,4 +20,4 @@ COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
 
 EXPOSE 3000
-CMD ["yarn", "start"]
+CMD ["npm", "start"]
