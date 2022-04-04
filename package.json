@@ -84,6 +84,7 @@
     "@types/react": "17.0.39",
     "eslint": "8.10.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "eslint-config-next": "12.1.0"
 =======
     "eslint-config-next": "12.1.0",
@@ -92,5 +93,8 @@
 >>>>>>> d83cbc9 (initialisation du repository)
 =======
 >>>>>>> 608057c (modification des extentions)
+=======
+    "eslint-config-next": "12.1.0"
+>>>>>>> 5530a51 (fix bug)
   }
 }
