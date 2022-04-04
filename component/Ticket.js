@@ -141,6 +141,9 @@ const styles = {
       textAlign:'center',
       padding:8
   }
+<<<<<<< HEAD
 
 >>>>>>> ddce213 (add ticket page)
+=======
+>>>>>>> 76f6607 (fix bug)
 }

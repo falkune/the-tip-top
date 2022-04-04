@@ -139,8 +139,8 @@ export default function Emails() {
       justifyContent:"center",
       alignItems:"center",
       position:"relative"
-
   }
+<<<<<<< HEAD
 
 
 
@@ -149,4 +149,6 @@ export default function Emails() {
 
 
 >>>>>>> a4a8112 (add loader)
+=======
+>>>>>>> 76f6607 (fix bug)
 }

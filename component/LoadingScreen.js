@@ -30,8 +30,10 @@ const styles = {
     },
 =======
          backgroundColor:"#40EFD7"
-
     },
+<<<<<<< HEAD
  
 >>>>>>> a4a8112 (add loader)
+=======
+>>>>>>> 76f6607 (fix bug)
 }

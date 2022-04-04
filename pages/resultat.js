@@ -176,9 +176,6 @@ export default function Resultat() {
       ) : (
         <LoadingScreen />
       )}
-  
-
-
     </>
   )
 >>>>>>> ddce213 (add ticket page)

@@ -308,18 +308,14 @@ const stylez = {
  const stylez = {
 
   gain : {
-
     display:"flex",
     flexDirection:"column",
     alignItems:"center",
     width:"90%",
     maxWidth:360,
     minHeight:"100vh"
-
-
-
-
   }
+<<<<<<< HEAD
 
 
 
@@ -329,3 +325,6 @@ const stylez = {
 
 }
 >>>>>>> 1e35cc3 (fix result)
+=======
+}
+>>>>>>> 76f6607 (fix bug)
