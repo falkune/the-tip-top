@@ -12,6 +12,7 @@ COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
@@ -37,12 +38,15 @@ RUN npm install && npm install sharp
 =======
 RUN yarn install
 >>>>>>> 0273d20 (Use YARN for default package)
+=======
+RUN npm install
+>>>>>>> 604c743 (Update dockerFile for making NPM Default)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN yarn build
+RUN npm run build
 
 FROM node:14-alpine as runner
 =======
@@ -88,6 +92,7 @@ EXPOSE 3000
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMD ["yarn", "start"]
 >>>>>>> 34a778e (Set up infra as code)
 =======
@@ -102,3 +107,6 @@ CMD ["npm", "start"]
 =======
 CMD ["yarn", "start"]
 >>>>>>> 0273d20 (Use YARN for default package)
+=======
+CMD ["npm", "start"]
+>>>>>>> 604c743 (Update dockerFile for making NPM Default)
