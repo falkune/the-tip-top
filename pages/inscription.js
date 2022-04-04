@@ -154,7 +154,6 @@ import facebook from "../image/facebook.png"
 import { useRouter } from 'next/router'
 import {firebaseApp} from '../config/firebase'
 import { 
-  AuthProvider, 
   getAuth, 
   signInWithPopup, 
   GoogleAuthProvider, 
@@ -196,15 +195,33 @@ export default function Inscription() {
   }
 
 
-  const register = () => {
+  const register = (e) => {
     // register function contact the backend API service
-    
+    e.preventDefault()
+    const requestOptions = {
+      method: 'POST',
+      headers:{
+        'Accept': 'Application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        user: {
+          'fullName': nom,
+          'email': email,
+          'password': password
+        }
+      })
+    };
+    fetch('https://api.dsp-archiwebo21-ct-df-an-cd.fr/user', requestOptions)
+    .then((res) => {
+      console.log(res.json())
+    })
   }
 
-  const router = useRouter()
-  const goBingo = () => {
-    router.push('/bingo')
-  }
+  // const router = useRouter()
+  // const goBingo = () => {
+  //   // router.push('/bingo')
+  // }
 
   return (
     <div>
@@ -219,7 +236,7 @@ export default function Inscription() {
         <form 
             className={styles.part} 
             style={{borderBottom:"solid 1px #D2D2D2"}}
-            onSubmit={register}>
+            onSubmit={(e) => register(e)}>
             <h1 className={styles.h1} style={{fontSize:25}}>Inscription</h1>
             <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
             <input type="text" placeholder="Nom prénom" onChange={(e) => setNom(e.target.value)}/>
@@ -227,7 +244,7 @@ export default function Inscription() {
             <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}/>
             <input type="password" placeholder="Confirmation du mot de passe" 
             onChange={(e) => setConfirm(e.target.value)}/>
-            <button type="button" onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Inscription</button>
+            <button className={styles.action}  style={{animation:"pulse 1sec infite"}}>Inscription</button>
         </form>
         <div className={styles.social} >
           <button 
