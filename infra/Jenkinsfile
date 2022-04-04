@@ -91,6 +91,7 @@ pipeline{
 
         stage("test"){
 <<<<<<< HEAD
+<<<<<<< HEAD
             when {branch "dev"}
             agent {docker {image "node:14-alpine"}}
 
@@ -109,6 +110,13 @@ pipeline{
                        branch "dev"
                    }
 >>>>>>> 34a778e (Set up infra as code)
+=======
+             when {branch "dev"}
+            agent {docker {image "node:alpine"}}
+
+            stages {
+                stage("setup"){
+>>>>>>> ef5d35b (Update jenkins File)
                    steps{
                            sh "node --version"
                            sh "npm version"
@@ -122,9 +130,12 @@ pipeline{
                 }
                  stage("coverage") {
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
                     when {branch "dev"}
 >>>>>>> 34a778e (Set up infra as code)
+=======
+>>>>>>> ef5d35b (Update jenkins File)
                     steps{
                      echo "Any  cov test to achieve"
                      //sh "npm run test:cov"
