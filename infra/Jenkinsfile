@@ -10,10 +10,11 @@ pipeline{
     stages{
 
         stage("build") {
+            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                     parallel {
                   
                          stage("release"){  
-                                //when {branch 'release'}
+                                when {branch 'release'}
                                   steps{
                                     sh "infra/scripts/build.sh frontend release"  
                                  }
@@ -31,7 +32,7 @@ pipeline{
               }
 
         stage("registry") {
-                //when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                 stages {
 
                       stage("login"){
@@ -59,26 +60,20 @@ pipeline{
              }
 
         stage("test"){
-            agent {
-                docker {
-                    image "node:alpine"
-                }
-            }
+            when {branch "dev"}
+            agent {docker {image "node:14-alpine"}}
 
             stages {
-                stage("install packages"){
-                   when {
-                       branch "dev"
-                   }
+                stage("setup"){
                    steps{
                            sh "node --version"
                            sh "npm version"
                            sh "npm install"
+                           sh "npm run build"
                        }
                    
                 }
                  stage("coverage") {
-                    when {branch "dev"}
                     steps{
                      echo "Any  cov test to achieve"
                      //sh "npm run test:cov"
@@ -111,9 +106,10 @@ pipeline{
         }
 
         stage("deploy"){ 
+            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
             parallel{
                 stage ('release'){
-                    //when{ branch 'release'}
+                    when{ branch 'release'}
                     steps{
                         sshagent(credentials: ['devops-sshkey-private']) {
                                echo "copy release infra folder env on prod remote"

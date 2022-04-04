@@ -35,7 +35,7 @@ export default function Bingo() {
         <form  className={styles.bingo}>
           <input type="text" name="numero"  autoComplete="off"
            placeholder="Veuillez rentrer vos 10 numéros" 
-           maxlength={10}
+           maxLength={10}
            onChange={(e) => {
             setNum(e.target.value)}}
             value={num} />
