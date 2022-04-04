@@ -82,11 +82,15 @@ COPY --from=builder /my-project/.next ./.next
 COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
 <<<<<<< HEAD
+<<<<<<< HEAD
 VOLUME [ "/my-project" ]
 EXPOSE 3000
 CMD ["npm", "start"]
 =======
 
+=======
+VOLUME [ "." ]
+>>>>>>> dc3514f (add volume in dockerfile)
 EXPOSE 3000
 <<<<<<< HEAD
 <<<<<<< HEAD
