@@ -127,12 +127,17 @@ pipeline{
 >>>>>>> ef5d35b (Update jenkins File)
                    steps{
                            sh "node --version"
+<<<<<<< HEAD
                            sh "npm version"
                            sh "npm install"
 <<<<<<< HEAD
                            sh "npm run build"
 =======
 >>>>>>> 34a778e (Set up infra as code)
+=======
+                           //sh "npm version"
+                           sh "yarn install"
+>>>>>>> b90496c (Update jenkins file and integrate changes)
                        }
                    
                 }
