@@ -36,7 +36,7 @@ export default function Home() {
       <section className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
         <Image src={logo} width="125" height="140" /> 
         <h1 className={styles.h1}>Gagner des lots magique</h1>
-      <h2>Hello world!</h2>
+      <h2>YUP</h2>
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
           <button type='button' onClick={goConnexion} className={styles.action} style={{margin:25}}>Commencer</button>
       </section>
