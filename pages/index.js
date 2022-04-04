@@ -180,8 +180,14 @@ export default function Home() {
       </Head>
       <Header/>
       <section className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
+<<<<<<< HEAD
         <Image src={logo} width="125" height="140" alt='logo'/> 
         <h1 className={styles.h1}>Gagner des lots magique</h1> 
+=======
+        <Image src={logo} width="125" height="140" /> 
+        <h1 className={styles.h1}>Gagner des lots magique</h1>
+      <h2>YUP</h2>
+>>>>>>> f3342ea (add YUP in index.js)
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
           <button type='button' onClick={goConnexion} className={styles.action} style={{margin:25}}>Commencer</button>
       </section>
