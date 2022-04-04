@@ -11,6 +11,7 @@ COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
@@ -33,12 +34,15 @@ RUN yarn install && npm install
 =======
 RUN npm install && npm install sharp
 >>>>>>> fe59f4f (Use NPM for default package)
+=======
+RUN yarn install
+>>>>>>> 0273d20 (Use YARN for default package)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN npm run build
+RUN yarn build
 
 FROM node:14-alpine as runner
 =======
@@ -83,6 +87,7 @@ EXPOSE 3000
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMD ["yarn", "start"]
 >>>>>>> 34a778e (Set up infra as code)
 =======
@@ -94,3 +99,6 @@ CMD ["yarn", "start"]
 =======
 CMD ["npm", "start"]
 >>>>>>> fe59f4f (Use NPM for default package)
+=======
+CMD ["yarn", "start"]
+>>>>>>> 0273d20 (Use YARN for default package)
