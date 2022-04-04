@@ -78,7 +78,7 @@ export default function Connexion() {
             style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}
             onClick={() => signInWith(FacebookProvider)}>
             <span  style={{position:"absolute",left:20,bottom:1}}>
-              <Image src={facebook} width="16" height="40" objectFit='contain' /> 
+              <Image src={facebook} width="16" height="40" objectFit='contain' alt='facebook logo'/> 
             </span>
             Connexion
           </button>
@@ -86,7 +86,7 @@ export default function Connexion() {
             style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
             onClick={() => signInWith(GoogleProvider)}>
             <span  style={{position:"absolute",left:8,bottom:1}}>
-              <Image src={google} width="40" height="40" /> 
+              <Image src={google} width="40" height="40" alt='google logo'/> 
             </span>
             Connexion
           </button>
