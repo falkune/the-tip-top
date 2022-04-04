@@ -1,31 +1,29 @@
 version: "3.8"
 
 networks:
-  preprod:
+  prod:
      external: true  
 
-#volumes:
-  #code:
+volumes:
+  frontend_code:
 
 services:
-  front-release:
-    image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
+  frontend:
+    image: ${IMAGE_BASE}/stable/frontend:${FRONTEND_STABLE_TAG}
     environment:
       - TZ=Europe/Paris
-    #volumes:
-    #    - /etc/localtime:/etc/localtime:ro
-    #   - code:/usr/src/app
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+       - frontend_code:/my-project
     #   - /usr/src/app/node_modules
     restart: unless-stopped
-    links:
-      - api-release:api
-    container_name: frontend-release
+    container_name: frontend
     depends_on:
       - api
     labels:
         - traefik.enable=true
-        - traefik.http.routers.api-release.rule=Host(`dev.${DOMAIN_BASE}`)
-        - traefik.http.routers.api-release.entrypoints=websecure
-        - traefik.http.services.api-release.loadbalancer.server.port=3000
+        - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
+        - traefik.http.routers.frontend.entrypoints=websecure
+        - traefik.http.services.frontend.loadbalancer.server.port=3000
     networks:
-      - preprod
+      - prod
