@@ -174,7 +174,7 @@ export default function Inscription() {
   const registerWith = (provider) => {
     // this function create a new user with his google or facebook account
     const firebaseAuth = getAuth(firebaseApp)
-  
+    
     signInWithPopup(firebaseAuth, provider)
     .then((res) => {
       const user = res.user;
