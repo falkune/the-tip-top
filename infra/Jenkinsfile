@@ -10,6 +10,7 @@ pipeline{
     stages{
 
         stage("build") {
+            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                     parallel {
                   
                          stage("release"){  
@@ -59,8 +60,8 @@ pipeline{
              }
 
         stage("test"){
-             when {branch "dev"}
-            agent {docker {image "node:alpine"}}
+            when {branch "dev"}
+            agent {docker {image "node:14-alpine"}}
 
             stages {
                 stage("setup"){
@@ -104,6 +105,7 @@ pipeline{
         }
 
         stage("deploy"){ 
+            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
             parallel{
                 stage ('release'){
                     when{ branch 'release'}
