@@ -4,7 +4,11 @@ FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
+=======
+RUN npm install 
+>>>>>>> ad25be8 (Change yarn to npm)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
