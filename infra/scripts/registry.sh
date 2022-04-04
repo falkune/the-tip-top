@@ -8,7 +8,7 @@ tag=${IMAGE_TAG}
 #The current image (can be db or api)
 image=$1
 
-if [ "$BRANCH_NAME" = "dev" ]; then
+if [ "$BRANCH_NAME" = "release" ]; then
    
    formated="${DOCKER_PRIVATE_REGISTER}/release/${image}:${tag}"
    formated_latest="${DOCKER_PRIVATE_REGISTER}/release/${image}:latest"
