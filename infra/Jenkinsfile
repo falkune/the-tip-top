@@ -23,8 +23,12 @@ pipeline{
                     parallel {
                   
                          stage("release"){  
+<<<<<<< HEAD
                                 //when {branch 'release'}
 >>>>>>> 34a778e (Set up infra as code)
+=======
+                                when {branch 'release'}
+>>>>>>> bccb529 (Back to the default stable docker Image)
                                   steps{
                                     sh "infra/scripts/build.sh frontend release"  
                                  }
@@ -46,6 +50,7 @@ pipeline{
 <<<<<<< HEAD
         stage("registry") {
                 when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+<<<<<<< HEAD
 =======
         stage("private docker hub") {
 =======
@@ -56,6 +61,8 @@ pipeline{
 >>>>>>> a22a118 (Update the jenkinsFile)
                 //when { expression { BRANCH_NAME ==~ /(main|release)/ } }
 >>>>>>> 34a778e (Set up infra as code)
+=======
+>>>>>>> bccb529 (Back to the default stable docker Image)
                 stages {
 
                       stage("login"){
@@ -97,7 +104,7 @@ pipeline{
             }
 
             stages {
-                stage("install packages"){
+                stage("setup"){
                    when {
                        branch "dev"
                    }
@@ -158,8 +165,12 @@ pipeline{
 =======
             parallel{
                 stage ('release'){
+<<<<<<< HEAD
                     //when{ branch 'release'}
 >>>>>>> 34a778e (Set up infra as code)
+=======
+                    when{ branch 'release'}
+>>>>>>> bccb529 (Back to the default stable docker Image)
                     steps{
                         sshagent(credentials: ['devops-sshkey-private']) {
                                echo "copy release infra folder env on prod remote"
