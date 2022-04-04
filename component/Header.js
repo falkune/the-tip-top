@@ -12,7 +12,7 @@ const Header = () => {
     const [user, setUser] = React.useState("client");
 
 
-    const toggleDrawer = (newOpen: boolean | ((prevState: boolean) => boolean)) => () => {
+    const toggleDrawer = (newOpen) => () => {
         setOpen(newOpen);
       };
 
@@ -62,10 +62,10 @@ const Header = () => {
                  }
          </div>
          <Drawer
-            anchor={"right"}
-            open={open}                    
-            onClose={toggleDrawer(false)}
-            onOpen={toggleDrawer(true)}>
+                    anchor={"right"}
+                    open={open}                    
+                    onClose={toggleDrawer(false)}
+                    onOpen={toggleDrawer(true)}>
              <ul style={styles.draw}>
                     { user && user ==="client" && <Link href="/bingo"> 
                         <li style={styles.li2}>Bingo ticket</li>
@@ -137,5 +137,11 @@ const styles = {
         margin:15,
         fontSize:20,
         listStyleType:"none"
-    }
+        }
+    
+
+
+
+
+
 }

@@ -28,7 +28,7 @@ export default function Inscription() {
   const GoogleProvider = new GoogleAuthProvider()
   const FacebookProvider = new FacebookAuthProvider()
 
-  const registerWith = (provider: AuthProvider) => {
+  const registerWith = (provider) => {
     // this function create a new user with his google or facebook account
     const firebaseAuth = getAuth(firebaseApp)
   
@@ -52,6 +52,11 @@ export default function Inscription() {
   }
 
 
+  const register = () => {
+    // register function contact the backend API service
+    
+  }
+
   const router = useRouter()
   const goBingo = () => {
     router.push('/bingo')
@@ -67,36 +72,42 @@ export default function Inscription() {
       </Head>
       <Header/>
       <section className={styles.login}>
-      <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
-      <h1 className={styles.h1} style={{fontSize:25}}>Inscription</h1>
-        <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
-        <input type="text" placeholder="Nom prénom" onChange={(e) => setNom(e.target.value)}/>
-        <input type="date" placeholder="Date de naissance" onChange={(e: any) => setDateNaissance(e.target.value)}/>
-        <input type="password" placeholder="Mot de passe" onChange={(e: any) => setPassword(e.target.value)}/>
-        <input type="password" placeholder="Confirmation du mot de passe" 
-         onChange={(e: any) => setConfirm(e.target.value)}/>
-        <button type="button" onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Inscription</button>
-      </form>
-      <div className={styles.social} >
-        <button 
-          style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}
-          onClick={() => registerWith(FacebookProvider)}>
-          <span style={{position:"absolute",left:20,bottom:1}}>
-             <Image src={facebook} width="16" height="40" objectFit='contain' /> 
-          </span>
-          S'inscrire
+        <form 
+            className={styles.part} 
+            style={{borderBottom:"solid 1px #D2D2D2"}}
+            onSubmit={register}>
+            <h1 className={styles.h1} style={{fontSize:25}}>Inscription</h1>
+            <input type="text" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+            <input type="text" placeholder="Nom prénom" onChange={(e) => setNom(e.target.value)}/>
+            <input type="date" placeholder="Date de naissance" onChange={(e) => setDateNaissance(e.target.value)}/>
+            <input type="password" placeholder="Mot de passe" onChange={(e) => setPassword(e.target.value)}/>
+            <input type="password" placeholder="Confirmation du mot de passe" 
+            onChange={(e) => setConfirm(e.target.value)}/>
+            <button type="button" onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Inscription</button>
+        </form>
+        <div className={styles.social} >
+          <button 
+              style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}
+              onClick={() => registerWith(FacebookProvider)}>
+              <span style={{position:"absolute",left:20,bottom:1}}>
+                <Image src={facebook} width="16" height="40" objectFit='contain' /> 
+              </span>
+              S'inscrire
           </button>
-        <button 
-          style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
-          onClick={() => registerWith(GoogleProvider)}>
-          <span  style={{position:"absolute",left:8,bottom:1}}>
-             <Image src={google} width="40" height="40" /> 
-          </span>
-          S'inscrire
+          <button 
+              style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
+              onClick={() => registerWith(GoogleProvider)}>
+              <span  style={{position:"absolute",left:8,bottom:1}}>
+                <Image src={google} width="40" height="40" /> 
+              </span>
+              S'inscrire
           </button>
-      </div>
+        </div>
       </section>
-    <small>Déjà un compte ?<strong style={{color:"#437BFF"}}><Link href="/connexion"> Se connecter</Link>  </strong></small>
+      <small>
+        Déjà un compte ?
+        <strong style={{color:"#437BFF"}}><Link href="/connexion"> Se connecter</Link></strong>
+      </small>
     </div>
     <Footer/>
 

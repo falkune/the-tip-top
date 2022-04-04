@@ -1,7 +1,7 @@
 import React from "react"
 
 
-const Email = (props?: any): Object => {
+const Email = (props) => {
   return (
     <div style={styles.email}>  
          <small style={styles.date}>{props.date}</small>     
