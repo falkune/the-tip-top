@@ -1,11 +1,18 @@
 {
 <<<<<<< HEAD
+<<<<<<< HEAD
   "extends": "next/core-web-vitals",
+=======
+  "extends": "next/core-web-vitals", 
+>>>>>>> 5dca966 (Add rules to eslintrc.json)
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"
   }
+<<<<<<< HEAD
 =======
   "extends": "next/core-web-vitals"
 >>>>>>> d83cbc9 (initialisation du repository)
+=======
+>>>>>>> 5dca966 (Add rules to eslintrc.json)
 }
