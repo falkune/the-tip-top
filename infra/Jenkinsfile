@@ -14,6 +14,9 @@ pipeline{
 
         stage("build") {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1910a61 (Update jenkins file and integrate changes)
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                     parallel {
                   
@@ -92,6 +95,7 @@ pipeline{
         stage("test"){
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
             when {branch "dev"}
             agent {docker {image "node:14-alpine"}}
 
@@ -113,6 +117,10 @@ pipeline{
 =======
              when {branch "dev"}
             agent {docker {image "node:alpine"}}
+=======
+            when {branch "dev"}
+            agent {docker {image "node:14-alpine"}}
+>>>>>>> 1910a61 (Update jenkins file and integrate changes)
 
             stages {
                 stage("setup"){
@@ -169,6 +177,9 @@ pipeline{
 
         stage("deploy"){ 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 1910a61 (Update jenkins file and integrate changes)
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
             parallel{
                 stage ('release'){
