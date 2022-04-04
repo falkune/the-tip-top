@@ -5,16 +5,20 @@ WORKDIR /my-project
 COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
 >>>>>>> ad25be8 (Change yarn to npm)
+=======
+RUN yarn install --frozen-lockfile
+>>>>>>> c033253 (Set the default Dockerfile)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN npm run build
+RUN yarn build
 
 FROM node:14-alpine as runner
 =======
@@ -57,8 +61,12 @@ CMD ["npm", "start"]
 
 EXPOSE 3000
 <<<<<<< HEAD
+<<<<<<< HEAD
 CMD ["yarn", "start"]
 >>>>>>> 34a778e (Set up infra as code)
 =======
 CMD ["npm run", "start"]
 >>>>>>> cf2926b (Update dockerFile)
+=======
+CMD ["yarn", "start"]
+>>>>>>> c033253 (Set the default Dockerfile)
