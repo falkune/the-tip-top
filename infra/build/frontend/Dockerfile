@@ -7,7 +7,7 @@ FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN npm build
+RUN npm run build
 
 FROM node:14-alpine as runner
 WORKDIR /my-project
