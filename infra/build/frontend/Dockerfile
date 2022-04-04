@@ -7,6 +7,7 @@ COPY package.json yarn.lock ./
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 RUN npm install
 =======
 RUN npm install 
@@ -17,6 +18,9 @@ RUN yarn install --frozen-lockfile
 =======
 RUN yarn install
 >>>>>>> 94c401f (Set the default Dockerfile)
+=======
+RUN yarn install && yarn add sharp
+>>>>>>> c52076d (Add sharp package for docker production optimisation)
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
