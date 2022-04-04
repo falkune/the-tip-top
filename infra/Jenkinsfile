@@ -13,7 +13,7 @@ pipeline{
                     parallel {
                   
                          stage("release"){  
-                                //when {branch 'release'}
+                                when {branch 'release'}
                                   steps{
                                     sh "infra/scripts/build.sh frontend release"  
                                  }
@@ -31,7 +31,7 @@ pipeline{
               }
 
         stage("registry") {
-                //when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                 stages {
 
                       stage("login"){
@@ -66,7 +66,7 @@ pipeline{
             }
 
             stages {
-                stage("install packages"){
+                stage("setup"){
                    when {
                        branch "dev"
                    }
@@ -113,7 +113,7 @@ pipeline{
         stage("deploy"){ 
             parallel{
                 stage ('release'){
-                    //when{ branch 'release'}
+                    when{ branch 'release'}
                     steps{
                         sshagent(credentials: ['devops-sshkey-private']) {
                                echo "copy release infra folder env on prod remote"
