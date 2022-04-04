@@ -43,6 +43,7 @@
 >>>>>>> 376006d (fix some problems)
     "next": "12.1.0",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
     "react-custom-roulette": "^1.2.0",
@@ -54,6 +55,8 @@
     "react-wheel-of-prizes": "^1.0.9",
     "sharp": "^0.30.3"
 =======
+=======
+>>>>>>> 60ea5f5 (remove next auth dependencie)
     "react": "17.0.2",
     "react-dom": "17.0.2",
 <<<<<<< HEAD

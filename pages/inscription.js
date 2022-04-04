@@ -187,7 +187,6 @@ export default function Inscription() {
     .catch((err) => {
       const errorCode = err.code;
       const errorMessage = err.message;
-      // console.log(errorMessage)
       if(err.code === 'auth/account-exists-with-different-credential'){
         console.log("error");
       }
@@ -214,6 +213,7 @@ export default function Inscription() {
     }
     fetch('https://api.dsp-archiwebo21-ct-df-an-cd.fr/user/', options)
     .then((res) => {
+      // action after register
       console.log(res)
     })
   }
