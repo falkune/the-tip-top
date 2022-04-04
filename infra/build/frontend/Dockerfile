@@ -29,7 +29,7 @@ FROM node:14-alpine as builder
 WORKDIR /my-project
 COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
-RUN yarn build
+RUN npm run build
 
 <<<<<<< HEAD
 FROM node:alpine as runner
@@ -52,5 +52,9 @@ CMD ["npm", "start"]
 =======
 
 EXPOSE 3000
+<<<<<<< HEAD
 CMD ["yarn", "start"]
 >>>>>>> 34a778e (Set up infra as code)
+=======
+CMD ["npm run", "start"]
+>>>>>>> cf2926b (Update dockerFile)
