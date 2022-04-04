@@ -34,6 +34,7 @@ yarn-error.log*
 # vercel
 .vercel
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 .package-lock.json
@@ -44,3 +45,7 @@ yarn-error.log*
 >>>>>>> d83cbc9 (initialisation du repository)
 =======
 >>>>>>> 28a33ce (fix bug)
+=======
+
+package-lock.json
+>>>>>>> 35413ac (add package.lock.json to gitignore)

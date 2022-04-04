@@ -36,6 +36,7 @@ yarn-error.log*
 # vercel
 .vercel
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 package-lock.json
 =======
@@ -45,3 +46,7 @@ infra
 >>>>>>> be51fba (commit Dockerfile creation page)
 =======
 >>>>>>> dded1f6 (Update the dockignore and infra folders)
+=======
+
+package-lock.json
+>>>>>>> 35413ac (add package.lock.json to gitignore)

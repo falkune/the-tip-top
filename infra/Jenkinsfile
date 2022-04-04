@@ -128,6 +128,7 @@ pipeline{
                    steps{
                            sh "node --version"
 <<<<<<< HEAD
+<<<<<<< HEAD
                            sh "npm version"
                            sh "npm install"
 <<<<<<< HEAD
@@ -138,6 +139,10 @@ pipeline{
                            //sh "npm version"
                            sh "yarn install"
 >>>>>>> b90496c (Update jenkins file and integrate changes)
+=======
+                           sh "npm version"
+                           sh "npm install"
+>>>>>>> 35413ac (add package.lock.json to gitignore)
                        }
                    
                 }
