@@ -9,10 +9,14 @@ tag=${IMAGE_TAG}
 image=$1
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 if [ "$BRANCH_NAME" = "release" ]; then
 =======
 if [ "$BRANCH_NAME" = "dev" ]; then
 >>>>>>> 34a778e (Set up infra as code)
+=======
+if [ "$BRANCH_NAME" = "release" ]; then
+>>>>>>> a828a67 (Fix the registry.sh script for deploy)
    
    formated="${DOCKER_PRIVATE_REGISTER}/release/${image}:${tag}"
    formated_latest="${DOCKER_PRIVATE_REGISTER}/release/${image}:latest"
