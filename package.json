@@ -56,6 +56,7 @@
 =======
     "react": "17.0.2",
     "react-dom": "17.0.2",
+<<<<<<< HEAD
     "react-spinners": "^0.11.0"
 >>>>>>> a4a8112 (add loader)
 =======
@@ -78,6 +79,10 @@
     "react": "17.0.2",
     "react-dom": "17.0.2"
 >>>>>>> d83cbc9 (initialisation du repository)
+=======
+    "react-spinners": "^0.11.0",
+    "sharp": "^0.30.3"
+>>>>>>> 8db45c4 (setting up registration)
   },
   "devDependencies": {
     "@types/node": "17.0.21",

@@ -198,23 +198,23 @@ export default function Inscription() {
   const register = (e) => {
     // register function contact the backend API service
     e.preventDefault()
-    const requestOptions = {
+    const params = {
+      "fullName": nom,
+      "email": email,
+      "password": password
+    }
+
+    const options = {
       method: 'POST',
       headers:{
         'Accept': 'Application/json',
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        user: {
-          'fullName': nom,
-          'email': email,
-          'password': password
-        }
-      })
-    };
-    fetch('https://api.dsp-archiwebo21-ct-df-an-cd.fr/user', requestOptions)
+      body: JSON.stringify(params)
+    }
+    fetch('https://api.dsp-archiwebo21-ct-df-an-cd.fr/user/', options)
     .then((res) => {
-      console.log(res.json())
+      console.log(res)
     })
   }
 
