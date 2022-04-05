@@ -3,7 +3,7 @@
  envr="$1"
 
  if [ -d ~/.ssh ]; then
-     pass
+     echo ""
  else
    mkdir ~/.ssh && chmod 0700 ~/.ssh 
    ssh-keyscan -t rsa -H 45.155.170.65 >> ~/.ssh/known_hosts
