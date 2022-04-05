@@ -7,6 +7,7 @@ networks:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 #volumes:
 #  code:
 
@@ -49,6 +50,10 @@ volumes:
 =======
   code:
 >>>>>>> 0f90135 (Update deploy script)
+=======
+#volumes:
+#  code:
+>>>>>>> d403505 (Update deploy script and compose.yml for prod)
 
 services:
   frontend:
@@ -57,7 +62,7 @@ services:
       - TZ=Europe/Paris
     volumes:
        - /etc/localtime:/etc/localtime:ro
-       - code:/my-project
+    #   - code:/my-project
     #   - /usr/src/app/node_modules
     restart: unless-stopped
     container_name: frontend

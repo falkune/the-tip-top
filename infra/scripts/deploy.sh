@@ -5,6 +5,7 @@
  if [ -d ~/.ssh ]; then
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
      echo ""
 =======
      echo "already exists"
@@ -12,6 +13,9 @@
 =======
      pass
 >>>>>>> 933d5d6 (Update deploy script and remove volume code for front)
+=======
+     echo ""
+>>>>>>> d403505 (Update deploy script and compose.yml for prod)
  else
    mkdir ~/.ssh && chmod 0700 ~/.ssh 
    ssh-keyscan -t rsa -H 45.155.170.65 >> ~/.ssh/known_hosts
