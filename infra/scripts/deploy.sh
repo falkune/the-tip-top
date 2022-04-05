@@ -4,10 +4,14 @@
 
  if [ -d ~/.ssh ]; then
 <<<<<<< HEAD
+<<<<<<< HEAD
      echo ""
 =======
      echo "already exists"
 >>>>>>> 34a778e (Set up infra as code)
+=======
+     pass
+>>>>>>> 933d5d6 (Update deploy script and remove volume code for front)
  else
    mkdir ~/.ssh && chmod 0700 ~/.ssh 
    ssh-keyscan -t rsa -H 45.155.170.65 >> ~/.ssh/known_hosts
@@ -19,9 +23,9 @@ ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app
 =======
 
 if [ "$envr" = "release" ]; then
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all && rm -r ./app/frontend/release"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all"
 else
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all && rm -r ./app/frontend/prod"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all"
 fi
 >>>>>>> 0f90135 (Update deploy script)
 
