@@ -5,7 +5,7 @@ networks:
      external: true  
 
 volumes:
-  frontend_code:
+  code:
 
 services:
   frontend:
@@ -14,12 +14,12 @@ services:
       - TZ=Europe/Paris
     volumes:
        - /etc/localtime:/etc/localtime:ro
-       - frontend_code:/my-project
+       - code:/my-project
     #   - /usr/src/app/node_modules
     restart: unless-stopped
     container_name: frontend
-    #depends_on:
-    #  - api
+    depends_on:
+      - api
     labels:
         - traefik.enable=true
         - traefik.http.routers.frontend.rule=Host(`www.${DOMAIN_BASE}`)
