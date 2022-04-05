@@ -43,8 +43,12 @@ volumes:
 >>>>>>> dded1f6 (Update the dockignore and infra folders)
 =======
 volumes:
+<<<<<<< HEAD
   frontend_code:
 >>>>>>> bf7cf0b (The the new version of stable code repo)
+=======
+  code:
+>>>>>>> 0f90135 (Update deploy script)
 
 services:
   frontend:
@@ -53,12 +57,12 @@ services:
       - TZ=Europe/Paris
     volumes:
        - /etc/localtime:/etc/localtime:ro
-       - frontend_code:/my-project
+       - code:/my-project
     #   - /usr/src/app/node_modules
     restart: unless-stopped
     container_name: frontend
-    #depends_on:
-    #  - api
+    depends_on:
+      - api
     labels:
         - traefik.enable=true
 <<<<<<< HEAD

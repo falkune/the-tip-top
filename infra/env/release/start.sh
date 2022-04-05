@@ -2,6 +2,7 @@
 cd "app/frontend/release" || exit
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 docker compose up --build -d
 =======
 docker compose down
@@ -12,3 +13,6 @@ docker compose up --build -d
 docker compose down --rmi all
 docker compose up --build -d  
 >>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
+=======
+docker compose up --build -d
+>>>>>>> 0f90135 (Update deploy script)
