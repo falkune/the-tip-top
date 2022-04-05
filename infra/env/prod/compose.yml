@@ -57,10 +57,11 @@ services:
     #   - /usr/src/app/node_modules
     restart: unless-stopped
     container_name: frontend
-    depends_on:
-      - api
+    #depends_on:
+    #  - api
     labels:
         - traefik.enable=true
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         - traefik.http.routers.api.rule=Host(`api.${DOMAIN_BASE}`)
@@ -75,6 +76,9 @@ services:
 >>>>>>> dded1f6 (Update the dockignore and infra folders)
 =======
         - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
+=======
+        - traefik.http.routers.frontend.rule=Host(`www.${DOMAIN_BASE}`)
+>>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
         - traefik.http.routers.frontend.entrypoints=websecure
         - traefik.http.services.frontend.loadbalancer.server.port=3000
 >>>>>>> bf7cf0b (The the new version of stable code repo)

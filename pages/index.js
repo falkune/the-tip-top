@@ -186,8 +186,11 @@ export default function Home() {
 =======
         <Image src={logo} width="125" height="140" /> 
         <h1 className={styles.h1}>Gagner des lots magique</h1>
+<<<<<<< HEAD
       <h2>YUP</h2>
 >>>>>>> f3342ea (add YUP in index.js)
+=======
+>>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
           <button type='button' onClick={goConnexion} className={styles.action} style={{margin:25}}>Commencer</button>
       </section>

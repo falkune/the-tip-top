@@ -39,20 +39,25 @@ services:
   #code:
 =======
 volumes:
+<<<<<<< HEAD
   frontend_code:
 >>>>>>> bf7cf0b (The the new version of stable code repo)
+=======
+  code: 
+>>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
 
 services:
-  front-release:
+  frontend:
     image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
     environment:
       - TZ=Europe/Paris
     volumes:
        - /etc/localtime:/etc/localtime:ro
-       - frontend_code:/my-project
+       - code:/my-project
     #   - /usr/src/app/node_modules
     restart: unless-stopped
     links:
+<<<<<<< HEAD
 <<<<<<< HEAD
       - api
     container_name: frontend
@@ -68,6 +73,12 @@ services:
     #depends_on:
     #  - api
 >>>>>>> 87dddb9 (Add no cache to build)
+=======
+     - api-release:api
+    container_name: frontend-release
+    depends_on:
+      - api
+>>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
     labels:
         - traefik.enable=true
 <<<<<<< HEAD
