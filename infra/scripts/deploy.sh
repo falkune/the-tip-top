@@ -10,9 +10,9 @@
  fi    
 
 if [ "$envr" = "release" ]; then
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all && rm -r .app/frontend/release"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all && rm -r ./app/frontend/release"
 else
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all && rm -r .app/frontend/prod"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all && rm -r ./app/frontend/prod"
 fi
 
 scp -r infra/env/"${envr}" donald@45.155.170.65:~/app/frontend
