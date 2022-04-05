@@ -3,16 +3,16 @@
  envr="$1"
 
  if [ -d ~/.ssh ]; then
-     echo "already exists"
+     pass
  else
    mkdir ~/.ssh && chmod 0700 ~/.ssh 
    ssh-keyscan -t rsa -H 45.155.170.65 >> ~/.ssh/known_hosts
  fi    
 
 if [ "$envr" = "release" ]; then
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all && rm -r ./app/frontend/release"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all"
 else
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all && rm -r ./app/frontend/prod"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all"
 fi
 
 scp -r infra/env/"${envr}" donald@45.155.170.65:~/app/frontend
