@@ -19,9 +19,9 @@ ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app
 =======
 
 if [ "$envr" = "release" ]; then
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f /app/frontend/release/compose.yml down --rmi all"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all"
 else
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f /app/frontend/prod/compose.yml down --rmi all"
+  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all"
 fi
 >>>>>>> 0f90135 (Update deploy script)
 
