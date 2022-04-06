@@ -230,13 +230,19 @@ pipeline{
             }                 
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 55bbc12 (Add end stage)
 
         stage("end") {
             steps{
                 echo "Successful end"
             }
         }
+<<<<<<< HEAD
 =======
 >>>>>>> 34a778e (Set up infra as code)
+=======
+>>>>>>> 55bbc12 (Add end stage)
     }
 }
