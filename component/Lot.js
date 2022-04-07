@@ -9,10 +9,14 @@ const Lot = (props) => {
   return (
     <div style={styles.lot} className="pulse">   
 <<<<<<< HEAD
+<<<<<<< HEAD
        <Image src={props.image} width="150" height="150" objectFit='contain' alt="lots"/> 
 =======
        <Image src={props.image} width="150" height="150" objectFit='contain' /> 
 >>>>>>> ddce213 (add ticket page)
+=======
+       <Image src={props.image} width="150" height="150" objectFit='contain' alt="lots"/> 
+>>>>>>> 97af433 (login function)
             <p>
             {props.name}        
             </p>

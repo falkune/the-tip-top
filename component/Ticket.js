@@ -22,6 +22,7 @@ const Ticket = (props) => {
       <div style={styles.bloc2}>
           {/* lot 1 */}
             { props.lot === 1 && <Image src={tea1} height={100} width={100} alt="lot 1"/>}
+<<<<<<< HEAD
             { props.lot === 1 && <p style={styles.text}> Un infuseur à thé </p>}
          {/* lot 2 */}
             { props.lot === 2 && <Image src={tea2} height={100} width={100} alt="lot 2"/>}
@@ -54,18 +55,20 @@ const Ticket = (props) => {
 =======
           {/* lot 1 */}
             { props.lot === 1 && <Image src={tea1} height={100} width={100} alt=""/>}
+=======
+>>>>>>> 97af433 (login function)
             { props.lot === 1 && <p style={styles.text}> Un infuseur à thé </p>}
          {/* lot 2 */}
-            { props.lot === 2 && <Image src={tea2} height={100} width={100} alt=""/>}
+            { props.lot === 2 && <Image src={tea2} height={100} width={100} alt="lot 2"/>}
             { props.lot === 2 && <p style={styles.text}> Une boite de 100g d’un thé détox ou d’infusion </p>}
          {/* lot 3 */}
-            { props.lot === 3 && <Image src={tea3} height={100} width={100} alt=""/>}
+            { props.lot === 3 && <Image src={tea3} height={100} width={100} alt="lot 3"/>}
             { props.lot === 3 && <p style={styles.text}> Une boite de 100g d’un thé signature </p>}
          {/* lot 4 */}
-            { props.lot === 4 && <Image src={tea4} height={100} width={100} alt=""/>}
+            { props.lot === 4 && <Image src={tea4} height={100} width={100} alt="lot 4"/>}
             { props.lot === 4 && <p style={styles.text}>  Un coffret découverte d’une valeur de 39€  </p>}
          {/* lot 5 */}
-            { props.lot === 5 && <Image src={tea4} height={100} width={100} alt=""/>}
+            { props.lot === 5 && <Image src={tea4} height={100} width={100} alt="lot 5"/>}
             { props.lot === 5 && <p style={styles.text}>   Un coffret découverte d’une valeur de 69€  </p>}
 >>>>>>> cc647dd (count down)
       </div>

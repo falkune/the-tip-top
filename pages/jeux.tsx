@@ -87,7 +87,7 @@ export default function Jeux() {
       </div>
       <p className={"pulse"}  style={{fontSize:18}}>1 an de thé d'une valeur de 360 euros</p>
           <span>
-           <Image src={tea1} alt="" width={250} height={220}/>
+           <Image src={tea1} alt="thé" width={250} height={220}/>
            </span>
       </section>
 

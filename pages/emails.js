@@ -43,6 +43,7 @@ export default function Emails() {
        <button style={stylez.export}>Exporter
         <span style={{margin:5,position:"absolute",right:8,top:4}}>
           <Image src={arrow} width={13} height={20.8} alt="arrow"/>
+<<<<<<< HEAD
         </span>
        </button>
         <p style={{fontSize:18,color:"grey"}}><strong style={{color:"#41D8C2"}}>{number} </strong>{`emails`}</p>
@@ -66,6 +67,8 @@ export default function Emails() {
        <button style={stylez.export}>Exporter
         <span style={{margin:5,position:"absolute",right:8,top:4}}>
           <Image src={arrow} width={13} height={20.8} />
+=======
+>>>>>>> 97af433 (login function)
         </span>
        </button>
         <p style={{fontSize:18,color:"grey"}}><strong style={{color:"#40EFD7"}}>{number} </strong>{`emails`}</p>
