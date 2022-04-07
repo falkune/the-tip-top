@@ -34,9 +34,8 @@ export default function Home() {
       </Head>
       <Header/>
       <section className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
-        <Image src={logo} width="125" height="140" /> 
-        <h1 className={styles.h1}>Gagner des lots magique</h1>
-      <h2>Hello world!</h2>
+        <Image src={logo} width="125" height="140" alt='logo'/> 
+        <h1 className={styles.h1}>Gagner des lots magique</h1> 
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
           <button type='button' onClick={goConnexion} className={styles.action} style={{margin:25}}>Commencer</button>
       </section>
@@ -47,26 +46,26 @@ export default function Home() {
         <div className={styles.cards} >
          <span>
            <strong style={{fontSize:50}}>1</strong>
-           <Image src={ticket} width="50" height="50" /> 
+           <Image src={ticket} width="50" height="50" alt='tecket'/> 
 
               Prendre les 10 chiffres de votre ticket
          </span>
 
          <span>
             <strong style={{fontSize:50}}>2</strong>
-            <Image  src={computer} width="50" height="50" /> 
+            <Image  src={computer} width="50" height="50" alt='computer'/> 
              Connectez vous sur note plateforme
          </span>
 
          <span>
             <strong style={{fontSize:50}}>3</strong>
-            <Image src={keyboard} width="50" height="50" /> 
+            <Image src={keyboard} width="50" height="50" alt='keybord'/> 
             Entrer vos 10 numéro pour voir votre lot gagné
          </span>
 
          <span>
             <strong style={{fontSize:50}}>4</strong>
-            <Image src={store} width="50" height="50" /> 
+            <Image src={store} width="50" height="50" alt='store'/> 
             Aller chercher votre lot en magasin 
          </span>
         </div>
@@ -78,33 +77,33 @@ export default function Home() {
 
       <div className={styles.cards2} >
        <span>
-       <Image src={tea1} width="150" height="150" /> 
+       <Image src={tea1} width="150" height="150" alt='lot 1'/> 
           <p>
              Un infuseur à thé         
           </p>
            </span>
 
          <span>
-            <Image src={tea2} width="150" height="150" objectFit='contain' /> 
+            <Image src={tea2} width="150" height="150" objectFit='contain' alt='lot 2'/> 
             <p>
             Une boite de 100g d’un thé détox ou d’infusion         
             </p>
             </span>
 
          <span>
-         <Image src={tea3} width="150" height="150" objectFit='contain' /> 
+         <Image src={tea3} width="150" height="150" objectFit='contain' alt='lot 3'/> 
          <p>
          Une boite de 100g d’un thé signature
          </p>
          </span>
 
          <span>
-         <Image src={tea4} width="150" height="150" objectFit='contain' /> 
+         <Image src={tea4} width="150" height="150" objectFit='contain' alt='lot 4'/> 
               Un coffret découverte d’une valeur de 39€         
          </span>
 
          <span>
-         <Image src={tea4} width="150" height="150" objectFit='contain' /> 
+         <Image src={tea4} width="150" height="150" objectFit='contain' alt='lot 5'/> 
              un coffret découverte d’une valeur de 69€         
          </span>
         </div>

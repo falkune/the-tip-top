@@ -8,7 +8,7 @@ import tea4 from "../image/tea4.png"
 const Lot = (props) => {
   return (
     <div style={styles.lot} className="pulse">   
-       <Image src={props.image} width="150" height="150" objectFit='contain' /> 
+       <Image src={props.image} width="150" height="150" objectFit='contain' alt="lots"/> 
             <p>
             {props.name}        
             </p>
