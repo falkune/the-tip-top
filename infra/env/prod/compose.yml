@@ -73,6 +73,7 @@ services:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         - traefik.http.routers.api.rule=Host(`api.${DOMAIN_BASE}`)
         - traefik.http.routers.api.entrypoints=websecure
         - traefik.http.routers.api.service=registry-web
@@ -88,6 +89,9 @@ services:
 =======
         - traefik.http.routers.frontend.rule=Host(`www.${DOMAIN_BASE}`)
 >>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
+=======
+        - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
+>>>>>>> 06567f4 (Move www on prod dns name)
         - traefik.http.routers.frontend.entrypoints=websecure
         - traefik.http.services.frontend.loadbalancer.server.port=3000
 >>>>>>> bf7cf0b (The the new version of stable code repo)
