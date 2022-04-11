@@ -22,7 +22,7 @@ export default function Emails() {
       <h1 className={styles.h1}>Emails</h1>
        <button style={stylez.export}>Exporter
         <span style={{margin:5,position:"absolute",right:8,top:4}}>
-          <Image src={arrow} width={13} height={20.8} />
+          <Image src={arrow} width={13} height={20.8} alt="arrow"/>
         </span>
        </button>
         <p style={{fontSize:18,color:"grey"}}><strong style={{color:"#40EFD7"}}>{number} </strong>{`emails`}</p>

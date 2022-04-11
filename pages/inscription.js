@@ -69,8 +69,11 @@ export default function Inscription() {
     }
     fetch('https://api.dsp-archiwebo21-ct-df-an-cd.fr/user/', options)
     .then((res) => {
-      // action after register
+      // redirect to email confirmation page 
       console.log(res)
+    })
+    .catch((error) => {
+      console.log(error);
     })
   }
 
@@ -107,7 +110,7 @@ export default function Inscription() {
               style={{backgroundColor:"#437BFF",color:"white",position:"relative"}}
               onClick={() => registerWith(FacebookProvider)}>
               <span style={{position:"absolute",left:20,bottom:1}}>
-                <Image src={facebook} width="16" height="40" objectFit='contain' /> 
+                <Image src={facebook} width="16" height="40" objectFit='contain' alt="facebook logo"/> 
               </span>
               S'inscrire
           </button>
@@ -115,7 +118,7 @@ export default function Inscription() {
               style={{backgroundColor:"white",color:"#437BFF", boxShadow:"0px 0px 6px 4px rgba(0,0,0,0.10)"}}
               onClick={() => registerWith(GoogleProvider)}>
               <span  style={{position:"absolute",left:8,bottom:1}}>
-                <Image src={google} width="40" height="40" /> 
+                <Image src={google} width="40" height="40" alt="google logo"/> 
               </span>
               S'inscrire
           </button>
