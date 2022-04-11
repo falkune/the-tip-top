@@ -19,15 +19,41 @@ import {
 
 
 export default function Connexion() {
-  
   const [email, setEmail] = useState('')
-  const [passWord, setPassword] = useState('')
+  const [password, setPassword] = useState('')
 
   const GoogleProvider = new GoogleAuthProvider()
   const FacebookProvider = new FacebookAuthProvider()
 
-  const connexion = () => {
-    // signIn function contact the backend API service  
+  const router = useRouter()
+
+  const connexion = (e) => {
+    // signIn function contact the backend API service 
+    e.preventDefault()
+    const params = {
+      "email": email,
+      "password": password
+    }
+
+    const options = {
+      method: 'POST',
+      headers:{
+        'Accept': 'Application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(params)
+    }
+
+    fetch('https://api.dsp-archiwebo21-ct-df-an-cd.fr/user/login/', options)
+    .then((res) => {
+      // action after register
+      console.log(res)
+      // go bingo page if the login ok
+      router.push('/bingo')
+    })
+    .catch((error) => {
+      console.log(error);
+    })
   }
   
   const signInWith = (provider) => {
@@ -52,11 +78,6 @@ export default function Connexion() {
     })
   }
 
-  const router = useRouter()
-  const goBingo = () => {
-    router.push('/bingo')
-  }
-
   return (
     <div>
     <div className={styles.container}>
@@ -67,11 +88,14 @@ export default function Connexion() {
       </Head>
       <Header/>
       <section className={styles.login}>
-        <form className={styles.part} style={{borderBottom:"solid 1px #D2D2D2"}}>
+        <form 
+          className={styles.part} 
+          style={{borderBottom:"solid 1px #D2D2D2"}}
+          onSubmit={e => connexion(e)}>
           <h1 className={styles.h1} style={{fontSize:25}}>Connexion</h1>
-          <input type="text" placeholder="Email" />
-          <input type="password" placeholder="Mot de passe" />
-          <button onClick={goBingo} className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
+          <input type="text" placeholder="Email" onChange={e => setEmail(e.target.value)}/>
+          <input type="password" placeholder="Mot de passe" onChange={e => setPassword(e.target.value)}/>
+          <button className={styles.action}  style={{animation:"pulse 1sec infite"}}>Connexion</button>
         </form>
         <div className={styles.social} >
           <button 

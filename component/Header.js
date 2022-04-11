@@ -5,25 +5,24 @@ import logo from "../image/logo.png"
 import menu from "../image/menu.svg"
 import Drawer from '@mui/material/Drawer';
 
-
 const Header = () => {
-    const [width, setWidth] = useState(0);
-    const [open, setOpen] = React.useState(false);
-    const [user, setUser] = React.useState("client");
+  const [width, setWidth] = useState(0);
+  const [open, setOpen] = React.useState(false);
+  const [user, setUser] = React.useState("client");
 
 
-    const toggleDrawer = (newOpen) => () => {
-        setOpen(newOpen);
-      };
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
 
-    const updateDimensions = () => {
-        setWidth(window.innerWidth);
-    }
-        useEffect(() => {
-            updateDimensions()
-            window.addEventListener('resize', updateDimensions);
-            return () => window.removeEventListener('resize', updateDimensions)
-        }, [width])
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+  }
+  useEffect(() => {
+    updateDimensions()
+    window.addEventListener('resize', updateDimensions);
+    return () => window.removeEventListener('resize', updateDimensions)
+  }, [width])
 
   return (
     <header style={styles.header}>
@@ -34,7 +33,7 @@ const Header = () => {
         padding:15,
         justifyContent:"space-between"}}>
             <Link href="/"> 
-                <Image src={logo} width="55" height="60" /> 
+              <Image src={logo} width="55" height="60" alt="logo"/> 
             </Link>   
               {width > 650 ? <nav>
                     <ul style={styles.nav}>
@@ -58,7 +57,7 @@ const Header = () => {
                     </Link>}
                     </ul>
                 </nav> :
-                <Image onClick={toggleDrawer(true)} src={menu} width="30" height="30" />
+                <Image onClick={toggleDrawer(true)} src={menu} width="30" height="30" alt="menu"/>
                  }
          </div>
          <Drawer
