@@ -22,7 +22,7 @@ services:
       - api
     labels:
         - traefik.enable=true
-        - traefik.http.routers.frontend.rule=Host(`www.${DOMAIN_BASE}`)
+        - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
         - traefik.http.routers.frontend.entrypoints=websecure
         - traefik.http.services.frontend.loadbalancer.server.port=3000
     networks:
