@@ -18,6 +18,7 @@ services:
       driver: gelf
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
+<<<<<<< HEAD
     environment:
       - TZ=Europe/Paris
       - API_BASE_URL=http://api-release:3000
@@ -54,6 +55,8 @@ volumes:
 services:
   frontend:
     image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
+=======
+>>>>>>> 071c59a (Add DEVOPS_HOST in env file and config gelf log for containers)
     environment:
       - TZ=Europe/Paris
     volumes:
