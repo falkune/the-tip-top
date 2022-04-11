@@ -10,6 +10,10 @@ networks:
 services:
   frontend:
     image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${DEVOPS_HOST}:12201
     environment:
       - TZ=Europe/Paris
     volumes:
