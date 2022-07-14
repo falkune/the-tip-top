@@ -9,11 +9,7 @@
    ssh-keyscan -t rsa -H 45.155.170.65 >> ~/.ssh/known_hosts
  fi    
 
-if [ "$envr" = "release" ]; then
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/release/compose.yml down --rmi all"
-else
-  ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/prod/compose.yml down --rmi all"
-fi
+ssh -o StrictHostKeyChecking=no -l donald 45.155.170.65 "docker compose -f ./app/frontend/${envr}/compose.yml down --rmi all"
 
 scp -r infra/env/"${envr}" donald@45.155.170.65:~/app/frontend
 
