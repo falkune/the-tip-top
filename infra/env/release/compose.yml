@@ -21,7 +21,11 @@ services:
 <<<<<<< HEAD
     environment:
       - TZ=Europe/Paris
+<<<<<<< HEAD
       - API_BASE_URL=http://api-release:3000
+=======
+      - API_HOST=http://api-release:3000
+>>>>>>> d6f013a (Add API_HOST env to prod and release)
     volumes:
        - /etc/localtime:/etc/localtime:ro
     #   - code:/my-project:rw

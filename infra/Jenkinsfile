@@ -6,9 +6,12 @@ pipeline{
       REGISTRY_CRED=credentials('jenkins-registry-credential')
       IMAGE_TAG=sh(returnStdout: true, script: 'cat infra/build/version | tail -1').trim()
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 34a778e (Set up infra as code)
+=======
+>>>>>>> d6f013a (Add API_HOST env to prod and release)
     }
     stages{
 
