@@ -16,6 +16,7 @@ services:
         gelf-address: udp://${DEVOPS_HOST}:12201
     environment:
       - TZ=Europe/Paris
+      - API_BASE_URL=http://api:3000
     volumes:
        - /etc/localtime:/etc/localtime:ro
     #   - code:/my-project
