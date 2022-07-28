@@ -10,8 +10,13 @@ networks:
 services:
   frontend:
     image: ${IMAGE_BASE}/stable/frontend:${FRONTEND_STABLE_TAG}
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${DEVOPS_HOST}:12201
     environment:
       - TZ=Europe/Paris
+      - API_BASE_URL=http://api:3000
     volumes:
        - /etc/localtime:/etc/localtime:ro
     #   - code:/my-project
