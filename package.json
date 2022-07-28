@@ -27,6 +27,7 @@
 >>>>>>> ddce213 (add ticket page)
     "animate.css": "^4.1.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "axios": "^0.27.2",
     "chart.js": "^3.8.2",
     "crypto-js": "^4.1.1",
@@ -41,6 +42,9 @@
 =======
     "firebase": "^9.6.10",
 >>>>>>> 376006d (fix some problems)
+=======
+    "chart.js": "^3.8.2",
+>>>>>>> 5a5dbe1 (update dashboard)
     "next": "12.1.0",
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -58,6 +62,7 @@
 =======
 >>>>>>> 60ea5f5 (remove next auth dependencie)
     "react": "17.0.2",
+    "react-chartjs-2": "^4.3.1",
     "react-dom": "17.0.2",
 <<<<<<< HEAD
     "react-spinners": "^0.11.0"

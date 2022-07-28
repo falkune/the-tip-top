@@ -83,21 +83,30 @@ const styles = {
     ticket:{
         width:"100%",
 <<<<<<< HEAD
+<<<<<<< HEAD
         backgroundColor:"#46E8D1",
 =======
         backgroundColor:"#40EFD7",
 >>>>>>> ddce213 (add ticket page)
+=======
+        backgroundColor:"#46E8D1",
+>>>>>>> 5a5dbe1 (update dashboard)
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
         color:"white",
         margin:10,
 <<<<<<< HEAD
+<<<<<<< HEAD
         padding:8,
         borderRadius:8,
 =======
         padding:8
 >>>>>>> ddce213 (add ticket page)
+=======
+        padding:8,
+        borderRadius:8,
+>>>>>>> 5a5dbe1 (update dashboard)
     },
     bloc:{
         display:"flex",
@@ -139,7 +148,7 @@ const styles = {
 >>>>>>> cc647dd (count down)
     },
   text:{
-      color:"#40EFD7",
+      color:"#46E8D1",
       margin:0,
       textAlign:'center',
       padding:8
