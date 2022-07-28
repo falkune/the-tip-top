@@ -9,7 +9,7 @@ import Drawer from '@mui/material/Drawer';
 const Header = () => {
     const [width, setWidth] = useState(0);
     const [open, setOpen] = React.useState(false);
-    const [user, setUser] = React.useState("client");
+    const [user, setUser] = React.useState("pro");
 
 
     const toggleDrawer = (newOpen) => () => {
@@ -53,9 +53,15 @@ const Header = () => {
                     {user && user ==="client" && <Link href="/emails">
                         <li style={styles.li}>Mes emails</li>
                     </Link> }
-                   {user && user ==="pro" && <Link href="/tickets">
+                   {user && user ==="pro" && <Link href="/stats">
                         <li style={styles.li}>Mes stats</li>
                     </Link>}
+
+                    {user && user ==="pro" && <Link href="/dasboard">
+                        <li style={styles.li}>Dasboard</li>
+                    </Link>}
+
+
                     </ul>
                 </nav> :
                 <Image onClick={toggleDrawer(true)} src={menu} width="30" height="30" />
@@ -136,12 +142,7 @@ const styles = {
     li2:{
         margin:15,
         fontSize:20,
-        listStyleType:"none"
-        }
-    
-
-
-
-
+        listStyleType:"none",
+        },
 
 }
