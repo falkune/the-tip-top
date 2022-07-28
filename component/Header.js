@@ -50,16 +50,14 @@ const Header = () => {
                         <li style={styles.li}>Mes tickets</li>
                     </Link>}
 
-                    {user && user ==="client" && <Link href="/emails">
+                    {user && user ==="pro" && <Link href="/emails">
                         <li style={styles.li}>Mes emails</li>
                     </Link> }
                    {user && user ==="pro" && <Link href="/stats">
                         <li style={styles.li}>Mes stats</li>
                     </Link>}
 
-                    {user && user ==="pro" && <Link href="/dasboard">
-                        <li style={styles.li}>Dasboard</li>
-                    </Link>}
+            
 
 
                     </ul>
