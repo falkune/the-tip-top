@@ -5,10 +5,9 @@ import logo from "../image/logo.png"
 import menu from "../image/menu.svg"
 import Drawer from '@mui/material/Drawer';
 
-const Header = () => {
+const Header = ({user}) => {
   const [width, setWidth] = useState(0);
   const [open, setOpen] = React.useState(false);
-  const [user, setUser] = React.useState("client");
 
 
   const toggleDrawer = (newOpen) => () => {
@@ -38,23 +37,27 @@ const Header = () => {
               {width > 650 ? <nav>
                     <ul style={styles.nav}>
                    { user && user ==="client" && <Link href="/bingo"> 
-                        <li style={styles.li}>Bingo ticket</li>
+                        <a style={styles.li}>Bingo ticket</a>
                     </Link> }
 
                     { user && user ==="client" && <Link href="/jeux"> 
-                        <li style={styles.li}>Grand jeux concours</li>
+                        <a style={styles.li}>Grand jeux concours</a>
                     </Link> }
 
                     { user && user ==="client" && <Link href="/tickets">
-                        <li style={styles.li}>Mes tickets</li>
+                        <a style={styles.li}>Mes tickets</a>
                     </Link>}
 
-                    {user && user ==="client" && <Link href="/emails">
-                        <li style={styles.li}>Mes emails</li>
+                    {user && user ==="pro" && <Link href="/emails">
+                        <a style={styles.li}>Mes emails</a>
                     </Link> }
-                   {user && user ==="pro" && <Link href="/tickets">
-                        <li style={styles.li}>Mes stats</li>
+                   {user && user ==="pro" && <Link href="/stats">
+                        <a style={styles.li}>Mes stats</a>
                     </Link>}
+
+            
+
+
                     </ul>
                 </nav> :
                 <Image onClick={toggleDrawer(true)} src={menu} width="30" height="30" alt="menu"/>
@@ -67,22 +70,22 @@ const Header = () => {
                     onOpen={toggleDrawer(true)}>
              <ul style={styles.draw}>
                     { user && user ==="client" && <Link href="/bingo"> 
-                        <li style={styles.li2}>Bingo ticket</li>
+                        <a style={styles.li2}>Bingo ticket</a>
                     </Link> }
 
                     { user && user ==="client" && <Link href="/jeux"> 
-                        <li style={styles.li2}>Grand jeux concours</li>
+                        <a style={styles.li2}>Grand jeux concours</a>
                     </Link> }
 
                     { user && user ==="client" && <Link href="/tickets">
-                        <li style={styles.li2}>Mes tickets</li>
+                        <a style={styles.li2}>Mes tickets</a>
                     </Link>}
 
                     {user && user ==="client" && <Link href="/emails">
-                        <li style={styles.li2}>Mes emails</li>
+                        <a style={styles.li2}>Mes emails</a>
                     </Link> }
                    {user && user ==="pro" && <Link href="/tickets">
-                        <li style={styles.li2}>Mes stats</li>
+                        <a style={styles.li2}>Mes stats</a>
                     </Link>}
                 
                 </ul>
@@ -129,12 +132,16 @@ const styles = {
 
     li:{
     marginLeft:15,
-    listStyleType:"none"
+    listStyleType:"none",
+    textDecoration: "none",
+    color: "gray"
     },
 
     li2:{
         margin:15,
         fontSize:20,
-        listStyleType:"none"
+        listStyleType:"none",
+        textDecoration:"none",
+        color: "gray"
     }
 }

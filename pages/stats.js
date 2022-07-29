@@ -2,13 +2,15 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
-import Ticket from "../component/Ticket"
-import { billets } from "../component/Data"
+import StatsLots from '../component/StatsLots'
 
 export default function Stats() {
 
-  const number = billets.length
-  console.log(billets)
+  const stats  = {
+    total:985000,
+    totalMax: 1500000, 
+  }
+ const participation =(stats.total*100)/stats.totalMax
   return (
     <div className={styles.container}>
       <Head>
@@ -18,17 +20,19 @@ export default function Stats() {
       </Head>
       <Header/>
       <h1 className={styles.h1}>Mes Stats</h1>
-        <p style={{fontSize:18,color:"grey"}}>Vous avez <strong style={{color:"#40EFD7"}}>{number} </strong>{`tickets gagnants`}</p>
-          <div style={stylez.gain}>
-          {billets.map((i,index) => (
-                <Ticket
-                  key={index}
-                  date={i.date}
-                  number={i.number}
-                  lot={i.lot}
-                  name={i.name}/>
+          
+        <div  style={stylez.gain2}>
+        <h2 style={stylez.h2}>Stats globale</h2>
 
-              ))}
+            <div style={{padding:20,background:"#46E8D1",borderRadius:8,textAlign:"center"}}>
+              <p style={{color:"white"}}><strong>{stats.total} </strong>Tickets validés</p>
+              <small style={{color:"white",opacity:0.8}}>sur <strong>{stats.totalMax}</strong> tickets</small>
+              <p style={{color:"white"}}><strong>{Math.round(participation)}%</strong> taux de participation</p>
+            </div>
+        </div>
+          <div  style={stylez.gain2}>
+            <h2 style={stylez.h2}>Stats des lots</h2>
+          <StatsLots/>
           </div>
       <Footer/>
     </div>
@@ -39,10 +43,10 @@ export default function Stats() {
 
   gain : {
     display:"flex",
-    flexDirection:"column",
+    flexWrap:"wrap",
     alignItems:"center",
     width:"90%",
-    maxWidth:360,
+    maxWidth:560,
     minHeight:"100vh"
   }
 }

@@ -66,7 +66,8 @@ export default function Inscription() {
     const params = {
       "fullName": nom,
       "email": email,
-      "password": password
+      "password": password,
+      "birthday": dateNaissance
     }
 
     const options = {

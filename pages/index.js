@@ -14,11 +14,13 @@ import Header from '../component/Header'
 import Footer from "../component/Footer"
 import { useRouter } from 'next/router'
 import 'animate.css';
+import { getCookie } from 'cookies-next'
 
 
 export default function Home() {
   const router = useRouter()
-
+  const role = getCookie('user');
+  console.log(role);
   const goConnexion = () => {
     router.push('/connexion')
   }
@@ -32,7 +34,7 @@ export default function Home() {
         <link rel="icon" href="/fav.png" />
         <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
       </Head>
-      <Header/>
+      <Header user={role}/>
       <section className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
         <Image src={logo} width="125" height="140" alt='logo'/> 
         <h1 className={styles.h1}>Gagner des lots magique</h1> 
