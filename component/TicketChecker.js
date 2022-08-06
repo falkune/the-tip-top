@@ -8,6 +8,8 @@ import dayjs from "dayjs";
 export default function TicketChecker({ session }) {
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [delivred, setDelivred] = useState(false);
+
   const [input, setInput] = useState("");
   const [visible, setVisible] = useState(false);
   const [ticket, setTicket] = useState({
@@ -51,6 +53,39 @@ export default function TicketChecker({ session }) {
     } catch (e) {
       console.log(e);
     }
+  };
+
+  const DelivredLot = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    setLoading(true);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    const body = {
+      ticketNumber: input,
+    };
+
+    const api =
+      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/check-ticket";
+
+    // try {
+    //   let nTicket = await axios.post(api, body, config);
+    //   console.log("newticket", nTicket.data);
+    //   setTicket({
+    //     assigned: nTicket?.data?.idClient,
+    //     create_at: dayjs(nTicket.data.createdAt).format("YYYY-MM-DD"),
+    //     lot: nTicket.data.lot,
+    //   });
+    //   setLoading(false);
+    //   setVisible(true);
+    // } catch (e) {
+    //   console.log(e);
+    // }
+    setDelivred(true);
   };
 
   const UpdateInput = (e) => {
@@ -145,6 +180,28 @@ export default function TicketChecker({ session }) {
               <p>Date de création : {ticket.create_at}</p>
             ) : (
               <p>invalide</p>
+            )}
+            {!delivred ? (
+              <button
+                style={{
+                  width: 180,
+                  height: 50,
+                  border: "none",
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  marginTop: 10,
+                  borderRadius: 5,
+                }}
+                onClick={DelivredLot}
+              >
+                Délivrer le cadeau
+              </button>
+            ) : (
+              <p
+                style={{ background: "#3AAB9B", padding: 10, borderRadius: 8 }}
+              >
+                Lot délivré
+              </p>
             )}
           </div>
         )}

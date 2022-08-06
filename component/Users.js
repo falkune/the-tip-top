@@ -46,7 +46,6 @@ export default function Users({ idSession }) {
 
     const api =
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
-    console.log("token", token);
     try {
       let allusers = await axios.post(api, body, config);
       console.log("allusers", allusers.data);
@@ -99,8 +98,8 @@ export default function Users({ idSession }) {
 
 const stylez = {
   gain: {
-    width: 700,
-    height: 1000,
+    width: "90%",
+    height: "100vh",
     padding: 15,
   },
 
