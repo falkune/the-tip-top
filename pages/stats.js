@@ -118,6 +118,8 @@ import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
 import StatsLots from '../component/StatsLots'
+import StatInscription from '../component/StatInscription'
+import LoStats from '../component/LotStats'
 
 export default function Stats() {
 
@@ -295,20 +297,22 @@ const stylez = {
 =======
       <Header/>
       <h1 className={styles.h1}>Mes Stats</h1>
-          
-        <div  style={stylez.gain2}>
+      <StatInscription data={[14, 9, 7, 13, 11, 6, 18, 11, 3, 12]}/>
+      <LoStats data={[25, 9, 7, 13]}/>
+      <div  style={stylez.gain2}>
         <h2 style={stylez.h2}>Stats globale</h2>
 
-            <div style={{padding:20,background:"#46E8D1",borderRadius:8,textAlign:"center"}}>
-              <p style={{color:"white"}}><strong>{stats.total} </strong>Tickets validés</p>
-              <small style={{color:"white",opacity:0.8}}>sur <strong>{stats.totalMax}</strong> tickets</small>
-              <p style={{color:"white"}}><strong>{Math.round(participation)}%</strong> taux de participation</p>
-            </div>
+        <div style={{padding:20,background:"#46E8D1",borderRadius:8,textAlign:"center"}}>
+          <p style={{color:"white"}}><strong>{stats.total} </strong>Tickets validés</p>
+          <small style={{color:"white",opacity:0.8}}>sur <strong>{stats.totalMax}</strong> tickets</small>
+          <p style={{color:"white"}}><strong>{Math.round(participation)}%</strong> taux de participation</p>
         </div>
-          <div  style={stylez.gain2}>
-            <h2 style={stylez.h2}>Stats des lots</h2>
-          <StatsLots/>
-          </div>
+      </div>
+      <div  style={stylez.gain2}>
+        <h2 style={stylez.h2}>Stats des lots</h2>
+        <StatsLots/>
+      </div>
+          
       <Footer/>
     </div>
   )
