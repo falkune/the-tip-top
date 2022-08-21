@@ -18,7 +18,7 @@ export default function Tickets() {
       </Head>
       <Header/>
       <h1 className={styles.h1}>Mes tickets</h1>
-        <p style={{fontSize:18,color:"grey"}}>Vous avez <strong style={{color:"#40EFD7"}}>{number} </strong>{`tickets gagnants`}</p>
+        <p style={{fontSize:18,color:"grey"}}>Vous avez <strong style={{color:"#41D8C2"}}>{number} </strong>{`tickets gagnants`}</p>
           <div style={stylez.gain}>
           {billets.map((i,index) => (
                 <Ticket
@@ -27,7 +27,6 @@ export default function Tickets() {
                   number={i.number}
                   lot={i.lot}
                   name={i.name}/>
-
               ))}
           </div>
       <Footer/>

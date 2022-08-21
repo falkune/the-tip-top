@@ -17,7 +17,7 @@ const styles = {
 
     email:{
         width:"100%",
-        backgroundColor:"#40EFD7",
+        backgroundColor:"#41D8C2",
         display:"flex",
         justifyContent:"center",
         flexDirection:"column",

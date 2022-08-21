@@ -30,7 +30,7 @@ export default function Bingo() {
         <h1 className={styles.h1}>Bingo ticket</h1>
         <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
         <Link href="/#lots"> 
-            <small style={{color:"#40EFD7"}}>Voir les differents lots</small>
+            <small style={{color:"#41D8C2"}}>Voir les differents lots</small>
         </Link>
         <form  className={styles.bingo}>
           <input type="text" name="numero"  autoComplete="off"

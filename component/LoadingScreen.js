@@ -25,6 +25,6 @@ const styles = {
          display:"flex",
          alignItems:'center',
          justifyContent:"center",
-         backgroundColor:"#40EFD7"
+         backgroundColor:"#41D8C2"
     },
 }

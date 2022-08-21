@@ -4,11 +4,13 @@ import Link from "next/link"
 import logo from "../image/logo.png"
 import menu from "../image/menu.svg"
 import Drawer from '@mui/material/Drawer';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+
 
 const Header = ({user}) => {
   const [width, setWidth] = useState(0);
   const [open, setOpen] = React.useState(false);
-
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -19,6 +21,7 @@ const Header = ({user}) => {
   }
   useEffect(() => {
     updateDimensions()
+    
     window.addEventListener('resize', updateDimensions);
     return () => window.removeEventListener('resize', updateDimensions)
   }, [width])
@@ -31,9 +34,11 @@ const Header = ({user}) => {
         display:"flex",
         padding:15,
         justifyContent:"space-between"}}>
+   
+            
             <Link href="/"> 
               <Image src={logo} width="55" height="60" alt="logo"/> 
-            </Link>   
+            </Link>  
               {width > 650 ? <nav>
                     <ul style={styles.nav}>
                    { user && user ==="client" && <Link href="/bingo"> 
@@ -48,15 +53,9 @@ const Header = ({user}) => {
                         <a style={styles.li}>Mes tickets</a>
                     </Link>}
 
-                    {user && user ==="pro" && <Link href="/emails">
-                        <a style={styles.li}>Mes emails</a>
-                    </Link> }
-                   {user && user ==="pro" && <Link href="/stats">
-                        <a style={styles.li}>Mes stats</a>
+                    {user && user ==="pro" && <Link href="/connexion">
+                        <a style={styles.login}>Connexion</a>
                     </Link>}
-
-            
-
 
                     </ul>
                 </nav> :
@@ -89,7 +88,7 @@ const Header = ({user}) => {
                     </Link>}
                 
                 </ul>
-            </Drawer>
+        </Drawer>
     </header>
    )
   }
@@ -115,7 +114,8 @@ const styles = {
     nav:{
      display:"flex",
      marginRight :25,
-     color:"#AEAEAE"
+     color:"#AEAEAE",
+     alignItems:"baseline"
     },
 
     draw:{
@@ -125,7 +125,7 @@ const styles = {
         padding:25,
         height:700,
         paddingTop:100,
-        zIndex:999999999999999999,
+        zIndex:99999999999999999,
         justifyContent:"center"
 
        },
@@ -143,5 +143,20 @@ const styles = {
         listStyleType:"none",
         textDecoration:"none",
         color: "gray"
+    },
+
+    login:{
+        backgroundColor:"#41D8C2",
+        color:"white",
+        padding:10,
+        paddingLeft:15,
+        paddingRight:15,
+        borderRadius:100,
+        marginLeft:10,
+        listStyleType:"none",
+        textDecoration: "none",
+        
+
+
     }
 }

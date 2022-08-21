@@ -48,9 +48,8 @@ export default function StatInscription({data}) {
           data: inscriptions,
           fill: true,
           borderWidth: 2,
-          borderColor: "#8d99ae",
+          borderColor: "#41C2B0",
           lineTension: 0.3,
-          // backgroundColor: "#2ec4b6",
           pointRadius: 1.5
         }
       ]
@@ -61,14 +60,36 @@ export default function StatInscription({data}) {
     }
     const myLineChart = new Chart(ctx, config)
 
+
     return function cleanup() {
       myLineChart.destroy()
     }
   })
 
+  
+  const stats  = {
+    total:985000,
+    totalMax: 1500000 }
+  const TauxP =(stats.total*100)/stats.totalMax
+
+
   return (
-    <div className="App">
-      <canvas ref={canvasEl} height="400" width="1500"/>
+    <div style={{backgroundColor:'white',padding:25,borderRadius:10}}>
+      <h2 style={{textAlign:"center",fontSize:25,fontWeight:"bold",color:"#41D8C2"}}>Souscriptions</h2>
+      <div style={{
+        padding:15,
+        margin:8,
+        textAlign:"center",
+        borderRadius:8,
+        color:"white",
+        backgroundColor:"#41D8C2",
+        maxWidth:350}}> 
+      <p style={{fontSize:50,fontWeight:"bold",marginBottom:0}}>{Math.round(TauxP)}%</p>
+      <small style={{opacity:0.5}}>taux de participation</small>
+      <p>{stats.total} participations</p>
+      <p>sur {stats.totalMax}</p>
+      </div>
+      <canvas ref={canvasEl} height={80} width={500}/>
     </div>
   )
 }

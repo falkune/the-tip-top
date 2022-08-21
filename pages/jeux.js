@@ -24,7 +24,7 @@ export default function Jeux() {
         alignItems:"center",
         width:"100%",
         padding:25,
-        backgroundColor:"#40EFD7" }} >
+        backgroundColor:"#41D8C2" }} >
         <h1 className={styles.h1} style={{color:"white"}}>Grand jeux concour</h1>
         <p style={{fontSize:20,color:"white"}}>Le tirage au sort dans</p>
         < Count />
@@ -35,7 +35,7 @@ export default function Jeux() {
         flexDirection:"column",
         justifyContent:"center", }} >
           <h2 className={styles.h2} style={{fontSize:30,padding:20}} >Vous avez été sélectionné pour le grand tirage au sort</h2>
-          <p style={{fontSize:22,color:"grey"}}>Le <strong style={{color:"#40EFD7"}}>22 avril 2022</strong> un candidat sera sélectionné et bénéficiera de :  </p>
+          <p style={{fontSize:22,color:"grey"}}>Le <strong style={{color:"#41D8C2"}}>22 avril 2022</strong> un candidat sera sélectionné et bénéficiera de :  </p>
       </div>
       <p className={"pulse"}  style={{fontSize:18}}>1 an de thé d'une valeur de 360 euros</p>
           <span>

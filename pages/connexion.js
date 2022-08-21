@@ -55,6 +55,15 @@ export default function Connexion() {
       // en fonction du role de l'utilisateur rediriger vers la bonne interface
       setCookie('user', "pro");
       setRole(getCookie('user'))
+      localStorage.setItem('token',data.token)
+      if (data.role ==="pro"){
+        localStorage.setItem('role','pro')
+      // router.push('/stats')
+      }else{
+        localStorage.setItem('role','client')
+      // router.push('/stats')
+      }
+
       // router.push('/bingo')
     })
     .catch((error) => {

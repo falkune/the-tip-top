@@ -26,7 +26,7 @@ export default Footer
 const styles = {
     footer:{
         width:"100%",
-        backgroundColor:"#40EFD7",
+        backgroundColor:"#41D8C2",
         height:70,
         display:"flex",
         justifyContent:"space-evenly",
