@@ -8,6 +8,7 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie'
 
 
 export default function Connexion() {
@@ -38,23 +39,21 @@ export default function Connexion() {
     fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
       .then((response) => response.json())
       .then((data) => {
-        console.log("log", data);
         // en fonction du role de l'utilisateur rediriger vers la bonne interface
         localStorage.setItem("token", data.accessToken);
-        localStorage.setItem("refresh", data.refreshToken);
-
+        Cookies.set('accessToken', data.accessToken)
         if (data.roles.includes("admin")) {
           localStorage.setItem("role", "admin");
+          Cookies.set('userRole', "admin");
           router.push("/stats");
         } else {
           localStorage.setItem("role", "client");
+          Cookies.set('userRole', "client");
           router.push("/bingo");
         }
       })
       .catch((error) => {
         setFool(true);
-
-        console.log(error);
       });
   };
 

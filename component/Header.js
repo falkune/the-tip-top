@@ -6,8 +6,11 @@ import iconMenu from "../image/menu.svg";
 import Drawer from "@mui/material/Drawer";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
 const Header = ({ menu, changemenu }) => {
+  const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
 
@@ -23,11 +26,21 @@ const Header = ({ menu, changemenu }) => {
   useEffect(() => {
     if (localStorage.getItem("role") !== undefined) {
       setRole(localStorage.getItem("role"));
+    }else{
+      router.push("/connexion");
     }
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
+
+  const logout = () => {
+    Cookies.remove('accessToken');
+    Cookies.remove('userRole');
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('width');
+  }
 
   return (
     <header style={styles.header}>
@@ -73,7 +86,7 @@ const Header = ({ menu, changemenu }) => {
                 </li>
               )}
               {role && (
-                <li style={styles.login}>
+                <li style={styles.login} onClick={logout}>
                   <Link href="/connexion">Déconnexion </Link>
                 </li>
               )}
@@ -182,7 +195,7 @@ const Header = ({ menu, changemenu }) => {
             </div>
           )}
           {role ? (
-            <li style={styles.toLogin}>
+            <li style={styles.toLogin} onClick={logout}>
               <Link href="/connexion">Déconnexion </Link>
             </li>
           ) : (
