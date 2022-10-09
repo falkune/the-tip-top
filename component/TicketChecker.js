@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 export default function TicketChecker({ session }) {
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
+<<<<<<< HEAD
   const [delivred, setDelivred] = useState(false);
 
   const [input, setInput] = useState("");
@@ -86,6 +87,42 @@ export default function TicketChecker({ session }) {
     //   console.log(e);
     // }
     setDelivred(true);
+=======
+  const [input, setInput] = useState("");
+  const [visible, setVisible] = useState(false);
+  const [generate, setGenerate] = useState(false);
+  const [ticket, setTicket] = useState({
+    assigné: null,
+    create_at: "07-06-2022",
+    validé: true,
+    numéro: "545455d4ds5d4sd",
+    lot: "Grand thé vert",
+  });
+
+  const CheckTicket = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+      data: { idSession: session },
+    };
+    const api =
+      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/tickets-by-session";
+    console.log("tokens", token);
+    await axios
+      .get(api, config)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch(console.log);
+  };
+
+  const UpdateLoad = () => {
+    //fonction pour get le ticket par numéro
+    setLoad(true);
+    setTimeout(() => setLoad(false), 2000);
+    setVisible(true);
+>>>>>>> 0760426 (udpate format)
   };
 
   const UpdateInput = (e) => {
@@ -107,7 +144,10 @@ export default function TicketChecker({ session }) {
           justifyContent: "center",
           padding: 15,
           height: 500,
+<<<<<<< HEAD
           marginTop: 25,
+=======
+>>>>>>> 0760426 (udpate format)
         }}
       >
         <div
@@ -129,11 +169,19 @@ export default function TicketChecker({ session }) {
             className={styles.input}
             maxLength={10}
             value={input}
+<<<<<<< HEAD
             type="number"
             placeholder="Indiquer votre numéro de ticket"
           />
           {input.length === 10 ? (
             <button onClick={checkTicket} className={styles.action}>
+=======
+            type="text"
+            placeholder="Indiquer votre numéro de ticket"
+          />
+          {input.length === 10 ? (
+            <button onClick={UpdateLoad} className={styles.action}>
+>>>>>>> 0760426 (udpate format)
               Valider
             </button>
           ) : (
@@ -164,6 +212,7 @@ export default function TicketChecker({ session }) {
               textAlign: "center",
             }}
           >
+<<<<<<< HEAD
             {ticket.lot != null ? <p>Lot : {ticket.lot}</p> : <p>invalide</p>}
 
             {ticket.assigned != null ? (
@@ -175,12 +224,29 @@ export default function TicketChecker({ session }) {
               <p>Lot délivré</p>
             ) : (
               <p> Lot pas encore récupéré</p>
+=======
+            {ticket.numéro != null ? (
+              <p>Numéro : {ticket.numéro}</p>
+            ) : (
+              <p>invalide</p>
+            )}
+            {ticket.assigné != null ? (
+              <p>Assigné :{ticket.assigné}</p>
+            ) : (
+              <p>Ticket non assigné</p>
+            )}
+            {ticket.validé === true ? (
+              <p>Ticket validé</p>
+            ) : (
+              <p> ticket expiré</p>
+>>>>>>> 0760426 (udpate format)
             )}
             {ticket.create_at != null ? (
               <p>Date de création : {ticket.create_at}</p>
             ) : (
               <p>invalide</p>
             )}
+<<<<<<< HEAD
             {!delivred ? (
               <button
                 style={{
@@ -203,6 +269,8 @@ export default function TicketChecker({ session }) {
                 Lot délivré
               </p>
             )}
+=======
+>>>>>>> 0760426 (udpate format)
           </div>
         )}
         {load === true && (

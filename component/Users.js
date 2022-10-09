@@ -4,6 +4,7 @@ import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
 import { users } from "../component/Data";
 import { DataGrid } from "@mui/x-data-grid";
+<<<<<<< HEAD
 // or
 import { IconButton } from "@mui/material";
 import axios from "axios";
@@ -54,6 +55,63 @@ export default function Users({ idSession }) {
       console.log(e);
     }
   };
+=======
+import axios from "axios";
+
+export default function Users() {
+  const [userz, setUserz] = useState("");
+
+  const number = users.length;
+  const columns = [
+    { field: "id", headerName: "ID", width: 50 },
+    { field: "name", headerName: "Nom", width: 100, editable: true },
+    {
+      field: "email",
+      headerName: "Email",
+      type: "number",
+      width: 200,
+      editable: true,
+    },
+    {
+      field: "age",
+      headerName: "Age",
+      type: "number",
+      width: 100,
+      editable: true,
+    },
+    {
+      field: "create",
+      headerName: "crée le",
+      type: "number",
+      width: 110,
+      editable: true,
+    },
+    ,
+  ];
+>>>>>>> 0760426 (udpate format)
+
+  useEffect(() => {
+    getAllUser();
+  }, []);
+
+  const getAllUser = async () => {
+    //fonction pour créer un ticket
+    console.log("take session");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    //  const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/${session}`;
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/`;
+    console.log("tokens", token);
+    await axios
+      .get(api, config)
+      .then((res) => {
+        console.log(res.data);
+        setSession(res.data);
+      })
+      .catch(console.log);
+  };
 
   return (
     <div
@@ -77,6 +135,7 @@ export default function Users({ idSession }) {
         </span>
       </button>
       <div style={stylez.gain}>
+<<<<<<< HEAD
         {userz.length > 0 ? (
           <DataGrid
             getRowId={(row) => row._id}
@@ -85,11 +144,24 @@ export default function Users({ idSession }) {
             pageSize={15}
             style={{ width: 650 }}
             rowsPerPageOptions={[2]}
+=======
+        {users.length > 0 ? (
+          <DataGrid
+            rows={users}
+            columns={columns}
+            pageSize={15}
+            rowsPerPageOptions={[2]}
+            checkboxSelection
+>>>>>>> 0760426 (udpate format)
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
           />
         ) : (
+<<<<<<< HEAD
           <p> Pas de clients :'c </p>
+=======
+          <p> pas de users</p>
+>>>>>>> 0760426 (udpate format)
         )}
       </div>
     </div>
@@ -98,8 +170,13 @@ export default function Users({ idSession }) {
 
 const stylez = {
   gain: {
+<<<<<<< HEAD
     width: "90%",
     height: "100vh",
+=======
+    width: 700,
+    height: 1000,
+>>>>>>> 0760426 (udpate format)
     padding: 15,
   },
 

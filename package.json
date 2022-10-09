@@ -25,9 +25,13 @@
     "chart.js": "^3.8.2",
     "crypto-js": "^4.1.1",
 <<<<<<< HEAD
+<<<<<<< HEAD
     "dayjs": "^1.11.5",
 =======
     "d3": "^7.6.1",
+=======
+    "dayjs": "^1.11.5",
+>>>>>>> 0760426 (udpate format)
     "firebase": "^9.6.10",
 >>>>>>> fe7b512 (pull some update)
     "js-cookie": "^3.0.1",

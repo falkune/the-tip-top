@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
+<<<<<<< HEAD
 import dayjs from "dayjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -15,20 +16,52 @@ const Sessions = ({ idSession }) => {
     limit: 15000,
     id: "",
   });
+=======
+
+const Sessions = ({ session }) => {
+  console.log("ok", session);
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+  const [Session, setSession] = React.useState({
+    name: "",
+    start: "",
+    end: "",
+    limit: "",
+    id: "",
+  });
+  const [sess, setSess] = React.useState(session);
+>>>>>>> 0760426 (udpate format)
   const [newSession, setNewsession] = React.useState({
     name: "",
     startDate: "",
     endDate: "",
     description: "ceci est une session",
+<<<<<<< HEAD
     limit: "",
   });
 
   const getSession = async () => {
     //fonction pour créer un ticket
+=======
+    limitTicket: null,
+  });
+
+  useEffect(() => {
+    getSession();
+
+    console.log("new format session", Session);
+  }, [sess]);
+
+  const getSession = async () => {
+    //fonction pour créer un ticket
+    console.log("take session");
+>>>>>>> 0760426 (udpate format)
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
+<<<<<<< HEAD
     const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
     try {
       let newsession = await axios.get(api, config);
@@ -37,6 +70,38 @@ const Sessions = ({ idSession }) => {
         start: newsession.data.startDate,
         end: newsession.data.endDate,
         description: newsession.data.description,
+=======
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${session}`;
+    console.log("tokens", token);
+    try {
+      let newsession = await axios.get(api, config);
+      setSession({
+        name: newsession.data.name,
+        start: newsession.data.startDate,
+        end: newsession.data.endDate,
+        limit: newsession.data.limitTicket,
+        id: newsession.data._id,
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const CreateSession = async () => {
+    //fonction pour créer un ticket
+    console.log("take session");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${session}`;
+    console.log("tokens", token);
+    try {
+      let newsession = await axios.post(api, config);
+      setSession({
+        name: newsession.data.name,
+        start: newsession.data.startDate,
+        end: newsession.data.endDate,
+>>>>>>> 0760426 (udpate format)
         limit: newsession.data.limitTicket,
         id: newsession.data._id,
       });
@@ -45,6 +110,7 @@ const Sessions = ({ idSession }) => {
     }
   };
 
+<<<<<<< HEAD
   useEffect(() => {
     getSession();
     console.log("take OneSession", OneSession);
@@ -182,6 +248,43 @@ const Sessions = ({ idSession }) => {
   };
   const UpdateTicketLimited = (e) => {
     setOneSession({ ...OneSession, limit: e.target.value });
+=======
+  // session update
+
+  const UpdateNewSessionName = (e) => {
+    setNewsession({ name: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const UpdateTicketLimited = (e) => {
+    setNewsession({ limitTicket: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const UpdateNewSessionStart = (e) => {
+    setNewsession({ startDate: e.target.value });
+    console.log(e.target.value);
+  };
+  const UpdateNewSessionEnd = (e) => {
+    setNewsession({ endDate: e.target.value });
+    console.log(e.target.value);
+  };
+
+  // new session
+  const UpdateSessionName = (e) => {
+    setSession({ name: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const UpdateSessionEnd = (e) => {
+    setSession({ end: e.target.value });
+    console.log(e.target.value);
+  };
+
+  const UpdateSessionStart = (e) => {
+    setSession({ start: e.target.value });
+    console.log(e.target.value);
+>>>>>>> 0760426 (udpate format)
   };
 
   return (
@@ -191,17 +294,26 @@ const Sessions = ({ idSession }) => {
       </button>
 
       <form style={styles.formSession}>
+<<<<<<< HEAD
         <p style={{ color: "#ABFFF3", textAlign: "center", margin: 5 }}>
           Etat : <strong style={{ color: "white" }}> En cours </strong>
         </p>
         <p style={{ color: "#ABFFF3", textAlign: "center", margin: 8 }}>
           Date limite : fin dans{" "}
           <strong style={{ color: "white" }}> 25 JOURS</strong>
+=======
+        <p style={{ color: "#41D8C2", textAlign: "center", margin: 5 }}>
+          Etat : <strong> En cours </strong>
+        </p>
+        <p style={{ color: "#41D8C2", textAlign: "center", margin: 8 }}>
+          Date limite : fin dans <strong>25 jours</strong>
+>>>>>>> 0760426 (udpate format)
         </p>
         <input
           onChange={UpdateSessionName}
           type="texte"
           style={styles.dateInput}
+<<<<<<< HEAD
           value={OneSession.name}
           placeholder="Indiquer un nouveau nom de session"
         />
@@ -217,11 +329,22 @@ const Sessions = ({ idSession }) => {
           style={styles.dateInput}
           type="date"
           value={OneSession.start}
+=======
+          value={Session.name}
+          placeholder="Indiquer un nouveau nom de session"
+        />
+        <input
+          onChange={UpdateSessionStart}
+          style={styles.dateInput}
+          type="date"
+          value={Session.endDate}
+>>>>>>> 0760426 (udpate format)
         />
         <input
           onChange={UpdateSessionEnd}
           style={styles.dateInput}
           type="date"
+<<<<<<< HEAD
           value={OneSession.end}
         />
         <button onClick={UpdateSession} style={styles.dateButton}>
@@ -247,6 +370,11 @@ const Sessions = ({ idSession }) => {
           pauseOnHover={false}
           theme="colored"
         />
+=======
+          value={new Date(Session.startDate)}
+        />
+        <button style={styles.dateButton}> Mettre à jour</button>
+>>>>>>> 0760426 (udpate format)
       </form>
       <Modal
         open={open}
@@ -255,6 +383,7 @@ const Sessions = ({ idSession }) => {
         aria-describedby="modal-modal-description"
       >
         <form style={styles.modalSession}>
+<<<<<<< HEAD
           <p
             style={{
               textAlign: "center",
@@ -280,6 +409,14 @@ const Sessions = ({ idSession }) => {
             }}
           >
             Fermer
+=======
+          <p style={{ textAlign: "center" }}>Nouvelle session</p>
+          <button
+            onClick={handleClose}
+            style={{ position: "absolute", right: 10, top: 8 }}
+          >
+            fermer
+>>>>>>> 0760426 (udpate format)
           </button>
           <input
             onChange={UpdateNewSessionName}
@@ -289,6 +426,7 @@ const Sessions = ({ idSession }) => {
             placeholder="Indiquer un nom de session"
           />
           <input
+<<<<<<< HEAD
             onChange={UpdateLimited}
             style={styles.modalInput}
             type="number"
@@ -304,12 +442,21 @@ const Sessions = ({ idSession }) => {
           >
             Indiquer une date de début
           </small>
+=======
+            onChange={UpdateTicketLimited}
+            style={styles.modalInput}
+            type="number"
+            value={newSession.limitTicket}
+            placeholder="Indiquer le nombre de ticket maximum"
+          />
+>>>>>>> 0760426 (udpate format)
           <input
             onChange={UpdateNewSessionStart}
             style={styles.modalDate}
             type="date"
             value={newSession.startDate}
           />
+<<<<<<< HEAD
           <small
             style={{
               color: "#ABFFF3",
@@ -319,15 +466,21 @@ const Sessions = ({ idSession }) => {
           >
             Indiquer une date de fin
           </small>
+=======
+>>>>>>> 0760426 (udpate format)
           <input
             onChange={UpdateNewSessionEnd}
             style={styles.modalDate}
             type="date"
             value={newSession.endDate}
           />
+<<<<<<< HEAD
           <button onClick={CreateSession} style={styles.modalCreate}>
             Créer la session
           </button>
+=======
+          <button style={styles.modalCreate}>Créer la session</button>
+>>>>>>> 0760426 (udpate format)
         </form>
       </Modal>
     </div>
@@ -345,20 +498,68 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     color: "white",
+<<<<<<< HEAD
     marginTop: 10,
     padding: 50,
+=======
+    margin: 10,
+    paddingTop: 25,
+>>>>>>> 0760426 (udpate format)
   },
 
   elem: {
     margin: 0,
     marginBottom: 3,
   },
+<<<<<<< HEAD
+=======
+  dateInput: {
+    padding: 8,
+    color: "#41D8C2",
+    background: "none",
+    border: "solid 1px #41D8C2",
+    margin: 5,
+    fontSize: 18,
+
+    borderRadius: 3,
+  },
+  dateButton: {
+    padding: 8,
+    color: "white",
+    backgroundColor: "#41D8C2",
+    border: "solid 1px white",
+    fontSize: 18,
+
+    margin: 5,
+  },
+  dateInput: {
+    padding: 8,
+    color: "#41D8C2",
+    background: "none",
+    border: "solid 1px #41D8C2",
+    margin: 5,
+    fontSize: 18,
+
+    outline: "none",
+  },
+  createButton: {
+    padding: 10,
+    color: "white",
+    backgroundColor: "#41D8C2",
+    border: "solid 1px white",
+    margin: 10,
+    fontSize: 18,
+
+    borderRadius: 5,
+  },
+>>>>>>> 0760426 (udpate format)
   formSession: {
     display: "flex",
     flexDirection: "column",
     width: 350,
     padding: 15,
     fontSize: 18,
+<<<<<<< HEAD
     backgroundColor: "#3AAB9B",
     borderRadius: 8,
     margin: 10,
@@ -398,11 +599,16 @@ const styles = {
     fontWeight: "bold",
     minHeight: 50,
     borderRadius: 5,
+=======
+    backgroundColor: "white",
+    borderRadius: 8,
+>>>>>>> 0760426 (udpate format)
   },
   modalSession: {
     position: "relative",
     display: "flex",
     flexDirection: "column",
+<<<<<<< HEAD
     padding: 20,
     fontSize: 18,
     top: "50%",
@@ -421,12 +627,45 @@ const styles = {
     color: "white",
     background: "#318176",
     border: "none",
+=======
+    padding: 15,
+    fontSize: 18,
+    top: "50%",
+    left: "57.3%",
+    transform: "translate(-50%, -50%)",
+    width: 350,
+    borderRadius: 8,
+    backgroundColor: "white",
+    boxShadow: 24,
+  },
+
+  modalInput: {
+    borderRadius: 3,
+    fontSize: 18,
+
+    padding: 8,
+    color: "#41D8C2",
+    background: "none",
+    border: "solid 1px #41D8C2",
+    margin: 5,
+    outline: "none",
+  },
+  modalDate: {
+    fontSize: 18,
+
+    borderRadius: 3,
+    padding: 8,
+    color: "#41D8C2",
+    background: "none",
+    border: "solid 1px #41D8C2",
+>>>>>>> 0760426 (udpate format)
     margin: 5,
     outline: "none",
   },
 
   modalCreate: {
     fontSize: 18,
+<<<<<<< HEAD
     borderRadius: 5,
     height: 50,
     padding: 8,
@@ -448,5 +687,14 @@ const styles = {
     outline: "none",
     color: "#318176",
     fontWeight: "bold",
+=======
+
+    borderRadius: 3,
+    padding: 8,
+    color: "#41D8C2",
+    background: "none",
+    border: "solid 1px #41D8C2",
+    margin: 5,
+>>>>>>> 0760426 (udpate format)
   },
 };

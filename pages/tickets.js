@@ -1,10 +1,14 @@
+<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
+=======
+>>>>>>> 0760426 (udpate format)
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Ticket from "../component/Ticket";
 import { billets } from "../component/Data";
+<<<<<<< HEAD
 import ButtonGrid from "../component/ButtonGrid";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
@@ -84,6 +88,32 @@ export default function Tickets() {
       console.log(e);
     }
   };
+=======
+import { DataGrid } from "@mui/x-data-grid";
+const columns = [
+  { field: "id", headerName: "ID", width: 90 },
+  { field: "date", headerName: "date", width: 100, editable: true },
+  {
+    field: "number",
+    headerName: "Number",
+    type: "number",
+    width: 200,
+  },
+  {
+    field: "lot",
+    headerName: "Lot",
+    type: "number",
+    width: 100,
+  },
+  {
+    field: "email",
+    headerName: "Email",
+    width: 110,
+  },
+  ,
+];
+export default function Tickets() {
+>>>>>>> 0760426 (udpate format)
   const number = billets.length;
   console.log(billets);
   return (
@@ -96,6 +126,7 @@ export default function Tickets() {
       <Header />
       <h1 className={styles.h1}>Mes tickets</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
+<<<<<<< HEAD
         Vous avez{" "}
         <strong style={{ color: "#41D8C2" }}>{alltickets.length} </strong>
         {`tickets gagnants`}
@@ -114,6 +145,25 @@ export default function Tickets() {
             columnDefs={colDefs}
           ></AgGridReact>
         </div>
+=======
+        Vous avez <strong style={{ color: "#41D8C2" }}>{number} </strong>
+        {`tickets gagnants`}
+      </p>
+      <div style={stylez.gain}>
+        {billets.length > 0 ? (
+          <DataGrid
+            rows={billets}
+            columns={columns}
+            pageSize={15}
+            rowsPerPageOptions={[15]}
+            checkboxSelection
+            disableSelectionOnClick
+            experimentalFeatures={{ newEditingApi: true }}
+          />
+        ) : (
+          <p> pas de tickets</p>
+        )}
+>>>>>>> 0760426 (udpate format)
       </div>
       <Footer />
     </div>
@@ -124,6 +174,10 @@ const stylez = {
   gain: {
     display: "flex",
     flexDirection: "column",
+<<<<<<< HEAD
+=======
+    backgroundColor: "red",
+>>>>>>> 0760426 (udpate format)
     alignItems: "center",
     width: "100vw",
     minHeight: "100vh",
