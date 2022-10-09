@@ -1,27 +1,26 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import logo from "../image/logo.png"
-import tea1 from "../image/tea1.png"
-import tea2 from "../image/tea2.png"
-import tea3 from "../image/tea3.png"
-import tea4 from "../image/tea4.png"
-import Header from '../component/Header'
-import Footer from "../component/Footer"
-import { useRouter } from 'next/router'
-import 'animate.css';
-import ticket from "../image/ticket.gif"
-import store from "../image/store.gif"
-import keyboard from "../image/keyboard.gif"
-import login from "../image/login.gif"
-
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import logo from "../image/logo.png";
+import tea1 from "../image/tea1.png";
+import tea2 from "../image/tea2.png";
+import tea3 from "../image/tea3.png";
+import tea4 from "../image/tea4.png";
+import Header from "../component/Header";
+import Footer from "../component/Footer";
+import { useRouter } from "next/router";
+import "animate.css";
+import ticket from "../image/ticket.gif";
+import store from "../image/store.gif";
+import keyboard from "../image/keyboard.gif";
+import login from "../image/login.gif";
 
 export default function Home() {
-  const router = useRouter()
+  const router = useRouter();
   // const role = getCookie('pro');
   const goConnexion = () => {
-    router.push('/connexion')
-  }
+    router.push("/connexion");
+  };
 
   return (
     <div className={styles.main}>
@@ -31,83 +30,130 @@ export default function Home() {
         <link rel="icon" href="/fav.png" />
         {/* <link rel="stylesheet"  href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" /> */}
       </Head>
-      <Header user="pro"/>
-      <section className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
-        <Image src={logo} width="125" height="140" alt='logo'/> 
-        <h1 className={styles.h1}>Gagner des lots magique</h1> 
+      <Header />
+      <section
+        className={styles.part}
+        style={{ paddingTop: 50, paddingBottom: 50 }}
+      >
+        <Image src={logo} width="125" height="140" alt="logo" />
+        <h1 className={styles.h1}>Gagner des lots magique</h1>
         <p>Participer à notre jeux concours afin de recevoir votre lot</p>
-          <button type='button' onClick={goConnexion} className={styles.action} style={{margin:25}}>Participer</button>
+        <button
+          type="button"
+          onClick={goConnexion}
+          className={styles.action}
+          style={{ margin: 25 }}
+        >
+          Participer
+        </button>
       </section>
 
-      <section className={styles.part} style={{backgroundColor:"#41D8C2",color:"white",minHeight:400,paddingTop:50,paddingBottom:50}}>
-       <h2 className={styles.h2} style={{color:"white",marginTop:50,marginBottom:0}}>Comment participer ?</h2>
-        <p style={{color:"white"}}>Jouer en 4 étapes</p>
-        <div className={styles.cards} >
+      <section
+        className={styles.part}
+        style={{
+          backgroundColor: "#41D8C2",
+          color: "white",
+          minHeight: 400,
+          paddingTop: 50,
+          paddingBottom: 50,
+        }}
+      >
+        <h2
+          className={styles.h2}
+          style={{ color: "white", marginTop: 50, marginBottom: 0 }}
+        >
+          Comment participer ?
+        </h2>
+        <p style={{ color: "white" }}>Jouer en 4 étapes</p>
+        <div className={styles.cards}>
+          <span style={{ padding: 25 }}>
+            <strong style={{ fontSize: 50, color: "#41D8C2" }}>1</strong>
+            <Image src={ticket} width="125" alt="logo" />
+            Prendre les 10 chiffres de votre ticket
+          </span>
 
-         <span style={{padding:25}} >
-         <strong style={{fontSize:50 ,color:"#41D8C2"}}>1</strong>
-         <Image src={ticket} width="125"  alt='logo'/> 
-              Prendre les 10 chiffres de votre ticket
-         </span>
+          <span style={{ padding: 25 }}>
+            <strong style={{ fontSize: 50, color: "#41D8C2" }}>2</strong>
+            <Image src={login} width="150" height="150" alt="computer" />
+            Connectez vous sur note plateforme
+          </span>
 
-         <span style={{padding:25}} >
-            <strong style={{fontSize:50,color:"#41D8C2"}}>2</strong>
-            <Image  src={login} width="150" height="150" alt='computer'/> 
-             Connectez vous sur note plateforme
-         </span>
-
-         <span style={{padding:25}} >
-            <strong style={{fontSize:50,color:"#41D8C2"}}>3</strong>
-            <Image src={keyboard} width="150" height="150" alt='keybord'/> 
+          <span style={{ padding: 25 }}>
+            <strong style={{ fontSize: 50, color: "#41D8C2" }}>3</strong>
+            <Image src={keyboard} width="150" height="150" alt="keybord" />
             Entrer vos 10 numéro pour voir votre lot gagné
-         </span>
+          </span>
 
-         <span style={{padding:25}} >
-            <strong style={{fontSize:50,color:"#41D8C2"}}>4</strong>
-            <Image src={store} width="250" height="250" alt='store'/> 
-            Aller chercher votre lot en magasin 
-         </span>
+          <span style={{ padding: 25 }}>
+            <strong style={{ fontSize: 50, color: "#41D8C2" }}>4</strong>
+            <Image src={store} width="250" height="250" alt="store" />
+            Aller chercher votre lot en magasin
+          </span>
         </div>
       </section>
 
-      <section  id="lots" className={styles.part} style={{paddingTop:50,paddingBottom:50}}>
-       <h2 className={styles.h2} style={{marginBottom:0}}>Quel sont les lots ?</h2>
-       <p style={{color:"#41D8C2"}}>Jouer en 4 étapes</p>
+      <section
+        id="lots"
+        className={styles.part}
+        style={{ paddingTop: 50, paddingBottom: 50 }}
+      >
+        <h2 className={styles.h2} style={{ marginBottom: 0 }}>
+          Quel sont les lots ?
+        </h2>
+        <p style={{ color: "#41D8C2" }}>Jouer en 4 étapes</p>
 
-      <div className={styles.cards2} >
-       <span>
-       <Image src={tea1} width="150" height="150" alt='lot 1'/> 
-          <p>
-             Un infuseur à thé         
-          </p>
-           </span>
+        <div className={styles.cards2}>
+          <span>
+            <Image src={tea1} width="150" height="150" alt="lot 1" />
+            <p>Un infuseur à thé</p>
+          </span>
 
-         <span>
-            <Image src={tea2} width="150" height="150" objectFit='contain' alt='lot 2'/> 
-            <p>
-            Une boite de 100g d’un thé détox ou d’infusion         
-            </p>
-            </span>
+          <span>
+            <Image
+              src={tea2}
+              width="150"
+              height="150"
+              objectFit="contain"
+              alt="lot 2"
+            />
+            <p>Une boite de 100g d’un thé détox ou d’infusion</p>
+          </span>
 
-         <span>
-         <Image src={tea3} width="150" height="150" objectFit='contain' alt='lot 3'/> 
-         <p>
-         Une boite de 100g d’un thé signature
-         </p>
-         </span>
+          <span>
+            <Image
+              src={tea3}
+              width="150"
+              height="150"
+              objectFit="contain"
+              alt="lot 3"
+            />
+            <p>Une boite de 100g d’un thé signature</p>
+          </span>
 
-         <span>
-         <Image src={tea4} width="150" height="150" objectFit='contain' alt='lot 4'/> 
-              Un coffret découverte d’une valeur de 39€         
-         </span>
+          <span>
+            <Image
+              src={tea4}
+              width="150"
+              height="150"
+              objectFit="contain"
+              alt="lot 4"
+            />
+            Un coffret découverte d’une valeur de 39€
+          </span>
 
-         <span>
-         <Image src={tea4} width="150" height="150" objectFit='contain' alt='lot 5'/> 
-             un coffret découverte d’une valeur de 69€         
-         </span>
+          <span>
+            <Image
+              src={tea4}
+              width="150"
+              height="150"
+              objectFit="contain"
+              alt="lot 5"
+            />
+            un coffret découverte d’une valeur de 69€
+          </span>
         </div>
       </section>
-      <Footer/>
+      <Footer />
     </div>
-  )
+  );
 }
