@@ -29,17 +29,19 @@ const AllStats = (props) => {
   }
 
 
-  return (
-    <div style={styles.stat}>
-      <ParticipationStat val={tauxDeparticipation}/>
-      <StatInscription data={inscritParJour}/>
-      <StatsLots/>
-      <LoStats data={[25, 9, 7, 13]}/>
-    </div>
-  )
-}
+  const AllStats = ({ lots, session }) => {
+    return (
+      <div style={styles.stat}>
+        <ParticipationStat val={tauxDeparticipation}/>
+        <StatInscription data={inscritParJour}/>
+        <StatsLots/>
+        <LoStats data={[25, 9, 7, 13]}/>
+      </div>
+    )
+  }
 
-export default AllStats
+}
+export default AllStats;
 
 const styles = {
   stat:{
