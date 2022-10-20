@@ -25,6 +25,7 @@ export default function Bingo() {
       });
     } else console.log("perdu");
   };
+
   const getCurrent = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
@@ -39,9 +40,10 @@ export default function Bingo() {
 
     try {
       let currenSession = await axios.get(api, config);
-      setCurrent(currenSession.data);
-      localStorage.setItem("current", currenSession.data);
-      console.log(currenSession.data);
+      console.log("current session", currenSession.data[0]);
+      setCurrent(currenSession.data[0]);
+      localStorage.setItem("current", currenSession.data[0]);
+      // console.log(currenSession.data);
     } catch (e) {
       console.log(e);
     }

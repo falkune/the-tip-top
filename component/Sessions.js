@@ -52,6 +52,7 @@ const Sessions = ({ idSession }) => {
 
   const CreateSession = async () => {
     //fonction pour créer un ticket
+    event.preventDefault();
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
