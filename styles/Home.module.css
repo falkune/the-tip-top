@@ -341,6 +341,7 @@ margin-bottom: 15px;
   font-size: 19px;
 }
 
+<<<<<<< HEAD
 .floating{
     transform: translatey(0px);
     animation: float 3s ease-in-out infinite;
@@ -364,6 +365,8 @@ margin-bottom: 15px;
 
 
 
+=======
+>>>>>>> fe7b512 (pull some update)
 @media (max-width: 600px) {
   .grid {
     width: 100%;

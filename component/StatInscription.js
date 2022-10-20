@@ -57,8 +57,27 @@ export default function StatInscription({ days,  idSession}) {
   };
 
   return (
+<<<<<<< HEAD
     <div className="App">
       <Line height={80} data={data} options={options}/>
+=======
+    <div style={{backgroundColor:'white',padding:25,borderRadius:10}}>
+      {/* <h2 style={{textAlign:"center",fontSize:25,fontWeight:"bold",color:"#41D8C2"}}>Souscriptions</h2>
+      <div style={{
+        padding:15,
+        margin:8,
+        textAlign:"center",
+        borderRadius:8,
+        color:"white",
+        backgroundColor:"#41D8C2",
+        maxWidth:350}}> 
+        <p style={{fontSize:50,fontWeight:"bold",marginBottom:0}}>{Math.round(TauxP)}%</p>
+        <small style={{opacity:0.5}}>taux de participation</small>
+        <p>{stats.total} participations</p>
+        <p>sur {stats.totalMax}</p>
+      </div> */}
+      <canvas ref={canvasEl} height={90} width={500}/>
+>>>>>>> fe7b512 (pull some update)
     </div>
   );
 }
