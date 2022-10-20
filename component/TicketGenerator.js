@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -10,15 +11,25 @@ export default function TicketGenerator({ session_id }) {
   console.log("id session", session_id);
 =======
 import clipboard from "../image/clipboard.png";
+=======
+>>>>>>> 9b2aab2 (update route dashboard)
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
+<<<<<<< HEAD
 export default function TicketGenerator() {
 >>>>>>> 0760426 (udpate format)
+=======
+export default function TicketGenerator({ session_id }) {
+  console.log("id session", session_id);
+>>>>>>> 9b2aab2 (update route dashboard)
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [visible, setVisible] = useState(false);
   const [generate, setGenerate] = useState(false);
+<<<<<<< HEAD
 <<<<<<< HEAD
   const [ticket, setTicket] = useState(null);
 =======
@@ -32,12 +43,16 @@ export default function TicketGenerator() {
     lot: "Grand thé vert",
   });
 >>>>>>> 0760426 (udpate format)
+=======
+  const [ticket, setTicket] = useState(null);
+>>>>>>> 9b2aab2 (update route dashboard)
 
   const copyCode = (e) => {
     e.target.value;
     {
       navigator.clipboard.writeText(e.target.value);
     }
+<<<<<<< HEAD
 <<<<<<< HEAD
     toast("Copié !");
   };
@@ -71,21 +86,45 @@ export default function TicketGenerator() {
     }
 =======
     alert("code copié");
+=======
+    toast("Copié !");
+>>>>>>> 9b2aab2 (update route dashboard)
   };
 
-  const generateTicket = () => {
+  const generateTicket = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
     setLoading(true);
-    setTimeout(() => setLoading(false), 2000);
-    setGenerate(true);
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
+<<<<<<< HEAD
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/api/ticket";
     console.log(token);
     axios.get(api, config).then(console.log).catch(console.log);
 >>>>>>> 0760426 (udpate format)
+=======
+    const body = {
+      idSession: session_id,
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket";
+    console.log("config", config);
+    console.log("tokens", token);
+    console.log("api", api);
+
+    try {
+      let newTicket = await axios.post(api, body, config);
+      console.log("newticket", newTicket.data);
+      setTicket(newTicket.data.ticketNumber);
+      setLoading(false);
+      setGenerate(true);
+    } catch (e) {
+      console.log(e);
+    }
+>>>>>>> 9b2aab2 (update route dashboard)
   };
 
   const closeTicket = () => {
@@ -136,9 +175,13 @@ export default function TicketGenerator() {
           </div>
         </div>
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 0760426 (udpate format)
+=======
+
+>>>>>>> 9b2aab2 (update route dashboard)
         {generate === true && loading === false && (
           <span
             style={{
@@ -153,6 +196,7 @@ export default function TicketGenerator() {
             }}
           >
 <<<<<<< HEAD
+<<<<<<< HEAD
             {ticket != null ? (
               <>
                 {" "}
@@ -162,13 +206,20 @@ export default function TicketGenerator() {
                   value={ticket}
 =======
             {ticket.numéro != null ? (
+=======
+            {ticket != null ? (
+>>>>>>> 9b2aab2 (update route dashboard)
               <>
                 {" "}
-                <p style={{ color: "white" }}>Numéro : {ticket.numéro}</p>
+                <p style={{ color: "white" }}>Numéro : {ticket}</p>
                 <button
                   onClick={copyCode}
+<<<<<<< HEAD
                   value={ticket.numéro}
 >>>>>>> 0760426 (udpate format)
+=======
+                  value={ticket}
+>>>>>>> 9b2aab2 (update route dashboard)
                   style={{
                     border: "none",
                     padding: 10,
@@ -179,6 +230,9 @@ export default function TicketGenerator() {
                   Copier
                 </button>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9b2aab2 (update route dashboard)
                 <ToastContainer
                   position="bottom-center"
                   autoClose={1250}
@@ -191,8 +245,11 @@ export default function TicketGenerator() {
                   pauseOnHover={false}
                   theme="colored"
                 />
+<<<<<<< HEAD
 =======
 >>>>>>> 0760426 (udpate format)
+=======
+>>>>>>> 9b2aab2 (update route dashboard)
               </>
             ) : (
               <p>invalide</p>

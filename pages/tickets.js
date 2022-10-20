@@ -1,7 +1,11 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
 =======
 >>>>>>> 0760426 (udpate format)
+=======
+import React, { useEffect, useRef, useState } from "react";
+>>>>>>> 9b2aab2 (update route dashboard)
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
@@ -9,12 +13,16 @@ import Footer from "../component/Footer";
 import Ticket from "../component/Ticket";
 import { billets } from "../component/Data";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9b2aab2 (update route dashboard)
 import ButtonGrid from "../component/ButtonGrid";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import axios from "axios";
 
+<<<<<<< HEAD
 export default function Tickets() {
   const [colDefs, setColDefs] = useState([
     {
@@ -114,6 +122,50 @@ const columns = [
 ];
 export default function Tickets() {
 >>>>>>> 0760426 (udpate format)
+=======
+export default function Tickets() {
+  const [colDefs, setColDefs] = useState([
+    {
+      field: "number",
+      minWidth: 150,
+    },
+    {
+      field: "jeux concours",
+      minWidth: 150,
+    },
+    {
+      field: "go",
+      minWidth: 200,
+      cellRenderer: ButtonGrid,
+    },
+  ]);
+
+  useEffect(() => {
+    getAllSessions();
+  }, []);
+
+  const getAllSessions = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    console.log("tokens", token);
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
+    console.log("config", config);
+
+    try {
+      let Allsessions = await axios.get(api, config);
+      setSessions(Allsessions.data);
+      console.log(sessions);
+      setIdSession(Allsessions.data[0]._id);
+      console.log("idsession", idSession);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+>>>>>>> 9b2aab2 (update route dashboard)
   const number = billets.length;
   console.log(billets);
   return (
@@ -150,11 +202,23 @@ export default function Tickets() {
         {`tickets gagnants`}
       </p>
       <div style={stylez.gain}>
-        {billets.length > 0 ? (
+        <div
+          className="ag-theme-alpine"
+          style={{ height: "400px", width: "800px" }}
+        >
+          <AgGridReact
+            pagination={true}
+            rowData={billets}
+            columnDefs={colDefs}
+          ></AgGridReact>
+        </div>
+        {/* {billets.length > 0 ? (
           <DataGrid
             rows={billets}
+            getRowId={(row) => row.email}
             columns={columns}
             pageSize={15}
+            style={{ width: "100%" }}
             rowsPerPageOptions={[15]}
             checkboxSelection
             disableSelectionOnClick
@@ -162,8 +226,12 @@ export default function Tickets() {
           />
         ) : (
           <p> pas de tickets</p>
+<<<<<<< HEAD
         )}
 >>>>>>> 0760426 (udpate format)
+=======
+        )} */}
+>>>>>>> 9b2aab2 (update route dashboard)
       </div>
       <Footer />
     </div>
@@ -175,9 +243,12 @@ const stylez = {
     display: "flex",
     flexDirection: "column",
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     backgroundColor: "red",
 >>>>>>> 0760426 (udpate format)
+=======
+>>>>>>> 9b2aab2 (update route dashboard)
     alignItems: "center",
     width: "100vw",
     minHeight: "100vh",

@@ -4,12 +4,17 @@ import { useRouter } from "next/router";
 const ButtonGrid = (props) => {
 const router = useRouter();
 
+<<<<<<< HEAD
   console.log(props)
      const buttonClicked = () => {
         router.push({
         pathname: `resultat`,
         query: { number: num },
       });
+=======
+     const buttonClicked = () => {
+      router.push("/resultat");
+>>>>>>> 9b2aab2 (update route dashboard)
     };
     
   return (

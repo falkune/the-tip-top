@@ -76,6 +76,7 @@ const Header = () => {
       >
         <Link href="/">
 <<<<<<< HEAD
+<<<<<<< HEAD
           <Image src={logo} width={56} height={56} alt="logo" />
         </Link>
         {width > 850 ? (
@@ -227,6 +228,11 @@ const Header = () => {
         </div>
 =======
           <Image src={logo} width="55" height="60" alt="logo" />
+=======
+          <div style={{ width: "4%" }}>
+            <Image src={logo} alt="logo" />
+          </div>
+>>>>>>> 9b2aab2 (update route dashboard)
         </Link>
         {width > 650 ? (
           <nav>

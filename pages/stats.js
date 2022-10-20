@@ -42,31 +42,61 @@ export default function Stats() {
   const [birthday, setBirthday] = useState("stats");
   const [age, setAge] = useState(true);
   const [numAge, setNumAge] = useState(null);
+  const [session, setSession] = React.useState({
+    name: "",
+    start: "",
+    end: "",
+    limit: 15000,
+    id: "",
+  });
+  const [lots, setLots] = React.useState([]);
   const [sessions, setSessions] = useState([]);
-  const [session, setSession] = React.useState("62ff954105ef78c0062fb112");
-  const [oneSession, setOneSession] = useState(
-    React.useState("62ff954105ef78c0062fb112")
-  );
+  const [idSession, setIdSession] = useState("");
 
   useEffect(() => {
     getAllSessions();
+    getAllLots();
   }, []);
 
   const getAllSessions = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
+    console.log("tokens", token);
+
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
+    console.log("config", config);
+
+    try {
+      let Allsessions = await axios.get(api, config);
+      setSessions(Allsessions.data);
+      console.log(sessions);
+      setIdSession(Allsessions.data[0]._id);
+      console.log("idsession", idSession);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const getAllLots = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
     console.log("tokens", token);
-    await axios
-      .get(api, config)
-      .then((res) => {
-        console.log(res.data);
-        setSessions(res.data);
-      })
-      .catch(console.log);
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/group";
+    console.log("config", config);
+
+    try {
+      let AllLots = await axios.get(api, config);
+      setLots(AllLots.data);
+      console.log("lots", lots);
+    } catch (e) {
+      console.log(e);
+    }
   };
 >>>>>>> 0760426 (udpate format)
   const giveAge = () => {
@@ -83,10 +113,16 @@ export default function Stats() {
     setSession(event.target.value);
 =======
     console.log("hey", event.target.value);
+    setIdSession(event.target.value);
+    setSession(event.target.value);
 
+<<<<<<< HEAD
     setOneSession(event.target.value);
     console.log("onesession", oneSession);
 >>>>>>> 0760426 (udpate format)
+=======
+    console.log("setIdSession", idSession);
+>>>>>>> 9b2aab2 (update route dashboard)
   };
 
   const handlechange = (e) => {
@@ -243,7 +279,7 @@ export default function Stats() {
             <Select
               labelId="demo-simple-select-label"
               id="demo-simple-select"
-              value={session}
+              value={idSession}
               label="session"
               onChange={handleChangeSession}
             >
@@ -254,11 +290,11 @@ export default function Stats() {
               ))}
             </Select>
           </div>
-          {menu === "stats" && <AllStats />}
-          {menu === "ticket" && <TicketChecker session={oneSession} />}
-          {menu === "users" && <Users session={oneSession} />}
-          {menu === "generator" && <TicketGenerator session={oneSession} />}
-          {menu === "sessions" && <Sessions session={oneSession} />}
+          {menu === "stats" && <AllStats lots={lots} session={session.limit} />}
+          {menu === "ticket" && <TicketChecker session={idSession} />}
+          {menu === "users" && <Users idSession={idSession} />}
+          {menu === "generator" && <TicketGenerator session_id={idSession} />}
+          {menu === "sessions" && <Sessions idSession={idSession} />}
         </div>
       </div>
       <Footer />
