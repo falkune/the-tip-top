@@ -1,8 +1,16 @@
-
 .main {
   font-family:'Open Sans', sans-serif; ;
   min-height: 100vh;
   padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.main2 {
+  font-family: 'Open Sans', sans-serif;
+  ;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -131,7 +139,44 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
 
   }
 
-
+    .homdiv {
+      background-image:url("../image/13607_generated.png");
+      background-size: cover;
+      background-repeat: no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: start;
+      background-color: #41D8C2;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      text-align: center;
+      min-height: 600px;
+    }
+        .homdiv h1 {
+          color: white;
+          font-size: 5em;
+          margin-bottom: 0;
+          margin-top: 10px;
+        }
+        .homdiv h2 {
+          color: white;
+          font-size: 2em;
+          margin-bottom: 0;
+          margin-top: 10px;
+        }
+        .homdiv button {
+              padding: 15px;
+              border-radius: 100px;
+              min-width: 225px;
+              background-color:white ;
+              border: none;
+              color: #41D8C2;
+              font-size: 25px;
+              font-weight: bold;
+              box-shadow: 0px 0px 0px 8px rgb(255, 255, 255);
+              margin-top: 35px;
+        }
 .h1{
   color: #41D8C2;
   font-size: 40px;
@@ -170,7 +215,7 @@ max-width:500px ;
   background-color: #41D8C2;
   border: none;
   color: white;
-  font-size: 18px;
+  font-size: 25px;
   box-shadow: 0px 0px 0px 8px rgba(64,239,215,0.52);
   margin: 15px;
 
@@ -290,6 +335,24 @@ margin-top: 15px;
   font-size: 19px;
 }
 
+.floating{
+    transform: translatey(0px);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+
+  50% {
+    transform: translatey(-20px);
+  }
+
+  100% {
+    transform: translatey(0px);
+  }
+}
 
 
 

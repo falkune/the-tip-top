@@ -4,60 +4,63 @@ import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
 import { users } from "../component/Data";
 import { DataGrid } from "@mui/x-data-grid";
+// or
+import { IconButton } from "@mui/material";
 import axios from "axios";
 
-export default function Users() {
-  const [userz, setUserz] = useState("");
-
-  const number = users.length;
-  const columns = [
-    { field: "id", headerName: "ID", width: 50 },
-    { field: "name", headerName: "Nom", width: 100, editable: true },
+export default function Users({ idSession }) {
+  const [userz, setUserz] = useState([]);
+  const [colDefs, setColDefs] = useState([
+      { field: "fullName", headerName: "Nom", width: 250 },
     {
       field: "email",
       headerName: "Email",
-      type: "number",
-      width: 200,
-      editable: true,
+      width: 300,
+      editable: false,
     },
     {
-      field: "age",
-      headerName: "Age",
-      type: "number",
-      width: 100,
-      editable: true,
+      field: "birthday",
+      headerName: "birthday",
+      width: 250,
+      editable: false,
     },
-    {
-      field: "create",
-      headerName: "crée le",
-      type: "number",
-      width: 110,
-      editable: true,
-    },
-    ,
+  ]);
+
+
+  const number = users.length;
+  const columns = [
+  
   ];
 
   useEffect(() => {
     getAllUser();
-  }, []);
+  }, [idSession]);
 
   const getAllUser = async () => {
-    //fonction pour créer un ticket
-    console.log("take session");
+    //fonction pour récupérer tout les utilisateurs
     const token = localStorage.getItem("token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
-    //  const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/${session}`;
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/`;
-    console.log("tokens", token);
-    await axios
-      .get(api, config)
-      .then((res) => {
-        console.log(res.data);
-        setSession(res.data);
-      })
-      .catch(console.log);
+
+    const body = {
+      idSession: idSession,
+    };
+
+    const api =
+      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
+    console.log("token", token);
+    try {
+      let allusers = await axios.get(api, body, config);
+      console.log("alluser", allusers);
+      console.log("allusers", allusers.data);
+      setUserz(allusers.data);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   return (
@@ -82,18 +85,18 @@ export default function Users() {
         </span>
       </button>
       <div style={stylez.gain}>
-        {users.length > 0 ? (
+        {userz.length > 0 ? (
           <DataGrid
-            rows={users}
+            getRowId={(row) => row._id}
+            rows={userz}
             columns={columns}
             pageSize={15}
             rowsPerPageOptions={[2]}
-            checkboxSelection
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
           />
         ) : (
-          <p> pas de users</p>
+          <p> Pas de clients :'c </p>
         )}
       </div>
     </div>

@@ -1,49 +1,42 @@
 import React, { useEffect, useRef, useState } from "react";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
+import dayjs from "dayjs";
+import { ToastContainer, toast } from "react-toastify";
 
-const Sessions = ({ session }) => {
-  console.log("ok", session);
+const Sessions = ({ idSession }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [Session, setSession] = React.useState({
+  const [OneSession, setOneSession] = React.useState({
     name: "",
     start: "",
     end: "",
-    limit: "",
+    limit: 15000,
     id: "",
   });
-  const [sess, setSess] = React.useState(session);
   const [newSession, setNewsession] = React.useState({
     name: "",
     startDate: "",
     endDate: "",
     description: "ceci est une session",
-    limitTicket: null,
+    limit: "",
   });
-
-  useEffect(() => {
-    getSession();
-
-    console.log("new format session", Session);
-  }, [sess]);
 
   const getSession = async () => {
     //fonction pour créer un ticket
-    console.log("take session");
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${session}`;
-    console.log("tokens", token);
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
     try {
       let newsession = await axios.get(api, config);
-      setSession({
+      setOneSession({
         name: newsession.data.name,
         start: newsession.data.startDate,
         end: newsession.data.endDate,
+        description: newsession.data.description,
         limit: newsession.data.limitTicket,
         id: newsession.data._id,
       });
@@ -51,64 +44,151 @@ const Sessions = ({ session }) => {
       console.log(e);
     }
   };
+
+  useEffect(() => {
+    getSession();
+    console.log("take OneSession", OneSession);
+  }, [idSession]);
+
   const CreateSession = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const body = {
+      startDate: newSession.startDate,
+      endDate: newSession.endDate,
+      name: newSession.name,
+      description: "nouvelle session",
+      limitTicket: Number(newSession.limit),
+    };
+
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/`;
+    console.log("new session", newSession);
+
+    console.log("body", body);
+
+    try {
+      let createdSession = await axios.post(api, body, config);
+      console.log(createdSession);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const UpdateSession = async () => {
+    //fonction pour créer un ticket
+    console.log("take session");
+    event.preventDefault();
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+
+    const body = {
+      startDate: OneSession.start,
+      endDate: OneSession.end,
+      name: OneSession.name,
+      description: OneSession.description,
+      limitTicket: Number(OneSession.limit),
+    };
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
+    console.log("body", body);
+    try {
+      let res = await axios.put(api, body, config);
+      console.log("res", res);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const DeleteSession = async () => {
     //fonction pour créer un ticket
     console.log("take session");
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${session}`;
-    console.log("tokens", token);
+
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
     try {
-      let newsession = await axios.post(api, config);
-      setSession({
-        name: newsession.data.name,
-        start: newsession.data.startDate,
-        end: newsession.data.endDate,
-        limit: newsession.data.limitTicket,
-        id: newsession.data._id,
-      });
+      let res = await axios.delete(api, config);
+      console.log("res", res);
     } catch (e) {
       console.log(e);
     }
   };
 
-  // session update
+  const CurrentSession = async () => {
+    //fonction pour créer un ticket
+    console.log("take session");
+    const token = localStorage.getItem("token");
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const body = {
+      isCurrent: true,
+      idSession: idSession,
+    };
+    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/set-current-session`;
+    try {
+      let res = await axios.patch(api, body, config);
+      console.log("res", res);
+      toast("Cette session est active !");
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  // create session
   const UpdateNewSessionName = (e) => {
-    setNewsession({ name: e.target.value });
+    setNewsession({
+      ...newSession,
+      name: e.target.value,
+    });
     console.log(e.target.value);
   };
-
-  const UpdateTicketLimited = (e) => {
-    setNewsession({ limitTicket: e.target.value });
-    console.log(e.target.value);
-  };
-
   const UpdateNewSessionStart = (e) => {
-    setNewsession({ startDate: e.target.value });
+    setNewsession({
+      ...newSession,
+      startDate: e.target.value,
+    });
     console.log(e.target.value);
   };
   const UpdateNewSessionEnd = (e) => {
-    setNewsession({ endDate: e.target.value });
+    setNewsession({
+      ...newSession,
+      endDate: e.target.value,
+    });
+    console.log(e.target.value);
+  };
+  const UpdateLimited = (e) => {
+    setNewsession({
+      ...newSession,
+      limit: e.target.value,
+    });
     console.log(e.target.value);
   };
 
-  // new session
+  // Update session
   const UpdateSessionName = (e) => {
-    setSession({ name: e.target.value });
-    console.log(e.target.value);
+    setOneSession({ ...OneSession, name: e.target.value });
+    console.log("one", OneSession);
   };
 
   const UpdateSessionEnd = (e) => {
-    setSession({ end: e.target.value });
-    console.log(e.target.value);
+    setOneSession({ ...OneSession, end: e.target.value });
+    console.log("end", OneSession);
   };
 
   const UpdateSessionStart = (e) => {
-    setSession({ start: e.target.value });
-    console.log(e.target.value);
+    setOneSession({ ...OneSession, start: e.target.value });
+    console.log("start", OneSession);
+  };
+  const UpdateTicketLimited = (e) => {
+    setOneSession({ ...OneSession, limit: e.target.value });
+    console.log("one", OneSession);
   };
 
   return (
@@ -122,28 +202,57 @@ const Sessions = ({ session }) => {
           Etat : <strong> En cours </strong>
         </p>
         <p style={{ color: "#41D8C2", textAlign: "center", margin: 8 }}>
-          Date limite : fin dans <strong>25 jours</strong>
+          Date limite : fin dans <strong>25 JOURS</strong>
         </p>
         <input
           onChange={UpdateSessionName}
           type="texte"
           style={styles.dateInput}
-          value={Session.name}
+          value={OneSession.name}
           placeholder="Indiquer un nouveau nom de session"
+        />
+        <input
+          onChange={UpdateTicketLimited}
+          type="number"
+          style={styles.dateInput}
+          value={OneSession.limit}
+          placeholder="Indiquer le nombre limité de ticket"
         />
         <input
           onChange={UpdateSessionStart}
           style={styles.dateInput}
           type="date"
-          value={Session.endDate}
+          value={OneSession.start}
         />
         <input
           onChange={UpdateSessionEnd}
           style={styles.dateInput}
           type="date"
-          value={new Date(Session.startDate)}
+          value={OneSession.end}
         />
-        <button style={styles.dateButton}> Mettre à jour</button>
+        <button onClick={UpdateSession} style={styles.dateButton}>
+          {" "}
+          Mettre à jour
+        </button>
+        <button onClick={DeleteSession} style={styles.dateButton}>
+          {" "}
+          Supprimer la session
+        </button>
+        <button onClick={CurrentSession} style={styles.modalCreate}>
+          Appliquer comme session active
+        </button>
+        <ToastContainer
+          position="bottom-center"
+          autoClose={1250}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss={false}
+          draggable={false}
+          pauseOnHover={false}
+          theme="colored"
+        />
       </form>
       <Modal
         open={open}
@@ -167,10 +276,10 @@ const Sessions = ({ session }) => {
             placeholder="Indiquer un nom de session"
           />
           <input
-            onChange={UpdateTicketLimited}
+            onChange={UpdateLimited}
             style={styles.modalInput}
             type="number"
-            value={newSession.limitTicket}
+            value={newSession.limit}
             placeholder="Indiquer le nombre de ticket maximum"
           />
           <input
@@ -185,7 +294,9 @@ const Sessions = ({ session }) => {
             type="date"
             value={newSession.endDate}
           />
-          <button style={styles.modalCreate}>Créer la session</button>
+          <button onClick={CreateSession} style={styles.modalCreate}>
+            Créer la session
+          </button>
         </form>
       </Modal>
     </div>
@@ -245,7 +356,7 @@ const styles = {
     color: "white",
     backgroundColor: "#41D8C2",
     border: "solid 1px white",
-    margin: 10,
+    margin: 30,
     fontSize: 18,
 
     borderRadius: 5,
@@ -258,6 +369,7 @@ const styles = {
     fontSize: 18,
     backgroundColor: "white",
     borderRadius: 8,
+    margin: 50,
   },
   modalSession: {
     position: "relative",

@@ -1,6 +1,5 @@
 export const billets = [
   {
-    id: 1,
     date: "20/08/2022",
     number: 128478979,
     lot: 1,
@@ -8,7 +7,6 @@ export const billets = [
     email: "jacks@gmail.com",
   },
   {
-    id: 2,
     date: "20/08/2022",
     number: 128478979,
     lot: 3,
@@ -16,7 +14,6 @@ export const billets = [
     email: "jacks@gmail.com",
   },
   {
-    id: 3,
     date: "20/08/2022",
     number: 128478979,
     lot: 4,
@@ -24,7 +21,6 @@ export const billets = [
     email: "jacks@gmail.com",
   },
   {
-    id: 4,
     date: "20/08/2022",
     number: 128478979,
     lot: 1,
@@ -32,7 +28,6 @@ export const billets = [
     email: "jacks@gmail.com",
   },
   {
-    id: 5,
     date: "20/08/2022",
     number: 128478979,
     lot: 3,
@@ -43,7 +38,6 @@ export const billets = [
 
 export const users = [
   {
-    id: 1,
     create: "20/08/2022",
     age: 18,
     number: 128478979,
@@ -52,7 +46,6 @@ export const users = [
     email: "jeandujardin@gmail.com",
   },
   {
-    id: 2,
     create: "20/08/2022",
     age: 21,
     number: 128478979,

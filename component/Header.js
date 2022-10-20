@@ -42,7 +42,9 @@ const Header = () => {
         }}
       >
         <Link href="/">
-          <Image src={logo} width="55" height="60" alt="logo" />
+          <div style={{ width: "4%" }}>
+            <Image src={logo} alt="logo" />
+          </div>
         </Link>
         {width > 650 ? (
           <nav>

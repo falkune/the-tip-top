@@ -1,33 +1,58 @@
+import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Ticket from "../component/Ticket";
 import { billets } from "../component/Data";
-import { DataGrid } from "@mui/x-data-grid";
-const columns = [
-  { field: "id", headerName: "ID", width: 90 },
-  { field: "date", headerName: "date", width: 100, editable: true },
-  {
-    field: "number",
-    headerName: "Number",
-    type: "number",
-    width: 200,
-  },
-  {
-    field: "lot",
-    headerName: "Lot",
-    type: "number",
-    width: 100,
-  },
-  {
-    field: "email",
-    headerName: "Email",
-    width: 110,
-  },
-  ,
-];
+import ButtonGrid from "../component/ButtonGrid";
+import { AgGridReact } from "ag-grid-react";
+import "ag-grid-community/styles//ag-grid.css";
+import "ag-grid-community/styles//ag-theme-alpine.css";
+import axios from "axios";
+
 export default function Tickets() {
+  const [colDefs, setColDefs] = useState([
+    {
+      field: "number",
+      minWidth: 150,
+    },
+    {
+      field: "jeux concours",
+      minWidth: 150,
+    },
+    {
+      field: "go",
+      minWidth: 200,
+      cellRenderer: ButtonGrid,
+    },
+  ]);
+
+  useEffect(() => {
+    getAllSessions();
+  }, []);
+
+  const getAllSessions = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    console.log("tokens", token);
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
+    console.log("config", config);
+
+    try {
+      let Allsessions = await axios.get(api, config);
+      setSessions(Allsessions.data);
+      console.log(sessions);
+      setIdSession(Allsessions.data[0]._id);
+      console.log("idsession", idSession);
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const number = billets.length;
   console.log(billets);
   return (
@@ -44,11 +69,23 @@ export default function Tickets() {
         {`tickets gagnants`}
       </p>
       <div style={stylez.gain}>
-        {billets.length > 0 ? (
+        <div
+          className="ag-theme-alpine"
+          style={{ height: "400px", width: "800px" }}
+        >
+          <AgGridReact
+            pagination={true}
+            rowData={billets}
+            columnDefs={colDefs}
+          ></AgGridReact>
+        </div>
+        {/* {billets.length > 0 ? (
           <DataGrid
             rows={billets}
+            getRowId={(row) => row.email}
             columns={columns}
             pageSize={15}
+            style={{ width: "100%" }}
             rowsPerPageOptions={[15]}
             checkboxSelection
             disableSelectionOnClick
@@ -56,7 +93,7 @@ export default function Tickets() {
           />
         ) : (
           <p> pas de tickets</p>
-        )}
+        )} */}
       </div>
       <Footer />
     </div>
@@ -67,7 +104,6 @@ const stylez = {
   gain: {
     display: "flex",
     flexDirection: "column",
-    backgroundColor: "red",
     alignItems: "center",
     width: "100vw",
     minHeight: "100vh",

@@ -1,45 +1,54 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
-import clipboard from "../image/clipboard.png";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function TicketGenerator() {
+export default function TicketGenerator({ session_id }) {
+  console.log("id session", session_id);
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [visible, setVisible] = useState(false);
   const [generate, setGenerate] = useState(false);
-  const accessToken = localStorage.getItem("token");
-  const [newTicket, setNewTicket] = useState("");
-  const [ticket, setTicket] = useState({
-    assigné: null,
-    create_at: "07-06-2022",
-    validé: true,
-    numéro: "545455d4ds5d4sd",
-    lot: "Grand thé vert",
-  });
+  const [ticket, setTicket] = useState(null);
 
   const copyCode = (e) => {
     e.target.value;
     {
       navigator.clipboard.writeText(e.target.value);
     }
-    alert("code copié");
+    toast("Copié !");
   };
 
-  const generateTicket = () => {
+  const generateTicket = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
     setLoading(true);
-    setTimeout(() => setLoading(false), 2000);
-    setGenerate(true);
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
     };
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/api/ticket";
-    console.log(token);
-    axios.get(api, config).then(console.log).catch(console.log);
+    const body = {
+      idSession: session_id,
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket";
+    console.log("config", config);
+    console.log("tokens", token);
+    console.log("api", api);
+
+    try {
+      let newTicket = await axios.post(api, body, config);
+      console.log("newticket", newTicket.data);
+      setTicket(newTicket.data.ticketNumber);
+      setLoading(false);
+      setGenerate(true);
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const closeTicket = () => {
@@ -89,6 +98,7 @@ export default function TicketGenerator() {
             </button>
           </div>
         </div>
+
         {generate === true && loading === false && (
           <span
             style={{
@@ -102,13 +112,13 @@ export default function TicketGenerator() {
               backgroundColor: "#41D8C2",
             }}
           >
-            {ticket.numéro != null ? (
+            {ticket != null ? (
               <>
                 {" "}
-                <p style={{ color: "white" }}>Numéro : {ticket.numéro}</p>
+                <p style={{ color: "white" }}>Numéro : {ticket}</p>
                 <button
                   onClick={copyCode}
-                  value={ticket.numéro}
+                  value={ticket}
                   style={{
                     border: "none",
                     padding: 10,
@@ -118,6 +128,18 @@ export default function TicketGenerator() {
                 >
                   Copier
                 </button>
+                <ToastContainer
+                  position="bottom-center"
+                  autoClose={1250}
+                  hideProgressBar
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss={false}
+                  draggable={false}
+                  pauseOnHover={false}
+                  theme="colored"
+                />
               </>
             ) : (
               <p>invalide</p>
