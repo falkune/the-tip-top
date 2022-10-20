@@ -34,6 +34,7 @@ yarn-error.log*
 # vercel
 .vercel
 
+<<<<<<< HEAD
 .package-lock.json
 .yarn.lock
 
@@ -41,3 +42,7 @@ yarn-error.log*
 *.tsbuildinfo
 
 
+=======
+./package-lock.json
+./yarn.lock
+>>>>>>> 6456843 (update .gitIgnore)
