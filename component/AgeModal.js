@@ -2,15 +2,10 @@ import React, { useEffect, useRef, useState } from "react"
 import styles from '../styles/Home.module.css';
 import Modal from '@mui/material/Modal';
 
-export default function AgeModal({numAge,giveAge,closeAge,handlechange}) {
-
-  const  UpdateAge = () => {
-     console.log('age année',numAge)
-  }
-
-
+export default function AgeModal({numAge,giveAge,closeAge,handlechange, showHide}) {
+  const showHideClassName = showHide;
   return (
-    <div>
+    <div style={{display : showHideClassName ? "flex" : "none"}}>
         <Modal  open={giveAge}
                 onClose={closeAge} >
             <div className={styles.modal}>

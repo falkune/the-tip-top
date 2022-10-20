@@ -12,6 +12,7 @@ import TicketGenerator from "../component/TicketGenerator";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 
+
 export default function Stats() {
   const [menu, setMenu] = useState("stats")
   const [now, setNow] = useState(Date.now)
@@ -19,7 +20,6 @@ export default function Stats() {
   const [age,setAge] = useState(true)
   const [numAge,setNumAge] = useState(null)
   const [session, setSession] = React.useState(30);
-
  
   const giveAge = () => {
     setAge(true);
@@ -63,8 +63,8 @@ const handlechange = (e) =>{
 <div style={{display:"flex",width:"100%",background:'green'}}> 
 
     < AgeModal
-     // numAge={numAge}
-    //  giveAge={giveAge}
+    // numAge={numAge}
+    // giveAge={giveAge}
       closeAge={closeAge}
       handlechange={handlechange} />
   
@@ -90,6 +90,7 @@ const handlechange = (e) =>{
           <MenuItem value={30}>Session 14_Septembre_31_octobre_2022</MenuItem>
         </Select> 
     </div> 
+  
     { menu === "stats" && <AllStats/>}
     {menu === "ticket" && <TicketChecker/>}
     {menu === "users" && <Users/>}

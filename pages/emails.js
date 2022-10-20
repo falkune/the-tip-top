@@ -34,7 +34,6 @@ export default function Emails() {
                   name={i.name}
                   email={i.email}
                   />
-
               ))}
           </div>
       <Footer/>

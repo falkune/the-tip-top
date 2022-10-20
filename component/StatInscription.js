@@ -75,7 +75,7 @@ export default function StatInscription({data}) {
 
   return (
     <div style={{backgroundColor:'white',padding:25,borderRadius:10}}>
-      <h2 style={{textAlign:"center",fontSize:25,fontWeight:"bold",color:"#41D8C2"}}>Souscriptions</h2>
+      {/* <h2 style={{textAlign:"center",fontSize:25,fontWeight:"bold",color:"#41D8C2"}}>Souscriptions</h2>
       <div style={{
         padding:15,
         margin:8,
@@ -84,12 +84,12 @@ export default function StatInscription({data}) {
         color:"white",
         backgroundColor:"#41D8C2",
         maxWidth:350}}> 
-      <p style={{fontSize:50,fontWeight:"bold",marginBottom:0}}>{Math.round(TauxP)}%</p>
-      <small style={{opacity:0.5}}>taux de participation</small>
-      <p>{stats.total} participations</p>
-      <p>sur {stats.totalMax}</p>
-      </div>
-      <canvas ref={canvasEl} height={80} width={500}/>
+        <p style={{fontSize:50,fontWeight:"bold",marginBottom:0}}>{Math.round(TauxP)}%</p>
+        <small style={{opacity:0.5}}>taux de participation</small>
+        <p>{stats.total} participations</p>
+        <p>sur {stats.totalMax}</p>
+      </div> */}
+      <canvas ref={canvasEl} height={90} width={500}/>
     </div>
   )
 }
