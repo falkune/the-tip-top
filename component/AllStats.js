@@ -1,29 +1,51 @@
-import React from "react";
-import StatsLots from "./StatsLots";
-import StatInscription from "./StatInscription";
-import LoStats from "./LotStats";
+import React, { useEffect, useState } from "react";
+import StatsLots from './StatsLots';
+import StatInscription from './StatInscription';
+import LoStats from './LotStats';
+import ParticipationStat from './ParticipationStat';
+import axios from "axios"
 
-const AllStats = ({ lots, session }) => {
-  return (
-    <div style={styles.stat}>
-      <StatInscription
-        data={[
-          14, 9, 7, 13, 11, 6, 18, 11, 3, 12, 18, 58, 25, 58, 47, 12, 15, 18,
-          16, 25, 36, 41, 62,
-        ]}
-        session={session}
-      />
-      <StatsLots llots={lots} />
-      <LoStats data={[25, 9, 7, 13]} />
-    </div>
-  );
-};
+const AllStats = (props) => {
+  const tauxDeparticipation = 44;
+  const [inscritParJour, setInscitParJour] = useState([]);
+  
 
+  useEffect(() => {
+    const accessToken = localStorage.getItem('accessToken');
+    
+    getStat(accessToken)
+
+  },[])
+
+  const getStat = (token) => {
+    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day"
+    axios.get(url, { headers: { "Authorization" : `Bearer ${token}` }})
+    .then(res => {
+      setInscitParJour(res.data)
+    })
+    .catch((error) => {
+      console.log(error)
+    });
+  }
+
+
+  const AllStats = ({ lots, session }) => {
+    return (
+      <div style={styles.stat}>
+        <ParticipationStat val={tauxDeparticipation}/>
+        <StatInscription data={inscritParJour}/>
+        <StatsLots/>
+        <LoStats data={[25, 9, 7, 13]}/>
+      </div>
+    )
+  }
+
+}
 export default AllStats;
 
 const styles = {
-  stat: {
-    backgroundColor: "#F1F1F1",
-    padding: 25,
-  },
-};
+  stat:{
+    backgroundColor:"#F1F1F1",
+    padding:25
+  }
+}
