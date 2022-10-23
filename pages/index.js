@@ -37,10 +37,8 @@ export default function Home() {
         style={{ paddingTop: 50, paddingBottom: 50 }}
       >
         <Image src={logo} width="125" height="140" alt="logo" />
-        <h1 className={styles.h1} class="animate__animated animate__bounce">
-          Jeux concours !
-        </h1>
-        <h2 class="animate__animated animate__pulse animate__infinite">
+        <h1 className={styles.h1}>Jeux concours !</h1>
+        <h2 className="animate__animated animate__pulse animate__infinite">
           Participer à notre jeux concours afin de recevoir votre lot
         </h2>
         <input
