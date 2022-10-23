@@ -1,0 +1,103 @@
+body {margin: 0;
+  padding: 0;
+  font-family:'Open Sans', sans-serif; ;
+
+}
+
+
+.index-image-liste{
+  display: flex;
+  justify-content: space-between;
+}
+
+.login{
+  display: flex;
+  justify-content: space-around;
+}
+
+.login-form{
+  width: 40%;
+}
+
+.login-btn{
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.navbar{
+  padding: 0 30px;
+}
+
+.login-form{
+  width:60%;
+  margin: auto;
+}
+
+header{
+  height: 90px;
+  background-color: gainsboro;
+}
+
+footer{
+  text-align: center;
+  height: 100px;
+  padding: 100px 0;
+  background-color: darkslategray;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+.baction{
+  padding: 15px;
+    border-radius: 100px;
+    min-width: 225px;
+    background-color: #41D8C2;
+    border: none;
+    color: white;
+    font-size: 20px;
+    box-shadow: 0px 0px 0px 8px rgba(64, 239, 215, 0.52);
+    margin: 15px;
+}
+
+.boutton-login{
+  text-align: center;
+}
+
+.boutton-login button{
+  /* width: 300px;*/
+  margin: 5px;
+  border-radius: 10px; 
+}
+html,
+
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+
+  animation: pulse 1s infinite;
+
+}
+
+.pulse{
+
+  animation: pulse 1s infinite;
+}
+
+.imageConnexion{
+
+  position: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}

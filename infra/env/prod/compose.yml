@@ -1,0 +1,34 @@
+version: "3.8"
+
+networks:
+  prod:
+     external: true  
+
+#volumes:
+#  code:
+
+services:
+  frontend:
+    image: ${IMAGE_BASE}/stable/frontend:${FRONTEND_STABLE_TAG}
+    logging:
+      driver: gelf
+      options:
+        gelf-address: udp://${DEVOPS_HOST}:12201
+    environment:
+      - TZ=Europe/Paris
+      - API_BASE_URL=http://api:3000
+    volumes:
+       - /etc/localtime:/etc/localtime:ro
+    #   - code:/my-project
+    #   - /usr/src/app/node_modules
+    restart: unless-stopped
+    container_name: frontend
+    depends_on:
+      - api
+    labels:
+        - traefik.enable=true
+        - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
+        - traefik.http.routers.frontend.entrypoints=websecure
+        - traefik.http.services.frontend.loadbalancer.server.port=3000
+    networks:
+      - prod
