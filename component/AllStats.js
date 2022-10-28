@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import AgeStat from './AgeStat';
 import ParticipationStat from './ParticipationStat';
 import axios from "axios";
@@ -43,21 +44,23 @@ const AllStats = ({ lots, session }) => {
       <AgeStat data={[25, 9, 7, 13]}/>
 =======
 import LoStats from './LotStats';
+=======
+import AgeStat from './AgeStat';
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
 import ParticipationStat from './ParticipationStat';
-import axios from "axios"
+import axios from "axios";
+import Iscrit from './Inscrit';
 
 const AllStats = (props) => {
   const tauxDeparticipation = 44;
   const [numberDay, setNumberDay] = useState(0);
   
   useEffect(() => {
-    console.log(numberDay)
     getNumberDay(props.idSession)
-  },[numberDay])
+  },[props])
 
   const getNumberDay = (idSession) => {
-    console.log(idSession)
-    axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession+"/")
+    axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession)
     .then((response) => {
       const endDate = new Date(response.data.endDate);
       const startDate = new Date(response.data.startDate);
@@ -85,10 +88,14 @@ const AllStats = (props) => {
   return (
     <div style={styles.stat}>
       <ParticipationStat val={tauxDeparticipation} idSession={props.idSession}/>
-      <StatInscription days={25}/>
+      <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots/>
+<<<<<<< HEAD
       <LoStats data={[25, 9, 7, 13]}/>
 >>>>>>> d065efb (update StatInscriptio and AgeStat)
+=======
+      <AgeStat data={[25, 9, 7, 13]}/>
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
     </div>
   )
 }
@@ -101,6 +108,7 @@ const styles = {
   }
 <<<<<<< HEAD
 }
+<<<<<<< HEAD
 <<<<<<< HEAD
 =======
 }
@@ -131,3 +139,5 @@ const styles = {
 =======
 
 >>>>>>> d065efb (update StatInscriptio and AgeStat)
+=======
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)

@@ -61,20 +61,20 @@ export default function Stats() {
   const getAllSessions = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    console.log("tokens", token);
+    // console.log("tokens", token);
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
-    console.log("config", config);
+    // console.log("config", config);
 
     try {
       let Allsessions = await axios.get(api, config);
       setSessions(Allsessions.data);
-      console.log(sessions);
+      // console.log(sessions);
       setIdSession(Allsessions.data[0]._id);
-      console.log("idsession", idSession);
+      // console.log("idsession", idSession);
     } catch (e) {
       console.log(e);
     }
@@ -82,18 +82,18 @@ export default function Stats() {
   const getAllLots = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    console.log("tokens", token);
+    // console.log("tokens", token);
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/group";
-    console.log("config", config);
+    // console.log("config", config);
 
     try {
       let AllLots = await axios.get(api, config);
       setLots(AllLots.data);
-      console.log("lots", lots);
+      // console.log("lots", lots);
     } catch (e) {
       console.log(e);
     }
@@ -109,6 +109,7 @@ export default function Stats() {
 
   const handleChangeSession = (event) => {
 <<<<<<< HEAD
+<<<<<<< HEAD
     setIdSession(event.target.value);
     setSession(event.target.value);
 =======
@@ -123,11 +124,19 @@ export default function Stats() {
 =======
     console.log("setIdSession", idSession);
 >>>>>>> 9b2aab2 (update route dashboard)
+=======
+    // console.log("hey", event.target.value);
+    setIdSession(event.target.value);
+    setSession(event.target.value);
+
+    // console.log("setIdSession", idSession);
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
   };
 
   const handlechange = (e) => {
     const date = new Date();
     setBirthday(e.target.value);
+<<<<<<< HEAD
 <<<<<<< HEAD
     let mydate = new Date(birthday);
     let nowtime = new Date(now);
@@ -135,21 +144,32 @@ export default function Stats() {
     setNumAge(yes);
 =======
     console.log(birthday);
+=======
+    // console.log(birthday);
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
     let mydate = new Date(birthday);
     let nowtime = new Date(now);
     const yes = nowtime.getFullYear() - mydate.getFullYear();
     console.log("calcule", yes);
     setNumAge(yes);
+<<<<<<< HEAD
     console.log(numAge);
 >>>>>>> 0760426 (udpate format)
+=======
+    // console.log(numAge);
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
   };
 
   const changemenu = (e) => {
     setMenu(e.target.value);
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     console.log("menu", menu);
 >>>>>>> 0760426 (udpate format)
+=======
+    // console.log("menu", menu);
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
   };
 
   return (
@@ -290,7 +310,7 @@ export default function Stats() {
               ))}
             </Select>
           </div>
-          {menu === "stats" && <AllStats lots={lots} idSession={idSession} session={session}/>}
+          {menu === "stats" && <AllStats lots={lots} idSession={idSession}/>}
           {menu === "ticket" && <TicketChecker session={idSession} />}
           {menu === "users" && <Users idSession={idSession} />}
           {menu === "generator" && <TicketGenerator session_id={idSession} />}

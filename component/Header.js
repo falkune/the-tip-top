@@ -44,8 +44,11 @@ const Header = () => {
     }
 =======
     }
+<<<<<<< HEAD
     console.log(role);
 >>>>>>> 0760426 (udpate format)
+=======
+>>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
