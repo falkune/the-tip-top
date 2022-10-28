@@ -22,7 +22,6 @@ export default function Connexion() {
   const context = useContext(ApiContext);
 
   const router = useRouter();
-
   const connexion = async (e) => {
     e.preventDefault();
     const params = {
