@@ -1,244 +1,59 @@
-export const billets = [
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
-  {
-    date: "20/08/2022",
-    number: 128478979,
-    lot: 1,
-    name: "Jack atlas",
-    email: "jacks@gmail.com",
-  },
-  {
-    date: "20/08/2022",
-    number: 128478979,
-    lot: 3,
-    name: "Jack atlas",
-    email: "jacks@gmail.com",
-  },
-  {
-    date: "20/08/2022",
-    number: 128478979,
-    lot: 4,
-    name: "Jack atlas",
-    email: "jacks@gmail.com",
-  },
-  {
-    date: "20/08/2022",
-    number: 128478979,
-    lot: 1,
-    name: "Jack atlas",
-    email: "jacks@gmail.com",
-  },
-  {
-    date: "20/08/2022",
-    number: 128478979,
-    lot: 3,
-    name: "Jack atlas",
-    email: "jacks@gmail.com",
-  },
-];
-
-export const users = [
-  {
-    create: "20/08/2022",
-    age: 18,
-    number: 128478979,
-    lot: 1,
-    name: "jean du jardin",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    create: "20/08/2022",
-    age: 21,
-    number: 128478979,
-    lot: 1,
-    name: "Seen low ",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    id: 3,
-    create: "20/08/2022",
-    age: 22,
-    number: 128478979,
-    lot: 1,
-    name: "Gary",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    id: 4,
-    create: "20/08/2022",
-    age: 24,
-    number: 128478979,
-    lot: 1,
-    name: "jean du jardin",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    id: 5,
-    create: "20/08/2022",
-    age: 20,
-    number: 128478979,
-    lot: 1,
-    name: "jean du jardin",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    id: 6,
-    create: "20/08/2022",
-    age: 19,
-    number: 128478979,
-    lot: 1,
-    name: "jean du jardin",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    id: 7,
-    create: "20/08/2022",
-    age: 25,
-    number: 128478979,
-    lot: 1,
-    name: "jean du jardin",
-    email: "jeandujardin@gmail.com",
-  },
-  {
-    id: 8,
-    create: "20/08/2022",
-    age: 25,
-    number: 128478979,
-    lot: 1,
-    name: "micky",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 9,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 10,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 11,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 12,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 13,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 14,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 15,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 16,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 17,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 18,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 19,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-  {
-    id: 20,
-    create: "20/08/2022",
-    age: 32,
-    number: 128478979,
-    lot: 1,
-    name: "simon ",
-    email: "rob@gmail.com",
-  },
-];
-<<<<<<< HEAD
-=======
-    { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Jack atlas",email:"jacks@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:4 ,name:"Jack atlas",email:"jacks@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:3 ,name:"Jack atlas",email:"jacks@gmail.com" },
-  ];
+import React, { useEffect, useState } from "react";
 
 
-  export const users = [
-    { date: "20/08/2022", number:128478979 ,lot:1 ,name:"jean du jardin",email:"jeandujardin@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Martin roul",email:"martin@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:4 ,name:"Samuel eoo",email:"samuel@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Idris elba",email:"idris@gmail.com" },
-    { date: "20/08/2022", number:128478979 ,lot:3 ,name:"Jack atlas",email:"jacks@gmail.com" },
-  ];
-  
+const Count = () => {
+const [tdays, setDays] = useState(0);
+const [thours, setHours] = useState(0);
+const [tminutes, setMinutes] = useState(0);
+const [tseconds, setSeconds] = useState(0);
 
->>>>>>> cc647dd (count down)
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
+useEffect(() => {
+  countDownInterval
+  console.log('ok')
+}, []);
+
+const countDownDate = new Date("Jul 25, 2022 23:59:99").getTime();
+
+const getChrono = () =>{
+  const now = new Date().getTime();
+  const timeleft = countDownDate - now;
+      
+  let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
+  let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
+  let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
+    setDays(days);
+    setHours(hours);
+    setMinutes(minutes);
+    setSeconds(seconds);
+}
+
+const countDownInterval = setInterval (() => {
+  getChrono()
+
+},100000)
+
+
+  return (
+    <div style={styles.count}>   
+       <p style={{fontSize:45,color:"grey",textAlign:"center",margin:0}}>  
+        <strong style={{color:"white"}}>{tdays}</strong>J{" "} 
+         <strong style={{color:"white"}}>{thours}</strong>H {" "}  
+        <strong style={{color:"white"}}>{tminutes}</strong>M {" "}
+        <strong style={{color:"white"}}>{tseconds}</strong>S{" "}
+        </p>
+    </div>
+  )
+}
+
+export default Count
+
+const styles = {
+
+    count:{
+        display:"flex",
+        justifyContent:'center',
+        marginBottom:30
+    } 
+
+}

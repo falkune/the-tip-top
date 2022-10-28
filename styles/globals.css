@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 body {margin: 0;
   padding: 0;
   font-family:'Open Sans', sans-serif; ;
@@ -66,11 +60,7 @@ footer{
     background-color: #41D8C2;
     border: none;
     color: white;
-<<<<<<< HEAD
     font-size: 25px;
-=======
-    font-size: 20px;
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     box-shadow: 0px 0px 0px 8px rgba(64, 239, 215, 0.52);
     margin: 15px;
 }
@@ -86,141 +76,6 @@ footer{
 }
 html,
 
-<<<<<<< HEAD
-=======
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
->>>>>>> d83cbc9 (initialisation du repository)
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-<<<<<<< HEAD
-button {
-
-  animation: pulse 1s infinite;
-
-}
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-.pulse{
-
-  animation: pulse 1s infinite;
-}
-
-.imageConnexion{
-
-  position: fixed;
-}
-
-=======
->>>>>>> 82befde (first page)
-=======
-.pulse{
-
-  animation: pulse 1s infinite;
-
-  
-}
-
-<<<<<<< HEAD
->>>>>>> ddce213 (add ticket page)
-=======
-.imageConnexion{
-
-  position: fixed;
-}
-
->>>>>>> a4a8112 (add loader)
-=======
->>>>>>> d83cbc9 (initialisation du repository)
-=======
->>>>>>> be51fba (commit Dockerfile creation page)
-=======
->>>>>>> 608057c (modification des extentions)
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-.index-image-liste{
-  display: flex;
-  justify-content: space-between;
-}
-
-.login{
-  display: flex;
-  justify-content: space-around;
-}
-
-.login-form{
-  width: 40%;
-}
-
-.login-btn{
-  width: 30%;
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  flex-direction: column;
-}
-
-.navbar{
-  padding: 0 30px;
-}
-
-.login-form{
-  width:60%;
-  margin: auto;
-}
-
-header{
-  height: 90px;
-  background-color: gainsboro;
-}
-
-footer{
-  text-align: center;
-  height: 100px;
-  padding: 100px 0;
-  background-color: darkslategray;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
-}
-
-.boutton-login{
-  text-align: center;
-}
-
-.boutton-login button{
-  /* width: 300px;*/
-  margin: 5px;
-  border-radius: 10px; 
-<<<<<<< HEAD
-}
-=======
-}
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 a {
   color: inherit;
@@ -233,12 +88,6 @@ button {
 
 }
 
-<<<<<<< HEAD
-* {
-  box-sizing: border-box;
-}
->>>>>>> 608057c (modification des extentions)
-=======
 .pulse{
 
   animation: pulse 1s infinite;
@@ -252,4 +101,3 @@ button {
 * {
   box-sizing: border-box;
 }
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

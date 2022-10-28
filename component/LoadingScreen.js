@@ -25,20 +25,6 @@ const styles = {
          display:"flex",
          alignItems:'center',
          justifyContent:"center",
-<<<<<<< HEAD
-<<<<<<< HEAD
          backgroundColor:"#41D8C2"
     },
-=======
-         backgroundColor:"#40EFD7"
-    },
-<<<<<<< HEAD
- 
->>>>>>> a4a8112 (add loader)
-=======
->>>>>>> 76f6607 (fix bug)
-=======
-         backgroundColor:"#41D8C2"
-    },
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 }

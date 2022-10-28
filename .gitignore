@@ -33,25 +33,11 @@ yarn-error.log*
 
 # vercel
 .vercel
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-<<<<<<< HEAD
 .package-lock.json
 .yarn.lock
-=======
+
 # typescript
 *.tsbuildinfo
->>>>>>> d83cbc9 (initialisation du repository)
-=======
->>>>>>> 28a33ce (fix bug)
-=======
 
-package-lock.json
->>>>>>> 35413ac (add package.lock.json to gitignore)
-=======
 
-./package-lock.json
-./yarn.lock
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
