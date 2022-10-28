@@ -11,7 +11,7 @@ import { resetPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
 
 
-export default function resetpassword() {
+export default function Changepassword() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const context = useContext(ApiContext);
