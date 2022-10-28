@@ -95,7 +95,7 @@ export default function Inscription() {
             notifier("un mail vous a été envoyer pour valide votre compte", "success")
           }
         })
-        .catch((error) => notifier(error.message));
+        .catch((error) => console.log("ici ",error.message));
     }
   }
 
