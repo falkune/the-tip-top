@@ -13,11 +13,12 @@ class ApiClient extends HttpClient {
 
   get users() {
     return {
-      get: () => this.get("/users"),
+      get: (route) => this.get("/users"),
       delete: (id) => this.delete(`/user/${id}`),
       create: (user) => this.post("/user", user),
       update: (user) => this.put(`/user/${user.id}`, user),
       post: (route,body, options) => this.post(`/user/${route}`,body, options),
+
     };
   }
 
@@ -26,7 +27,8 @@ class ApiClient extends HttpClient {
       get: () => this.get("/ticket"),
       delete: (id) => this.delete(`/ticket/${id}`),
       create: (user) => this.post("/ticket", user),
-      update: (user) => this.put(`/ticket/${user.id}`, user)
+      update: (user) => this.put(`/ticket/${user.id}`, user),
+
     };
   }
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -8,17 +8,19 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import ApiClient from "../api/api-client"
 import ErrorMessage from "../component/ErrorMessage";
-
+import ApiContext from '../context/apiContext';
 
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState(""); 
-  const [backend, setBackend] = useState(new ApiClient()
-    .setHeader("lang", "en"));
+  const backend = useContext(ApiContext);
+  console.log(backend)
+  useEffect(() => {
+    
+  })
  
   const [forgotPassword, setForgotPassword] = useState(false); 
 
