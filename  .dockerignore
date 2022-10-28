@@ -1,10 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> dded1f6 (Update the dockignore and infra folders)
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 # dependencies
 /node_modules
 /.pnp
@@ -38,23 +31,17 @@ yarn-error.log*
 
 # vercel
 .vercel
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 package-lock.json
-=======
+
 node_modules
 Jenkinsfile
 infra
->>>>>>> be51fba (commit Dockerfile creation page)
-=======
->>>>>>> dded1f6 (Update the dockignore and infra folders)
-=======
+
 
 package-lock.json
->>>>>>> 35413ac (add package.lock.json to gitignore)
-=======
+
 
 package-lock.json
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
+
