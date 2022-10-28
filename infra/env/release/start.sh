@@ -3,6 +3,7 @@ cd "app/frontend/release" || exit
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 docker compose up --build -d
 =======
 docker compose down
@@ -16,3 +17,6 @@ docker compose up --build -d
 =======
 docker compose up --build -d
 >>>>>>> 0f90135 (Update deploy script)
+=======
+docker compose up --build -d
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

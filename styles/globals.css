@@ -1,6 +1,9 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 body {margin: 0;
   padding: 0;
   font-family:'Open Sans', sans-serif; ;
@@ -63,7 +66,11 @@ footer{
     background-color: #41D8C2;
     border: none;
     color: white;
+<<<<<<< HEAD
     font-size: 25px;
+=======
+    font-size: 20px;
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     box-shadow: 0px 0px 0px 8px rgba(64, 239, 215, 0.52);
     margin: 15px;
 }
@@ -79,6 +86,7 @@ footer{
 }
 html,
 
+<<<<<<< HEAD
 =======
 html,
 body {
@@ -211,6 +219,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 a {
   color: inherit;
@@ -223,7 +233,23 @@ button {
 
 }
 
+<<<<<<< HEAD
 * {
   box-sizing: border-box;
 }
 >>>>>>> 608057c (modification des extentions)
+=======
+.pulse{
+
+  animation: pulse 1s infinite;
+}
+
+.imageConnexion{
+
+  position: fixed;
+}
+
+* {
+  box-sizing: border-box;
+}
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

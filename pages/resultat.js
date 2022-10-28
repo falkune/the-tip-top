@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 import React, { useEffect, useState, Component } from "react";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
@@ -38,7 +41,11 @@ export default function Resultat() {
       ticketNumber: n,
     };
     try {
+<<<<<<< HEAD
       let result = await axios.get(api, body, config);
+=======
+      let result = await axios.post(api, body, config);
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
       setPrizeNumber(result.data);
       setMustSpin(false);
     } catch (e) {
@@ -98,6 +105,7 @@ export default function Resultat() {
       </React.Fragment>
     </>
   );
+<<<<<<< HEAD
 =======
 import React, { useEffect, useState } from "react";
 import Head from 'next/head'
@@ -179,4 +187,6 @@ export default function Resultat() {
     </>
   )
 >>>>>>> ddce213 (add ticket page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 }

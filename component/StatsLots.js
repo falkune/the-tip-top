@@ -1,10 +1,14 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../image/logo.png";
 import OneLot from "./OneLot";
 
+<<<<<<< HEAD
 const StatsLots = ({ data }) => {
   
   const lots = [
@@ -41,16 +45,48 @@ const StatsLots = ({ data }) => {
     { 
       lots.map((l,index)=> (
         <OneLot 
+=======
+const StatsLots = () => {
+  const lots = [
+    { now: 200, max: 1000, title: " Infuseur à thé", color: "#41C2B0" },
+
+    { now: 3600, max: 5000, title: "Boite de 100g d’un thé détox " },
+
+    {
+      now: 4500,
+      max: 10000,
+      title: "Boite de 100g d’un thé signature",
+      color: "#41C2B0",
+    },
+
+    { now: 5000, max: 1000000, title: "Coffret découverte" },
+  ];
+
+  return (
+    <div style={styles.lot}>
+      {lots.map((l, index) => (
+        <Speedometer
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
           key={index}
           title={l.title}
           now={l.now}
           max={l.max}
           image={l.image}
+<<<<<<< HEAD
           value={l.value}/> ))
     }
   </div>
   )
 }
+=======
+          value={l.value}
+        />
+      ))}
+    </div>
+  );
+};
+
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 export default StatsLots;
 
 const styles = {
@@ -63,6 +99,7 @@ const styles = {
     flexWrap: "wrap",
   },
 };
+<<<<<<< HEAD
 =======
 import React from "react"
 import Image from 'next/image'
@@ -144,3 +181,5 @@ const styles = {
 
 }
 >>>>>>> 5a5dbe1 (update dashboard)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

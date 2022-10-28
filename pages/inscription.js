@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
@@ -142,6 +145,7 @@ export default function Inscription() {
         </small>
       </div>
       <Footer/>
+<<<<<<< HEAD
 =======
 import Head from 'next/head'
 import Image from 'next/image'
@@ -330,6 +334,8 @@ export default function Inscription() {
       </div>
       <Footer/>
 >>>>>>> 085fa73 (connexion)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     </div>
   )
 }

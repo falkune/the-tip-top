@@ -1,8 +1,11 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 82befde (first page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 .main {
   font-family:'Open Sans', sans-serif; ;
   min-height: 100vh;
@@ -17,6 +20,7 @@
   ;
   min-height: 100vh;
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
   padding-top: 100px;
 >>>>>>> 82befde (first page)
@@ -30,6 +34,8 @@
   padding: 4rem 0;
   flex: 1;
 >>>>>>> d83cbc9 (initialisation du repository)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -39,12 +45,16 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> ddce213 (add ticket page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 .elm {
   padding-top: 100px;
   display: flex;
   flex-direction: column;
+<<<<<<< HEAD
 =======
 .footer {
   display: flex;
@@ -52,12 +62,17 @@
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
 >>>>>>> d83cbc9 (initialisation du repository)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   justify-content: center;
   align-items: center;
 }
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 .container {
   font-family:'Open Sans', sans-serif; 
   min-height: 100vh;
@@ -82,6 +97,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> ddce213 (add ticket page)
@@ -109,6 +125,8 @@
   flex-direction: column;
   align-items: center;
 >>>>>>> 82befde (first page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   width:100% ;
   margin-top: 10px;
   margin-bottom: 25px;
@@ -120,6 +138,7 @@
   margin-top: 15px;
   font-size: 16px;
   position: relative;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   font-size: 16;
@@ -139,6 +158,11 @@
 }
 
 >>>>>>> cc647dd (count down)
+=======
+  font-size: 16;
+}
+
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 
 .cards2{
@@ -146,6 +170,7 @@ display: flex;
 flex-wrap: wrap;
 justify-content: center;
 padding: 15px;
+<<<<<<< HEAD
 }
 
 .cards2 span{
@@ -199,6 +224,8 @@ display: flex;
 flex-wrap: wrap;
 justify-content: center;
 padding: 15px;
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
 
 .cards2 span{
@@ -246,8 +273,11 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
           color:white
           }
 
+<<<<<<< HEAD
 =======
 >>>>>>> 82befde (first page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 .part{
   display: flex;
@@ -255,6 +285,7 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
   justify-content: center;
   align-items: center;
   width:100% ;
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
   padding: 10px;
@@ -275,6 +306,13 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
 
 <<<<<<< HEAD
 .part p{
+=======
+  padding: 10px;
+  text-align: center;
+}
+
+.part p{
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   text-align: center;
   color: #41D8C2;
 
@@ -333,6 +371,7 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
   color: #41D8C2;
 }
 
+<<<<<<< HEAD
 =======
   .part ul{
     color: #40EFD7;
@@ -351,6 +390,8 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
 }
 
 >>>>>>> 82befde (first page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 .login{
 display: flex;
 flex-direction: column;
@@ -358,6 +399,9 @@ width: 80%;
 max-width:500px ;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 }
 
 .login input{
@@ -380,7 +424,11 @@ max-width:500px ;
   background-color: #41D8C2;
   border: none;
   color: white;
+<<<<<<< HEAD
   font-size: 25px;
+=======
+  font-size: 20px;
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   box-shadow: 0px 0px 0px 8px rgba(64,239,215,0.52);
   margin: 15px;
 
@@ -398,6 +446,7 @@ max-width:500px ;
 
 }
 
+<<<<<<< HEAD
 .noaction{
   padding:15px;
   border-radius: 100px;
@@ -410,6 +459,8 @@ max-width:500px ;
 
 }
 
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 .action2{
   padding:15px;
   border-radius: 100px;
@@ -529,6 +580,7 @@ margin-top: 15px;
   100% {
     transform: translatey(0px);
   }
+<<<<<<< HEAD
 =======
 }
 
@@ -713,6 +765,14 @@ margin-top: 15px;
 }
 
 >>>>>>> d83cbc9 (initialisation du repository)
+=======
+}
+
+
+
+
+
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 @media (max-width: 600px) {
   .grid {
     width: 100%;

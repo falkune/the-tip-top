@@ -1,6 +1,7 @@
 #!/bin/sh
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 cd "app/frontend/prod" || exit
 docker compose up --build -d  
 =======
@@ -16,3 +17,7 @@ docker compose up --build -d
 =======
 docker compose up --build -d  
 >>>>>>> d403505 (Update deploy script and compose.yml for prod)
+=======
+cd "app/frontend/prod" || exit
+docker compose up --build -d  
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

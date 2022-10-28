@@ -4,13 +4,19 @@ import Link from "next/link"
 import logo from "../image/logo.png"
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> cc647dd (count down)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 import tea1 from "../image/tea1.png"
 import tea2 from "../image/tea2.png"
 import tea3 from "../image/tea3.png"
 import tea4 from "../image/tea4.png"
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 const Ticket = (props) => {
   return (
@@ -23,6 +29,9 @@ const Ticket = (props) => {
           {/* lot 1 */}
             { props.lot === 1 && <Image src={tea1} height={100} width={100} alt="lot 1"/>}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
             { props.lot === 1 && <p style={styles.text}> Un infuseur à thé </p>}
          {/* lot 2 */}
             { props.lot === 2 && <Image src={tea2} height={100} width={100} alt="lot 2"/>}
@@ -36,6 +45,7 @@ const Ticket = (props) => {
          {/* lot 5 */}
             { props.lot === 5 && <Image src={tea4} height={100} width={100} alt="lot 5"/>}
             { props.lot === 5 && <p style={styles.text}>   Un coffret découverte d’une valeur de 69€  </p>}
+<<<<<<< HEAD
 =======
 =======
 >>>>>>> cc647dd (count down)
@@ -71,6 +81,8 @@ const Ticket = (props) => {
             { props.lot === 5 && <Image src={tea4} height={100} width={100} alt="lot 5"/>}
             { props.lot === 5 && <p style={styles.text}>   Un coffret découverte d’une valeur de 69€  </p>}
 >>>>>>> cc647dd (count down)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
       </div>
     </div>
   )
@@ -84,6 +96,7 @@ const styles = {
         width:"100%",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         backgroundColor:"#46E8D1",
 =======
         backgroundColor:"#40EFD7",
@@ -91,11 +104,15 @@ const styles = {
 =======
         backgroundColor:"#46E8D1",
 >>>>>>> 5a5dbe1 (update dashboard)
+=======
+        backgroundColor:"#46E8D1",
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
         color:"white",
         margin:10,
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
         padding:8,
@@ -107,6 +124,10 @@ const styles = {
         padding:8,
         borderRadius:8,
 >>>>>>> 5a5dbe1 (update dashboard)
+=======
+        padding:8,
+        borderRadius:8,
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     },
     bloc:{
         display:"flex",
@@ -125,14 +146,20 @@ const styles = {
         borderLeft:"solid 1px white",
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> cc647dd (count down)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
         backgroundColor:"white",
         width:"50%",
         borderRadius:8,
         paddingTop:8,
         paddingBottom:8
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     },
   text:{
       color:"#46E8D1",
@@ -140,6 +167,7 @@ const styles = {
       textAlign:'center',
       padding:8
   }
+<<<<<<< HEAD
 =======
         width:"50%"
 
@@ -158,4 +186,6 @@ const styles = {
 >>>>>>> ddce213 (add ticket page)
 =======
 >>>>>>> 76f6607 (fix bug)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 }

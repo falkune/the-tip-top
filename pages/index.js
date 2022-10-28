@@ -1,4 +1,7 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -15,6 +18,7 @@ import ticket from "../image/ticket.gif";
 import store from "../image/store.gif";
 import keyboard from "../image/keyboard.gif";
 import login from "../image/login.gif";
+<<<<<<< HEAD
 =======
 import Head from 'next/head'
 import Image from 'next/image'
@@ -37,6 +41,10 @@ import 'animate.css';
 
 export default function Home() {
 <<<<<<< HEAD
+=======
+
+export default function Home() {
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   const router = useRouter();
   // const role = getCookie('pro');
   const goConnexion = () => {
@@ -44,6 +52,7 @@ export default function Home() {
       router.push("/bingo");
     } else router.push("/connexion");
   };
+<<<<<<< HEAD
 =======
   const router = useRouter()
 <<<<<<< HEAD
@@ -63,6 +72,10 @@ export default function Home() {
 
   return (
 <<<<<<< HEAD
+=======
+
+  return (
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     <div className={styles.main2}>
       <Head>
         <title>TeaBingo - Jeux concours</title>
@@ -75,12 +88,24 @@ export default function Home() {
         style={{ paddingTop: 50, paddingBottom: 50 }}
       >
         <Image src={logo} width="125" height="140" alt="logo" />
+<<<<<<< HEAD
         <h1 className={styles.h1} class="animate__animated animate__bounce">
           Jeux concours !
         </h1>
         <h2 class="animate__animated animate__pulse animate__infinite">
           Participer à notre jeux concours afin de recevoir votre lot
         </h2>
+=======
+        <h1 className={styles.h1}>Jeux concours !</h1>
+        <h2 className="animate__animated animate__pulse animate__infinite">
+          Participer à notre jeux concours afin de recevoir votre lot
+        </h2>
+        <input
+          className={styles.bingo}
+          type="number"
+          placeholder="Vérifier votre numéro"
+        />
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
         <button
           type="button"
           onClick={goConnexion}
@@ -174,6 +199,7 @@ export default function Home() {
         </div>
       </section>
       <Footer />
+<<<<<<< HEAD
 =======
     <div className={styles.main}>
       <Head>
@@ -287,6 +313,8 @@ export default function Home() {
 
       <Footer/>
 >>>>>>> 82befde (first page)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     </div>
   );
 }

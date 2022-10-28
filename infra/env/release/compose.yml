@@ -3,11 +3,17 @@ version: "3.8"
 networks:
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   preprod:
      external: true  
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+  preprod:
+     external: true  
+
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 #volumes:
 #  code: 
 
@@ -18,6 +24,7 @@ services:
       driver: gelf
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
+<<<<<<< HEAD
 <<<<<<< HEAD
     environment:
       - TZ=Europe/Paris
@@ -30,6 +37,11 @@ services:
 =======
       - API_BASE_URL=http://api-release:3000
 >>>>>>> 2d658ce (Add API BASE URL to prod and release)
+=======
+    environment:
+      - TZ=Europe/Paris
+      - API_BASE_URL=http://api-release:3000
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     volumes:
        - /etc/localtime:/etc/localtime:ro
     #   - code:/my-project:rw
@@ -38,6 +50,7 @@ services:
     links:
      - api-release:api
     container_name: frontend-release
+<<<<<<< HEAD
 =======
   prod:
 =======
@@ -100,10 +113,17 @@ services:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+=======
+    depends_on:
+      - api
+    labels:
+        - traefik.enable=true
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
         - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)
         - traefik.http.routers.frontend-release.entrypoints=websecure
         - traefik.http.services.frontend-release.loadbalancer.server.port=3000
     networks:
+<<<<<<< HEAD
       - preprod
 =======
         - traefik.http.routers.api-release.rule=Host(`${DOMAIN_BASE}`)
@@ -124,3 +144,6 @@ services:
     networks:
       - preprod
 >>>>>>> 8aea497 (Update docker compose file for differents envs)
+=======
+      - preprod
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

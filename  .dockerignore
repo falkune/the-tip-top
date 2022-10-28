@@ -1,7 +1,10 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> dded1f6 (Update the dockignore and infra folders)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 # dependencies
 /node_modules
 /.pnp
@@ -37,6 +40,7 @@ yarn-error.log*
 .vercel
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 package-lock.json
 =======
@@ -50,3 +54,7 @@ infra
 
 package-lock.json
 >>>>>>> 35413ac (add package.lock.json to gitignore)
+=======
+
+package-lock.json
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

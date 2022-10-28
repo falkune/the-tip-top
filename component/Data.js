@@ -1,5 +1,8 @@
 export const billets = [
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   {
     date: "20/08/2022",
     number: 128478979,
@@ -217,6 +220,7 @@ export const users = [
     email: "rob@gmail.com",
   },
 ];
+<<<<<<< HEAD
 =======
     { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
     { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Jack atlas",email:"jacks@gmail.com" },
@@ -236,3 +240,5 @@ export const users = [
   
 
 >>>>>>> cc647dd (count down)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

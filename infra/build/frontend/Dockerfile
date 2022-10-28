@@ -1,5 +1,6 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 FROM node:14-alpine as dependencies
 WORKDIR /my-project
 COPY package.json yarn.lock ./
@@ -41,6 +42,12 @@ RUN yarn install
 =======
 RUN npm install
 >>>>>>> 604c743 (Update dockerFile for making NPM Default)
+=======
+FROM node:14-alpine as dependencies
+WORKDIR /my-project
+COPY package.json yarn.lock ./
+RUN npm install
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 FROM node:14-alpine as builder
 WORKDIR /my-project
@@ -49,6 +56,7 @@ COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN npm run build
 
 FROM node:14-alpine as runner
+<<<<<<< HEAD
 =======
 FROM node:alpine as dependencies
 =======
@@ -73,6 +81,8 @@ FROM node:alpine as runner
 =======
 FROM node:14-alpine as runner
 >>>>>>> 1523c38 (Change the node image to 14-alpine)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 WORKDIR /my-project
 ENV NODE_ENV production
 # If you are using a custom next.config.js file, uncomment this line.
@@ -81,6 +91,7 @@ COPY --from=builder /my-project/public ./public
 COPY --from=builder /my-project/.next ./.next
 COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
@@ -117,3 +128,8 @@ CMD ["yarn", "start"]
 =======
 CMD ["npm", "start"]
 >>>>>>> 604c743 (Update dockerFile for making NPM Default)
+=======
+VOLUME [ "/my-project" ]
+EXPOSE 3000
+CMD ["npm", "start"]
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

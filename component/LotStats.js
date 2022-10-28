@@ -1,5 +1,9 @@
 import React, { useEffect, useRef, useState } from "react"
 import Chart from "chart.js/auto"
+<<<<<<< HEAD
+=======
+import { height } from "@mui/system"
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
 export default function LoStats({data}) {
   const canvasEl = useRef(null)
@@ -9,10 +13,17 @@ export default function LoStats({data}) {
     const ctx = canvasEl.current.getContext("2d")
 
     const labels = [
+<<<<<<< HEAD
       "infuseur à thé",
       "Une boite de 100g d’un thé détox ou d’infusion",
       "Une boite de 100g d’un thé signature",
       "Un coffret découverte d’une valeur de 39€ "
+=======
+      "Infuseur à thé",
+      "Une boite de 100g d’un thé détox",
+      "Une boite de 100g d’un thé signature",
+      "Un coffret découverte "
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     ];
     const data = {
       axis: 'x',
@@ -63,8 +74,13 @@ export default function LoStats({data}) {
   })
 
   return (
+<<<<<<< HEAD
     <div className="App">
       <canvas ref={canvasEl} height="400" width="400"/>
+=======
+    <div style={{backgroundColor:'white',padding:25,borderRadius:10,margin:10,width:'50%'}}>
+      <canvas ref={canvasEl} height={15} width={30}/>
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     </div>
   )
 }

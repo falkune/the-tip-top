@@ -8,6 +8,9 @@ networks:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 #volumes:
 #  code:
 
@@ -19,6 +22,9 @@ services:
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     environment:
       - TZ=Europe/Paris
       - API_BASE_URL=http://api:3000
@@ -35,6 +41,7 @@ services:
         - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
         - traefik.http.routers.frontend.entrypoints=websecure
         - traefik.http.services.frontend.loadbalancer.server.port=3000
+<<<<<<< HEAD
 =======
 volumes:
   db-data-prod:
@@ -98,5 +105,7 @@ services:
         - traefik.http.routers.frontend.entrypoints=websecure
         - traefik.http.services.frontend.loadbalancer.server.port=3000
 >>>>>>> bf7cf0b (The the new version of stable code repo)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     networks:
       - prod

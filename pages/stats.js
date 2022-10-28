@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
@@ -9,6 +10,119 @@ export default function Stats() {
 
   const number = billets.length
   console.log(billets)
+=======
+import React, { useEffect, useRef, useState } from "react";
+import Head from "next/head";
+import styles from "../styles/Home.module.css";
+import AllStats from "../component/AllStats";
+import Header from "../component/Header";
+import Footer from "../component/Footer";
+import Users from "../component/Users";
+import AgeModal from "../component/AgeModal";
+import TicketChecker from "../component/TicketChecker";
+import TicketGenerator from "../component/TicketGenerator";
+import Sessions from "../component/Sessions";
+import axios from "axios";
+// material ui
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+
+export default function Stats() {
+  const [menu, setMenu] = useState("stats");
+  const [now, setNow] = useState(Date.now);
+  const [birthday, setBirthday] = useState("stats");
+  const [age, setAge] = useState(true);
+  const [numAge, setNumAge] = useState(null);
+  const [session, setSession] = React.useState({
+    name: "",
+    start: "",
+    end: "",
+    limit: 15000,
+    id: "",
+  });
+  const [lots, setLots] = React.useState([]);
+  const [sessions, setSessions] = useState([]);
+  const [idSession, setIdSession] = useState("");
+
+  useEffect(() => {
+    getAllSessions();
+    getAllLots();
+  }, []);
+
+  const getAllSessions = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    console.log("tokens", token);
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
+    console.log("config", config);
+
+    try {
+      let Allsessions = await axios.get(api, config);
+      setSessions(Allsessions.data);
+      console.log(sessions);
+      setIdSession(Allsessions.data[0]._id);
+      console.log("idsession", idSession);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const getAllLots = async () => {
+    //fonction pour créer un ticket
+    const token = localStorage.getItem("token");
+    console.log("tokens", token);
+
+    const config = {
+      headers: { Authorization: `Bearer ${token}` },
+    };
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/group";
+    console.log("config", config);
+
+    try {
+      let AllLots = await axios.get(api, config);
+      setLots(AllLots.data);
+      console.log("lots", lots);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  const giveAge = () => {
+    setAge(true);
+  };
+
+  const closeAge = () => {
+    setAge(false);
+  };
+
+  const handleChangeSession = (event) => {
+    console.log("hey", event.target.value);
+    setIdSession(event.target.value);
+    setSession(event.target.value);
+
+    console.log("setIdSession", idSession);
+  };
+
+  const handlechange = (e) => {
+    const date = new Date();
+    setBirthday(e.target.value);
+    console.log(birthday);
+    let mydate = new Date(birthday);
+    let nowtime = new Date(now);
+    const yes = nowtime.getFullYear() - mydate.getFullYear();
+    console.log("calcule", yes);
+    setNumAge(yes);
+    console.log(numAge);
+  };
+
+  const changemenu = (e) => {
+    setMenu(e.target.value);
+    console.log("menu", menu);
+  };
+
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
   return (
     <div className={styles.container}>
       <Head>
@@ -17,6 +131,9 @@ export default function Stats() {
         <link rel="icon" href="/fav.png" />
       </Head>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
       <Header />
 
       <div style={{ display: "flex", width: "100%", background: "green" }}>
@@ -112,7 +229,11 @@ export default function Stats() {
               ))}
             </Select>
           </div>
+<<<<<<< HEAD
           {menu === "stats" && <AllStats lots={lots} idSession={idSession}/>}
+=======
+          {/* {menu === "stats" && <AllStats lots={lots} session={session.limit} />} */}
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
           {menu === "ticket" && <TicketChecker session={idSession} />}
           {menu === "users" && <Users idSession={idSession} />}
           {menu === "generator" && <TicketGenerator session_id={idSession} />}
@@ -169,6 +290,7 @@ const stylez = {
     width: "85%",
   },
 };
+<<<<<<< HEAD
 =======
       <Header/>
       <h1 className={styles.h1}>Mes Stats</h1>
@@ -212,3 +334,5 @@ const stylez = {
 =======
 }
 >>>>>>> 76f6607 (fix bug)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c

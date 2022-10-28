@@ -7,24 +7,31 @@ pipeline{
       IMAGE_TAG=sh(returnStdout: true, script: 'cat infra/build/version | tail -1').trim()
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> 34a778e (Set up infra as code)
 =======
 >>>>>>> d6f013a (Add API_HOST env to prod and release)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     }
     stages{
 
         stage("build") {
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 1910a61 (Update jenkins file and integrate changes)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                     parallel {
                   
                          stage("release"){  
                                 when {branch 'release'}
+<<<<<<< HEAD
 =======
                     parallel {
                   
@@ -35,6 +42,8 @@ pipeline{
 =======
                                 when {branch 'release'}
 >>>>>>> bccb529 (Back to the default stable docker Image)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
                                   steps{
                                     sh "infra/scripts/build.sh frontend release"  
                                  }
@@ -54,6 +63,7 @@ pipeline{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         stage("registry") {
                 when { expression { BRANCH_NAME ==~ /(main|release)/ } }
 <<<<<<< HEAD
@@ -69,6 +79,10 @@ pipeline{
 >>>>>>> 34a778e (Set up infra as code)
 =======
 >>>>>>> bccb529 (Back to the default stable docker Image)
+=======
+        stage("registry") {
+                when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
                 stages {
 
                       stage("login"){
@@ -99,11 +113,15 @@ pipeline{
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
             when {branch "dev"}
             agent {docker {image "node:14-alpine"}}
 
             stages {
                 stage("setup"){
+<<<<<<< HEAD
 =======
             agent {
                 docker {
@@ -150,10 +168,18 @@ pipeline{
 =======
                            sh "npm run build"
 >>>>>>> dea6564 (update jenkinsFile)
+=======
+                   steps{
+                           sh "node --version"
+                           sh "npm version"
+                           sh "npm install"
+                           sh "npm run build"
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
                        }
                    
                 }
                  stage("coverage") {
+<<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
 =======
@@ -161,6 +187,8 @@ pipeline{
 >>>>>>> 34a778e (Set up infra as code)
 =======
 >>>>>>> ef5d35b (Update jenkins File)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
                     steps{
                      echo "Any  cov test to achieve"
                      //sh "npm run test:cov"
@@ -195,12 +223,16 @@ pipeline{
         stage("deploy"){ 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 1910a61 (Update jenkins file and integrate changes)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
             parallel{
                 stage ('release'){
                     when{ branch 'release'}
+<<<<<<< HEAD
 =======
             parallel{
                 stage ('release'){
@@ -210,6 +242,8 @@ pipeline{
 =======
                     when{ branch 'release'}
 >>>>>>> bccb529 (Back to the default stable docker Image)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
                     steps{
                         sshagent(credentials: ['devops-sshkey-private']) {
                                echo "copy release infra folder env on prod remote"
@@ -234,8 +268,11 @@ pipeline{
         }
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 55bbc12 (Add end stage)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 
         stage("end") {
             steps{
@@ -243,9 +280,12 @@ pipeline{
             }
         }
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 >>>>>>> 34a778e (Set up infra as code)
 =======
 >>>>>>> 55bbc12 (Add end stage)
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     }
 }

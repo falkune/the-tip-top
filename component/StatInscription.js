@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import React, { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
@@ -39,6 +40,18 @@ export default function StatInscription({data}) {
   useEffect(() => {
     const ctx = canvasEl.current.getContext("2d")
 
+=======
+import React, { useEffect, useRef, useState } from "react";
+import Chart from "chart.js/auto";
+
+export default function StatInscription({ data, session }) {
+  const canvasEl = useRef(null);
+  const [inscriptions, setInscription] = useState(data);
+
+  useEffect(() => {
+    const ctx = canvasEl.current.getContext("2d");
+    console.log("session", session);
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     const labels = [
       "Jour 1",
       "Jour 2",
@@ -69,13 +82,19 @@ export default function StatInscription({data}) {
       "Jour 27",
       "Jour 28",
       "Jour 29",
+<<<<<<< HEAD
       "Jour 30"
     ];
 >>>>>>> 9822c4a (ajout graphique dans stats)
+=======
+      "Jour 30",
+    ];
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     const data = {
       labels: labels,
       datasets: [
         {
+<<<<<<< HEAD
 <<<<<<< HEAD
           label: "Nombre d'inscrit",
           data: registration,
@@ -107,10 +126,13 @@ export default function StatInscription({data}) {
     </div>
     );
 =======
+=======
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
           label: "Nombre d'inscrit par jour",
           data: inscriptions,
           fill: true,
           borderWidth: 2,
+<<<<<<< HEAD
           borderColor: "#8d99ae",
           lineTension: 0.3,
           // backgroundColor: "#2ec4b6",
@@ -135,4 +157,62 @@ export default function StatInscription({data}) {
     </div>
   )
 >>>>>>> 9822c4a (ajout graphique dans stats)
+=======
+          borderColor: "#41C2B0",
+          lineTension: 0.3,
+          pointRadius: 1.5,
+        },
+      ],
+    };
+    const config = {
+      type: "line",
+      data: data,
+    };
+    const myLineChart = new Chart(ctx, config);
+
+    return function cleanup() {
+      myLineChart.destroy();
+    };
+  });
+
+  const stats = {
+    total: 985000,
+    totalMax: session,
+  };
+  const TauxP = (stats.total * 100) / stats.totalMax;
+
+  return (
+    <div style={{ backgroundColor: "white", padding: 25, borderRadius: 10 }}>
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: 25,
+          fontWeight: "bold",
+          color: "#41D8C2",
+        }}
+      >
+        Souscriptions
+      </h2>
+      <div
+        style={{
+          padding: 15,
+          margin: 8,
+          textAlign: "center",
+          borderRadius: 8,
+          color: "white",
+          backgroundColor: "#41D8C2",
+          maxWidth: 350,
+        }}
+      >
+        <p style={{ fontSize: 50, fontWeight: "bold", marginBottom: 0 }}>
+          {Math.round(TauxP)}%
+        </p>
+        <small style={{ opacity: 0.5 }}>taux de participation</small>
+        <p>{stats.total} participations</p>
+        <p>sur {stats.totalMax}</p>
+      </div>
+      <canvas ref={canvasEl} height={80} width={500} />
+    </div>
+  );
+>>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 }
