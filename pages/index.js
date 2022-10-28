@@ -14,6 +14,7 @@ import "dayjs/locale/fr"
 dayjs.locale('fr')
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
+import Cookies from 'js-cookie';
 
 
 export default function Home() {
@@ -44,7 +45,7 @@ export default function Home() {
     try {
       let currenSession = await axios.get(api);
       setCurrent(currenSession.data);
-      localStorage.setItem("current", currenSession.data);
+      Cookies.set("current", currenSession.data);
       console.log(currenSession.data[0]);
       setCurrent(currenSession.data[0])
     } catch (e) {

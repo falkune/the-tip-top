@@ -19,7 +19,7 @@ const Header = ({ menu, changemenu }) => {
 
   const updateDimensions = () => {
     setWidth(window.innerWidth);
-    localStorage.setItem("width", width);
+    Cookies.set("width", width);
   };
 
   useEffect(() => {
@@ -32,7 +32,7 @@ const Header = ({ menu, changemenu }) => {
   const logOut = ()=> {
     Cookies.remove('authToken');
     Cookies.remove('role');
-    localStorage.removeItem('width');
+    Cookies.remove('width');
     router.push("/connexion")
   }
 

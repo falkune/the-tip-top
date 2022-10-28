@@ -36,9 +36,10 @@ export default function Stats() {
   const [isLoged, setIsLoged] = useState(false);
   const context = useContext(ApiContext)
 
+
   const updateDimensions = () => {
     setWidth(window.innerWidth);
-    localStorage.setItem("width", width);
+    Cookies.set("width", width);
   };
 
   useEffect(() => {

@@ -1,4 +1,4 @@
-
+import Cookies from "js-cookie";
 import HttpClient from "./http-client"
 
 class ApiClient extends HttpClient {
@@ -70,6 +70,14 @@ class ApiClient extends HttpClient {
       update: (user) => this.put(`/ticket/${user.id}`, user),
 
     };
+  }
+
+  setCookie(key , value){
+    Cookies.set(key, value)
+  }
+
+  getCookie(key){
+    return Cookies.get(key)
   }
 }
 

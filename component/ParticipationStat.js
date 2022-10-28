@@ -16,10 +16,7 @@ export default function ParticipationStat({ticket, idSession}) {
   })
 
   const ticketValidationstats = async () => {
-    let claimbedTicketBySession = context.backend.auth.tickets.get('claimbed-tickets-by-session', {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
-    })
+    let claimbedTicketBySession = context.backend.auth.tickets.get('claimbed-tickets-by-session')
     claimbedTicketBySession.then((response) => {
       if(response.statusCode){
         console.log("vrai", response)

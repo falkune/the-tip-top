@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
 import ApiContext from '../context/apiContext';
+import Cookies from 'js-cookie';
 
 export default function StatInscription({ days,  idSession}) {
   const [labels, setLabels] = useState([]);
@@ -11,7 +12,7 @@ export default function StatInscription({ days,  idSession}) {
 
   useEffect(() => {
     if(idSession != ""){
-      getRegistrationByDayold();
+      // getRegistrationByDayold();
     }
   },[days]);
 
@@ -21,7 +22,7 @@ export default function StatInscription({ days,  idSession}) {
       labels.push("Jour "+i)
     }
     setLabels(labels);
-    const accessToken = localStorage.getItem('token');
+    const accessToken = Cookies.get('token');
     // const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
     // const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
     // const registrationByDay = Array();
@@ -30,10 +31,7 @@ export default function StatInscription({ days,  idSession}) {
     // })
     // setRegistration(registrationByDay)
     const registrationByDay = Array();
-    let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession, {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
-    })
+    let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession)
     getregistrationByDay.then((response) => {
       if(response.statusCode){
         console.log("vrai", response)
@@ -49,7 +47,7 @@ export default function StatInscription({ days,  idSession}) {
       labels.push("Jour "+i)
     }
     setLabels(labels);
-    const accessToken = localStorage.getItem('token');
+    const accessToken = Cookies.get('token');
     const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
     const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
     const registrationByDay = Array();

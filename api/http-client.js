@@ -1,5 +1,6 @@
 
 
+
 class HttpClient {
   constructor(options = {}) {
     //  this._baseURL = options.baseURL || "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr";
@@ -61,9 +62,8 @@ class HttpClient {
     )
   }
 
-
-
 }
 
 export default HttpClient
+
 

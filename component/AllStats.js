@@ -13,6 +13,9 @@ const AllStats = (props) => {
     getNumberDay(props.idSession);
   },[props])
 
+ 
+
+
   const getNumberDay = (idSession) => {
     axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession)
     .then((response) => {
