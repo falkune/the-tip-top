@@ -42,7 +42,7 @@ export default function Stats() {
   };
 
   useEffect(() => {
-    if(!Cookies.get('authToken')){
+    if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
     getAllSessions();
@@ -91,7 +91,7 @@ export default function Stats() {
     setMenu(e.target.value);
   };
 
-  if(Cookies.get('authToken')){
+  if(Cookies.get('authToken') && Cookies.get('role') == "admin"){
     return (
       <div className={styles.container}>
         <Head>

@@ -23,12 +23,8 @@ const Header = ({ menu, changemenu }) => {
   };
 
   useEffect(() => {
-    if (Cookies.get("role")) {
-      setRole(Cookies.get("role"));
-    }else{
-      router.push("/connexion");
-    }
     updateDimensions();
+    setRole(Cookies.get('role'))
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);

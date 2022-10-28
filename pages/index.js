@@ -91,7 +91,7 @@ export default function Home() {
 
           <h2>Tenter de gagner l'un de nos nombreux lots <br></br>
           Des infuseurs ou coffrets spéciaux !</h2>
-        <button type="button" onClick={goResult} className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
+        <button type="button" onClick={() => goResult()} className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
           style={{marginBottom:20,marginTop:20,
             boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}} >
             Participer
