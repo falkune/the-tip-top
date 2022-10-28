@@ -29,9 +29,12 @@ import {
 =======
 import { useRouter } from "next/router";
 import { firebaseApp } from "../config/firebase";
+<<<<<<< HEAD
 import { setCookie } from "cookies-next";
 import { getCookie } from "cookies-next";
 >>>>>>> 0760426 (udpate format)
+=======
+>>>>>>> d065efb (update StatInscriptio and AgeStat)
 
 import {
   AuthProvider,
@@ -50,7 +53,6 @@ export default function Connexion() {
 =======
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState(getCookie("user"));
 
   const GoogleProvider = new GoogleAuthProvider();
   const FacebookProvider = new FacebookAuthProvider();
@@ -109,9 +111,6 @@ export default function Connexion() {
       .then((data) => {
         console.log("log", data);
         // en fonction du role de l'utilisateur rediriger vers la bonne interface
-        setCookie("user", "admin");
-        setRole(getCookie("user"));
-        console.log("roles", data.roles[0]);
         localStorage.setItem("token", data.accessToken);
         if (data.roles.includes("admin")) {
           localStorage.setItem("role", "admin");
@@ -120,8 +119,6 @@ export default function Connexion() {
           localStorage.setItem("role", "client");
           router.push("/bingo");
         }
-
-        // router.push('/bingo')
       })
       .catch((error) => {
         console.log(error);
@@ -160,10 +157,14 @@ export default function Connexion() {
           <link rel="icon" href="/fav.png" />
         </Head>
 <<<<<<< HEAD
+<<<<<<< HEAD
         <Header/>
 =======
         <Header user={role} />
 >>>>>>> 0760426 (udpate format)
+=======
+        <Header/>
+>>>>>>> d065efb (update StatInscriptio and AgeStat)
         <section className={styles.login}>
           <form
             className={styles.part}

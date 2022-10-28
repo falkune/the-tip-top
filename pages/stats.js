@@ -290,7 +290,7 @@ export default function Stats() {
               ))}
             </Select>
           </div>
-          {menu === "stats" && <AllStats lots={lots} session={session.limit} />}
+          {menu === "stats" && <AllStats lots={lots} idSession={idSession} session={session}/>}
           {menu === "ticket" && <TicketChecker session={idSession} />}
           {menu === "users" && <Users idSession={idSession} />}
           {menu === "generator" && <TicketGenerator session_id={idSession} />}

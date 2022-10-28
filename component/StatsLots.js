@@ -12,6 +12,7 @@ import OneLot from "./OneLot"
 import Speedometer from './Speedometer'
 >>>>>>> fe7b512 (pull some update)
 
+<<<<<<< HEAD
 const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState(null);
   const [allGroup, setAllGroup] = useState([]);
@@ -71,6 +72,38 @@ const StatsLots = ({ idSession }) => {
       } 
     ] 
 >>>>>>> fe7b512 (pull some update)
+=======
+const StatsLots = ({ data }) => {
+  
+  const lots = [
+    {
+      now:200,
+      max:1000,
+      title:" Infuseur à thé",
+      color:"#41C2B0",
+      value: 19
+    },
+    {
+      now:3600,
+      max:5000,
+      title:"Boite de 100g d’un thé détox ",
+      value: 21
+    }, 
+    {
+      now:4500,
+      max:10000,
+      title:"Boite de 100g d’un thé signature",
+      color:"#41C2B0",
+      value: 32
+    },
+    {
+      now:5000,
+      max:1000000,
+      title:'Coffret découverte',
+      value: 56
+    } 
+  ] 
+>>>>>>> d065efb (update StatInscriptio and AgeStat)
    
   return (
   <div style={styles.lot} >
@@ -92,7 +125,7 @@ const StatsLots = ({ idSession }) => {
 export default StatsLots;
 =======
       lots.map((l,index)=> (
-        <Speedometer 
+        <OneLot 
           key={index}
           title={l.title}
           now={l.now}
@@ -101,6 +134,7 @@ export default StatsLots;
           value={l.value}/> ))
     }
   </div>
+<<<<<<< HEAD
 
   )}
 
@@ -146,6 +180,11 @@ const StatsLots = ({ llots }) => {
 
 export default StatsLots;
 >>>>>>> 9b2aab2 (update route dashboard)
+=======
+  )
+}
+export default StatsLots;
+>>>>>>> d065efb (update StatInscriptio and AgeStat)
 
 const styles = {
   lot: {
