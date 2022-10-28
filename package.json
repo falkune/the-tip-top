@@ -58,7 +58,8 @@
     "redux-persist": "^6.0.0",
     "reduxjs-toolkit-persist": "^7.2.1",
     "sharp": "^0.30.3",
-    "tsparticles": "^2.5.3"
+    "tsparticles": "^2.5.3",
+    "fs": "0.0.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
