@@ -4,13 +4,6 @@ networks:
   prod:
      external: true  
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 #volumes:
 #  code:
 
@@ -21,10 +14,6 @@ services:
       driver: gelf
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     environment:
       - TZ=Europe/Paris
       - API_BASE_URL=http://api:3000
@@ -41,71 +30,5 @@ services:
         - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
         - traefik.http.routers.frontend.entrypoints=websecure
         - traefik.http.services.frontend.loadbalancer.server.port=3000
-<<<<<<< HEAD
-=======
-volumes:
-  db-data-prod:
-    external: true
-=======
-#volumes:
-  #code:
->>>>>>> dded1f6 (Update the dockignore and infra folders)
-=======
-volumes:
-<<<<<<< HEAD
-  frontend_code:
->>>>>>> bf7cf0b (The the new version of stable code repo)
-=======
-  code:
->>>>>>> 0f90135 (Update deploy script)
-=======
-#volumes:
-#  code:
->>>>>>> d403505 (Update deploy script and compose.yml for prod)
-
-services:
-  frontend:
-    image: ${IMAGE_BASE}/stable/frontend:${FRONTEND_STABLE_TAG}
-=======
->>>>>>> d6f013a (Add API_HOST env to prod and release)
-    environment:
-      - TZ=Europe/Paris
-    volumes:
-       - /etc/localtime:/etc/localtime:ro
-    #   - code:/my-project
-    #   - /usr/src/app/node_modules
-    restart: unless-stopped
-    container_name: frontend
-    depends_on:
-      - api
-    labels:
-        - traefik.enable=true
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-        - traefik.http.routers.api.rule=Host(`api.${DOMAIN_BASE}`)
-        - traefik.http.routers.api.entrypoints=websecure
-        - traefik.http.routers.api.service=registry-web
-        - traefik.http.services.api.loadbalancer.server.port=3000
->>>>>>> 34a778e (Set up infra as code)
-=======
-        - traefik.http.routers.api-release.rule=Host(`dev.${DOMAIN_BASE}`)
-        - traefik.http.routers.api-release.entrypoints=websecure
-        - traefik.http.services.api-release.loadbalancer.server.port=3000
->>>>>>> dded1f6 (Update the dockignore and infra folders)
-=======
-        - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
-=======
-        - traefik.http.routers.frontend.rule=Host(`www.${DOMAIN_BASE}`)
->>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
-=======
-        - traefik.http.routers.frontend.rule=Host(`${DOMAIN_BASE}`)
->>>>>>> 06567f4 (Move www on prod dns name)
-        - traefik.http.routers.frontend.entrypoints=websecure
-        - traefik.http.services.frontend.loadbalancer.server.port=3000
->>>>>>> bf7cf0b (The the new version of stable code repo)
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     networks:
       - prod

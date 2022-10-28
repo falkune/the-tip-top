@@ -1,19 +1,9 @@
 version: "3.8"
 
 networks:
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   preprod:
      external: true  
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  preprod:
-     external: true  
-
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 #volumes:
 #  code: 
 
@@ -24,24 +14,9 @@ services:
       driver: gelf
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
-<<<<<<< HEAD
-<<<<<<< HEAD
-    environment:
-      - TZ=Europe/Paris
-<<<<<<< HEAD
-<<<<<<< HEAD
-      - API_BASE_URL=http://api-release:3000
-=======
-      - API_HOST=http://api-release:3000
->>>>>>> d6f013a (Add API_HOST env to prod and release)
-=======
-      - API_BASE_URL=http://api-release:3000
->>>>>>> 2d658ce (Add API BASE URL to prod and release)
-=======
     environment:
       - TZ=Europe/Paris
       - API_BASE_URL=http://api-release:3000
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
     volumes:
        - /etc/localtime:/etc/localtime:ro
     #   - code:/my-project:rw
@@ -50,100 +25,12 @@ services:
     links:
      - api-release:api
     container_name: frontend-release
-<<<<<<< HEAD
-=======
-  prod:
-=======
-  preprod:
->>>>>>> 8aea497 (Update docker compose file for differents envs)
-     external: true  
-
-#volumes:
-  #code:
-=======
-volumes:
-<<<<<<< HEAD
-  frontend_code:
->>>>>>> bf7cf0b (The the new version of stable code repo)
-=======
-  code: 
->>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
-=======
-#volumes:
-#  code: 
->>>>>>> 933d5d6 (Update deploy script and remove volume code for front)
-
-services:
-  frontend:
-    image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
-=======
->>>>>>> 071c59a (Add DEVOPS_HOST in env file and config gelf log for containers)
-    environment:
-      - TZ=Europe/Paris
-    volumes:
-       - /etc/localtime:/etc/localtime:ro
-    #   - code:/my-project:rw
-    #   - /usr/src/app/node_modules
-    restart: unless-stopped
-    links:
-<<<<<<< HEAD
-<<<<<<< HEAD
-      - api
-    container_name: frontend
->>>>>>> 34a778e (Set up infra as code)
-=======
-      - api-release:api
-    container_name: frontend-release
-<<<<<<< HEAD
->>>>>>> 8aea497 (Update docker compose file for differents envs)
-    depends_on:
-      - api
-=======
-    #depends_on:
-    #  - api
->>>>>>> 87dddb9 (Add no cache to build)
-=======
-     - api-release:api
-    container_name: frontend-release
-    depends_on:
-      - api
->>>>>>> 5fb08fb (Add COMPOSE_PROJECT ENV in release, remove YUP)
-    labels:
-        - traefik.enable=true
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
     depends_on:
       - api
     labels:
         - traefik.enable=true
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
         - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)
         - traefik.http.routers.frontend-release.entrypoints=websecure
         - traefik.http.services.frontend-release.loadbalancer.server.port=3000
     networks:
-<<<<<<< HEAD
       - preprod
-=======
-        - traefik.http.routers.api-release.rule=Host(`${DOMAIN_BASE}`)
-        - traefik.http.routers.api-release.entrypoints=websecure
-        - traefik.http.services.api-release.loadbalancer.server.port=3000
-    networks:
-      - prod
->>>>>>> 34a778e (Set up infra as code)
-=======
-        - traefik.http.routers.api-release.rule=Host(`dev.${DOMAIN_BASE}`)
-        - traefik.http.routers.api-release.entrypoints=websecure
-        - traefik.http.services.api-release.loadbalancer.server.port=3000
-=======
-        - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)
-        - traefik.http.routers.frontend-release.entrypoints=websecure
-        - traefik.http.services.frontend-release.loadbalancer.server.port=3000
->>>>>>> bf7cf0b (The the new version of stable code repo)
-    networks:
-      - preprod
->>>>>>> 8aea497 (Update docker compose file for differents envs)
-=======
-      - preprod
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
