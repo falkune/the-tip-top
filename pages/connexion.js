@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -8,53 +8,49 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import ApiClient from '../api/api-client';
+import ApiContext from '../context/apiContext';
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fool, setFool] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  const backend = useContext(ApiContext)
 
   const router = useRouter();
 
-  const connexion = (e) => {
-    // signIn function contact the backend API service
-    setFool(false);
+  const connexion = async (e) => {
     e.preventDefault();
     const params = {
       email: email,
       password: password,
     };
 
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "Application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    };
-
-    fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
-      .then((response) => response.json())
-      .then((data) => {
-        // en fonction du role de l'utilisateur rediriger vers la bonne interface
-        localStorage.setItem("token", data.accessToken);
-        Cookies.set('accessToken', data.accessToken)
-        if (data.roles.includes("admin")) {
-          localStorage.setItem("role", "admin");
-          Cookies.set('userRole', "admin");
-          router.push("/stats");
-        } else {
-          localStorage.setItem("role", "client");
-          Cookies.set('userRole', "client");
-          router.push("/bingo");
+    let auth = backend.api.users.post('login', params, {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    });
+    auth.then((response) => {
+      if (response.statusCode) {
+        console.log("erreur", error)
+        setError(true)
+        setMessage(response.message)
+      } else {
+        backend.auth = new ApiClient()
+        .setHeader("lang", "en")
+        .setHeader("Accept", "Application/json")
+        .setHeader("Content-Type", "application/json")
+        .setBearerAuth(response.accessToken);
+        // Cookies.set("logedUser", backend.auth);
+        if (response.roles.includes('admin')) {
+          router.push({pathname: "/stats"},undefined,{shallow: true});
         }
-      })
-      .catch((error) => {
-        setFool(true);
-      });
+      }
+    });
   };
 
   const goSignup = () => {

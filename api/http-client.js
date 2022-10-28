@@ -20,8 +20,6 @@ class HttpClient {
  
 
   async _fetchJSON(endpoint, options = {}) {
-    console.log("Dans le fetch");
-    console.log(endpoint, options);
     const res = await fetch(this._baseURL + endpoint, {
       ...options,
       headers: this._headers
@@ -42,8 +40,6 @@ class HttpClient {
   }
 
   post(endpoint, body, options = {}) {
-
-    console.log("body ===>",body);
     return this._fetchJSON(
       endpoint,
       {
