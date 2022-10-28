@@ -20,7 +20,7 @@ export default function Changepassword() {
         e.preventDefault();
         resetPassword(context, email, password)
         .then((response) => {
-            notifier(response.message);
+            notifier(response.message, 'success');
         })
         .catch((error) => {
             notifier(error.message);
