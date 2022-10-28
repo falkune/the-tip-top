@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react"
 import Chart from "chart.js/auto"
 import { height } from "@mui/system"
 
-export default function LoStats({data}) {
+export default function AgeStat({data}) {
   const canvasEl = useRef(null)
   const [statsLots, setStatsLots] = useState(data)
 
@@ -10,10 +10,10 @@ export default function LoStats({data}) {
     const ctx = canvasEl.current.getContext("2d")
 
     const labels = [
-      "Infuseur à thé",
-      "Une boite de 100g d’un thé détox",
-      "Une boite de 100g d’un thé signature",
-      "Un coffret découverte "
+      "18 à 23 ans",
+      "24 à 29 ans",
+      "30 à 40 ans",
+      "plus de 40 ans"
     ];
     const data = {
       axis: 'x',

@@ -1,22 +1,21 @@
 import React, { useEffect, useState } from "react";
 import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
-import LoStats from './LotStats';
+import AgeStat from './AgeStat';
 import ParticipationStat from './ParticipationStat';
-import axios from "axios"
+import axios from "axios";
+import Iscrit from './Inscrit';
 
 const AllStats = (props) => {
   const tauxDeparticipation = 44;
   const [numberDay, setNumberDay] = useState(0);
   
   useEffect(() => {
-    console.log(numberDay)
     getNumberDay(props.idSession)
-  },[numberDay])
+  },[props])
 
   const getNumberDay = (idSession) => {
-    console.log(idSession)
-    axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession+"/")
+    axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession)
     .then((response) => {
       const endDate = new Date(response.data.endDate);
       const startDate = new Date(response.data.startDate);
@@ -29,9 +28,9 @@ const AllStats = (props) => {
   return (
     <div style={styles.stat}>
       <ParticipationStat val={tauxDeparticipation} idSession={props.idSession}/>
-      <StatInscription days={25}/>
+      <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots/>
-      <LoStats data={[25, 9, 7, 13]}/>
+      <AgeStat data={[25, 9, 7, 13]}/>
     </div>
   )
 }
@@ -43,4 +42,3 @@ const styles = {
     padding:25
   }
 }
-

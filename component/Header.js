@@ -23,7 +23,6 @@ const Header = () => {
     if (localStorage.getItem("role") !== undefined) {
       setRole(localStorage.getItem("role"));
     }
-    console.log(role);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
