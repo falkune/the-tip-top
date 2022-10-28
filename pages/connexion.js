@@ -15,7 +15,7 @@ import ApiContext from '../context/apiContext';
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const backend = useContext(ApiContext);
+  const context = useContext(ApiContext);
   const [message, setMessage] = useState("");
 
 
@@ -32,7 +32,7 @@ export default function Connexion() {
       password: password,
     };
 
-    let auth = backend.users.post('login', params, {
+    let auth = context.backend.users.post('login', params, {
       Accept: "Application/json",
       "Content-Type": "application/json",
     });
@@ -44,13 +44,12 @@ export default function Connexion() {
         setMessage(response.message)
       } else {
 
-        backend.setBearerAuth(response.accessToken);
-        backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
+        context.setBacked(context.backend.setBearerAuth(response.accessToken));
+        console.log("dans connexion", context.backend)
         if (response.roles.includes('admin')) {
-          router.push("/stats");
+          router.push({pathname: "/stats"},undefined,{shallow: true});
         }
       }
-
     });
 
     

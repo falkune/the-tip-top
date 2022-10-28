@@ -32,13 +32,13 @@ export default function Stats() {
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
   const [isLoged, setIsLoged] = useState(false);
-  const backend = useContext(ApiContext);
+  const context = useContext(ApiContext);
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     localStorage.setItem("width", width);
   };
 
-  // backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
+  // context.backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
 
   useEffect(() => {
     updateDimensions();
@@ -88,7 +88,6 @@ export default function Stats() {
   const changemenu = (e) => {
     setMenu(e.target.value);
   };
-
 
   return (
     <div className={styles.container}>
