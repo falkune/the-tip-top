@@ -1,59 +1,16 @@
-import React, { useEffect, useState } from "react";
+export const billets = [
+  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Jack atlas",email:"jacks@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:4 ,name:"Jack atlas",email:"jacks@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:3 ,name:"Jack atlas",email:"jacks@gmail.com" },
+];
 
 
-const Count = () => {
-const [tdays, setDays] = useState(0);
-const [thours, setHours] = useState(0);
-const [tminutes, setMinutes] = useState(0);
-const [tseconds, setSeconds] = useState(0);
-
-useEffect(() => {
-  countDownInterval
-  console.log('ok')
-}, []);
-
-const countDownDate = new Date("Jul 25, 2022 23:59:99").getTime();
-
-const getChrono = () =>{
-  const now = new Date().getTime();
-  const timeleft = countDownDate - now;
-      
-  let days = Math.floor(timeleft / (1000 * 60 * 60 * 24));
-  let hours = Math.floor((timeleft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  let minutes = Math.floor((timeleft % (1000 * 60 * 60)) / (1000 * 60));
-  let seconds = Math.floor((timeleft % (1000 * 60)) / 1000);
-    setDays(days);
-    setHours(hours);
-    setMinutes(minutes);
-    setSeconds(seconds);
-}
-
-const countDownInterval = setInterval (() => {
-  getChrono()
-
-},100000)
-
-
-  return (
-    <div style={styles.count}>   
-       <p style={{fontSize:45,color:"grey",textAlign:"center",margin:0}}>  
-        <strong style={{color:"white"}}>{tdays}</strong>J{" "} 
-         <strong style={{color:"white"}}>{thours}</strong>H {" "}  
-        <strong style={{color:"white"}}>{tminutes}</strong>M {" "}
-        <strong style={{color:"white"}}>{tseconds}</strong>S{" "}
-        </p>
-    </div>
-  )
-}
-
-export default Count
-
-const styles = {
-
-    count:{
-        display:"flex",
-        justifyContent:'center',
-        marginBottom:30
-    } 
-
-}
+export const users = [
+  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"jean du jardin",email:"jeandujardin@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Martin roul",email:"martin@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:4 ,name:"Samuel eoo",email:"samuel@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Idris elba",email:"idris@gmail.com" },
+  { date: "20/08/2022", number:128478979 ,lot:3 ,name:"Jack atlas",email:"jacks@gmail.com" },
+];
