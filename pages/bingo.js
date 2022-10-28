@@ -8,7 +8,7 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import gift from "../image/win.gif"
 import axios from "axios";
-import Breadcrumbs from 'nextjs-breadcrumbs'; 
+import Breadcrumbs from 'nextjs-breadcrumbs';
 import 'nextjs-breadcrumbs/dist/index.css'
 import Cookies from "js-cookie";
 import "animate.css";
