@@ -9,10 +9,9 @@ import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { resetPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
-import Link from "next/link";
 
 
-export default function resetPasswor() {
+export default function resetpassword() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const context = useContext(ApiContext);
