@@ -1,34 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
 import AgeStat from './AgeStat';
 import ParticipationStat from './ParticipationStat';
-import axios from "axios";
+import ApiContext from '../context/apiContext';
 
 const AllStats = (props) => {
-  const [numberTicket, setNumberTicket] = useState(0);
+  const [limitTicket, setLimitTicket] = useState(0);
   const [numberDay, setNumberDay] = useState([]);
+  const context = useContext(ApiContext);
 
   useEffect(() => {
-    getNumberDay(props.idSession);
-  },[props])
-
- 
+    getSessionDetails(props.idSession);
+  },[props.idSession])
 
 
-  const getNumberDay = (idSession) => {
-    axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession)
+  const getSessionDetails = (idSession) => {
+    context.backend.api.sessions.get(idSession)
     .then((response) => {
-      setNumberTicket(response.data.limitTicket);
-      const endDate = new Date(response.data.endDate);
-      const startDate = new Date(response.data.startDate);
-      // const timeDiference = endDate.getTime() - startDate.getTime();
-      // const dayDiference = (timeDiference / (1000 * 3600 * 24));
-      // setNumberDay(dayDiference);
-      setNumberDay(getDatesBetweenDates(startDate, endDate))
+      if(response.statusCode){
+        console.log("statusCode ", response)
+      }else{
+        setLimitTicket(response.limitTicket)
+        setNumberDay(getDatesBetweenDates(new Date(response.endDate), new Date(response.startDate)))
+      }
     })
   }
-
   const getDatesBetweenDates = (startDate, endDate) => {
     let dates = []
     const theDate = new Date(startDate)
@@ -42,7 +39,7 @@ const AllStats = (props) => {
 
   return (
     <div style={styles.stat}>
-      <ParticipationStat ticket={numberTicket} idSession={props.idSession}/>
+      <ParticipationStat ticket={limitTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots idSession={props.idSession}/>
       <AgeStat data={[25, 9, 7, 13]}/>

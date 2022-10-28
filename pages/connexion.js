@@ -29,11 +29,8 @@ export default function Connexion() {
       password: password,
     };
 
-    let auth = context.backend.api.users.post('login', params, {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
-    });
-    auth.then((response) => {
+    context.backend.api.users.post('login', params)
+    .then((response) => {
       if (response.statusCode) {
         console.log("erreur", error)
         setError(true)
@@ -44,9 +41,9 @@ export default function Connexion() {
           .setHeader("Accept", "Application/json")
           .setHeader("Content-Type", "application/json")
           .setBearerAuth(response.accessToken)
-        context.setBacked({ api: context.backend.api, auth: logedUser })
-        Cookies.set("authToken", response.accessToken);
-        Cookies.set('role', response.roles);
+          context.setBacked({ api: context.backend.api, auth: logedUser })
+          Cookies.set("authToken", response.accessToken);
+          Cookies.set('role', response.roles);
 
         if (response.roles.includes('admin')) {
           router.push({ pathname: "/stats" }, undefined, { shallow: true });

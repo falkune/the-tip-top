@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Line } from "react-chartjs-2";
+// import { Line } from "react-chartjs-2";
 import axios from "axios";
 import ApiContext from '../context/apiContext';
 import Cookies from 'js-cookie';
+import Exemple  from "./LineChart";
 
 export default function StatInscription({ days,  idSession}) {
   const [labels, setLabels] = useState([]);
@@ -12,7 +13,7 @@ export default function StatInscription({ days,  idSession}) {
 
   useEffect(() => {
     if(idSession != ""){
-      // getRegistrationByDayold();
+      getRegistrationByDay();
     }
   },[days]);
 
@@ -22,21 +23,14 @@ export default function StatInscription({ days,  idSession}) {
       labels.push("Jour "+i)
     }
     setLabels(labels);
-    const accessToken = Cookies.get('token');
-    // const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
-    // const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
-    // const registrationByDay = Array();
-    // response.data.forEach(e => {
-    //   registrationByDay.push(e.nomberOfRegitration)
-    // })
-    // setRegistration(registrationByDay)
     const registrationByDay = Array();
     let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession)
     getregistrationByDay.then((response) => {
       if(response.statusCode){
-        console.log("vrai", response)
+        console.log("faux =>", response)
       }else{
-        // console.log(response)
+        setRegistration(response)
+        console.log("vrai =>",response)
       }
     })
   }
@@ -47,7 +41,7 @@ export default function StatInscription({ days,  idSession}) {
       labels.push("Jour "+i)
     }
     setLabels(labels);
-    const accessToken = Cookies.get('token');
+    const accessToken = Cookies.get('authToken');
     const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
     const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
     const registrationByDay = Array();
@@ -86,8 +80,16 @@ export default function StatInscription({ days,  idSession}) {
   };
 
   return (
-    <div className="App">
-      <Line height={80} data={data} options={options}/>
+    <div style={styles.containe}>
+      <h3 style={{textAlign:"center"}}>Nombre d'inscription par jour</h3>
+      <Exemple data={registration} width={Cookies.get('width')}/>
     </div>
   );
+}
+
+const styles = {
+  containe:{
+    width: "100%",
+    height: 600
+  }
 }
