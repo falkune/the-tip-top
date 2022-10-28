@@ -8,7 +8,8 @@ function MyApp({ Component, pageProps }) {
   const backend = new ApiClient()
     .setHeader("lang", "en")
     .setHeader("Accept", "Application/json")
-    .setHeader("Content-Type", "application/json");
+    .setHeader("Content-Type", "application/json")
+    .setBearerAuth("Authorization", "")
 
   return (
     <ApiProvider value={backend}>

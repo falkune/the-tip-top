@@ -12,15 +12,11 @@ import ErrorMessage from "../component/ErrorMessage";
 import ApiContext from '../context/apiContext';
 
 
-
-
-
-
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const backend = useContext(ApiContext);
-  console.log(backend)
+  
 
   const [forgotPassword, setForgotPassword] = useState(false);
 
@@ -43,10 +39,11 @@ export default function Connexion() {
     auth.then((response) => {
       console.log('Auth', response);
       backend.setBearerAuth(response.accessToken);
+      if(response.roles.includes('admin')){
+        router.push("/stats");
+      }
     });
    
-
-
     backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
 
   };

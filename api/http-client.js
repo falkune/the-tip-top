@@ -8,12 +8,10 @@ class HttpClient {
 
   }
 
-
   setHeader(key, value) {
     this._headers[key] = value;
     return this;
   }
-
 
   setBearerAuth(token) {
     this._headers.Authorization = `Bearer ${token}`
@@ -29,8 +27,6 @@ class HttpClient {
     });
 
     return res.json();
-
-
   }
 
 
@@ -45,7 +41,6 @@ class HttpClient {
   }
 
   post(endpoint, body, options = {}) {
-    console.log("Dans le post");
 
     console.log("body ===>",body);
     return this._fetchJSON(
