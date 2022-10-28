@@ -18,9 +18,6 @@ export default function Connexion() {
   const [password, setPassword] = useState(""); 
   const backend = useContext(ApiContext);
   console.log(backend)
-  useEffect(() => {
-    
-  })
  
   const [forgotPassword, setForgotPassword] = useState(false); 
 
