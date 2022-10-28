@@ -7,7 +7,15 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiClient from '../api/api-client';
+import { firebaseApp } from '../config/firebase';
 import ApiContext from '../context/apiContext';
+import {
+  getAuth,
+  signInWithPopup,
+  GoogleAuthProvider,
+  FacebookAuthProvider
+} from "firebase/auth"
+import { googleLoginRegister } from '../fonctions/users';
 
 
 export default function Connexion() {
@@ -27,30 +35,30 @@ export default function Connexion() {
     };
 
     context.backend.api.users.post('login', params)
-    .then((response) => {
-      if (response.statusCode) {
-        console.log("erreur", error)
-        setError(true)
-        setMessage(response.message)
-      } else {
-        let logedUser = new ApiClient()
-          .setHeader("lang", "en")
-          .setHeader("Accept", "Application/json")
-          .setHeader("Content-Type", "application/json")
-          .setBearerAuth(response.accessToken)
-        context.setBacked({ api: context.backend.api, auth: logedUser })
-        Cookies.set("authToken", response.accessToken);
-        Cookies.set('role', response.roles);
-        Cookies.set('idClient', response.refreshToken);
-
-
-        if (response.roles.includes('admin')) {
-          router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      .then((response) => {
+        if (response.statusCode) {
+          console.log("erreur", error)
+          setError(true)
+          setMessage(response.message)
         } else {
-          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+          let logedUser = new ApiClient()
+            .setHeader("lang", "en")
+            .setHeader("Accept", "Application/json")
+            .setHeader("Content-Type", "application/json")
+            .setBearerAuth(response.accessToken)
+          context.setBacked({ api: context.backend.api, auth: logedUser })
+          Cookies.set("authToken", response.accessToken);
+          Cookies.set('role', response.roles);
+          Cookies.set('idClient', response.refreshToken);
+
+
+          if (response.roles.includes('admin')) {
+            router.push({ pathname: "/stats" }, undefined, { shallow: true });
+          } else {
+            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+          }
         }
-      }
-    });
+      });
   };
 
   const goSignup = () => {
@@ -62,6 +70,29 @@ export default function Connexion() {
 
   const signInWith = (provider) => {
 
+
+  }
+
+  const googleLogin = () => {
+    googleLoginRegister()
+      .then((user) => {
+        context.backend.api.users.post('auth-from-social-network', user).then((response) => {
+          let logedUser = new ApiClient()
+            .setHeader("lang", "en")
+            .setHeader("Accept", "Application/json")
+            .setHeader("Content-Type", "application/json")
+            .setBearerAuth(response.accessToken)
+          context.setBacked({ api: context.backend.api, auth: logedUser })
+          Cookies.set("authToken", response.accessToken);
+          Cookies.set('role', response.roles);
+          Cookies.set('idClient', response.refreshToken);
+          if (response.roles.includes('admin')) {
+            router.push({ pathname: "/stats" }, undefined, { shallow: true });
+          } else {
+            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+          }
+        })
+      })
 
   }
 
@@ -84,9 +115,9 @@ export default function Connexion() {
               Connexion
             </h1>
             <input
-            label='Password'
-            name='password' 
-            aria-label='formEmail'
+              label='Password'
+              name='password'
+              aria-label='formEmail'
               type="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
@@ -146,7 +177,7 @@ export default function Connexion() {
                 height: 60,
                 boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
               }}
-              onClick={signInWith}
+              onClick={googleLogin}
             >
               <span style={{ position: "absolute", left: 8, bottom: 1 }}>
                 <Image src='/google.svg' width="40" height="40" alt="google logo" />

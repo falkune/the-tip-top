@@ -22,6 +22,7 @@ import {
   GoogleAuthProvider, 
   FacebookAuthProvider 
 } from "firebase/auth"
+import {googleLoginRegister} from '../fonctions/users';
 
 export default function Inscription() {
   const context = useContext(ApiContext);
@@ -41,7 +42,6 @@ export default function Inscription() {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
 
-  const GoogleProvider = new GoogleAuthProvider();
   const FacebookProvider = new FacebookAuthProvider();
 
   
@@ -97,39 +97,10 @@ export default function Inscription() {
     }
   }
 
-  const googleRegistration = () => {
-    const firebaseAuth = getAuth(firebaseApp);
-    signInWithPopup(firebaseAuth, GoogleProvider)
-    .then((res) => {
-      const user = {
-        email: res.user.email,
-        fullName: res.user.displayName,   
-        socialNetworkUserId:res.user.uid,
-        socialNetworkAccessToken:res.user.accessToken,
-        socialNetworkProvider: res.user.providerId,
-        password: "",
-        birthday: ""
-
-      }
-
-      
-      
-
-      setEmail(res.user.email);
-      setNom(res.user.displayName);
-      setDateNaissance(res.user.reloadUserInfo.dateOfBirth);
-
-      console.log("Registration",user);
-   context.backend.api.users.post('auth-from-social-network', user).then((res) => {
-    console.log('User est là',res)
-   })
-
- 
-
-
-    })
-    .catch((error) => {
-      console.log(error)
+  const googleRegister = () => {
+    let user = googleLoginRegister();
+    context.backend.api.users.post('auth-from-social-network', user).then((res) => {
+      console.log('User est là',res)
     })
   }
 
@@ -309,7 +280,7 @@ export default function Inscription() {
                 color: "#437BFF",
                 boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
               }}
-              onClick={googleRegistration}
+              onClick={googleRegister}
             >
               <span style={{ position: "absolute", left: 8, bottom: 1 }}>
                 <Image src={google} width="40" height="40" alt="google logo" />
