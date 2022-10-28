@@ -8,20 +8,28 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
+<<<<<<< HEAD
 import Cookies from 'js-cookie'
 import ApiClient from "../api/api-client"
 import { constant } from "lodash-es";
 import ErrorMessage from "../component/ErrorMessage";
+=======
+import ApiClient from "../api/api-client" 
+>>>>>>> 232af748236395d6b03ea27cf19fcb765f9bffd5
 
 
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fool, setFool] = useState(false);
+  const [password, setPassword] = useState(""); 
   const [backend, setBackend] = useState(new ApiClient()
     .setHeader("lang", "en"));
+ 
+  const [forgotPassword, setForgotPassword] = useState(false); 
+
+  const [error, setError] = useState(false); 
+
   const router = useRouter();
 
   const connexion = async (e) => {
@@ -41,6 +49,48 @@ export default function Connexion() {
     console.log(login);
 
     console.log("login");
+
+
+    /*
+       const options = {
+         method: "POST",
+         headers: {
+           Accept: "Application/json",
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(params),
+       };*/
+
+
+
+
+
+
+
+
+
+
+
+
+    /* fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
+   .then((response) => response.json())
+     .then((data) => {
+       // en fonction du role de l'utilisateur rediriger vers la bonne interface
+       localStorage.setItem("token", data.accessToken);
+       Cookies.set('accessToken', data.accessToken)
+       if (data.roles.includes("admin")) {
+         localStorage.setItem("role", "admin");
+         Cookies.set('userRole', "admin");
+         router.push("/stats");
+       } else {
+         localStorage.setItem("role", "client");
+         Cookies.set('userRole', "client");
+         router.push("/bingo");
+       }
+     })
+     .catch((error) => {
+       setFool(true);
+     }); */
   };
 
   const goSignup = () => {
