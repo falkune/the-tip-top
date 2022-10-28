@@ -5,6 +5,7 @@ import Drawer from "@mui/material/Drawer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
+import { notifier } from "../fonctions/utils";
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
@@ -33,7 +34,7 @@ const Header = ({ menu, changemenu }) => {
     context.backend.api.users.post('logout', { refreshToken: Cookies.get('idClient') })
       .then((response) => {
         if (response.message) {
-          console.log(response.message)
+          notifier(response.message, "success");
           Cookies.remove('authToken');
           Cookies.remove('role');
           Cookies.remove('idClient');
