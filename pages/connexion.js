@@ -15,7 +15,7 @@ import {
   GoogleAuthProvider,
   FacebookAuthProvider
 } from "firebase/auth"
-import { googleLoginRegister } from '../fonctions/users';
+import { googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
 
 
 export default function Connexion() {
@@ -51,7 +51,6 @@ export default function Connexion() {
           Cookies.set('role', response.roles);
           Cookies.set('idClient', response.refreshToken);
 
-
           if (response.roles.includes('admin')) {
             router.push({ pathname: "/stats" }, undefined, { shallow: true });
           } else {
@@ -68,15 +67,38 @@ export default function Connexion() {
     });
   };
 
-  const signInWith = (provider) => {
-
-
+  const facebookLogin = (provider) => {
+    facebookLoginRegister()
+    .then((user) => {
+      context.backend.api.users.post('auth-from-social-network', user).then((response) => {
+        console.log(response)
+        let logedUser = new ApiClient()
+          .setHeader("lang", "en")
+          .setHeader("Accept", "Application/json")
+          .setHeader("Content-Type", "application/json")
+          .setBearerAuth(response.accessToken)
+        context.setBacked({ api: context.backend.api, auth: logedUser })
+        Cookies.set("authToken", response.accessToken);
+        Cookies.set('role', response.roles);
+        Cookies.set('idClient', response.refreshToken);
+        
+        if (response.roles.includes('admin')) {
+          router.push({ pathname: "/stats" }, undefined, { shallow: true });
+        } else {
+          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+        }
+      })
+      .catch((error) => {
+        console.log( error )
+      })
+    })
   }
 
   const googleLogin = () => {
     googleLoginRegister()
       .then((user) => {
         context.backend.api.users.post('auth-from-social-network', user).then((response) => {
+          console.log(response)
           let logedUser = new ApiClient()
             .setHeader("lang", "en")
             .setHeader("Accept", "Application/json")
@@ -86,11 +108,15 @@ export default function Connexion() {
           Cookies.set("authToken", response.accessToken);
           Cookies.set('role', response.roles);
           Cookies.set('idClient', response.refreshToken);
+          
           if (response.roles.includes('admin')) {
             router.push({ pathname: "/stats" }, undefined, { shallow: true });
           } else {
             router.push({ pathname: "/bingo" }, undefined, { shallow: true });
           }
+        })
+        .catch((error) => {
+          console.log( error )
         })
       })
 
@@ -152,7 +178,7 @@ export default function Connexion() {
                 position: "relative",
                 height: 60,
               }}
-              onClick={signInWith}
+              onClick={facebookLogin}
             >
               <span style={{ position: "absolute", left: 20, bottom: 1 }}>
                 <Image

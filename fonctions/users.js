@@ -45,7 +45,7 @@ const googleLoginRegister = async () => {
             socialNetworkUserId:res.user.uid,
             socialNetworkAccessToken:res.user.accessToken,
             socialNetworkProvider: res.user.providerId,
-            password: "",
+            password: "1234678910",
             birthday: ""
 
         }
@@ -57,15 +57,32 @@ const googleLoginRegister = async () => {
         })
     })
     
-    
-
-
-    // console.log("Registration",user)
-
-   
-    
-  }
+}
 
 ///////////////// FACEBOOK LOGIN ////////////////////
+const facebookLoginRegister = async () => {
+    const firebaseAuth = getAuth(firebaseApp);
+    return new Promise((resolve, reject) => {
+        signInWithPopup(firebaseAuth, GoogleProvider)
+        .then((res) => {
+        const user = {
+            email: res.user.email,
+            fullName: res.user.displayName,   
+            socialNetworkUserId:res.user.uid,
+            socialNetworkAccessToken:res.user.accessToken,
+            socialNetworkProvider: res.user.providerId,
+            password: "1234678910",
+            birthday: ""
 
-export {login, register, refreshToken, googleLoginRegister};
+        }
+        resolve(user)
+        })
+        .catch((error) => {
+            console.log(error)
+            reject(error)
+        })
+    })
+    
+}
+
+export {login, register, refreshToken, googleLoginRegister, facebookLoginRegister};

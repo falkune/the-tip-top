@@ -16,13 +16,15 @@ import axios from "axios";
 import {firebaseApp} from '../config/firebase';
 import ApiClient from '../api/api-client';
 import ApiContext from '../context/apiContext';
+
 import { 
   getAuth, 
   signInWithPopup, 
   GoogleAuthProvider, 
   FacebookAuthProvider 
 } from "firebase/auth"
-import {googleLoginRegister} from '../fonctions/users';
+import {googleLoginRegister, facebookLoginRegister} from '../fonctions/users';
+import Cookies from 'js-cookie';
 
 export default function Inscription() {
   const context = useContext(ApiContext);
@@ -98,45 +100,58 @@ export default function Inscription() {
   }
 
   const googleRegister = () => {
-    let user = googleLoginRegister();
-    context.backend.api.users.post('auth-from-social-network', user).then((res) => {
-      console.log('User est là',res)
-    })
+    googleLoginRegister()
+      .then((user) => {
+        context.backend.api.users.post('auth-from-social-network', user).then((response) => {
+          console.log(response)
+          let logedUser = new ApiClient()
+            .setHeader("lang", "en")
+            .setHeader("Accept", "Application/json")
+            .setHeader("Content-Type", "application/json")
+            .setBearerAuth(response.accessToken)
+          context.setBacked({ api: context.backend.api, auth: logedUser })
+          Cookies.set("authToken", response.accessToken);
+          Cookies.set('role', response.roles);
+          Cookies.set('idClient', response.refreshToken);
+          
+          if (response.roles.includes('admin')) {
+            router.push({ pathname: "/stats" }, undefined, { shallow: true });
+          } else {
+            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+          }
+        })
+        .catch((error) => {
+          console.log( error )
+        })
+      })
   }
 
   // facebook start
   const facebookRegistration = () => {
-    FacebookProvider.addScope('email');
-    FacebookProvider.addScope('user_birthday');
-    FacebookProvider.addScope('user_friends');
-    
-    const firebaseAuth = getAuth(firebaseApp);
-    signInWithPopup(firebaseAuth, FacebookProvider)
-    .then((res) => {
-      const user = {
 
-       email: res.user.email,
-        fullName: res.user.displayName,   
-        socialNetworkUserId:res.user.uid,
-        socialNetworkAccessToken:res.user.accessToken,
-        socialNetworkProvider: res.user.providerId,
-        password: "",
-        birthday: res.user.reloadUserInfo.dateOfBirth
-      }
-
-      console.log("THIS IS USER from facebooke ",user);
-      
-
-      setEmail(res.user.email);
-      setNom(res.user.displayName);
-      dateNaissance(res.user.reloadUserInfo.dateOfBirth);
-    })
-    .catch((err) => {
-      const errorCode = err.code;
-      const errorMessage = err.message;
-      if(err.code === 'auth/account-exists-with-different-credential'){
-        console.log("error");
-      }
+    facebookLoginRegister()
+    .then((user) => {
+      context.backend.api.users.post('auth-from-social-network', user).then((response) => {
+        console.log(response)
+        let logedUser = new ApiClient()
+          .setHeader("lang", "en")
+          .setHeader("Accept", "Application/json")
+          .setHeader("Content-Type", "application/json")
+          .setBearerAuth(response.accessToken)
+        context.setBacked({ api: context.backend.api, auth: logedUser })
+        Cookies.set("authToken", response.accessToken);
+        Cookies.set('role', response.roles);
+        Cookies.set('idClient', response.refreshToken);
+        
+        if (response.roles.includes('admin')) {
+          router.push({ pathname: "/stats" }, undefined, { shallow: true });
+        } else {
+          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+        }
+      })
+      .catch((error) => {
+        console.log( error )
+      })
     })
   }
   // facebook end
