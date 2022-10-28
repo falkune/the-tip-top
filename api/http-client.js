@@ -1,0 +1,81 @@
+ 
+
+ class HttpClient {
+    constructor(options = {}) {
+    //  this._baseURL = options.baseURL || "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr";
+    this._baseURL = process.env.BASE_URL;
+      this._headers = options.headers || {};
+  console.log(process.env.BASE_URL + ": " + options.baseURL);
+
+    }
+
+
+    setHeader(key, value) {
+        this._headers[key] = value;
+        return this;
+      }
+
+
+      setBearerAuth(token) {
+        this._headers.Authorization = `Bearer ${token}`
+        return this
+      }
+
+      async _fetchJSON(endpoint, options = {}) {
+        console.log("Dans le fetch");
+        console.log(endpoint,options);
+        const res = await fetch(this._baseURL + endpoint, {
+          ...options,
+          headers: this._headers
+        });
+      
+        if (!res.ok) throw res;
+      
+        if (options.parseResponse !== false && res.status !== 204)
+          return res.json();
+      
+        return undefined;
+      }
+
+
+      get(endpoint, options = {}) {
+        return this._fetchJSON(
+          endpoint, 
+          { 
+            ...options, 
+            method: 'GET' 
+          }
+        )
+      }
+      
+      post(endpoint, body, options = {}) {
+        console.log("Dans le post");
+
+      console.log(body,endpoint,options);
+        return this._fetchJSON(
+          endpoint, 
+          {
+            ...options, 
+            body: JSON.stringify(body), 
+            method: 'POST' 
+          }
+        )
+      }
+      
+      delete(endpoint, options = {}) {
+        return this._fetchJSON(
+          endpoint, 
+          {
+            parseResponse: false,
+            ...options, 
+            method: 'DELETE' 
+          }
+        )
+      }
+
+ 
+     
+  }
+
+  export default HttpClient
+

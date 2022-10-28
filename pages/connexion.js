@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -8,62 +8,98 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie';
-import ErrorMessage from "../component/ErrorMessage";
-import axios from "axios";
+import Cookies from 'js-cookie'
+import ApiClient from "../api/api-client"
+import { constant } from "lodash-es";
+
+
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState("");
-  const [forgotPassword, setforgotPassword] = useState(false);
-
+  const [fool, setFool] = useState(false);
+  const [backend, setBackend] = useState(new ApiClient()
+    .setHeader("lang", "en"));
   const router = useRouter();
 
   const connexion = async (e) => {
     e.preventDefault();
-    if(!forgotPassword){
-      const url =  process.env.NEXT_PUBLIC_BASE_URL+"/user/login";
-      axios.post(url, {
-        email: email,
-        password: password,
-      })
-      .then((response) => {
-        localStorage.setItem("token", response.data.accessToken);
-        Cookies.set('accessToken', response.data.accessToken)
-        if (response.data.roles.includes("admin")) {
-          localStorage.setItem("role", "admin");
-          Cookies.set('userRole', "admin");
-          router.push("/stats");
-        } else {
-          localStorage.setItem("role", "client");
-          Cookies.set('userRole', "client");
-          router.push("/bingo");
-        }
-      })
-      .catch((error) => {
-        setError(true);
-        setMessage(error.response.data.message);
-      });
-    }else{
-      const url =  process.env.NEXT_PUBLIC_BASE_URL+"/user/forgot-password";
-      axios.post(url, {
-        email: email,
-      })
-      .then((response) => {
-        setError(true);
-        setMessage(response.data.message)
-      })
-      .catch((error) => {
-        setError(true);
-        setMessage(error.response.data.message)
-      })
-    }
+    const params = {
+      email: email,
+      password: password,
+    };
+
+
+
+
+
+
+
+    let login = backend.users.post('login', JSON.stringify(params), {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    });
+
+
+
+    console.log("login");
+
+    console.log(login);
+
+    console.log("login");
+
+
+    /*
+       const options = {
+         method: "POST",
+         headers: {
+           Accept: "Application/json",
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(params),
+       };*/
+
+
+
+
+
+
+
+
+    /* fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
+   .then((response) => response.json())
+     .then((data) => {
+       // en fonction du role de l'utilisateur rediriger vers la bonne interface
+       localStorage.setItem("token", data.accessToken);
+       Cookies.set('accessToken', data.accessToken)
+       if (data.roles.includes("admin")) {
+         localStorage.setItem("role", "admin");
+         Cookies.set('userRole', "admin");
+         router.push("/stats");
+       } else {
+         localStorage.setItem("role", "client");
+         Cookies.set('userRole', "client");
+         router.push("/bingo");
+       }
+     })
+     .catch((error) => {
+       setFool(true);
+     }); */
   };
 
-  const signInWith = () =>{}
+  const goSignup = () => {
+    router.push({
+      pathname: `inscription`,
+      query: { number: router.query.num ? router.query.num : null },
+    });
+  };
+
+  const signInWith = (provider) => {
+
+
+  }
+
   return (
     <div>
       <div className={styles.container}>
