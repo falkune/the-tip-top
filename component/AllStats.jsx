@@ -15,7 +15,9 @@ const AllStats = (props) => {
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    getAsignTicket(context, props.idSession);
+    if(props.idSession){
+      getAsignTicket(context, props.idSession);
+    }
     getDetailsSession(context, props.idSession);
   }, [props.idSession])
 
