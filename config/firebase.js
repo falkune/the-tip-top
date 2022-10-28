@@ -1,5 +1,4 @@
-// import { initializeApp } from "firebase/app"
-var initializeApp = require('firebase/app')
+import { initializeApp } from "firebase/app"
 
 const firebaseConfig = {
 

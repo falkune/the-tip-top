@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-//import logo from "../image/logo.png";
-//import iconMenu from "../image/menu.svg";
 import Drawer from "@mui/material/Drawer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
+import ApiContext from '../context/apiContext';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
+  const context = useContext(ApiContext);
 
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen) => () => {
@@ -30,10 +30,17 @@ const Header = ({ menu, changemenu }) => {
   }, [width]);
 
   const logOut = ()=> {
-    Cookies.remove('authToken');
-    Cookies.remove('role');
-    Cookies.remove('width');
-    router.push("/connexion")
+    context.backend.api.users.post('logout', {refreshToken: Cookies.get('idClient')})
+    .then((response) => {
+      if(response.message){
+        console.log(response.message)
+        Cookies.remove('authToken');
+        Cookies.remove('role');
+        Cookies.remove('idClient');
+        router.push("/connexion")
+      }
+    })
+    
   }
 
   return (
