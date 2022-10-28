@@ -1,9 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import axios from "axios";
 import dayjs from "dayjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ApiClient from "../api/api-client";
+
 const Sessions = ({ idSession }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -23,9 +25,11 @@ const Sessions = ({ idSession }) => {
     limit: "",
   });
 
+  const context = useContext(ApiContext) 
+  const token = lcontext.backend.api.getCookie("authToken");
   const getSession = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
+    
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
