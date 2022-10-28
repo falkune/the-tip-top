@@ -8,14 +8,11 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
 import Cookies from 'js-cookie'
 import ApiClient from "../api/api-client"
 import { constant } from "lodash-es";
 import ErrorMessage from "../component/ErrorMessage";
-=======
 import ApiClient from "../api/api-client" 
->>>>>>> 232af748236395d6b03ea27cf19fcb765f9bffd5
 
 
 
