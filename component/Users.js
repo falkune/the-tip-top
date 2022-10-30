@@ -11,7 +11,7 @@ import axios from "axios";
 export default function Users({ idSession }) {
   const [userz, setUserz] = useState([]);
   const [colDefs, setColDefs] = useState([
-      { field: "fullName", headerName: "Nom", width: 250 },
+    { field: "fullName", headerName: "Nom", width: 250 },
     {
       field: "email",
       headerName: "Email",
@@ -26,11 +26,8 @@ export default function Users({ idSession }) {
     },
   ]);
 
-
   const number = users.length;
-  const columns = [
-  
-  ];
+  const columns = [];
 
   useEffect(() => {
     getAllUser();
@@ -40,10 +37,7 @@ export default function Users({ idSession }) {
     //fonction pour récupérer tout les utilisateurs
     const token = localStorage.getItem("token");
     const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
     };
 
     const body = {
@@ -54,8 +48,7 @@ export default function Users({ idSession }) {
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
     console.log("token", token);
     try {
-      let allusers = await axios.get(api, body, config);
-      console.log("alluser", allusers);
+      let allusers = await axios.post(api, body, config);
       console.log("allusers", allusers.data);
       setUserz(allusers.data);
     } catch (e) {
@@ -89,8 +82,9 @@ export default function Users({ idSession }) {
           <DataGrid
             getRowId={(row) => row._id}
             rows={userz}
-            columns={columns}
+            columns={colDefs}
             pageSize={15}
+            style={{ width: 650 }}
             rowsPerPageOptions={[2]}
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}

@@ -15,40 +15,52 @@ export default function Tickets() {
   const [colDefs, setColDefs] = useState([
     {
       field: "number",
-      minWidth: 150,
+      minWidth: 300,
     },
     {
-      field: "jeux concours",
-      minWidth: 150,
+      field: "update",
+      minWidth: 300,
     },
     {
-      field: "go",
+      field: "creat",
       minWidth: 200,
       cellRenderer: ButtonGrid,
     },
   ]);
+  const [alltickets, setAlltickets] = useState([]);
 
   useEffect(() => {
-    getAllSessions();
+    getAlltickets();
   }, []);
 
-  const getAllSessions = async () => {
+  const getAlltickets = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    console.log("tokens", token);
+    const id = localStorage.getItem("refresh");
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
-    console.log("config", config);
+
+    const body = {
+      idClient: id,
+    };
+
+    const api =
+      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/tickets-by-client";
 
     try {
-      let Allsessions = await axios.get(api, config);
-      setSessions(Allsessions.data);
-      console.log(sessions);
-      setIdSession(Allsessions.data[0]._id);
-      console.log("idsession", idSession);
+      let Alltickets = await axios.post(api, body, config);
+      console.log("Alltickets", Alltickets);
+      const newTickets = Alltickets.data.map((a) => {
+        return {
+          number: a.ticketNumber,
+          creat: a.createdAt,
+          update: a.updatedAt,
+        };
+      });
+
+      setAlltickets(newTickets);
     } catch (e) {
       console.log(e);
     }
@@ -75,25 +87,10 @@ export default function Tickets() {
         >
           <AgGridReact
             pagination={true}
-            rowData={billets}
+            rowData={alltickets}
             columnDefs={colDefs}
           ></AgGridReact>
         </div>
-        {/* {billets.length > 0 ? (
-          <DataGrid
-            rows={billets}
-            getRowId={(row) => row.email}
-            columns={columns}
-            pageSize={15}
-            style={{ width: "100%" }}
-            rowsPerPageOptions={[15]}
-            checkboxSelection
-            disableSelectionOnClick
-            experimentalFeatures={{ newEditingApi: true }}
-          />
-        ) : (
-          <p> pas de tickets</p>
-        )} */}
       </div>
       <Footer />
     </div>

@@ -4,8 +4,12 @@ import { useRouter } from "next/router";
 const ButtonGrid = (props) => {
 const router = useRouter();
 
+  console.log(props)
      const buttonClicked = () => {
-      router.push("/resultat");
+        router.push({
+        pathname: `resultat`,
+        query: { number: num },
+      });
     };
     
   return (

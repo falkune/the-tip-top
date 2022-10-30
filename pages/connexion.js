@@ -49,7 +49,15 @@ export default function Connexion() {
       .then((data) => {
         console.log("log", data);
         // en fonction du role de l'utilisateur rediriger vers la bonne interface
+<<<<<<< HEAD
+=======
+        setCookie("user", "admin");
+        setRole(getCookie("user"));
+        console.log("roles", data);
+>>>>>>> 34a5d99096c38999d17a607312c1902aa24040b2
         localStorage.setItem("token", data.accessToken);
+        localStorage.setItem("refresh", data.refreshToken);
+
         if (data.roles.includes("admin")) {
           localStorage.setItem("role", "admin");
           router.push("/stats");
