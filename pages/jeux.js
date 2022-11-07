@@ -75,13 +75,17 @@ export default function Jeux() {
             justifyContent: "center",
           }}
         >
+          {" "}
+          <div>
+            <Image src={wheel} style={{ marginBottom: 50 }} alt="" />
+          </div>
           <h2
             className={styles.h2}
             style={{
               fontSize: 30,
               padding: 15,
               paddingBottom: 0,
-              marginTop: 20,
+              marginTop: 0,
               marginBottom: 0,
             }}
           >
@@ -100,7 +104,6 @@ export default function Jeux() {
           >
             1 an de thé d'une valeur de 360 euros
           </p>
-          <Image src={wheel} style={{ marginBottom: 50 }} alt="" />
         </div>
       </section>
 

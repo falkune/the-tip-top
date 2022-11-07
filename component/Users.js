@@ -11,7 +11,7 @@ import axios from "axios";
 export default function Users({ idSession }) {
   const [userz, setUserz] = useState([]);
   const [colDefs, setColDefs] = useState([
-      { field: "fullName", headerName: "Nom", width: 250 },
+    { field: "fullName", headerName: "Nom", width: 250 },
     {
       field: "email",
       headerName: "Email",
@@ -26,11 +26,8 @@ export default function Users({ idSession }) {
     },
   ]);
 
-
   const number = users.length;
-  const columns = [
-  
-  ];
+  const columns = [];
 
   useEffect(() => {
     getAllUser();
@@ -52,7 +49,6 @@ export default function Users({ idSession }) {
 
     const api =
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
-    console.log("token", token);
     try {
       let allusers = await axios.get(api, body, config);
       console.log("alluser", allusers);
@@ -105,8 +101,8 @@ export default function Users({ idSession }) {
 
 const stylez = {
   gain: {
-    width: 700,
-    height: 1000,
+    width: "90%",
+    height: "100vh",
     padding: 15,
   },
 

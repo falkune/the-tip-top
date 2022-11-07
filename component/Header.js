@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../image/logo.png";
-import menu from "../image/menu.svg";
+import iconMenu from "../image/menu.svg";
 import Drawer from "@mui/material/Drawer";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 
-const Header = () => {
+const Header = ({ menu, changemenu }) => {
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
 
@@ -44,7 +44,7 @@ const Header = () => {
         <Link href="/">
           <Image src={logo} width={56} height={56} alt="logo" />
         </Link>
-        {width > 650 ? (
+        {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
               {role && role === "client" && (
@@ -67,13 +67,6 @@ const Header = () => {
                 </li>
               )}
 
-              {role && role === "admin" && (
-                <li style={styles.li}>
-                  {" "}
-                  <Link href="/stats">Mes stats </Link>
-                </li>
-              )}
-
               {!role && (
                 <li style={styles.login}>
                   <Link href="/connexion">Connexion </Link>
@@ -89,7 +82,7 @@ const Header = () => {
         ) : (
           <Image
             onClick={toggleDrawer(true)}
-            src={menu}
+            src={iconMenu}
             width={30}
             height={30}
             alt="menu"
@@ -127,16 +120,76 @@ const Header = () => {
                 <li>Mes stats</li>
               </Link>
             )}
-            {role ? (
-              <li style={styles.toLogin}>
-                <Link href="/connexion">Déconnexion </Link>
-              </li>
-            ) : (
-              <li style={styles.toLogin}>
-                <Link href="/connexion">Connexion </Link>
-              </li>
-            )}
           </ul>
+          {role && role === "admin" && (
+            <div>
+              <button
+                value={"stats"}
+                style={
+                  menu === "stats"
+                    ? styles.sideButtonActive
+                    : styles.sideButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Mes stats
+              </button>
+              <button
+                value={"generator"}
+                style={
+                  menu === "generator"
+                    ? styles.sideButtonActive
+                    : styles.sideButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Ticket generator
+              </button>
+              <button
+                value={"ticket"}
+                style={
+                  menu === "ticket"
+                    ? styles.sideButtonActive
+                    : styles.sideButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Ticket checker
+              </button>
+              <button
+                value={"users"}
+                style={
+                  menu === "users"
+                    ? styles.sideButtonActive
+                    : styles.sideButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Listes utilisateurs
+              </button>
+              <button
+                value={"sessions"}
+                style={
+                  menu === "sessions"
+                    ? styles.sideButtonActive
+                    : styles.sideButtonInactive
+                }
+                onClick={changemenu}
+              >
+                {" "}
+                Gestions des sessions
+              </button>
+            </div>
+          )}
+          {role ? (
+            <li style={styles.toLogin}>
+              <Link href="/connexion">Déconnexion </Link>
+            </li>
+          ) : (
+            <li style={styles.toLogin}>
+              <Link href="/connexion">Connexion </Link>
+            </li>
+          )}
         </div>
       </Drawer>
     </header>
@@ -170,6 +223,7 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     width: "70vw",
+    maxWidth: 350,
     height: "100%",
     paddingLeft: 15,
     paddingTop: 100,
@@ -204,7 +258,32 @@ const styles = {
     borderRadius: 100,
     margin: 10,
     marginLeft: 0,
+    height: 50,
     listStyleType: "none",
     textDecoration: "none",
+  },
+  sideButtonActive: {
+    fontSize: 20,
+    margin: 5,
+    color: "white",
+    marginLeft: 0,
+    marginRight: 0,
+    padding: 10,
+    width: "100%",
+    border: "none",
+    height: 60,
+    background: "#41C2B0",
+  },
+  sideButtonInactive: {
+    fontSize: 20,
+    margin: 5,
+    color: "#3AAB9B",
+    marginLeft: 0,
+    marginRight: 0,
+    padding: 10,
+    width: "100%",
+    border: "none",
+    height: 60,
+    background: "none",
   },
 };

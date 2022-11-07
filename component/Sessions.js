@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import axios from "axios";
 import dayjs from "dayjs";
 import { ToastContainer, toast } from "react-toastify";
-
+import "react-toastify/dist/ReactToastify.css";
 const Sessions = ({ idSession }) => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -70,8 +70,8 @@ const Sessions = ({ idSession }) => {
     console.log("body", body);
 
     try {
-      let createdSession = await axios.post(api, body, config);
-      console.log(createdSession);
+      await axios.post(api, body, config);
+      toast("Session crée!");
     } catch (e) {
       console.log(e);
     }
@@ -94,10 +94,9 @@ const Sessions = ({ idSession }) => {
       limitTicket: Number(OneSession.limit),
     };
     const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
-    console.log("body", body);
     try {
-      let res = await axios.put(api, body, config);
-      console.log("res", res);
+      await axios.put(api, body, config);
+      toast("Modification prise en compte ! ");
     } catch (e) {
       console.log(e);
     }
@@ -105,7 +104,6 @@ const Sessions = ({ idSession }) => {
 
   const DeleteSession = async () => {
     //fonction pour créer un ticket
-    console.log("take session");
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -113,8 +111,8 @@ const Sessions = ({ idSession }) => {
 
     const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
     try {
-      let res = await axios.delete(api, config);
-      console.log("res", res);
+      await axios.delete(api, config);
+      toast("Session supprimé ! ");
     } catch (e) {
       console.log(e);
     }
@@ -122,7 +120,6 @@ const Sessions = ({ idSession }) => {
 
   const CurrentSession = async () => {
     //fonction pour créer un ticket
-    console.log("take session");
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
@@ -134,7 +131,6 @@ const Sessions = ({ idSession }) => {
     const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/set-current-session`;
     try {
       let res = await axios.patch(api, body, config);
-      console.log("res", res);
       toast("Cette session est active !");
     } catch (e) {
       console.log(e);
@@ -174,21 +170,17 @@ const Sessions = ({ idSession }) => {
   // Update session
   const UpdateSessionName = (e) => {
     setOneSession({ ...OneSession, name: e.target.value });
-    console.log("one", OneSession);
   };
 
   const UpdateSessionEnd = (e) => {
     setOneSession({ ...OneSession, end: e.target.value });
-    console.log("end", OneSession);
   };
 
   const UpdateSessionStart = (e) => {
     setOneSession({ ...OneSession, start: e.target.value });
-    console.log("start", OneSession);
   };
   const UpdateTicketLimited = (e) => {
     setOneSession({ ...OneSession, limit: e.target.value });
-    console.log("one", OneSession);
   };
 
   return (
@@ -198,11 +190,12 @@ const Sessions = ({ idSession }) => {
       </button>
 
       <form style={styles.formSession}>
-        <p style={{ color: "#41D8C2", textAlign: "center", margin: 5 }}>
-          Etat : <strong> En cours </strong>
+        <p style={{ color: "#ABFFF3", textAlign: "center", margin: 5 }}>
+          Etat : <strong style={{ color: "white" }}> En cours </strong>
         </p>
-        <p style={{ color: "#41D8C2", textAlign: "center", margin: 8 }}>
-          Date limite : fin dans <strong>25 JOURS</strong>
+        <p style={{ color: "#ABFFF3", textAlign: "center", margin: 8 }}>
+          Date limite : fin dans{" "}
+          <strong style={{ color: "white" }}> 25 JOURS</strong>
         </p>
         <input
           onChange={UpdateSessionName}
@@ -238,7 +231,7 @@ const Sessions = ({ idSession }) => {
           {" "}
           Supprimer la session
         </button>
-        <button onClick={CurrentSession} style={styles.modalCreate}>
+        <button onClick={CurrentSession} style={styles.dateButton}>
           Appliquer comme session active
         </button>
         <ToastContainer
@@ -261,12 +254,31 @@ const Sessions = ({ idSession }) => {
         aria-describedby="modal-modal-description"
       >
         <form style={styles.modalSession}>
-          <p style={{ textAlign: "center" }}>Nouvelle session</p>
+          <p
+            style={{
+              textAlign: "center",
+              color: "white",
+              fontSize: "1.6em",
+              fontWeight: "bold",
+              marginBottom: 10,
+            }}
+          >
+            Nouvelle session
+          </p>
           <button
             onClick={handleClose}
-            style={{ position: "absolute", right: 10, top: 8 }}
+            style={{
+              position: "absolute",
+              right: 10,
+              top: 8,
+              color: "white",
+              border: "none",
+              borderRadius: 8,
+              padding: 8,
+              background: "#318176",
+            }}
           >
-            fermer
+            Fermer
           </button>
           <input
             onChange={UpdateNewSessionName}
@@ -282,12 +294,30 @@ const Sessions = ({ idSession }) => {
             value={newSession.limit}
             placeholder="Indiquer le nombre de ticket maximum"
           />
+          <small
+            style={{
+              color: "#ABFFF3",
+              fontSize: 12,
+              padding: "8px 0px 8px 8px",
+            }}
+          >
+            Indiquer une date de début
+          </small>
           <input
             onChange={UpdateNewSessionStart}
             style={styles.modalDate}
             type="date"
             value={newSession.startDate}
           />
+          <small
+            style={{
+              color: "#ABFFF3",
+              fontSize: 12,
+              padding: "8px 0px 8px 8px",
+            }}
+          >
+            Indiquer une date de fin
+          </small>
           <input
             onChange={UpdateNewSessionEnd}
             style={styles.modalDate}
@@ -314,52 +344,13 @@ const styles = {
     flexDirection: "column",
     alignItems: "center",
     color: "white",
-    margin: 10,
-    paddingTop: 25,
+    marginTop: 10,
+    padding: 50,
   },
 
   elem: {
     margin: 0,
     marginBottom: 3,
-  },
-  dateInput: {
-    padding: 8,
-    color: "#41D8C2",
-    background: "none",
-    border: "solid 1px #41D8C2",
-    margin: 5,
-    fontSize: 18,
-
-    borderRadius: 3,
-  },
-  dateButton: {
-    padding: 8,
-    color: "white",
-    backgroundColor: "#41D8C2",
-    border: "solid 1px white",
-    fontSize: 18,
-
-    margin: 5,
-  },
-  dateInput: {
-    padding: 8,
-    color: "#41D8C2",
-    background: "none",
-    border: "solid 1px #41D8C2",
-    margin: 5,
-    fontSize: 18,
-
-    outline: "none",
-  },
-  createButton: {
-    padding: 10,
-    color: "white",
-    backgroundColor: "#41D8C2",
-    border: "solid 1px white",
-    margin: 30,
-    fontSize: 18,
-
-    borderRadius: 5,
   },
   formSession: {
     display: "flex",
@@ -367,56 +358,94 @@ const styles = {
     width: 350,
     padding: 15,
     fontSize: 18,
-    backgroundColor: "white",
+    backgroundColor: "#3AAB9B",
     borderRadius: 8,
-    margin: 50,
+    margin: 10,
+  },
+  dateInput: {
+    padding: 10,
+    paddingLeft: 15,
+    height: 50,
+    color: "#3AAB9B",
+    backgroundColor: "white",
+    border: "none",
+    margin: 10,
+    fontSize: 18,
+    borderRadius: 5,
+    fontWeight: "bold",
+
+    outline: "none",
+  },
+  dateButton: {
+    padding: 10,
+    height: 50,
+    color: "white",
+    backgroundColor: "#41D8C2",
+    border: "none",
+    fontSize: 16,
+    margin: 5,
+    borderRadius: 5,
+    fontWeight: "bold",
+  },
+  createButton: {
+    padding: 10,
+    color: "white",
+    backgroundColor: "#41D8C2",
+    border: "solid 3px white",
+    margin: 30,
+    fontSize: 18,
+    fontWeight: "bold",
+    minHeight: 50,
+    borderRadius: 5,
   },
   modalSession: {
     position: "relative",
     display: "flex",
     flexDirection: "column",
-    padding: 15,
+    padding: 20,
     fontSize: 18,
     top: "50%",
-    left: "57.3%",
+    left: "50%",
     transform: "translate(-50%, -50%)",
     width: 350,
-    borderRadius: 8,
-    backgroundColor: "white",
+    borderRadius: 15,
+    backgroundColor: "#3AAB9B",
     boxShadow: 24,
   },
-
-  modalInput: {
-    borderRadius: 3,
-    fontSize: 18,
-
-    padding: 8,
-    color: "#41D8C2",
-    background: "none",
-    border: "solid 1px #41D8C2",
-    margin: 5,
-    outline: "none",
-  },
   modalDate: {
-    fontSize: 18,
-
+    fontSize: 16,
     borderRadius: 3,
-    padding: 8,
-    color: "#41D8C2",
-    background: "none",
-    border: "solid 1px #41D8C2",
+    height: 60,
+    padding: 15,
+    color: "white",
+    background: "#318176",
+    border: "none",
     margin: 5,
     outline: "none",
   },
 
   modalCreate: {
     fontSize: 18,
-
-    borderRadius: 3,
+    borderRadius: 5,
+    height: 50,
     padding: 8,
-    color: "#41D8C2",
-    background: "none",
-    border: "solid 1px #41D8C2",
+    color: "white",
+    background: "#41D8C2",
+    border: "none",
     margin: 5,
+    marginTop: 15,
+    fontWeight: "bold",
+  },
+  modalInput: {
+    borderRadius: 5,
+    fontSize: 16,
+    height: 60,
+    paddingLeft: 15,
+    backgroundColor: "white",
+    border: "none",
+    margin: 5,
+    outline: "none",
+    color: "#318176",
+    fontWeight: "bold",
   },
 };
