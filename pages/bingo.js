@@ -137,5 +137,3 @@ export default function Bingo() {
     </div>
   );
 }
-
-// https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/

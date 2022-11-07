@@ -48,6 +48,7 @@ export default function Connexion() {
     fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
       .then((response) => response.json())
       .then((data) => {
+        console.log("log", data);
         // en fonction du role de l'utilisateur rediriger vers la bonne interface
         localStorage.setItem("token", data.accessToken);
         if (data.roles.includes("admin")) {
@@ -57,7 +58,6 @@ export default function Connexion() {
           localStorage.setItem("role", "client");
           router.push("/bingo");
         }
-        // router.push('/bingo')
       })
       .catch((error) => {
         setFool(true);

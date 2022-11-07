@@ -15,14 +15,14 @@ export default function Tickets() {
   const [colDefs, setColDefs] = useState([
     {
       field: "number",
-      minWidth: 300,
+      minWidth: 150,
     },
     {
-      field: "update",
-      minWidth: 300,
+      field: "jeux concours",
+      minWidth: 150,
     },
     {
-      field: "creat",
+      field: "go",
       minWidth: 200,
       cellRenderer: ButtonGrid,
     },
@@ -49,36 +49,26 @@ export default function Tickets() {
 
   console.log("width", width);
   useEffect(() => {
-    getAlltickets();
+    getAllSessions();
   }, []);
 
-  const getAlltickets = async () => {
+  const getAllSessions = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    const id = localStorage.getItem("refresh");
+    console.log("tokens", token);
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-
-    const body = {
-      idClient: id,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/tickets-by-client";
+    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
+    console.log("config", config);
 
     try {
-      let Alltickets = await axios.post(api, body, config);
-      const newTickets = Alltickets.data.map((a) => {
-        return {
-          number: a.ticketNumber,
-          creat: a.createdAt,
-          update: a.updatedAt,
-        };
-      });
-
-      setAlltickets(newTickets);
+      let Allsessions = await axios.get(api, config);
+      setSessions(Allsessions.data);
+      console.log(sessions);
+      setIdSession(Allsessions.data[0]._id);
+      console.log("idsession", idSession);
     } catch (e) {
       console.log(e);
     }
@@ -109,7 +99,7 @@ export default function Tickets() {
         >
           <AgGridReact
             pagination={true}
-            rowData={alltickets}
+            rowData={billets}
             columnDefs={colDefs}
           ></AgGridReact>
         </div>
