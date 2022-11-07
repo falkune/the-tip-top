@@ -21,6 +21,7 @@ import {
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [fool, setFool] = useState(false);
   const GoogleProvider = new GoogleAuthProvider();
   const FacebookProvider = new FacebookAuthProvider();
 
@@ -28,6 +29,7 @@ export default function Connexion() {
 
   const connexion = (e) => {
     // signIn function contact the backend API service
+    setFool(false);
     e.preventDefault();
     const params = {
       email: email,
@@ -58,8 +60,17 @@ export default function Connexion() {
         // router.push('/bingo')
       })
       .catch((error) => {
+        setFool(true);
+
         console.log(error);
       });
+  };
+
+  const goSignup = () => {
+    router.push({
+      pathname: `inscription`,
+      query: { number: router.query.num ? router.query.num : null },
+    });
   };
 
   const signInWith = (provider) => {
@@ -112,6 +123,12 @@ export default function Connexion() {
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
+            {fool && (
+              <small style={{ color: "red" }}>
+                Mot de passe ou email incorrecte
+              </small>
+            )}
+
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
@@ -158,7 +175,7 @@ export default function Connexion() {
           Pas encore de compte ?
           <strong style={{ color: "#437BFF" }}>
             {" "}
-            <Link href="/inscription"> S'inscrire</Link>
+            <button onClick={goSignup}> S'inscrire</button>
           </strong>
         </small>
       </div>

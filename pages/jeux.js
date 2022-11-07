@@ -10,6 +10,7 @@ import ClipLoader from "react-spinners/ClockLoader";
 import axios from "axios";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
+import wheel from "../image/wheel.gif";
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
@@ -20,15 +21,11 @@ export default function Jeux() {
   const getCurrent = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    console.log("tokens", token);
-
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api =
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/get-current-session";
-    console.log("config", config);
-
     try {
       let currenSession = await axios.get(api, config);
       setCurrent(currenSession.data[0]);
@@ -60,12 +57,15 @@ export default function Jeux() {
             backgroundColor: "#41D8C2",
           }}
         >
+          <ClipLoader color={"white"} loading={true} size={100} />
+
           <h1 className={styles.h1} style={{ color: "white" }}>
             Grand jeux concour
           </h1>
-          <p style={{ fontSize: 20, color: "white" }}>Le tirage au sort dans</p>
-          <Count current={current} />
-          <ClipLoader color={"white"} loading={true} size={100} />
+          <p style={{ fontSize: 20, color: "white" }}>
+            Le tirage au sort dans :
+          </p>
+          {current && <Count current={current} />}
         </div>
 
         <div
@@ -75,23 +75,33 @@ export default function Jeux() {
             justifyContent: "center",
           }}
         >
-          <h2 className={styles.h2} style={{ fontSize: 30, padding: 20 }}>
+          <h2
+            className={styles.h2}
+            style={{
+              fontSize: 30,
+              padding: 15,
+              paddingBottom: 0,
+              marginTop: 20,
+              marginBottom: 0,
+            }}
+          >
             Vous avez été sélectionné pour le grand tirage au sort
           </h2>
-          <p style={{ fontSize: 22, color: "grey" }}>
+          <p style={{ fontSize: 22, color: "grey", padding: 20, margin: 0 }}>
             Le{" "}
             <strong style={{ color: "#41D8C2" }}>
               {dayjs(current.endDate).locale("fr").format(" D MMMM YYYY")}
             </strong>{" "}
             un candidat sera sélectionné et bénéficiera de :{" "}
           </p>
+          <p
+            className={"pulse"}
+            style={{ fontSize: 20, color: "#41D8C2", fontWeight: "bold" }}
+          >
+            1 an de thé d'une valeur de 360 euros
+          </p>
+          <Image src={wheel} style={{ marginBottom: 50 }} alt="" />
         </div>
-        <p className={"pulse"} style={{ fontSize: 18 }}>
-          1 an de thé d'une valeur de 360 euros
-        </p>
-        <span>
-          <Image src={tea1} alt="thé" width={250} height={220} />
-        </span>
       </section>
 
       <Footer />

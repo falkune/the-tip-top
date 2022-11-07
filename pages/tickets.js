@@ -28,7 +28,26 @@ export default function Tickets() {
     },
   ]);
   const [alltickets, setAlltickets] = useState([]);
+  const [width, setWidth] = useState(0);
+  const [role, setRole] = useState(null);
 
+  const [open, setOpen] = React.useState(false);
+  const toggleDrawer = (newOpen) => () => {
+    setOpen(newOpen);
+  };
+
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
+    localStorage.setItem("width", width);
+  };
+
+  useEffect(() => {
+    updateDimensions();
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, [width]);
+
+  console.log("width", width);
   useEffect(() => {
     getAlltickets();
   }, []);
@@ -76,13 +95,17 @@ export default function Tickets() {
       <Header />
       <h1 className={styles.h1}>Mes tickets</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
-        Vous avez <strong style={{ color: "#41D8C2" }}>{number} </strong>
+        Vous avez{" "}
+        <strong style={{ color: "#41D8C2" }}>{alltickets.length} </strong>
         {`tickets gagnants`}
       </p>
       <div style={stylez.gain}>
         <div
           className="ag-theme-alpine"
-          style={{ height: "400px", width: "800px" }}
+          style={{
+            height: "800px",
+            width: width < 650 ? "90%" : 800,
+          }}
         >
           <AgGridReact
             pagination={true}
