@@ -116,7 +116,7 @@ export default function Inscription() {
             console.log(data.message);
           }else{
             router.push({
-              pathname: `bingo`,
+              pathname: `connexion`,
               query: { number: router.query.num ? router.query.num : null },
             });
           }
