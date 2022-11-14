@@ -128,7 +128,6 @@ export default function Bingo() {
             Voir les differents lots
           </small>
         </Link>
-        {/* <Image height={250} width={250} src={win} alt="" /> */}
       </section>
       <Footer />
     </div>
