@@ -51,19 +51,15 @@ export default function Stats() {
   const getAllSessions = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    // console.log("tokens", token);
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
-    // console.log("config", config);
     try {
       let Allsessions = await axios.get(api, config);
       setSessions(Allsessions.data);
-      // console.log(sessions);
       setIdSession(Allsessions.data[0]._id);
-      // console.log("idsession", idSession);
     } catch (e) {
       console.log(e);
     }
@@ -71,18 +67,14 @@ export default function Stats() {
   const getAllLots = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    // console.log("tokens", token);
 
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/group";
-    // console.log("config", config);
-
     try {
       let AllLots = await axios.get(api, config);
       setLots(AllLots.data);
-      // console.log("lots", lots);
     } catch (e) {
       console.log(e);
     }
@@ -96,11 +88,8 @@ export default function Stats() {
   };
 
   const handleChangeSession = (event) => {
-    // console.log("hey", event.target.value);
     setIdSession(event.target.value);
     setSession(event.target.value);
-
-    // console.log("setIdSession", idSession);
   };
 
   const handlechange = (e) => {
