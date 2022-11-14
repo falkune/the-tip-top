@@ -8,7 +8,6 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import { firebaseApp } from "../config/firebase";
 
 import {
   AuthProvider,
