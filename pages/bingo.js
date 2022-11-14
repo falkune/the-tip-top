@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
-import styles from "../styles/Home.module.css";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-import { useRouter } from "next/router";
-import axios from "axios";
-import win from "../image/win.gif";
+import Head from 'next/head'
+import Link from "next/link"
+import styles from '../styles/Home.module.css'
+import Header from '../component/Header'
+import Footer from "../component/Footer"
+import { useRouter } from 'next/router'
 
 export default function Bingo() {
   const router = useRouter();
