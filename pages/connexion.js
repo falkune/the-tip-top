@@ -9,13 +9,6 @@ import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
 
-import {
-  AuthProvider,
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-} from "firebase/auth";
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
