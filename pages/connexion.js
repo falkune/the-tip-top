@@ -14,8 +14,6 @@ export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fool, setFool] = useState(false);
-  const GoogleProvider = new GoogleAuthProvider();
-  const FacebookProvider = new FacebookAuthProvider();
 
   const router = useRouter();
 
@@ -66,26 +64,9 @@ export default function Connexion() {
   };
 
   const signInWith = (provider) => {
-    // this function connect user withn with his google or facebook account
-    const firebaseAuth = getAuth(firebaseApp);
-    signInWithPopup(firebaseAuth, provider)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
-        const displayName = user.displayName;
-        const email = user.email;
-        const uid = user.uid;
-        // contacter API
-      })
-      .catch((err) => {
-        const errorCode = err.code;
-        const errorMessage = err.message;
-        // console.log(errorMessage)
-        if (err.code === "auth/account-exists-with-different-credential") {
-          console.log("error");
-        }
-      });
-  };
+
+    
+  }
 
   return (
     <div>
