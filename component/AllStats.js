@@ -6,7 +6,7 @@ import ParticipationStat from './ParticipationStat';
 import axios from "axios";
 
 const AllStats = (props) => {
-  const tauxDeparticipation = 44;
+  const [numberTicket, setNumberTicket] = useState(0);
   const [numberDay, setNumberDay] = useState(0);
   
   useEffect(() => {
@@ -16,6 +16,7 @@ const AllStats = (props) => {
   const getNumberDay = (idSession) => {
     axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession)
     .then((response) => {
+      setNumberTicket(response.data.limitTicket);
       const endDate = new Date(response.data.endDate);
       const startDate = new Date(response.data.startDate);
       const timeDiference = endDate.getTime() - startDate.getTime();
@@ -26,7 +27,7 @@ const AllStats = (props) => {
 
   return (
     <div style={styles.stat}>
-      <ParticipationStat val={tauxDeparticipation} idSession={props.idSession}/>
+      <ParticipationStat ticket={numberTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots/>
       <AgeStat data={[25, 9, 7, 13]}/>

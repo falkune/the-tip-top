@@ -1,12 +1,33 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import Gauge from "react-svg-gauge";
+import axios from "axios";
 
-export default function ParticipationStat({val}) {
+export default function ParticipationStat({ticket, idSession}) {
+  const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
+  useEffect(() => {
+    if(idSession != ""){
+      ticketValidationstats();
+    }
+  })
+  const ticketValidationstats = async () => {
+    const accessToken = localStorage.getItem('token');
+    const body = {
+      idSession : idSession,
+    }
+    const config = {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    }
+    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/claimbed-tickets-by-session"
+    const response = await axios.post(url, body, config)
+    console.log(response.data);
+    setNumberOfClaimbedTicket(response.data.length);
+  }
+
   return (
     <div>
       <Gauge
-        value={val}
-        label={"Taux de participation"}
+        value={numberOfClaimbedTicket * 100 / ticket}
+        label={"validation des tickets"}
         width={500}
         height={400}
         color='#2a9d8f'
