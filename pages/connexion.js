@@ -116,7 +116,7 @@ export default function Connexion() {
                 color: "white",
                 position: "relative",
               }}
-              onClick={() => signInWith(FacebookProvider)}
+              onClick={signInWith}
             >
               <span style={{ position: "absolute", left: 20, bottom: 1 }}>
                 <Image
@@ -135,7 +135,7 @@ export default function Connexion() {
                 color: "#437BFF",
                 boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
               }}
-              onClick={() => signInWith(GoogleProvider)}
+              onClick={signInWith}
             >
               <span style={{ position: "absolute", left: 8, bottom: 1 }}>
                 <Image src={google} width="40" height="40" alt="google logo" />
