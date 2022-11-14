@@ -18,7 +18,7 @@ import axios from "axios";
 import arrow from "../image/arrow.gif";
 
 // Import Swiper styles
-import "swiper/css";
+// import "swiper/css";
 
 export default function Home() {
   const [num, setNum] = useState(null);
