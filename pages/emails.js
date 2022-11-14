@@ -25,7 +25,7 @@ export default function Emails() {
           <Image src={arrow} width={13} height={20.8} alt="arrow"/>
         </span>
        </button>
-        <p style={{fontSize:18,color:"grey"}}><strong style={{color:"#40EFD7"}}>{number} </strong>{`emails`}</p>
+        <p style={{fontSize:18,color:"grey"}}><strong style={{color:"#41D8C2"}}>{number} </strong>{`emails`}</p>
           <div style={stylez.gain}>
           {users.map((i,index) => (
                 <Email
@@ -34,7 +34,6 @@ export default function Emails() {
                   name={i.name}
                   email={i.email}
                   />
-
               ))}
           </div>
       <Footer/>
@@ -58,12 +57,12 @@ export default function Emails() {
       margin:8,
       padding:8,
       backgroundColor:"white",
-      border:"solid 1px #40EFD7",
+      border:"solid 1px #41D8C2",
       fontSize:18,
       minHeight:45,
       textAlign:"center",
       minWidth:200,
-      color:"#40EFD7",
+      color:"#41D8C2",
       display:"flex",
       justifyContent:"center",
       alignItems:"center",
