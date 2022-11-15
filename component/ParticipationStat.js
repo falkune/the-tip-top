@@ -4,6 +4,7 @@ import axios from "axios";
 
 export default function ParticipationStat({ticket, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
+  const [percentageOfClaimbedTicket, setpercentageOfClaimbedTicket] = useState(null)
   useEffect(() => {
     if(idSession != ""){
       ticketValidationstats();
@@ -19,14 +20,14 @@ export default function ParticipationStat({ticket, idSession}) {
     }
     const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/claimbed-tickets-by-session"
     const response = await axios.post(url, body, config)
-    console.log(response.data);
     setNumberOfClaimbedTicket(response.data.length);
+    setpercentageOfClaimbedTicket(numberOfClaimbedTicket * 100 / ticket);
   }
 
   return (
     <div>
       <Gauge
-        value={numberOfClaimbedTicket * 100 / ticket}
+        value={percentageOfClaimbedTicket ? percentageOfClaimbedTicket : 0}
         label={"validation des tickets"}
         width={500}
         height={400}

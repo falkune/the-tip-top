@@ -29,7 +29,7 @@ const AllStats = (props) => {
     <div style={styles.stat}>
       <ParticipationStat ticket={numberTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
-      <StatsLots/>
+      <StatsLots idSession={props.idSession}/>
       <AgeStat data={[25, 9, 7, 13]}/>
     </div>
   )

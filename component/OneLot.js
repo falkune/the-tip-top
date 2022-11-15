@@ -5,9 +5,8 @@ export default function OneLot({now, max, title, value}) {
   return (
     <div style={styles.lot}>
       <h2 style={styles.h2}>{title} </h2>
-      <h3 style={styles.h3}>{now}</h3>
-      <small style={styles.small}>sur {max}</small>
-      <p style={{margin:5,color:"white",padding:8}}>Ticket validés </p>
+      <h3 style={styles.small}>Ticket validés : {now}</h3>
+      <small style={styles.small}>Total ticket : {max}</small>
       <Gauge
         value={value}
         label=""
@@ -37,10 +36,9 @@ const styles = {
     color:"white"
   },
   h3:{
-    fontSize:40,
+    fontSize:2,
     margin:2,
     color:"white"
-
   },
   h2:{
     fontSize:20,
