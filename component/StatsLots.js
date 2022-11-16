@@ -27,7 +27,6 @@ const StatsLots = ({ idSession }) => {
   const getAllGroup = async () => {
     const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Group"
     const response = await axios.get(url);
-    console.log(response.data)
     setGroupInfo(response.data);
   }
    
@@ -42,7 +41,7 @@ const StatsLots = ({ idSession }) => {
           max={l.numberOfTickets}
           value={(l.claimbedTicket * 100 / l.numberOfTickets).toFixed(2)}
           /> 
-        ))
+      ))
     }
   </div>
   )

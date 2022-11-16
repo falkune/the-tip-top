@@ -16,7 +16,8 @@ export default function Inscription() {
   const [email, setEmail] = useState("");
   const [emailMatch, setEmailMatch] = useState(false);
   const [nom, setNom] = useState("");
-  const [dateNaissance, setDateNaissance] = useState(null);
+  const [valideName, setValideName] = useState(false);
+   const [dateNaissance, setDateNaissance] = useState(null);
   const [majorite, setMajorite] = useState(false);
   const [password, setPassword] = useState("");
   const [passwordMatch, setPasswordMatch] = useState(false);
@@ -32,9 +33,16 @@ export default function Inscription() {
       setEmailMatch(false);
     }
   }
+
+  // verify if name is longer than 6 character
+  const verifyName = () => {
+    if(nom.length < 6)
+      setValideName(false);
+  }
+
   // verify if respect the good format
   const verifyPassword = () => {
-    let validRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
+    let validRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$/\\"&+,:;`={}[\]?@#|'<~°£¨²§µ>.^*()%!-])(?=.{8,})/);
     if(!password.match(validRegex)){
       setPasswordMatch(false);
     }
@@ -59,9 +67,6 @@ export default function Inscription() {
   const verifyPaswords = () => {
     if(password === confirmPassword){
       setConfirmation(true);
-    }
-    else{
-      console.log("no")
     }
   }
 
@@ -151,15 +156,18 @@ export default function Inscription() {
               onChange={(e) => setEmail(e.target.value)}
               onBlur={verifyEmail}
               onFocus={() => setEmailMatch(true)}
-              style={{color : (emailMatch || email == "") ? "black" : "red" }}
               required
             />
+            <label style={{color: "red", display: (emailMatch || email == "") ? "none" : "block"}}>Vous email invalide !</label>
             <input
               type="text"
               placeholder="Nom prénom"
               onChange={(e) => setNom(e.target.value)}
+              onBlur={verifyName}
+              onFocus={() => setValideName(true)}
               required
             />
+            <label style={{color: "red", display: (valideName || nom == "") ? "none" : "block"}}>le nom complet doit faire minimum 6 caractères</label>
             <input
               type="date"
               placeholder="Date de naissance"
@@ -175,14 +183,15 @@ export default function Inscription() {
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={verifyPassword}
                 onFocus={() => setPasswordMatch(true)}
-                style={{color : (passwordMatch || password == "") ? "black" : "red" }}
+                style={{color : (passwordMatch || password == "") ? "black" : "orange" }}
                 required
               />
               <span 
-                style={{position: "absolute", top: "36%",right: "40px", zIndex: "9999"}}
+                style={{position: "absolute", top: "36%",right: "40px"}}
                 onClick={showHidePassword}>
                 <FontAwesomeIcon icon={faEye} />
               </span>
+              <label style={{color: "red", display: (passwordMatch || password == "") ? "none" : "block"}}>Vous mot de passe invalide !</label>
             </div>
             <div style={{position : "relative", width: "100%"}}>
               <input
@@ -194,11 +203,12 @@ export default function Inscription() {
                 required
               />
               <span 
-                style={{position: "absolute", top: "36%",right: "40px", zIndex: "9999"}}
+                style={{position: "absolute", top: "36%",right: "40px"}}
                 onClick={showHideVerifPassword}>
                 <FontAwesomeIcon icon={faEye} />
               </span>
             </div>
+            <label style={{color: "red", display: (password == confirmPassword || confirmPassword == "") ? "none" : "block"}}>mots de passe non conformes !</label>
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
