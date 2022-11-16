@@ -1,40 +1,28 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 import React, { useEffect, useRef, useState } from "react";
-=======
->>>>>>> 0760426 (udpate format)
-=======
-import React, { useEffect, useRef, useState } from "react";
->>>>>>> 9b2aab2 (update route dashboard)
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Ticket from "../component/Ticket";
 import { billets } from "../component/Data";
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 9b2aab2 (update route dashboard)
 import ButtonGrid from "../component/ButtonGrid";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import axios from "axios";
 
-<<<<<<< HEAD
 export default function Tickets() {
   const [colDefs, setColDefs] = useState([
     {
       field: "number",
-      minWidth: 300,
+      minWidth: 150,
     },
     {
-      field: "update",
-      minWidth: 300,
+      field: "jeux concours",
+      minWidth: 150,
     },
     {
-      field: "creat",
+      field: "go",
       minWidth: 200,
       cellRenderer: ButtonGrid,
     },
@@ -61,86 +49,6 @@ export default function Tickets() {
 
   console.log("width", width);
   useEffect(() => {
-    getAlltickets();
-  }, []);
-
-  const getAlltickets = async () => {
-    //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    const id = localStorage.getItem("refresh");
-
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const body = {
-      idClient: id,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/tickets-by-client";
-
-    try {
-      let Alltickets = await axios.post(api, body, config);
-      console.log("Alltickets", Alltickets);
-      const newTickets = Alltickets.data.map((a) => {
-        return {
-          number: a.ticketNumber,
-          creat: a.createdAt,
-          update: a.updatedAt,
-        };
-      });
-
-      setAlltickets(newTickets);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-=======
-import { DataGrid } from "@mui/x-data-grid";
-const columns = [
-  { field: "id", headerName: "ID", width: 90 },
-  { field: "date", headerName: "date", width: 100, editable: true },
-  {
-    field: "number",
-    headerName: "Number",
-    type: "number",
-    width: 200,
-  },
-  {
-    field: "lot",
-    headerName: "Lot",
-    type: "number",
-    width: 100,
-  },
-  {
-    field: "email",
-    headerName: "Email",
-    width: 110,
-  },
-  ,
-];
-export default function Tickets() {
->>>>>>> 0760426 (udpate format)
-=======
-export default function Tickets() {
-  const [colDefs, setColDefs] = useState([
-    {
-      field: "number",
-      minWidth: 150,
-    },
-    {
-      field: "jeux concours",
-      minWidth: 150,
-    },
-    {
-      field: "go",
-      minWidth: 200,
-      cellRenderer: ButtonGrid,
-    },
-  ]);
-
-  useEffect(() => {
     getAllSessions();
   }, []);
 
@@ -165,7 +73,6 @@ export default function Tickets() {
       console.log(e);
     }
   };
->>>>>>> 9b2aab2 (update route dashboard)
   const number = billets.length;
   console.log(billets);
   return (
@@ -178,7 +85,6 @@ export default function Tickets() {
       <Header />
       <h1 className={styles.h1}>Mes tickets</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
-<<<<<<< HEAD
         Vous avez{" "}
         <strong style={{ color: "#41D8C2" }}>{alltickets.length} </strong>
         {`tickets gagnants`}
@@ -193,45 +99,10 @@ export default function Tickets() {
         >
           <AgGridReact
             pagination={true}
-            rowData={alltickets}
-            columnDefs={colDefs}
-          ></AgGridReact>
-        </div>
-=======
-        Vous avez <strong style={{ color: "#41D8C2" }}>{number} </strong>
-        {`tickets gagnants`}
-      </p>
-      <div style={stylez.gain}>
-        <div
-          className="ag-theme-alpine"
-          style={{ height: "400px", width: "800px" }}
-        >
-          <AgGridReact
-            pagination={true}
             rowData={billets}
             columnDefs={colDefs}
           ></AgGridReact>
         </div>
-        {/* {billets.length > 0 ? (
-          <DataGrid
-            rows={billets}
-            getRowId={(row) => row.email}
-            columns={columns}
-            pageSize={15}
-            style={{ width: "100%" }}
-            rowsPerPageOptions={[15]}
-            checkboxSelection
-            disableSelectionOnClick
-            experimentalFeatures={{ newEditingApi: true }}
-          />
-        ) : (
-          <p> pas de tickets</p>
-<<<<<<< HEAD
-        )}
->>>>>>> 0760426 (udpate format)
-=======
-        )} */}
->>>>>>> 9b2aab2 (update route dashboard)
       </div>
       <Footer />
     </div>
@@ -242,13 +113,6 @@ const stylez = {
   gain: {
     display: "flex",
     flexDirection: "column",
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-    backgroundColor: "red",
->>>>>>> 0760426 (udpate format)
-=======
->>>>>>> 9b2aab2 (update route dashboard)
     alignItems: "center",
     width: "100vw",
     minHeight: "100vh",

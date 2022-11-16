@@ -4,8 +4,6 @@ import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
 import { users } from "../component/Data";
 import { DataGrid } from "@mui/x-data-grid";
-<<<<<<< HEAD
-<<<<<<< HEAD
 // or
 import { IconButton } from "@mui/material";
 import axios from "axios";
@@ -39,63 +37,6 @@ export default function Users({ idSession }) {
     //fonction pour récupérer tout les utilisateurs
     const token = localStorage.getItem("token");
     const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const body = {
-      idSession: idSession,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
-    try {
-      let allusers = await axios.post(api, body, config);
-      console.log("allusers", allusers.data);
-      setUserz(allusers.data);
-    } catch (e) {
-      console.log(e);
-    }
-  };
-=======
-=======
-// or
-import { IconButton } from "@mui/material";
->>>>>>> 9b2aab2 (update route dashboard)
-import axios from "axios";
-
-export default function Users({ idSession }) {
-  const [userz, setUserz] = useState([]);
-  const [colDefs, setColDefs] = useState([
-      { field: "fullName", headerName: "Nom", width: 250 },
-    {
-      field: "email",
-      headerName: "Email",
-      width: 300,
-      editable: false,
-    },
-    {
-      field: "birthday",
-      headerName: "birthday",
-      width: 250,
-      editable: false,
-    },
-  ]);
-
-
-  const number = users.length;
-  const columns = [
-  
-  ];
->>>>>>> 0760426 (udpate format)
-
-  useEffect(() => {
-    getAllUser();
-  }, [idSession]);
-
-  const getAllUser = async () => {
-    //fonction pour récupérer tout les utilisateurs
-    const token = localStorage.getItem("token");
-    const config = {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
@@ -108,7 +49,6 @@ export default function Users({ idSession }) {
 
     const api =
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
-    console.log("token", token);
     try {
       let allusers = await axios.get(api, body, config);
       console.log("alluser", allusers);
@@ -141,45 +81,18 @@ export default function Users({ idSession }) {
         </span>
       </button>
       <div style={stylez.gain}>
-<<<<<<< HEAD
-<<<<<<< HEAD
         {userz.length > 0 ? (
-          <DataGrid
-            getRowId={(row) => row._id}
-            rows={userz}
-            columns={colDefs}
-            pageSize={15}
-            style={{ width: 650 }}
-            rowsPerPageOptions={[2]}
-=======
-        {users.length > 0 ? (
-=======
-        {userz.length > 0 ? (
->>>>>>> 9b2aab2 (update route dashboard)
           <DataGrid
             getRowId={(row) => row._id}
             rows={userz}
             columns={columns}
             pageSize={15}
             rowsPerPageOptions={[2]}
-<<<<<<< HEAD
-            checkboxSelection
->>>>>>> 0760426 (udpate format)
-=======
->>>>>>> 9b2aab2 (update route dashboard)
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
           />
         ) : (
-<<<<<<< HEAD
-<<<<<<< HEAD
           <p> Pas de clients :'c </p>
-=======
-          <p> pas de users</p>
->>>>>>> 0760426 (udpate format)
-=======
-          <p> Pas de clients :'c </p>
->>>>>>> 9b2aab2 (update route dashboard)
         )}
       </div>
     </div>
@@ -188,13 +101,8 @@ export default function Users({ idSession }) {
 
 const stylez = {
   gain: {
-<<<<<<< HEAD
     width: "90%",
     height: "100vh",
-=======
-    width: 700,
-    height: 1000,
->>>>>>> 0760426 (udpate format)
     padding: 15,
   },
 

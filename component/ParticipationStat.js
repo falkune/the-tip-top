@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import React, {useEffect, useState} from "react";
 import Gauge from "react-svg-gauge";
 import axios from "axios";
@@ -30,17 +29,6 @@ export default function ParticipationStat({ticket, idSession}) {
       <Gauge
         value={percentageOfClaimbedTicket ? percentageOfClaimbedTicket : 0}
         label={"validation des tickets"}
-=======
-import React from "react";
-import Gauge from "react-svg-gauge";
-
-export default function ParticipationStat({val}) {
-  return (
-    <div>
-      <Gauge
-        value={val}
-        label={"Taux de participation"}
->>>>>>> fe7b512 (pull some update)
         width={500}
         height={400}
         color='#2a9d8f'
@@ -51,8 +39,4 @@ export default function ParticipationStat({val}) {
       />
     </div>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> fe7b512 (pull some update)

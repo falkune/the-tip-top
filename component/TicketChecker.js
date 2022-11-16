@@ -8,7 +8,6 @@ import dayjs from "dayjs";
 export default function TicketChecker({ session }) {
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
-<<<<<<< HEAD
   const [delivred, setDelivred] = useState(false);
 
   const [input, setInput] = useState("");
@@ -87,59 +86,6 @@ export default function TicketChecker({ session }) {
     //   console.log(e);
     // }
     setDelivred(true);
-=======
-  const [input, setInput] = useState("");
-  const [visible, setVisible] = useState(false);
-  const [ticket, setTicket] = useState({
-    deliverd: null,
-    assigned: "",
-    create_at: "07-06-2022",
-    lot: "",
-  });
-
-  const checkTicket = async () => {
-    //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    setLoading(true);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-<<<<<<< HEAD
-  const UpdateLoad = () => {
-    //fonction pour get le ticket par numéro
-    setLoad(true);
-    setTimeout(() => setLoad(false), 2000);
-    setVisible(true);
->>>>>>> 0760426 (udpate format)
-=======
-    const body = {
-      ticketNumber: input,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/check-ticket";
-    console.log("config", config);
-    console.log("tokens", token);
-    console.log("api", api);
-
-    try {
-      let nTicket = await axios.post(api, body, config);
-      console.log("newticket", nTicket.data);
-      setTicket({
-        assigned: nTicket?.data?.idClient,
-        create_at: dayjs(nTicket.data.createdAt).format("YYYY-MM-DD"),
-        lot: nTicket.data.lot,
-      });
-      setLoading(false);
-      setVisible(true);
-    } catch (e) {
-      console.log(e);
-    }
->>>>>>> 9b2aab2 (update route dashboard)
   };
 
   const UpdateInput = (e) => {
@@ -161,14 +107,7 @@ export default function TicketChecker({ session }) {
           justifyContent: "center",
           padding: 15,
           height: 500,
-<<<<<<< HEAD
-<<<<<<< HEAD
           marginTop: 25,
-=======
->>>>>>> 0760426 (udpate format)
-=======
-          marginTop: 25,
->>>>>>> 9b2aab2 (update route dashboard)
         }}
       >
         <div
@@ -190,27 +129,11 @@ export default function TicketChecker({ session }) {
             className={styles.input}
             maxLength={10}
             value={input}
-<<<<<<< HEAD
-<<<<<<< HEAD
             type="number"
             placeholder="Indiquer votre numéro de ticket"
           />
           {input.length === 10 ? (
             <button onClick={checkTicket} className={styles.action}>
-=======
-            type="text"
-            placeholder="Indiquer votre numéro de ticket"
-          />
-          {input.length === 10 ? (
-            <button onClick={UpdateLoad} className={styles.action}>
->>>>>>> 0760426 (udpate format)
-=======
-            type="number"
-            placeholder="Indiquer votre numéro de ticket"
-          />
-          {input.length === 10 ? (
-            <button onClick={checkTicket} className={styles.action}>
->>>>>>> 9b2aab2 (update route dashboard)
               Valider
             </button>
           ) : (
@@ -241,15 +164,10 @@ export default function TicketChecker({ session }) {
               textAlign: "center",
             }}
           >
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 9b2aab2 (update route dashboard)
             {ticket.lot != null ? <p>Lot : {ticket.lot}</p> : <p>invalide</p>}
 
             {ticket.assigned != null ? (
               <p>Assigné :{ticket.assigned}</p>
-<<<<<<< HEAD
             ) : (
               <p>Ticket non assigné</p>
             )}
@@ -257,35 +175,12 @@ export default function TicketChecker({ session }) {
               <p>Lot délivré</p>
             ) : (
               <p> Lot pas encore récupéré</p>
-=======
-            {ticket.numéro != null ? (
-              <p>Numéro : {ticket.numéro}</p>
-            ) : (
-              <p>invalide</p>
-            )}
-            {ticket.assigné != null ? (
-              <p>Assigné :{ticket.assigné}</p>
-=======
->>>>>>> 9b2aab2 (update route dashboard)
-            ) : (
-              <p>Ticket non assigné</p>
-            )}
-            {ticket.deliverd === true ? (
-              <p>Lot délivré</p>
-            ) : (
-<<<<<<< HEAD
-              <p> ticket expiré</p>
->>>>>>> 0760426 (udpate format)
-=======
-              <p> Lot pas encore récupéré</p>
->>>>>>> 9b2aab2 (update route dashboard)
             )}
             {ticket.create_at != null ? (
               <p>Date de création : {ticket.create_at}</p>
             ) : (
               <p>invalide</p>
             )}
-<<<<<<< HEAD
             {!delivred ? (
               <button
                 style={{
@@ -308,8 +203,6 @@ export default function TicketChecker({ session }) {
                 Lot délivré
               </p>
             )}
-=======
->>>>>>> 0760426 (udpate format)
           </div>
         )}
         {load === true && (

@@ -1,36 +1,8 @@
 {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
   "extends": "next/core-web-vitals",
-=======
-  "extends": "next/core-web-vitals", 
->>>>>>> 5dca966 (Add rules to eslintrc.json)
-=======
-  "extends": "next/core-web-vitals",
->>>>>>> e300be1 (Add rules)
-=======
-  "extends": "next/core-web-vitals",
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
+
   "rules": {
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off"
   }
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-  "extends": "next/core-web-vitals"
->>>>>>> d83cbc9 (initialisation du repository)
-=======
->>>>>>> 5dca966 (Add rules to eslintrc.json)
-=======
-  "extends": "next/core-web-vitals"
->>>>>>> cf2926b (Update dockerFile)
-=======
->>>>>>> e300be1 (Add rules)
-=======
->>>>>>> a584e821a7aee8a69ef870781d3a7bb3e50d105c
 }

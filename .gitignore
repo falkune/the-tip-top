@@ -39,13 +39,3 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
-
-
-=======
-./package-lock.json
-./yarn.lock
->>>>>>> 6456843 (update .gitIgnore)
-=======
-.package-lock.json
-.yarn.lock
->>>>>>> d065efb (update StatInscriptio and AgeStat)

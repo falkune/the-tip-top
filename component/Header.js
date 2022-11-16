@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "../image/logo.png";
-<<<<<<< HEAD
 import iconMenu from "../image/menu.svg";
 import Drawer from "@mui/material/Drawer";
 import Select from "@mui/material/Select";
@@ -12,14 +11,6 @@ import Cookies from 'js-cookie';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
-=======
-import menu from "../image/menu.svg";
-import Drawer from "@mui/material/Drawer";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-
-const Header = () => {
->>>>>>> 0760426 (udpate format)
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
 
@@ -30,30 +21,18 @@ const Header = () => {
 
   const updateDimensions = () => {
     setWidth(window.innerWidth);
-<<<<<<< HEAD
     localStorage.setItem("width", width);
-=======
->>>>>>> 0760426 (udpate format)
   };
   useEffect(() => {
     if (localStorage.getItem("role") !== undefined) {
       setRole(localStorage.getItem("role"));
-<<<<<<< HEAD
     }else{
       router.push("/connexion");
     }
-=======
-    }
-<<<<<<< HEAD
-    console.log(role);
->>>>>>> 0760426 (udpate format)
-=======
->>>>>>> ac3cdf0 (updating StatInscription and AgeStat)
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
-<<<<<<< HEAD
 
   const logout = () => {
     Cookies.remove('accessToken');
@@ -62,8 +41,6 @@ const Header = () => {
     localStorage.removeItem('role');
     localStorage.removeItem('width');
   }
-=======
->>>>>>> 0760426 (udpate format)
 
   return (
     <header style={styles.header}>
@@ -78,8 +55,6 @@ const Header = () => {
         }}
       >
         <Link href="/">
-<<<<<<< HEAD
-<<<<<<< HEAD
           <Image src={logo} width={56} height={56} alt="logo" />
         </Link>
         {width > 850 ? (
@@ -229,95 +204,6 @@ const Header = () => {
             </li>
           )}
         </div>
-=======
-          <Image src={logo} width="55" height="60" alt="logo" />
-=======
-          <div style={{ width: "4%" }}>
-            <Image src={logo} alt="logo" />
-          </div>
->>>>>>> 9b2aab2 (update route dashboard)
-        </Link>
-        {width > 650 ? (
-          <nav>
-            <ul style={styles.nav}>
-              {role && role === "client" && (
-                <Link href="/bingo">
-                  <a style={styles.li}>Bingo ticket</a>
-                </Link>
-              )}
-
-              {role && role === "client" && (
-                <Link href="/jeux">
-                  <a style={styles.li}>Grand jeux concours</a>
-                </Link>
-              )}
-
-              {role && role === "client" && (
-                <Link href="/tickets">
-                  <a style={styles.li}>Mes tickets</a>
-                </Link>
-              )}
-
-              {role && role === "admin" && (
-                <Link href="/stats">
-                  <a style={styles.li2}>Mes stats</a>
-                </Link>
-              )}
-
-              {!role && (
-                <Link href="/connexion">
-                  <a style={styles.login}>Connexion</a>
-                </Link>
-              )}
-              {role && (
-                <Link href="/connexion">
-                  <a style={styles.login}>Déconnexion</a>
-                </Link>
-              )}
-            </ul>
-          </nav>
-        ) : (
-          <Image
-            onClick={toggleDrawer(true)}
-            src={menu}
-            width="30"
-            height="30"
-            alt="menu"
-          />
-        )}
-      </div>
-      <Drawer
-        anchor={"right"}
-        open={open}
-        onClose={toggleDrawer(false)}
-        onOpen={toggleDrawer(true)}
-      >
-        <ul style={styles.draw}>
-          {role && role === "client" && (
-            <Link href="/bingo">
-              <a style={styles.li2}>Bingo ticket</a>
-            </Link>
-          )}
-
-          {role && role === "client" && (
-            <Link href="/jeux">
-              <a style={styles.li2}>Grand jeux concours</a>
-            </Link>
-          )}
-
-          {role && role === "client" && (
-            <Link href="/tickets">
-              <a style={styles.li2}>Mes tickets</a>
-            </Link>
-          )}
-
-          {role && role === "admin" && (
-            <Link href="/stats">
-              <a style={styles.li2}>Mes stats</a>
-            </Link>
-          )}
-        </ul>
->>>>>>> 0760426 (udpate format)
       </Drawer>
     </header>
   );
@@ -343,7 +229,6 @@ const styles = {
     marginRight: 25,
     color: "#AEAEAE",
     alignItems: "baseline",
-<<<<<<< HEAD
     listStyleType: "none",
   },
 
@@ -355,19 +240,6 @@ const styles = {
     height: "100%",
     paddingLeft: 15,
     paddingTop: 100,
-=======
-  },
-
-  draw: {
-    flex: "flex",
-    flexDirection: "column",
-    width: "100%",
-    padding: 25,
-    height: 700,
-    paddingTop: 100,
-    zIndex: 99999999999999999,
-    justifyContent: "center",
->>>>>>> 0760426 (udpate format)
   },
 
   li: {
@@ -377,25 +249,11 @@ const styles = {
     color: "gray",
   },
 
-<<<<<<< HEAD
-=======
-  li2: {
-    margin: 15,
-    fontSize: 20,
-    listStyleType: "none",
-    textDecoration: "none",
-    color: "gray",
-  },
-
->>>>>>> 0760426 (udpate format)
   login: {
     backgroundColor: "#41D8C2",
     color: "white",
     padding: 10,
-<<<<<<< HEAD
     textAlign: "center",
-=======
->>>>>>> 0760426 (udpate format)
     paddingLeft: 15,
     paddingRight: 15,
     borderRadius: 100,
@@ -403,7 +261,6 @@ const styles = {
     listStyleType: "none",
     textDecoration: "none",
   },
-<<<<<<< HEAD
   toLogin: {
     backgroundColor: "#41D8C2",
     color: "white",
@@ -442,6 +299,4 @@ const styles = {
     height: 60,
     background: "none",
   },
-=======
->>>>>>> 0760426 (udpate format)
 };
