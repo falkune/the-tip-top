@@ -49,7 +49,7 @@ export default function Stats() {
   useEffect(() => {
     if(Cookies.get('accessToken') == undefined) {
       router.push("/connexion");
-    }else if(Cookies.get('role') !== "admin"){
+    }else if(Cookies.get('userRole') !== "admin"){
       router.push("/bingo");
     }else{
       getAllSessions();
@@ -114,7 +114,7 @@ export default function Stats() {
     setMenu(e.target.value);
   };
 
-  if(Cookies.get("accessToken") !== undefined && Cookies.get('role') == "admin"){
+  if(Cookies.get("accessToken") !== undefined && Cookies.get('userRole') == "admin"){
     return (
       <div className={styles.container}>
         <Head>

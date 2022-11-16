@@ -44,11 +44,11 @@ export default function Connexion() {
         Cookies.set('accessToken', data.accessToken)
         if (data.roles.includes("admin")) {
           localStorage.setItem("role", "admin");
-          Cookies.set('role', "admin");
+          Cookies.set('userRole', "admin");
           router.push("/stats");
         } else {
           localStorage.setItem("role", "client");
-          Cookies.set('role', "client");
+          Cookies.set('userRole', "client");
           router.push("/bingo");
         }
       })

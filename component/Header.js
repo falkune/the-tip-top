@@ -36,7 +36,7 @@ const Header = ({ menu, changemenu }) => {
 
   const logout = () => {
     Cookies.remove('accessToken');
-    Cookies.remove('role');
+    Cookies.remove('userRole');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('width');
