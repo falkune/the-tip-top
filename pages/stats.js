@@ -5,7 +5,6 @@ import AllStats from "../component/AllStats";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Users from "../component/Users";
-import AgeModal from "../component/AgeModal";
 import TicketChecker from "../component/TicketChecker";
 import TicketGenerator from "../component/TicketGenerator";
 import Sessions from "../component/Sessions";
@@ -125,13 +124,6 @@ export default function Stats() {
         <Header changemenu={changemenu} stylez={stylez} menu={menu} />
   
         <div style={{ display: "flex", width: "100%", background: "green" }}>
-          <AgeModal
-            // numAge={numAge}
-            //  giveAge={giveAge}
-            closeAge={closeAge}
-            handlechange={handlechange}
-          />
-  
           {width > 850 && (
             <div style={stylez.side}>
               <h2 style={{ color: "white", textAlign: "center" }}>Dashboard</h2>

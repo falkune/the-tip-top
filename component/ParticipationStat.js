@@ -10,6 +10,7 @@ export default function ParticipationStat({ticket, idSession}) {
       ticketValidationstats();
     }
   })
+
   const ticketValidationstats = async () => {
     const accessToken = localStorage.getItem('token');
     const body = {
@@ -18,7 +19,7 @@ export default function ParticipationStat({ticket, idSession}) {
     const config = {
       headers: { Authorization: `Bearer ${accessToken}` },
     }
-    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/claimbed-tickets-by-session"
+    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/claimbed-tickets-by-session/"
     const response = await axios.post(url, body, config)
     setNumberOfClaimbedTicket(response.data.length);
     setpercentageOfClaimbedTicket(numberOfClaimbedTicket * 100 / ticket);

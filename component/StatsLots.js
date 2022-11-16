@@ -7,19 +7,14 @@ const StatsLots = ({ idSession }) => {
   const [allGroup, setAllGroup] = useState([]);
 
   useEffect(() => {
-    getTicketStats();
+    if(idSession != ""){
+      getTicketStats();
+    }
     getAllGroup();
-  },[]);
+  },[idSession]);
 
   const getTicketStats = async () => {
-    const accessToken = localStorage.getItem('token');
-    const body = {
-      idSession : idSession,
-    }
-    const config = {
-      headers: { Authorization: `Bearer ${accessToken}` },
-    }
-    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/get-ticket-stats"
+    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/get-ticket-stats/"+idSession
     const response = await axios.get(url)
     setAllGroup(response.data);
   }
@@ -36,10 +31,10 @@ const StatsLots = ({ idSession }) => {
       allGroup.map((l,index)=> (
         <OneLot 
           key={index}
-          title={groupInfo ? groupInfo[index].description : ""}
+          title={groupInfo.find(e => e._id == l._id).description}
           now={l.claimbedTicket}
           max={l.numberOfTickets}
-          value={(l.claimbedTicket * 100 / l.numberOfTickets).toFixed(2)}
+          value={l.numberOfTickets > 0 ? (l.claimbedTicket * 100 / l.numberOfTickets).toFixed(2) : 0.0.toFixed(2)}
           /> 
       ))
     }
