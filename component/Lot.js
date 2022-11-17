@@ -26,7 +26,7 @@ const styles = {
     width: 250,
     height: 250,
     padding: 5,
-    color :"#41D8C2",
+    color :" #02558D",
     boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.46)",
     borderRadius: 8,
     display: "flex",

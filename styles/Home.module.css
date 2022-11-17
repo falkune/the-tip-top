@@ -127,30 +127,44 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
   text-align: center;
 }
 
+.log{
+  display: flex;
+  margin: 15px;
+  border-radius: 8px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100% ;
+  padding: 10px;
+  text-align: center;
+}
+
 .part p{
   text-align: center;
-  color: #41D8C2;
+  color:  #02558D;
 
 }
 
   .part ul{
-    color: #41D8C2;
+    color:  #02558D;
 
   }
 
     .homdiv {
-      background-image:url("../image/13607_generated.png");
-      background-size: cover;
+      background: linear-gradient(
+     rgba(0, 0, 0, 0.45), 
+     rgba(0, 0, 0, 0.45)
+   ),url("../image/teahome.png")no-repeat;background-size:cover;
       background-repeat: no-repeat;
       display: flex;
       flex-direction: column;
       justify-content: start;
-      background-color: #41D8C2;
+      background-color:  #02558D;
       align-items: center;
       width: 100%;
       padding: 10px;
       text-align: center;
-      min-height: 600px;
+      min-height: 100vh;
     }
         .homdiv h1 {
           color: white;
@@ -171,20 +185,20 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
               height: 50px;
               background-color:white ;
               border: none;
-              color: #41D8C2;
+              color:  #02558D;
               font-size: 22px;
               font-weight: bold;
               box-shadow: 0px 0px 0px 8px rgb(255, 255, 255);
               margin-top: 50px;
         }
 .h1{
-  color: #41D8C2;
+  color:  #02558D;
   font-size: 40px;
   margin-bottom: 0;
 }
 
 .h2{
-  color: #41D8C2;
+  color:  #02558D;
 }
 
 .login{
@@ -203,7 +217,7 @@ max-width:500px ;
   padding-left: 25px;
   font-size: 18px;
   outline: none;
-  border: solid 1px #41D8C2
+  border: solid 1px  #02558D
   }
   
 
@@ -212,11 +226,11 @@ max-width:500px ;
   padding:15px;
   border-radius: 100px;
   min-width: 225px;
-  background-color: #41D8C2;
+  background-color:  #02558D;
   border: none;
   color: white;
   font-size: 20px;
-  box-shadow: 0px 0px 0px 8px rgba(64,239,215,0.52);
+  box-shadow: 0px 0px 0px 8px rgba(2,85,141,0.25);
   margin: 15px;
 
 }
@@ -289,7 +303,7 @@ margin-bottom: 15px;
   padding-left: 25px;
   font-size: 16px;
   outline: none;
-  border: solid 2px #41D8C2;
+  border: solid 2px  #02558D;
   border-radius: 5px;
 }
 
@@ -328,7 +342,7 @@ margin-bottom: 15px;
 
 .modal h2{
 
-  color:#41D8C2
+  color: #02558D
 }
 
 .modal p{
@@ -338,7 +352,7 @@ margin-bottom: 15px;
 
 .modal input{
   border-radius: 8px;
-  border:solid 1px #41D8C2;
+  border:solid 1px  #02558D;
   font-size: 19px;
 }
 

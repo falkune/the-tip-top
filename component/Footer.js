@@ -3,7 +3,14 @@ import Link from "next/link"
 
 const Footer = () => {
   return (
-    <div style={styles.footer}>   
+    <div style={styles.footer}>  
+    <form className="newsletter">
+        <p>S'inscrire à notre Newletter</p>
+        <small>Pour être informé de nos news inscrivez à notre newletter</small>
+        <input style={{width:"100%"}} placeholder="Nom" type="text" />
+        <input  style={{width:"100%"}}placeholder="Email" type="email" />
+        <button>S'inscrire</button>
+        </form> 
         <nav>
              <ul style={styles.nav}>
              <Link href="/politique"> 
@@ -11,7 +18,7 @@ const Footer = () => {
              </Link>
 
              <Link href="/condition"> 
-                 <li style={styles.li}>Conditions générales</li>
+                 <li style={styles.li}>Mention légales</li>
              </Link>
 
              </ul>
@@ -24,11 +31,16 @@ const Footer = () => {
 export default Footer
 
 const styles = {
+   form:{
+   display:'flex',
+   flexDirection:"column"}
+,
     footer:{
         width:"100%",
-        backgroundColor:"#41D8C2",
-        height:70,
+        backgroundColor:" #024370",
+        minHeight:70,
         display:"flex",
+        flexDirection:"column",
         justifyContent:"space-evenly",
         alignItems:"center",
     },

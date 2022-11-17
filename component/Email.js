@@ -9,7 +9,6 @@ const [tseconds, setSeconds] = useState(0);
 
 useEffect(() => {
   countDownInterval
-  console.log('ok')
 }, []);
 
 const countDownDate = new Date("Jul 25, 2022 23:59:99").getTime();

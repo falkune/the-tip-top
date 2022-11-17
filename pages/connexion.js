@@ -106,7 +106,7 @@ export default function Connexion() {
         <Header />
         <section className={styles.login}>
           <form
-            className={styles.part}
+            className={styles.log}
             style={{ borderBottom: "solid 1px #D2D2D2" }}
             onSubmit={(e) => connexion(e)}
           >

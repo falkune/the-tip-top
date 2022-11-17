@@ -41,7 +41,7 @@ const styles = {
 
     ticket:{
         width:"100%",
-        backgroundColor:"#46E8D1",
+        backgroundColor:" #02558D",
         display:"flex",
         justifyContent:"center",
         alignItems:"center",
@@ -72,7 +72,7 @@ const styles = {
         paddingBottom:8
     },
   text:{
-      color:"#46E8D1",
+      color:" #02558D",
       margin:0,
       textAlign:'center',
       padding:8

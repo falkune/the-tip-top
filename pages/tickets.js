@@ -86,7 +86,7 @@ export default function Tickets() {
       <h1 className={styles.h1}>Mes tickets</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
         Vous avez{" "}
-        <strong style={{ color: "#41D8C2" }}>{alltickets.length} </strong>
+        <strong style={{ color: " #02558D" }}>{alltickets.length} </strong>
         {`tickets gagnants`}
       </p>
       <div style={stylez.gain}>

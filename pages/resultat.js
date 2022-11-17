@@ -74,7 +74,7 @@ export default function Resultat() {
   return (
     <div
       style={{
-        backgroundColor: "#41D8C2",
+        backgroundColor: " #02558D",
         width: "100%",
         paddingTop: 100,
         display: "flex",
@@ -140,7 +140,7 @@ export default function Resultat() {
             textAlign: "center",
           }}
         >
-          <h2 style={{ color: "#41D8C2", marginBottom: 0 }}>Vous avez gagné</h2>
+          <h2 style={{ color: " #02558D", marginBottom: 0 }}>Vous avez gagné</h2>
           <p>{lot}</p>
           <Image src={tea1} />
           <small style={{ color: "grey" }}>
@@ -151,7 +151,7 @@ export default function Resultat() {
             style={{
               width: 180,
               height: 40,
-              background: "#41D8C2",
+              background: " #02558D",
               color: "white",
               border: "none",
               margin: 15,
