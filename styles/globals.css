@@ -48,16 +48,52 @@ header{
 }
 
 footer{
-  text-align: center;
-  height: 100px;
-  padding: 100px 0;
-  background-color: darkslategray;
-  color: white;
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  left: 0;
+width: 100%;
+background-color: #02558D;
+padding-top: 25px;
+display: flex;
+flex-direction: column;
+justify-content: space-evenly;
+align-items: center;
+
 }
+
+footer nav {
+
+  display: flex;
+  align-items: center;
+  color:white
+}
+
+footer ul {
+  display: flex;
+  padding-left: 0;
+}
+
+footer button{
+
+  border-radius: 100px;
+  background-color:#04304E;
+  color: white;
+  padding: 15px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.homebutton {
+
+  padding:15px;
+  border-radius: 100px;
+  min-width: 225px;
+  background-color:  #02558D;
+  border: none;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0px 0px 0px 8px rgba(2,85,141,0.25);
+  margin: 15px;
+}
+
 
 .baction{
   padding: 15px;
@@ -101,13 +137,22 @@ footer{
 .childLot{
   display: flex;
   flex-direction: column;
-  text-align: left;
+  text-align: center;
   padding: 15px;
-  background: white;
+  background: #F6F6F6;
+  font-size: 16px;
+  width: 100%;
+  max-width: 350px;
+  padding-bottom: 25px;
+  padding-top: 25px;
+  margin: 15px;
+  border-radius: 8px;
+
 }
 .childLot a{
   text-decoration:underline;
-  font-size: 20px;
+  font-size: 16px;
+  padding: 8px;
 }
 
 
@@ -180,27 +225,29 @@ a {
 
 .team img{
   border-radius: 10px;
-  margin: 25px;}
+  margin: 25px
+}
+
 .team2{
   display: flex;
   flex-direction: column;
   align-items: center;
-   width: 100%;
-   background-color:  #02558D;
-     color:white;
+  width: 100%;
+  background-color:  #02558D;
+  color:white;
   min-height: 60vh;
   padding: 15px;
   padding-top: 150px;
 }
 
 .team2 h2{
- font-size: 2.5em;
+ font-size: 2.4em;
  margin-bottom: 5px;
 }
 .team2 p{
   max-width: 800px;
-  font-size: 18px;
-  line-height: 1.7;
+  font-size: 16px;
+  line-height: 1.8;
  }
 * {
   box-sizing: border-box;
@@ -218,30 +265,66 @@ a {
         }
 
 .lotsItems{
-  min-width: 300px;
-  width: 48%;
+  width: 100%;
   background-color: #02558D;
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+  padding: 20px;
   align-items: center;
   color: white;
-  margin: 10px;
-  padding: 25px;
+  padding-bottom: 35px;
+  margin:10px;
+  transform: translatey(0px);
+  animation: float 3s ease-in-out infinite;
+  border-radius: 15px;
 }
 
 .lotsItems h3{
- font-size: 2.5em;
- text-align: center;
+  font-size: 1.6em;
+  text-align: center;
+  margin: 5px;
 }
 .lotsItems p{
   font-size: 18px;
-  max-width: 320px;
+  max-width: 300px;
   text-align: center;
+  margin: 5px;
+  line-height: 1.5;
  }
 
  .lotsItems a{
   background-color: white;
+  border: solid 3px #02558D;
   color: #02558D;
   padding: 15px;
-  margin: 15px;
+  margin: 30px;
+  font-weight: bold;
+  border-radius: 100px;
+  text-align: center;
  }
+
+ .lotsItems img{
+   width: 10px;
+
+ }
+
+ .breacrumb ol {
+    padding: 0px;
+    list-style-type: none;
+    display: flex;
+ }
+
+
+@keyframes float {
+0% {
+  transform: translatey(0px);
+}
+
+50% {
+  transform: translatey(-20px);
+}
+
+100% {
+  transform: translatey(0px);
+}
+}

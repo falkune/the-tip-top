@@ -8,22 +8,13 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import { firebaseApp } from "../config/firebase";
+import Cookies from 'js-cookie'
 
-import {
-  AuthProvider,
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-} from "firebase/auth";
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fool, setFool] = useState(false);
-  const GoogleProvider = new GoogleAuthProvider();
-  const FacebookProvider = new FacebookAuthProvider();
 
   const router = useRouter();
 
@@ -48,21 +39,21 @@ export default function Connexion() {
     fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
       .then((response) => response.json())
       .then((data) => {
-        console.log("log", data);
         // en fonction du role de l'utilisateur rediriger vers la bonne interface
         localStorage.setItem("token", data.accessToken);
+        Cookies.set('accessToken', data.accessToken)
         if (data.roles.includes("admin")) {
           localStorage.setItem("role", "admin");
+          Cookies.set('userRole', "admin");
           router.push("/stats");
         } else {
           localStorage.setItem("role", "client");
+          Cookies.set('userRole', "client");
           router.push("/bingo");
         }
       })
       .catch((error) => {
         setFool(true);
-
-        console.log(error);
       });
   };
 
@@ -74,26 +65,9 @@ export default function Connexion() {
   };
 
   const signInWith = (provider) => {
-    // this function connect user withn with his google or facebook account
-    const firebaseAuth = getAuth(firebaseApp);
-    signInWithPopup(firebaseAuth, provider)
-      .then((res) => {
-        const user = res.user;
-        console.log(user);
-        const displayName = user.displayName;
-        const email = user.email;
-        const uid = user.uid;
-        // contacter API
-      })
-      .catch((err) => {
-        const errorCode = err.code;
-        const errorMessage = err.message;
-        // console.log(errorMessage)
-        if (err.code === "auth/account-exists-with-different-credential") {
-          console.log("error");
-        }
-      });
-  };
+
+    
+  }
 
   return (
     <div>
@@ -140,10 +114,12 @@ export default function Connexion() {
             <button
               style={{
                 backgroundColor: "#437BFF",
+                fontWeight:"bold",
                 color: "white",
                 position: "relative",
+                height:60,
               }}
-              onClick={() => signInWith(FacebookProvider)}
+              onClick={signInWith}
             >
               <span style={{ position: "absolute", left: 20, bottom: 1 }}>
                 <Image
@@ -158,11 +134,17 @@ export default function Connexion() {
             </button>
             <button
               style={{
+                display:"flex",
+                alignItems:"center",
+                justifyContent:"center",
+                fontSize:18,
                 backgroundColor: "white",
+                fontWeight:"bold",
                 color: "#437BFF",
+                 height:60,
                 boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
               }}
-              onClick={() => signInWith(GoogleProvider)}
+              onClick={signInWith}
             >
               <span style={{ position: "absolute", left: 8, bottom: 1 }}>
                 <Image src={google} width="40" height="40" alt="google logo" />
@@ -171,11 +153,19 @@ export default function Connexion() {
             </button>
           </div>
         </section>
-        <small>
+        <small style={{color:"grey"}}>
           Pas encore de compte ?
           <strong style={{ color: "#437BFF" }}>
             {" "}
-            <button onClick={goSignup}> S'inscrire</button>
+            <button   style={{
+                margin:10,
+                fontWeight:"bold",
+                color: "#437BFF",
+                border:"none",
+                padding:10,
+                border:5
+              }}
+              onClick={goSignup}> S'inscrire</button>
           </strong>
         </small>
       </div>

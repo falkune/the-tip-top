@@ -7,26 +7,79 @@ import Footer from "../component/Footer";
 import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRouter } from "next/router";
-import { firebaseApp } from "../config/firebase";
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider,
-} from "firebase/auth";
-import ModalAge from "../component/ModalAge";
+import { faEye } from '@fortawesome/free-solid-svg-icons'
 
 export default function Inscription() {
   const router = useRouter();
   const [email, setEmail] = useState("");
+  const [emailMatch, setEmailMatch] = useState(false);
   const [nom, setNom] = useState("");
-  const [dateNaissance, setDateNaissance] = useState(null);
-  const [password, setPassword] = useState(null);
-  const [confirm, setConfirm] = useState(null);
-  const [showAgeModal, setShowAgeModal] = useState(false);
-  const GoogleProvider = new GoogleAuthProvider();
-  const FacebookProvider = new FacebookAuthProvider();
+  const [valideName, setValideName] = useState(false);
+   const [dateNaissance, setDateNaissance] = useState(null);
+  const [majorite, setMajorite] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordMatch, setPasswordMatch] = useState(false);
+  const [showPassword, setShowpassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [confimation, setConfirmation] = useState(false);
+  const [showVerifPassword, setShowVerifpassword] = useState(false);
+
+  // verify if email is in good format 
+  const verifyEmail = () => {
+    let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+    if(!email.match(validRegex)){
+      setEmailMatch(false);
+    }
+  }
+
+  // verify if name is longer than 6 character
+  const verifyName = () => {
+    if(nom.length < 6)
+      setValideName(false);
+  }
+
+  // verify if respect the good format
+  const verifyPassword = () => {
+    let validRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$/\\"&+,:;`={}[\]?@#|'<~°£¨²§µ>.^*()%!-])(?=.{8,})/);
+    if(!password.match(validRegex)){
+      setPasswordMatch(false);
+    }
+  }
+
+  const showHidePassword = () => {
+    if(showPassword){
+      setShowpassword(false);
+    }else{
+      setShowpassword(true);
+    }
+  }
+
+  const showHideVerifPassword = () => {
+    if(showVerifPassword){
+      setShowVerifpassword(false);
+    }else{
+      setShowVerifpassword(true);
+    }
+  }
+
+  const verifyPaswords = () => {
+    if(password === confirmPassword){
+      setConfirmation(true);
+    }
+  }
+
+  const verifMajorite = () => {
+    let months = Date.now() - new Date(dateNaissance);
+    let monthDate = new Date(months);
+    let years = monthDate.getUTCFullYear();
+    let age = Math.abs(years - 1970);
+    console.log(age)
+    if(age >= 18){
+      setMajorite(true);
+    }
+  }
 
   const googleRegistration = () => {
     // contact API
@@ -37,56 +90,46 @@ export default function Inscription() {
       .catch((error) => console.log(error));
   };
 
-  FacebookProvider.addScope("email");
-  FacebookProvider.addScope("user_birthday");
-  FacebookProvider.addScope("user_friends");
   const facebookRegistration = () => {
-    // setShowAgeModal(true);
-    const firebaseAuth = getAuth(firebaseApp);
-    signInWithPopup(firebaseAuth, FacebookProvider)
-      .then((res) => {
-        setEmail(res.user.email);
-        setNom(res.user.displayName);
-        dateNaissance(res.user.reloadUserInfo.dateOfBirth);
-      })
-      .catch((err) => {
-        const errorCode = err.code;
-        const errorMessage = err.message;
-        if (err.code === "auth/account-exists-with-different-credential") {
-          console.log("error");
-        }
-      });
-  };
+
+  }
+
 
   const register = (e) => {
     // register function contact the backend API service
     e.preventDefault();
-    const params = {
-      fullName: nom,
-      email: email,
-      password: password,
-      birthday: dateNaissance,
-    };
-
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "Application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    };
-    fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/", options)
-      .then((response) => response.json())
-      .then((data) => {
-        router.push({
-          pathname: `bingo`,
-          query: { number: router.query.num ? router.query.num : null },
+    if(emailMatch && passwordMatch && confimation && majorite){
+      const params = {
+        fullName: nom,
+        email: email,
+        password: password,
+        birthday: dateNaissance,
+      };
+  
+      const options = {
+        method: "POST",
+        headers: {
+          Accept: "Application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(params),
+      };
+      fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/", options)
+        .then((response) => response.json())
+        .then((data) => {
+          if('error' in data){
+            console.log(data.message);
+          }else{
+            router.push({
+              pathname: `connexion`,
+              query: { number: router.query.num ? router.query.num : null },
+            });
+          }
+        })
+        .catch((error) => {
+          console.log(error);
         });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    }
   };
 
   return (
@@ -99,7 +142,6 @@ export default function Inscription() {
         </Head>
         <Header />
         <section className={styles.login}>
-          <ModalAge showHide={showAgeModal} />
           <form
             className={styles.part}
             style={{ borderBottom: "solid 1px #D2D2D2" }}
@@ -109,30 +151,64 @@ export default function Inscription() {
               Inscription
             </h1>
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
+              onBlur={verifyEmail}
+              onFocus={() => setEmailMatch(true)}
+              required
             />
+            <label style={{color: "red", display: (emailMatch || email == "") ? "none" : "block"}}>Vous email invalide !</label>
             <input
               type="text"
               placeholder="Nom prénom"
               onChange={(e) => setNom(e.target.value)}
+              onBlur={verifyName}
+              onFocus={() => setValideName(true)}
+              required
             />
+            <label style={{color: "red", display: (valideName || nom == "") ? "none" : "block"}}>le nom complet doit faire minimum 6 caractères</label>
             <input
               type="date"
               placeholder="Date de naissance"
               onChange={(e) => setDateNaissance(e.target.value)}
+              onBlur={verifMajorite}
+              required
             />
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Confirmation du mot de passe"
-              onChange={(e) => setConfirm(e.target.value)}
-            />
+            <label style={{color: "red", display: (majorite || dateNaissance == null) ? "none" : "block"}}>Vous devez avoir au moins 18 ans pour participer...</label>
+            <div style={{position : "relative", width: "100%"}}>
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Mot de passe"
+                onChange={(e) => setPassword(e.target.value)}
+                onBlur={verifyPassword}
+                onFocus={() => setPasswordMatch(true)}
+                style={{color : (passwordMatch || password == "") ? "black" : "orange" }}
+                required
+              />
+              <span 
+                style={{position: "absolute", top: "36%",right: "40px"}}
+                onClick={showHidePassword}>
+                <FontAwesomeIcon icon={faEye} />
+              </span>
+              <label style={{color: "red", display: (passwordMatch || password == "") ? "none" : "block"}}>Vous mot de passe invalide !</label>
+            </div>
+            <div style={{position : "relative", width: "100%"}}>
+              <input
+                type={showVerifPassword ? "text" : "password"}
+                placeholder="Confirmation du mot de passe"
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                onBlur={verifyPaswords}
+                style={{color : (password == confirmPassword) ? "black" : "orange" }}
+                required
+              />
+              <span 
+                style={{position: "absolute", top: "36%",right: "40px"}}
+                onClick={showHideVerifPassword}>
+                <FontAwesomeIcon icon={faEye} />
+              </span>
+            </div>
+            <label style={{color: "red", display: (password == confirmPassword || confirmPassword == "") ? "none" : "block"}}>mots de passe non conformes !</label>
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
@@ -176,9 +252,17 @@ export default function Inscription() {
             </button>
           </div>
         </section>
-        <small>
+        <small style={{color:"grey"}}>
           Déjà un compte ?
-          <strong style={{ color: "#437BFF" }}>
+          <strong style={{
+                backgroundColor:"#F2F2F2",
+                margin:10,
+                fontWeight:"bold",
+                color: "#437BFF",
+                border:"none",
+                padding:10,
+                border:5
+              }}>
             <Link href="/connexion"> Se connecter</Link>
           </strong>
         </small>

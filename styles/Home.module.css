@@ -151,11 +151,10 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
   }
 
     .homdiv {
-      background: linear-gradient(
-     rgba(0, 0, 0, 0.45), 
-     rgba(0, 0, 0, 0.45)
-   ),url("../image/teahome.png")no-repeat;background-size:cover;
+      background-image: linear-gradient(rgba(2, 85, 255, 0.5), rgba(255, 172, 7, 0.8)),
+      url("../image/woaw.png");
       background-repeat: no-repeat;
+      background-position: 25% 75%;
       display: flex;
       flex-direction: column;
       justify-content: start;
@@ -167,29 +166,33 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
       min-height: 100vh;
     }
         .homdiv h1 {
-          color: white;
-          font-size: 2.9em;
-          margin-bottom: 15px;
+          color: #FFAC07;
+          font-size: 6em;
+          margin-bottom: 20px;
           margin-top: 10px;
+          font-style: normal;
+          font-family: cooper-black-std, serif;
+          font-weight: 400;
+          text-shadow: 3px 6px 0px #B54526;   
+          animation: animate__backInDown;
         }
         .homdiv h2 {
           color: white;
-          font-size: 1.8em;
-          margin-bottom: 15px;
+          font-size: 1.4em;
+          margin-bottom: 10px;
           margin-top: 10px;
         }
         .homdiv button {
-    
+              padding: 15px;
               border-radius: 100px;
-              min-width: 200px;
-              height: 50px;
+              min-width: 225px;
               background-color:white ;
               border: none;
               color:  #02558D;
-              font-size: 22px;
+              font-size: 18px;
               font-weight: bold;
               box-shadow: 0px 0px 0px 8px rgb(255, 255, 255);
-              margin-top: 50px;
+              margin-top: 35px;
         }
 .h1{
   color:  #02558D;
@@ -216,8 +219,9 @@ max-width:500px ;
   max-width: 500px;
   padding-left: 25px;
   font-size: 18px;
+  background-color: #F8F8F8;
   outline: none;
-  border: solid 1px  #02558D
+  border: none
   }
   
 
@@ -259,21 +263,21 @@ max-width:500px ;
 
 
 .bingo{
-display: flex;
-flex-direction: column;
-align-items: center;
-font-size: 1.1em;
-height: 60px;
-width: 90%;
-max-width: 500px;
-padding: 10px;
-padding-left: 15px;
-border: solid 1px  #D2D2D2;
-border-radius: 5px;
-margin-top: 15px;
-outline: none;
-background-color: white;
-margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1em;
+  height: 60px;
+  width: 90%;
+  max-width: 500px;
+  padding: 10px;
+  padding-left: 15px;
+  border: solid 1px  #D2D2D2;
+  border-radius: 5px;
+  margin-top: 15px;
+  outline: none;
+  background-color: white;
+  margin-bottom: 15px;
 
 }
 
@@ -285,7 +289,6 @@ margin-bottom: 15px;
 
 
 .bingo input{
-  height: 100%;
   margin: 10px;
   width: 90%;
   max-width: 500px;
@@ -341,12 +344,10 @@ margin-bottom: 15px;
 }
 
 .modal h2{
-
   color: #02558D
 }
 
 .modal p{
-
   color: #1D1D1D
 }
 
@@ -356,32 +357,17 @@ margin-bottom: 15px;
   font-size: 19px;
 }
 
-.floating{
-    transform: translatey(0px);
-    animation: float 3s ease-in-out infinite;
-}
-
-@keyframes float {
-  0% {
-    transform: translatey(0px);
-  }
-
-  50% {
-    transform: translatey(-20px);
-  }
-
-  100% {
-    transform: translatey(0px);
-  }
-}
 
 
 
-
-
-@media (max-width: 600px) {
+@media (max-width: 500px) {
   .grid {
     width: 100%;
     flex-direction: column;
+  }
+
+  .homdiv h1{
+       margin-bottom: 20px;
+    font-size: 2.6em;
   }
 }

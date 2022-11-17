@@ -36,10 +36,6 @@ export default function TicketChecker({ session }) {
 
     const api =
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/check-ticket";
-    console.log("config", config);
-    console.log("tokens", token);
-    console.log("api", api);
-
     try {
       let nTicket = await axios.post(api, body, config);
       console.log("newticket", nTicket.data);

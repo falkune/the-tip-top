@@ -36,9 +36,6 @@ export default function TicketGenerator({ session_id }) {
       idSession: session_id,
     };
     const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket";
-    console.log("config", config);
-    console.log("tokens", token);
-    console.log("api", api);
 
     try {
       let newTicket = await axios.post(api, body, config);

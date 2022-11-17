@@ -9,15 +9,19 @@ import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/router";
 
 const Header = ({ menu, changemenu }) => {
+  const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
-  const router = useRouter();
-
 
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
+
+  const logout = () =>{
+
+
+  }
 
   const updateDimensions = () => {
     setWidth(window.innerWidth);
@@ -26,6 +30,8 @@ const Header = ({ menu, changemenu }) => {
   useEffect(() => {
     if (localStorage.getItem("role") !== undefined) {
       setRole(localStorage.getItem("role"));
+    }else{
+      router.push("/connexion");
     }
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
@@ -60,34 +66,34 @@ const Header = ({ menu, changemenu }) => {
           <nav>
             <ul style={styles.nav}>
             <Link href="/equipe">
-                <li style={styles.li}>Qui sommes nous ?</li>
+                <li style={ menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
               </Link>
               <Link href="/regle">
-            <li style={styles.li}>Règle du jeux</li>
+            <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
           </Link>
           <Link href="/lots">
-            <li style={styles.li}>Lot à gagner</li>
+            <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
           </Link>
               {role && role === "client" && (
-                <li style={styles.li}>
+                <li style={menu === "bingo" ? styles.liactive : styles.li}>
                   {" "}
                   <Link href="/bingo">Bingo ticket </Link>
                 </li>
               )}
 
               {role && role === "client" && (
-                <li style={styles.li}>
+                <li style={menu === "jeux" ? styles.liactive : styles.li}>
                   {" "}
                   <Link href="/jeux">Grand jeux concours </Link>
                 </li>
               )}
 
               {role && role === "client" && (
-                <li style={styles.li}>
+                <li style={menu === "tickets" ? styles.liactive : styles.li}>
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-              <li style={styles.li}>
+              <li style={menu === "contact" ? styles.liactive : styles.li}>
                   <Link href="/contact">Contactez nous </Link>
                 </li>
 
@@ -216,7 +222,7 @@ const Header = ({ menu, changemenu }) => {
             </div>
           )}
           {role ? (
-            <li style={styles.toLogin}>
+            <li style={styles.toLogin} onClick={logout}>
               <Link href="/connexion">Déconnexion </Link>
             </li>
           ) : (
@@ -271,6 +277,14 @@ const styles = {
     fontWeight:"bold"
   },
 
+  liactive: {
+    marginLeft: 15,
+    listStyleType: "none",
+    textDecoration: "none",
+    color: "#02558D",
+    fontWeight:"bold"
+  },
+
   login: {
     backgroundColor: " #02558D",
     color: "white",
@@ -284,6 +298,8 @@ const styles = {
     justifyContent:"center",
     listStyleType: "none",
     textDecoration: "none",
+    border:"none",
+    fontWeight:"bold"
   },
   toLogin: {
     backgroundColor: " #02558D",
@@ -298,6 +314,9 @@ const styles = {
     height: 50,
     listStyleType: "none",
     textDecoration: "none",
+    border:"none",
+    fontWeight:"bold"
+
   },
   sideButtonActive: {
     fontSize: 20,
