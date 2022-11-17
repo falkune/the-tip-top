@@ -9,9 +9,9 @@ import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/router";
 
 const Header = ({ menu, changemenu }) => {
+  const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
-  const router = useRouter();
 
 
   const [open, setOpen] = React.useState(false);
@@ -26,6 +26,8 @@ const Header = ({ menu, changemenu }) => {
   useEffect(() => {
     if (localStorage.getItem("role") !== undefined) {
       setRole(localStorage.getItem("role"));
+    }else{
+      router.push("/connexion");
     }
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
@@ -216,7 +218,7 @@ const Header = ({ menu, changemenu }) => {
             </div>
           )}
           {role ? (
-            <li style={styles.toLogin}>
+            <li style={styles.toLogin} onClick={logout}>
               <Link href="/connexion">Déconnexion </Link>
             </li>
           ) : (

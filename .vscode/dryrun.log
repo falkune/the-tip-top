@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/donald/Documents/TheTipTop/front-end'
+make: Leaving directory '/home/donald/Documents/TheTipTop/front-end'
+ 
+make: *** No targets specified and no makefile found.  Stop.
+
