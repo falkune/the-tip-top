@@ -34,13 +34,12 @@ const Header = ({ menu, changemenu }) => {
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
 
-
-
   const logOut = ()=> {
-    localStorage.removeItem('role')
-    localStorage.removeItem('token')
-    router.push('/connexion')
-
+    localStorage.removeItem('accessToken')
+    localStorage.removeItem('userRole')
+    localStorage.removeItem('token');
+    localStorage.removeItem('role');
+    localStorage.removeItem('width');
   }
 
   return (
@@ -218,7 +217,7 @@ const Header = ({ menu, changemenu }) => {
             </div>
           )}
           {role ? (
-            <li style={styles.toLogin} onClick={logout}>
+            <li style={styles.toLogin} onClick={logOut}>
               <Link href="/connexion">Déconnexion </Link>
             </li>
           ) : (

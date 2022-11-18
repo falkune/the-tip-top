@@ -7,7 +7,7 @@ import logo from "../image/whitelogo.png";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
-
+import Link from "next/link";
 import arrow from "../image/arrow.gif";
 
 
