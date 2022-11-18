@@ -8,19 +8,21 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie'
-import ApiClient from "../api/api-client"
-import { constant } from "lodash-es";
+import ApiClient from "../api/api-client" 
 
 
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [fool, setFool] = useState(false);
+  const [password, setPassword] = useState(""); 
   const [backend, setBackend] = useState(new ApiClient()
     .setHeader("lang", "en"));
+ 
+  const [forgotPassword, setForgotPassword] = useState(false); 
+
+  const [error, setError] = useState(false); 
+
   const router = useRouter();
 
   const connexion = async (e) => {
@@ -62,7 +64,7 @@ export default function Connexion() {
 
 
 
-       
+
 
 
 
