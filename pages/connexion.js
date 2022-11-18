@@ -31,17 +31,17 @@ export default function Connexion() {
         password: password,
       })
       .then((response) => {
-          localStorage.setItem("token", response.data.accessToken);
-          Cookies.set('accessToken', response.data.accessToken)
-          if (response.data.roles.includes("admin")) {
-            localStorage.setItem("role", "admin");
-            Cookies.set('userRole', "admin");
-            router.push("/stats");
-          } else {
-            localStorage.setItem("role", "client");
-            Cookies.set('userRole', "client");
-            router.push("/bingo");
-          }
+        localStorage.setItem("token", response.data.accessToken);
+        Cookies.set('accessToken', response.data.accessToken)
+        if (response.data.roles.includes("admin")) {
+          localStorage.setItem("role", "admin");
+          Cookies.set('userRole', "admin");
+          router.push("/stats");
+        } else {
+          localStorage.setItem("role", "client");
+          Cookies.set('userRole', "client");
+          router.push("/bingo");
+        }
       })
       .catch((error) => {
         setError(true);

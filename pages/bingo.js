@@ -50,15 +50,8 @@ export default function Bingo() {
   };
 
   const getNumber = (val) => {
-    if(typeof(val) == "number"){
-      if(num.length < 10){
-        setNum(val)
-      }else{
-        console.log("max")
-      }
-    }else{
-      console.log("mustbe a number")
-    }
+    let validRegex = /^[0-9]*$/;
+    
   }
 
   if(Cookies.get("accessToken") !== undefined){
