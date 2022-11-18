@@ -82,12 +82,7 @@ export default function Inscription() {
   }
 
   const googleRegistration = () => {
-    // contact API
-    fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/googleAuth")
-    .then((result) => {
-      console.log(result)
-    })
-    .catch((error) => console.log(error));
+    
   };
 
   const facebookRegistration = () => {
@@ -98,7 +93,7 @@ export default function Inscription() {
   const register = (e) => {
     e.preventDefault();
     if(emailMatch && passwordMatch && confimation && majorite){
-      const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user";
+      const url = process.env.NEXT_PUBLIC_BASE_URL+"/user";
       axios.post(url, {
         fullName: nom,
         email: email,

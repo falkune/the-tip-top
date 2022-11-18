@@ -25,7 +25,7 @@ export default function Connexion() {
   const connexion = async (e) => {
     e.preventDefault();
     if(!forgotPassword){
-      const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login";
+      const url =  process.env.NEXT_PUBLIC_BASE_URL+"/user/login";
       axios.post(url, {
         email: email,
         password: password,
@@ -48,7 +48,7 @@ export default function Connexion() {
         setMessage(error.response.data.message);
       });
     }else{
-      const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/forgot-password";
+      const url =  process.env.NEXT_PUBLIC_BASE_URL+"/user/forgot-password";
       axios.post(url, {
         email: email,
       })
@@ -57,7 +57,8 @@ export default function Connexion() {
         setMessage(response.data.message)
       })
       .catch((error) => {
-        console.log(error)
+        setError(true);
+        setMessage(error.response.data.message)
       })
     }
   };

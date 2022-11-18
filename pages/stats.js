@@ -38,6 +38,7 @@ export default function Stats() {
     setWidth(window.innerWidth);
     localStorage.setItem("width", width);
   };
+  const [isLoged, setIsLoged] = useState(false);
 
   useEffect(() => {
     updateDimensions();
@@ -47,14 +48,16 @@ export default function Stats() {
 
   useEffect(() => {
     if(Cookies.get('accessToken') == undefined) {
+      setIsLoged(false);
       router.push("/connexion");
     }else if(Cookies.get('userRole') !== "admin"){
       router.push("/bingo");
     }else{
+      setIsLoged(true);
       getAllSessions();
       getAllLots();
     }
-  }, []);
+  },[isLoged]);
 
   const getAllSessions = async () => {
     //fonction pour créer un ticket

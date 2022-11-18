@@ -7,6 +7,7 @@ import Drawer from "@mui/material/Drawer";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
@@ -35,8 +36,8 @@ const Header = ({ menu, changemenu }) => {
   }, [width]);
 
   const logOut = ()=> {
-    localStorage.removeItem('accessToken')
-    localStorage.removeItem('userRole')
+    Cookies.remove('accessToken');
+    Cookies.remove('userRole');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('width');
@@ -98,9 +99,7 @@ const Header = ({ menu, changemenu }) => {
                 </li>
               )}
               {role &&   (
-      
-                  <button style={styles.login} onClick={logOut}>Déconnexion </button>
-        
+                <button style={styles.login} onClick={logOut}>Déconnexion </button>
               )}
                 
             </ul>
