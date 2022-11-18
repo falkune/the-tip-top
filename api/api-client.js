@@ -1,8 +1,9 @@
+
 import HttpClient from "./http-client"
 
-class ApiClient extends HttpClient { 
+class ApiClient extends HttpClient {
   constructor(baseURL, langCode) {
-   
+
     super({
       baseURL,
       headers: {
@@ -13,11 +14,17 @@ class ApiClient extends HttpClient {
 
   get users() {
     return {
-      get: (route) => this.get("/users"),
+      get: (route) => this.get(`/user/${route}`),
       delete: (id) => this.delete(`/user/${id}`),
       create: (user) => this.post("/user", user),
       update: (user) => this.put(`/user/${user.id}`, user),
-      post: (route,body, options) => this.post(`/user/${route}`,body, options),
+      post: async (route, body, options) => {
+        let response = await this.post(`/user/${route}`, body, options);
+        console.log("response: ++++++++>:", response);
+        if (response && response.accessToken) { this.setBearerAuth(response.accessToken); return response; }
+        return response;
+
+      }
 
     };
   }

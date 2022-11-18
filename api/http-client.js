@@ -28,12 +28,9 @@ class HttpClient {
       headers: this._headers
     });
 
-    if (!res.ok) throw res;
+    return res.json();
 
-    if (options.parseResponse !== false && res.status !== 204)
-      return res.json();
 
-    return undefined;
   }
 
 
@@ -50,7 +47,7 @@ class HttpClient {
   post(endpoint, body, options = {}) {
     console.log("Dans le post");
 
-    console.log(body, endpoint, options);
+    console.log("body ===>",body);
     return this._fetchJSON(
       endpoint,
       {

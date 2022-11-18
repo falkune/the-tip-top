@@ -13,18 +13,21 @@ import ApiContext from '../context/apiContext';
 
 
 
+
+
+
 export default function Connexion() {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); 
+  const [password, setPassword] = useState("");
   const backend = useContext(ApiContext);
   console.log(backend)
   useEffect(() => {
-    
-  })
- 
-  const [forgotPassword, setForgotPassword] = useState(false); 
 
-  const [error, setError] = useState(false); 
+  })
+
+  const [forgotPassword, setForgotPassword] = useState(false);
+
+  const [error, setError] = useState(false);
 
   const router = useRouter();
 
@@ -35,10 +38,19 @@ export default function Connexion() {
       password: password,
     };
 
-    let login = backend.users.post('login', JSON.stringify(params), {
+    let auth = backend.users.post('login', params, {
       Accept: "Application/json",
       "Content-Type": "application/json",
     });
+
+    auth.then((response) => {
+      console.log('Auth', response);
+      backend.setBearerAuth(response.accessToken);
+    });
+   
+
+
+    backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
 
   };
 
@@ -69,34 +81,34 @@ export default function Connexion() {
             style={{ borderBottom: "solid 1px #D2D2D2" }}
             onSubmit={(e) => connexion(e)}
           >
-            {!forgotPassword &&(
+            {!forgotPassword && (
               <h1 className={styles.h1} style={{ fontSize: 25 }}>
                 Connexion
               </h1>
             )}
-            {forgotPassword &&(
+            {forgotPassword && (
               <p className={styles.h1} style={{ fontSize: 25 }}>
                 Entrez votre mail pour modifier votre mot de passe
               </p>
             )}
-              <input
-               type="text"
-               placeholder="Email"
-               onChange={(e) => setEmail(e.target.value)}
-               required
-             />
-             {error && forgotPassword &&(
-              <ErrorMessage errorMessage={message}/>
+            <input
+              type="text"
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+            {error && forgotPassword && (
+              <ErrorMessage errorMessage={message} />
             )}
-             {!forgotPassword &&(
+            {!forgotPassword && (
               <input
                 type="password"
                 placeholder="Mot de passe"
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />)}
-            {error && !forgotPassword &&(
-              <ErrorMessage errorMessage={message}/>
+            {error && !forgotPassword && (
+              <ErrorMessage errorMessage={message} />
             )}
             <button
               className={styles.action}
@@ -105,8 +117,8 @@ export default function Connexion() {
               Connexion
             </button>
           </form>
-          {!forgotPassword &&(
-            <div style={{marginTop: "20px", color: "#437BFF" }}>
+          {!forgotPassword && (
+            <div style={{ marginTop: "20px", color: "#437BFF" }}>
               <span onClick={() => setforgotPassword(true)}>Mot de passe oublié</span>
             </div>
           )}
