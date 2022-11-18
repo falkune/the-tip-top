@@ -112,7 +112,7 @@ export default function TicketGenerator({ session_id }) {
               margin: 35,
               maxWidth: 350,
               padding: 10,
-              backgroundColor: "#41D8C2",
+              backgroundColor: " #02558D",
             }}
           >
             {ticket != null ? (
@@ -151,7 +151,7 @@ export default function TicketGenerator({ session_id }) {
         )}
         {loading === true && (
           <div style={{ width: "50%", display: "flex", marginLeft: 70 }}>
-            <ClipLoader color={"#41D8C2"} loading={true} size={70} />
+            <ClipLoader color={" #02558D"} loading={true} size={70} />
           </div>
         )}
       </div>
@@ -173,12 +173,12 @@ const stylez = {
     margin: 8,
     padding: 8,
     backgroundColor: "white",
-    border: "solid 1px #41D8C2",
+    border: "solid 1px  #02558D",
     fontSize: 18,
     minHeight: 45,
     textAlign: "center",
     minWidth: 200,
-    color: "#41D8C2",
+    color: " #02558D",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

@@ -7,12 +7,12 @@ import Drawer from "@mui/material/Drawer";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
+
 
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen) => () => {
@@ -34,12 +34,13 @@ const Header = ({ menu, changemenu }) => {
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
 
-  const logout = () => {
-    Cookies.remove('accessToken');
-    Cookies.remove('userRole');
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
-    localStorage.removeItem('width');
+
+
+  const logOut = ()=> {
+    localStorage.removeItem('role')
+    localStorage.removeItem('token')
+    router.push('/connexion')
+
   }
 
   return (
@@ -60,6 +61,15 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
+            <Link href="/equipe">
+                <li style={styles.li}>Qui sommes nous ?</li>
+              </Link>
+              <Link href="/regle">
+            <li style={styles.li}>Règle du jeux</li>
+          </Link>
+          <Link href="/lots">
+            <li style={styles.li}>Lot à gagner</li>
+          </Link>
               {role && role === "client" && (
                 <li style={styles.li}>
                   {" "}
@@ -79,17 +89,21 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
+              <li style={styles.li}>
+                  <Link href="/contact">Contactez nous </Link>
+                </li>
 
               {!role && (
                 <li style={styles.login}>
                   <Link href="/connexion">Connexion </Link>
                 </li>
               )}
-              {role && (
-                <li style={styles.login} onClick={logout}>
-                  <Link href="/connexion">Déconnexion </Link>
-                </li>
+              {role &&   (
+      
+                  <button style={styles.login} onClick={logOut}>Déconnexion </button>
+        
               )}
+                
             </ul>
           </nav>
         ) : (
@@ -110,6 +124,15 @@ const Header = ({ menu, changemenu }) => {
       >
         <div style={styles.draw}>
           <ul className="responsiveMenu">
+          <Link href="/equipe">
+                <li>Qui sommes nous</li>
+          </Link>
+          <Link href="/regle">
+            <li>Règle du jeux</li>
+          </Link>
+          <Link href="/lots">
+            <li>Lot à gagner</li>
+          </Link>
             {role && role === "client" && (
               <Link href="/bingo">
                 <li>Bingo ticket</li>
@@ -247,22 +270,25 @@ const styles = {
     listStyleType: "none",
     textDecoration: "none",
     color: "gray",
+    fontWeight:"bold"
   },
 
   login: {
-    backgroundColor: "#41D8C2",
+    backgroundColor: " #02558D",
     color: "white",
-    padding: 10,
+    width:125,
+    height:40,
     textAlign: "center",
-    paddingLeft: 15,
-    paddingRight: 15,
     borderRadius: 100,
-    marginLeft: 10,
+    marginLeft: 15,
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
     listStyleType: "none",
     textDecoration: "none",
   },
   toLogin: {
-    backgroundColor: "#41D8C2",
+    backgroundColor: " #02558D",
     color: "white",
     padding: 10,
     textAlign: "center",

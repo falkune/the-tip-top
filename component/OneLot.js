@@ -30,7 +30,7 @@ const styles = {
     flexDirection:"column",
     justifyContent:"center",
     margin:5,
-    background:"#41D8C2",
+    background:" #02558D",
     borderRadius:8,
     padding:15,
     color:"white"

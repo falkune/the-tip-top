@@ -14,9 +14,6 @@ export default function Bingo() {
   useEffect(() => {
     getCurrent();
   }, []);
-
-  const router = useRouter();
-  console.log(num, "num");
   const goResult = () => {
     if (num.length === 10) {
       router.push({
@@ -140,7 +137,7 @@ export default function Bingo() {
         )}
 
         <Link href="/#lots">
-          <small style={{ color: "#41D8C2", fontSize: "1.2em" }}>
+          <small style={{ color: " #02558D", fontSize: "1.2em" }}>
             Voir les differents lots
           </small>
         </Link>

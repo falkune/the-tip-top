@@ -63,13 +63,85 @@ footer{
   padding: 15px;
     border-radius: 100px;
     min-width: 225px;
-    background-color: #41D8C2;
+    background-color:  #02558D;
     border: none;
     color: white;
     font-size: 25px;
-    box-shadow: 0px 0px 0px 8px rgba(64, 239, 215, 0.52);
+    box-shadow: 1px 1px 0px 5px rgba(2,85,141,0.55);
     margin: 15px;
 }
+
+.lot{
+  background: rgba(107,104,103,0.3);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  padding: 25px;
+  min-height: 325px;
+  min-width: 325px;
+  border-radius:100%;
+  margin: 10px;
+} 
+.lot a{
+
+   font-size: 15px;
+   color:white
+}
+.lot img {
+  width: 20%;
+  margin: 25px;
+}
+.lot p{
+  margin-bottom: 5px;
+  color: white;
+
+}
+.childLot{
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 15px;
+  background: white;
+}
+.childLot a{
+  text-decoration:underline;
+  font-size: 20px;
+}
+
+
+.newsletter{
+  display: flex;
+  flex-direction: column;
+}
+
+.newsletter p{
+  font-size: 25px;
+  margin-bottom: 5px;
+  color:white;
+  text-align: center;
+  font-weight: bold;
+
+}
+.newsletter small{
+  margin-bottom: 15px;
+  color:#F8F8F8
+}
+.newsletter input{
+  font-size: 16px;
+  padding: 8px;
+  margin-bottom: 5px;
+}
+.newsletter button{
+  padding: 10px;
+  font-size: 16px;
+  color:white;
+  background: #04304E;
+  border: none;
+}
+
+
 
 .boutton-login{
   text-align: center;
@@ -98,6 +170,38 @@ a {
   position: fixed;
 }
 
+.team{
+
+  width: 100%;
+  max-width: 800px;
+  background: transparent;
+  margin-bottom: -150px;
+}
+
+.team img{
+  border-radius: 10px;
+  margin: 25px;}
+.team2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+   width: 100%;
+   background-color:  #02558D;
+     color:white;
+  min-height: 60vh;
+  padding: 15px;
+  padding-top: 150px;
+}
+
+.team2 h2{
+ font-size: 2.5em;
+ margin-bottom: 5px;
+}
+.team2 p{
+  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.7;
+ }
 * {
   box-sizing: border-box;
 }
@@ -112,3 +216,32 @@ a {
           font-size: 20px;
           color:grey
         }
+
+.lotsItems{
+  min-width: 300px;
+  width: 48%;
+  background-color: #02558D;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: white;
+  margin: 10px;
+  padding: 25px;
+}
+
+.lotsItems h3{
+ font-size: 2.5em;
+ text-align: center;
+}
+.lotsItems p{
+  font-size: 18px;
+  max-width: 320px;
+  text-align: center;
+ }
+
+ .lotsItems a{
+  background-color: white;
+  color: #02558D;
+  padding: 15px;
+  margin: 15px;
+ }

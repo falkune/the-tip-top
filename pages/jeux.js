@@ -54,7 +54,7 @@ export default function Jeux() {
             alignItems: "center",
             width: "100%",
             padding: 25,
-            backgroundColor: "#41D8C2",
+            backgroundColor: " #02558D",
           }}
         >
           <ClipLoader color={"white"} loading={true} size={100} />
@@ -93,14 +93,14 @@ export default function Jeux() {
           </h2>
           <p style={{ fontSize: 22, color: "grey", padding: 20, margin: 0 }}>
             Le{" "}
-            <strong style={{ color: "#41D8C2" }}>
+            <strong style={{ color: " #02558D" }}>
               {dayjs(current.endDate).locale("fr").format(" D MMMM YYYY")}
             </strong>{" "}
             un candidat sera sélectionné et bénéficiera de :{" "}
           </p>
           <p
             className={"pulse"}
-            style={{ fontSize: 20, color: "#41D8C2", fontWeight: "bold" }}
+            style={{ fontSize: 20, color: " #02558D", fontWeight: "bold" }}
           >
             1 an de thé d'une valeur de 360 euros
           </p>

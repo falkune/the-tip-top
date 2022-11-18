@@ -241,7 +241,7 @@ const stylez = {
   side: {
     width: "15%",
     backgroundColor: "white",
-    backgroundColor: "#41D8C2",
+    backgroundColor: " #02558D",
     display: "flex",
     flexDirection: "column",
   },
