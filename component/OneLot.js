@@ -1,25 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Gauge from "react-svg-gauge";
 
 export default function OneLot({now, max, title, value}) {
-  return (
-    <div style={styles.lot}>
-      <h2 style={styles.h2}>{title} </h2>
-      <h3 style={styles.small}>Ticket validés : {now}</h3>
-      <small style={styles.small}>Total ticket : {max}</small>
-      <Gauge
-        value={value}
-        label=""
-        width={350}
-        height={200}
-        color='#ef233c'
-        backgroundColor="#ffffff"
-        topLabelStyle={{ display: "flex", fontSize: "2em" , fontWeight: "bold"}}
-        valueLabelStyle={{fontSize: "2em"}}
-        valueFormatter={number => `${number}%`}
-      />
-    </div>
-  );
+    return (
+      <div style={styles.lot}>
+        <h2 style={styles.h2}>{title} </h2>
+        <h3 style={styles.small}>Ticket validés : {now}</h3>
+        <small style={styles.small}>Total ticket : {max}</small>
+        <Gauge
+          value={value}
+          label=""
+          width={350}
+          height={200}
+          color='#ef233c'
+          backgroundColor="#ffffff"
+          topLabelStyle={{ display: "flex", fontSize: "2em" , fontWeight: "bold"}}
+          valueLabelStyle={{fontSize: "2em"}}
+          valueFormatter={number => `${number}%`}
+        />
+      </div>
+    );  
 }
 
 const styles = {

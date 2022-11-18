@@ -8,67 +8,61 @@ import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie'
+import Cookies from 'js-cookie';
+import ErrorMessage from "../component/ErrorMessage";
+import axios from "axios";
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fool, setFool] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  const [forgotPassword, setforgotPassword] = useState(false);
 
   const router = useRouter();
 
-  const connexion = (e) => {
-    // signIn function contact the backend API service
-    setFool(false);
+  const connexion = async (e) => {
     e.preventDefault();
-    const params = {
-      email: email,
-      password: password,
-    };
-
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "Application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    };
-
-    fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
-      .then((response) => response.json())
-      .then((data) => {
-        // en fonction du role de l'utilisateur rediriger vers la bonne interface
-        localStorage.setItem("token", data.accessToken);
-        Cookies.set('accessToken', data.accessToken)
-        if (data.roles.includes("admin")) {
-          localStorage.setItem("role", "admin");
-          Cookies.set('userRole', "admin");
-          router.push("/stats");
-        } else {
-          localStorage.setItem("role", "client");
-          Cookies.set('userRole', "client");
-          router.push("/bingo");
-        }
+    if(!forgotPassword){
+      const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login";
+      axios.post(url, {
+        email: email,
+        password: password,
+      })
+      .then((response) => {
+          localStorage.setItem("token", response.data.accessToken);
+          Cookies.set('accessToken', response.data.accessToken)
+          if (response.data.roles.includes("admin")) {
+            localStorage.setItem("role", "admin");
+            Cookies.set('userRole', "admin");
+            router.push("/stats");
+          } else {
+            localStorage.setItem("role", "client");
+            Cookies.set('userRole', "client");
+            router.push("/bingo");
+          }
       })
       .catch((error) => {
-        setFool(true);
+        setError(true);
+        setMessage(error.response.data.message);
       });
+    }else{
+      const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/forgot-password";
+      axios.post(url, {
+        email: email,
+      })
+      .then((response) => {
+        setError(true);
+        setMessage(response.data.message)
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+    }
   };
 
-  const goSignup = () => {
-    router.push({
-      pathname: `inscription`,
-      query: { number: router.query.num ? router.query.num : null },
-    });
-  };
-
-  const signInWith = (provider) => {
-
-    
-  }
-
+  const signInWith = () =>{}
   return (
     <div>
       <div className={styles.container}>
@@ -84,25 +78,35 @@ export default function Connexion() {
             style={{ borderBottom: "solid 1px #D2D2D2" }}
             onSubmit={(e) => connexion(e)}
           >
-            <h1 className={styles.h1} style={{ fontSize: 25 }}>
-              Connexion
-            </h1>
-            <input
-              type="text"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-              type="password"
-              placeholder="Mot de passe"
-              onChange={(e) => setPassword(e.target.value)}
-            />
-            {fool && (
-              <small style={{ color: "red" }}>
-                Mot de passe ou email incorrecte
-              </small>
+            {!forgotPassword &&(
+              <h1 className={styles.h1} style={{ fontSize: 25 }}>
+                Connexion
+              </h1>
             )}
-
+            {forgotPassword &&(
+              <p className={styles.h1} style={{ fontSize: 25 }}>
+                Entrez votre mail pour modifier votre mot de passe
+              </p>
+            )}
+              <input
+               type="text"
+               placeholder="Email"
+               onChange={(e) => setEmail(e.target.value)}
+               required
+             />
+             {error && forgotPassword &&(
+              <ErrorMessage errorMessage={message}/>
+            )}
+             {!forgotPassword &&(
+              <input
+                type="password"
+                placeholder="Mot de passe"
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />)}
+            {error && !forgotPassword &&(
+              <ErrorMessage errorMessage={message}/>
+            )}
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
@@ -110,6 +114,11 @@ export default function Connexion() {
               Connexion
             </button>
           </form>
+          {!forgotPassword &&(
+            <div style={{marginTop: "20px", color: "#437BFF" }}>
+              <span onClick={() => setforgotPassword(true)}>Mot de passe oublié</span>
+            </div>
+          )}
           <div className={styles.social}>
             <button
               style={{
@@ -148,8 +157,9 @@ export default function Connexion() {
         <small>
           Pas encore de compte ?
           <strong style={{ color: "#437BFF" }}>
-            {" "}
-            <button onClick={goSignup}> S'inscrire</button>
+            <strong style={{ color: "#437BFF" }}>
+              <Link href="/inscription"> S'inscrire </Link>
+            </strong>
           </strong>
         </small>
       </div>

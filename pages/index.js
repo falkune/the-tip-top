@@ -6,7 +6,7 @@ import tea1 from "../image/tea1.png";
 import tea2 from "../image/tea2.png";
 import tea3 from "../image/tea3.png";
 import tea4 from "../image/tea4.png";
-import teab from "../image/teaBingo.png"
+import teab from "../image/TeaBingo.png"
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";

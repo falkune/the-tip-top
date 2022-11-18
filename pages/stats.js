@@ -87,13 +87,6 @@ export default function Stats() {
       console.log(e);
     }
   };
-  const giveAge = () => {
-    setAge(true);
-  };
-
-  const closeAge = () => {
-    setAge(false);
-  };
 
   const handleChangeSession = (event) => {
     setIdSession(event.target.value);
@@ -194,6 +187,7 @@ export default function Stats() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
+                marginTop: "50px",
               }}
             >
               <h2 className={styles.h2}>Selectionner une session</h2>
