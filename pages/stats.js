@@ -19,10 +19,6 @@ import MenuItem from "@mui/material/MenuItem";
 export default function Stats() {
   const router = useRouter();
   const [menu, setMenu] = useState("stats");
-  const [now, setNow] = useState(Date.now);
-  const [birthday, setBirthday] = useState("stats");
-  const [age, setAge] = useState(true);
-  const [numAge, setNumAge] = useState(null);
   const [session, setSession] = React.useState({
     name: "",
     start: "",
@@ -57,7 +53,7 @@ export default function Stats() {
       getAllSessions();
       getAllLots();
     }
-  },[isLoged]);
+  },[]);
 
   const getAllSessions = async () => {
     //fonction pour créer un ticket
@@ -94,15 +90,6 @@ export default function Stats() {
   const handleChangeSession = (event) => {
     setIdSession(event.target.value);
     setSession(event.target.value);
-  };
-
-  const handlechange = (e) => {
-    const date = new Date();
-    setBirthday(e.target.value);
-    let mydate = new Date(birthday);
-    let nowtime = new Date(now);
-    const yes = nowtime.getFullYear() - mydate.getFullYear();
-    setNumAge(yes);
   };
 
   const changemenu = (e) => {

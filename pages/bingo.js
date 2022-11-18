@@ -7,11 +7,15 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import ErrorMessage from "../component/ErrorMessage";
 
 export default function Bingo() {
-  const [num, setNum] = useState(null);
+  const [num, setNum] = useState("");
   const [current, setCurrent] = useState("");
   const router = useRouter();
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
+  const [maxNumber, setmaxNumber] = useState(0);
 
   useEffect(() => {
     if(Cookies.get('accessToken') == undefined) {
@@ -19,6 +23,7 @@ export default function Bingo() {
     }
     getCurrent();
   }, []);
+
   const goResult = () => {
     if (num.length === 10) {
       router.push({
@@ -27,27 +32,34 @@ export default function Bingo() {
       });
     } else console.log("perdu");
   };
+
   const getCurrent = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
-    console.log("tokens", token);
-
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/get-current-session";
-    console.log("config", config);
-
+    const api = process.env.NEXT_PUBLIC_BASE_URL+"/Session/get-current-session";
     try {
       let currenSession = await axios.get(api, config);
       setCurrent(currenSession.data);
       localStorage.setItem("current", currenSession.data);
-      console.log(currenSession.data);
     } catch (e) {
-      console.log(e);
+      setError(true)
     }
   };
+
+  const getNumber = (val) => {
+    if(typeof(val) == "number"){
+      if(num.length < 10){
+        setNum(val)
+      }else{
+        console.log("max")
+      }
+    }else{
+      console.log("mustbe a number")
+    }
+  }
 
   if(Cookies.get("accessToken") !== undefined){
     return (
@@ -61,33 +73,19 @@ export default function Bingo() {
         <section className={styles.block}>
           <h1 className={styles.h1}>Bingo ticket</h1>
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
-          <Link href="/#lots">
-            <small style={{ color: "#41D8C2" }}>Voir les differents lots</small>
-          </Link>
           <form className={styles.bingo}>
             <input
-              type="number"
+              type="text"
               name="numero"
               autoComplete="off"
               placeholder="Veuillez rentrer vos 10 numéros"
               maxLength={10}
               onChange={(e) => {
-                setNum(e.target.value);
+                getNumber(e.target.value);
               }}
               value={num}
             />
-            {num !== null && num.length < 10 && (
-              <small style={{ color: "red", textDecoration: "none" }}>
-                Numéro invalide
-              </small>
-            )}
-            {num !== null && num.length === 10 && (
-              <small style={{ color: "green", textDecoration: "none" }}>
-                Numéro valide
-              </small>
-            )}
-            {num !== null && num.length === 10 ? (
-              <button
+             <button
                 type="button"
                 onClick={goResult}
                 className={styles.action}
@@ -95,58 +93,7 @@ export default function Bingo() {
               >
                 Valider
               </button>
-            ) : (
-              <button
-                disabled={true}
-                className={styles.noaction}
-                style={{ margin: 25 }}
-              >
-                Valider
-              </button>
-            )}
           </form>
-          {num !== null && num.length < 10 && (
-            <small
-              style={{ color: "red", textDecoration: "none", marginTop: 20 }}
-            >
-              Numéro invalide
-            </small>
-          )}
-          {num !== null && num.length === 10 && (
-            <small
-              style={{
-                color: "green",
-                textDecoration: "none",
-                marginTop: 20,
-              }}
-            >
-              Numéro valide
-            </small>
-          )}
-          {num !== null && num.length === 10 ? (
-            <button
-              type="button"
-              onClick={goResult}
-              className={styles.action}
-              style={{ margin: 25 }}
-            >
-              Valider
-            </button>
-          ) : (
-            <button
-              disabled={true}
-              className={styles.noaction}
-              style={{ margin: 25 }}
-            >
-              Valider
-            </button>
-          )}
-  
-          <Link href="/#lots">
-            <small style={{ color: " #02558D", fontSize: "1.2em" }}>
-              Voir les differents lots
-            </small>
-          </Link>
         </section>
         <Footer />
       </div>

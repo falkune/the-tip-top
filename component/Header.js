@@ -61,15 +61,23 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-            <Link href="/equipe">
-                <li style={styles.li}>Qui sommes nous ?</li>
-              </Link>
-              <Link href="/regle">
-            <li style={styles.li}>Règle du jeux</li>
-          </Link>
-          <Link href="/lots">
-            <li style={styles.li}>Lot à gagner</li>
-          </Link>
+              {!role || role === 'client' &&(
+                <Link href="/equipe">
+                  <li style={styles.li}>Qui sommes nous ?</li>
+                </Link>
+              )}
+              
+              {!role || role === 'client' &&(
+                <Link href="/regle">
+                  <li style={styles.li}>Règle du jeux</li>
+                </Link>
+              )}
+              
+              {!role || role === 'client' &&(
+              <Link href="/lots">
+                <li style={styles.li}>Lot à gagner</li>
+              </Link>)}
+              
               {role && role === "client" && (
                 <li style={styles.li}>
                   {" "}
@@ -89,9 +97,9 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-              <li style={styles.li}>
+                {/* <li style={styles.li}>
                   <Link href="/contact">Contactez nous </Link>
-                </li>
+                </li> */}
 
               {!role && (
                 <li style={styles.login}>
@@ -123,7 +131,7 @@ const Header = ({ menu, changemenu }) => {
         <div style={styles.draw}>
           <ul className="responsiveMenu">
           <Link href="/equipe">
-                <li>Qui sommes nous</li>
+            <li>Qui sommes nous</li>
           </Link>
           <Link href="/regle">
             <li>Règle du jeux</li>

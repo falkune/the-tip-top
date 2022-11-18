@@ -10,7 +10,7 @@ const AllStats = (props) => {
   const [numberDay, setNumberDay] = useState([]);
   
   useEffect(() => {
-    getNumberDay(props.idSession)
+    getNumberDay(props.idSession);
   },[props])
 
   const getNumberDay = (idSession) => {
@@ -31,7 +31,7 @@ const AllStats = (props) => {
     const theDate = new Date(startDate)
     while (theDate < new Date(endDate)) {
       dates = [...dates, new Date(theDate)]
-      theDate.setDate(theDate.getDate() + 1)
+      theDate.setDate(theDate.getDate() + 1);
     }
     dates = [...dates, new Date(endDate)]
     return dates
