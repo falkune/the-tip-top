@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -9,13 +9,18 @@ import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie'
+import ApiClient from "../api/api-client"
+import { constant } from "lodash-es";
+
+
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fool, setFool] = useState(false);
-
+  const [backend, setBackend] = useState(new ApiClient()
+    .setHeader("lang", "en"));
   const router = useRouter();
 
   const connexion = (e) => {
@@ -27,34 +32,62 @@ export default function Connexion() {
       password: password,
     };
 
-    const options = {
-      method: "POST",
-      headers: {
-        Accept: "Application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(params),
-    };
 
-    fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
-      .then((response) => response.json())
-      .then((data) => {
-        // en fonction du role de l'utilisateur rediriger vers la bonne interface
-        localStorage.setItem("token", data.accessToken);
-        Cookies.set('accessToken', data.accessToken)
-        if (data.roles.includes("admin")) {
-          localStorage.setItem("role", "admin");
-          Cookies.set('userRole', "admin");
-          router.push("/stats");
-        } else {
-          localStorage.setItem("role", "client");
-          Cookies.set('userRole', "client");
-          router.push("/bingo");
-        }
-      })
-      .catch((error) => {
-        setFool(true);
-      });
+
+
+
+
+
+    let login = backend.users.post('login', JSON.stringify(params), {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    });
+
+
+
+    console.log("login");
+
+    console.log(login);
+
+    console.log("login");
+
+
+    /*
+       const options = {
+         method: "POST",
+         headers: {
+           Accept: "Application/json",
+           "Content-Type": "application/json",
+         },
+         body: JSON.stringify(params),
+       };*/
+
+
+
+
+
+
+
+
+    /* fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
+   .then((response) => response.json())
+     .then((data) => {
+       // en fonction du role de l'utilisateur rediriger vers la bonne interface
+       localStorage.setItem("token", data.accessToken);
+       Cookies.set('accessToken', data.accessToken)
+       if (data.roles.includes("admin")) {
+         localStorage.setItem("role", "admin");
+         Cookies.set('userRole', "admin");
+         router.push("/stats");
+       } else {
+         localStorage.setItem("role", "client");
+         Cookies.set('userRole', "client");
+         router.push("/bingo");
+       }
+     })
+     .catch((error) => {
+       setFool(true);
+     }); */
   };
 
   const goSignup = () => {
@@ -66,7 +99,7 @@ export default function Connexion() {
 
   const signInWith = (provider) => {
 
-    
+
   }
 
   return (
