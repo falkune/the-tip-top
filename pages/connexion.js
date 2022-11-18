@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import Cookies from 'js-cookie'
 import ApiClient from "../api/api-client"
 import { constant } from "lodash-es";
+import ErrorMessage from "../component/ErrorMessage";
 
 
 
@@ -30,62 +31,16 @@ export default function Connexion() {
       password: password,
     };
 
-
-
-
-
-
-
     let login = backend.users.post('login', JSON.stringify(params), {
       Accept: "Application/json",
       "Content-Type": "application/json",
     });
-
-
-
+    
     console.log("login");
 
     console.log(login);
 
     console.log("login");
-
-
-    /*
-       const options = {
-         method: "POST",
-         headers: {
-           Accept: "Application/json",
-           "Content-Type": "application/json",
-         },
-         body: JSON.stringify(params),
-       };*/
-
-
-
-
-
-
-
-
-    /* fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/login/", options)
-   .then((response) => response.json())
-     .then((data) => {
-       // en fonction du role de l'utilisateur rediriger vers la bonne interface
-       localStorage.setItem("token", data.accessToken);
-       Cookies.set('accessToken', data.accessToken)
-       if (data.roles.includes("admin")) {
-         localStorage.setItem("role", "admin");
-         Cookies.set('userRole', "admin");
-         router.push("/stats");
-       } else {
-         localStorage.setItem("role", "client");
-         Cookies.set('userRole', "client");
-         router.push("/bingo");
-       }
-     })
-     .catch((error) => {
-       setFool(true);
-     }); */
   };
 
   const goSignup = () => {
