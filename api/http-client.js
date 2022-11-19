@@ -17,6 +17,7 @@ class HttpClient {
     this._headers.Authorization = `Bearer ${token}`
     return this
   }
+ 
 
   async _fetchJSON(endpoint, options = {}) {
     console.log("Dans le fetch");

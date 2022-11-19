@@ -16,7 +16,8 @@ export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const backend = useContext(ApiContext);
-  
+  const [message, setMessage] = useState("");
+
 
   const [forgotPassword, setForgotPassword] = useState(false);
 
@@ -38,13 +39,21 @@ export default function Connexion() {
 
     auth.then((response) => {
       console.log('Auth', response);
-      backend.setBearerAuth(response.accessToken);
-      if(response.roles.includes('admin')){
-        router.push("/stats");
+      if (response.statusCode) {
+        setError(true)
+        setMessage(response.message)
+      } else {
+
+        backend.setBearerAuth(response.accessToken);
+        backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
+        if (response.roles.includes('admin')) {
+          router.push("/stats");
+        }
       }
+
     });
-   
-    backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
+
+    
 
   };
 
