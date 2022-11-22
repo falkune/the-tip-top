@@ -7,9 +7,11 @@ import Footer from "../component/Footer";
 import Link from "next/link";
 import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from "next/router";
-import { faEye } from '@fortawesome/free-solid-svg-icons'
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+import ErrorMessage from "../component/ErrorMessage";
+import axios from "axios";
 
 export default function Inscription() {
   const router = useRouter();
@@ -25,8 +27,9 @@ export default function Inscription() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [confimation, setConfirmation] = useState(false);
   const [showVerifPassword, setShowVerifpassword] = useState(false);
+  const [error, setError] = useState(false);
+  const [message, setMessage] = useState("");
 
-  // verify if email is in good format 
   const verifyEmail = () => {
     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(!email.match(validRegex)){
@@ -34,13 +37,11 @@ export default function Inscription() {
     }
   }
 
-  // verify if name is longer than 6 character
   const verifyName = () => {
     if(nom.length < 6)
       setValideName(false);
   }
 
-  // verify if respect the good format
   const verifyPassword = () => {
     let validRegex = new RegExp(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$/\\"&+,:;`={}[\]?@#|'<~°£¨²§µ>.^*()%!-])(?=.{8,})/);
     if(!password.match(validRegex)){
@@ -75,19 +76,13 @@ export default function Inscription() {
     let monthDate = new Date(months);
     let years = monthDate.getUTCFullYear();
     let age = Math.abs(years - 1970);
-    console.log(age)
     if(age >= 18){
       setMajorite(true);
     }
   }
 
   const googleRegistration = () => {
-    // contact API
-    fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/googleAuth")
-      .then((result) => {
-        // show the apropriate screen
-      })
-      .catch((error) => console.log(error));
+    
   };
 
   const facebookRegistration = () => {
@@ -96,41 +91,29 @@ export default function Inscription() {
 
 
   const register = (e) => {
-    // register function contact the backend API service
     e.preventDefault();
     if(emailMatch && passwordMatch && confimation && majorite){
-      const params = {
+      const url = process.env.NEXT_PUBLIC_BASE_URL+"/user";
+      axios.post(url, {
         fullName: nom,
         email: email,
         password: password,
         birthday: dateNaissance,
-      };
-  
-      const options = {
-        method: "POST",
-        headers: {
-          Accept: "Application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(params),
-      };
-      fetch("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/", options)
-        .then((response) => response.json())
-        .then((data) => {
-          if('error' in data){
-            console.log(data.message);
-          }else{
-            router.push({
-              pathname: `connexion`,
-              query: { number: router.query.num ? router.query.num : null },
-            });
-          }
-        })
-        .catch((error) => {
-          console.log(error);
+      })
+      .then((response) => {
+        console.log(response)
+        router.push({
+          pathname: `connexion`,
+          query: { number: router.query.num ? router.query.num : null },
         });
+      })
+      .catch((error) => {
+        console.log(error)
+        setError(true);
+        setMessage(error.response.data.message);
+      });
     }
-  };
+  }
 
   return (
     <div>
@@ -215,7 +198,9 @@ export default function Inscription() {
             >
               Inscription
             </button>
-            <div id="modal-root"></div>
+            {error && (
+              <ErrorMessage errorMessage={message}/>
+            )}
           </form>
           <div className={styles.social}>
             <button

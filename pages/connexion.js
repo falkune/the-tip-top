@@ -105,8 +105,7 @@ export default function Connexion() {
 
             <button
               className={styles.action}
-              style={{ animation: "pulse 1sec infite" }}
-            >
+              style={{ animation: "pulse 1sec infite" }}>
               Connexion
             </button>
           </form>

@@ -7,7 +7,7 @@ export default function StatInscription({ days,  idSession}) {
   const [registration, setRegistration] = useState([]);
 
   useEffect(() => {
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('token') && idSession != ""){
       getRegistrationByDay();
     }
   },[days]);
@@ -19,7 +19,7 @@ export default function StatInscription({ days,  idSession}) {
     }
     setLabels(labels);
     const accessToken = localStorage.getItem('token');
-    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day"
+    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
     const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
     const registrationByDay = Array();
     response.data.forEach(e => {

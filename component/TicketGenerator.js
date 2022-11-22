@@ -6,13 +6,16 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function TicketGenerator({ session_id }) {
-  console.log("id session", session_id);
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const [visible, setVisible] = useState(false);
   const [generate, setGenerate] = useState(false);
   const [ticket, setTicket] = useState(null);
+
+  useEffect(() => {
+    console.log(session_id)
+  })
 
   const copyCode = (e) => {
     e.target.value;

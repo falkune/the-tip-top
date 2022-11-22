@@ -7,10 +7,10 @@ import axios from "axios";
 
 const AllStats = (props) => {
   const [numberTicket, setNumberTicket] = useState(0);
-  const [numberDay, setNumberDay] = useState(0);
-  
+  const [numberDay, setNumberDay] = useState([]);
+  // backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
   useEffect(() => {
-    getNumberDay(props.idSession)
+    getNumberDay(props.idSession);
   },[props])
 
   const getNumberDay = (idSession) => {
@@ -20,9 +20,21 @@ const AllStats = (props) => {
       const endDate = new Date(response.data.endDate);
       const startDate = new Date(response.data.startDate);
       const timeDiference = endDate.getTime() - startDate.getTime();
-      const dayDiference = timeDiference / (1000 * 3600 * 24);
+      const dayDiference = (timeDiference / (1000 * 3600 * 24));
       setNumberDay(dayDiference);
+      // setNumberDay(getDatesBetweenDates(startDate, endDate))
     })
+  }
+
+  const getDatesBetweenDates = (startDate, endDate) => {
+    let dates = []
+    const theDate = new Date(startDate)
+    while (theDate < new Date(endDate)) {
+      dates = [...dates, new Date(theDate)]
+      theDate.setDate(theDate.getDate() + 1);
+    }
+    dates = [...dates, new Date(endDate)]
+    return dates
   }
 
   return (

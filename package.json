@@ -21,13 +21,13 @@
     "ag-grid-react": "^28.2.0",
     "animate.css": "^4.1.1",
     "axios": "^0.27.2",
-    "bootstrap": "^5.1.3",
     "chart.js": "^3.8.2",
     "crypto-js": "^4.1.1",
     "d3": "^7.6.1",
     "dayjs": "^1.11.5",
     "firebase": "^9.6.10",
     "js-cookie": "^3.0.1",
+    "jsonwebtoken": "^8.5.1",
     "loadsh": "^0.0.4",
     "lodash-es": "^4.17.21",
     "next": "12.1.0",
@@ -35,6 +35,10 @@
     "nextjs-breadcrumbs": "^1.1.9",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
+<<<<<<< HEAD
+=======
+    "react-countdown": "^2.3.4",
+>>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
     "react-custom-roulette": "^1.2.0",
     "react-dom": "17.0.2",
     "react-fontawesome": "^1.7.1",

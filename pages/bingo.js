@@ -14,11 +14,14 @@ import 'nextjs-breadcrumbs/dist/index.css'
 
 
 export default function Bingo() {
-  const [num, setNum] = useState(null);
+  const [num, setNum] = useState("");
   const [current, setCurrent] = useState("");
   const router = useRouter();
 
   useEffect(() => {
+    if(Cookies.get('accessToken') == undefined) {
+      router.push("/connexion");
+    }
     getCurrent();
   }, []);
   const goResult = () => {
@@ -29,23 +32,20 @@ export default function Bingo() {
       });
     } else console.log("perdu");
   };
+
   const getCurrent = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
     const config = {
       headers: { Authorization: `Bearer ${token}` },
     };
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/get-current-session";
-    console.log("config", config);
-
+    const api = process.env.NEXT_PUBLIC_BASE_URL+"/Session/get-current-session";
     try {
       let currenSession = await axios.get(api, config);
       setCurrent(currenSession.data);
       localStorage.setItem("current", currenSession.data);
-      console.log(currenSession.data);
     } catch (e) {
-      console.log(e);
+      setError(true)
     }
   };
 
