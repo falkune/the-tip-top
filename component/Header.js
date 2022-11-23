@@ -7,19 +7,12 @@ import Drawer from "@mui/material/Drawer";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { useRouter } from "next/router";
-<<<<<<< HEAD
-=======
 import Cookies from 'js-cookie';
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
-<<<<<<< HEAD
-=======
-
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
 
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen) => () => {
@@ -46,22 +39,12 @@ const Header = ({ menu, changemenu }) => {
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
 
-<<<<<<< HEAD
-
-
-  const logOut = ()=> {
-    localStorage.removeItem('role')
-    localStorage.removeItem('token')
-    router.push('/connexion')
-
-=======
   const logOut = ()=> {
     Cookies.remove('accessToken');
     Cookies.remove('userRole');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
     localStorage.removeItem('width');
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
   }
 
   return (
@@ -82,17 +65,6 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-<<<<<<< HEAD
-            <Link href="/equipe">
-                <li style={ menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
-              </Link>
-              <Link href="/regle">
-            <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
-          </Link>
-          <Link href="/lots">
-            <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
-          </Link>
-=======
               {!role || role === 'client' &&(
                 <Link href="/equipe">
                   <li style={styles.li}>Qui sommes nous ?</li>
@@ -110,7 +82,6 @@ const Header = ({ menu, changemenu }) => {
                 <li style={styles.li}>Lot à gagner</li>
               </Link>)}
               
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
               {role && role === "client" && (
                 <li style={menu === "bingo" ? styles.liactive : styles.li}>
                   {" "}
@@ -130,13 +101,10 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-<<<<<<< HEAD
               <li style={menu === "contact" ? styles.liactive : styles.li}>
-=======
-                {/* <li style={styles.li}>
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
                   <Link href="/contact">Contactez nous </Link>
-                </li> */}
+                </li> 
+                
 
               {!role && (
                 <li style={styles.login}>
@@ -144,13 +112,7 @@ const Header = ({ menu, changemenu }) => {
                 </li>
               )}
               {role &&   (
-<<<<<<< HEAD
-      
-                  <button style={styles.login} onClick={logOut}>Déconnexion </button>
-        
-=======
                 <button style={styles.login} onClick={logOut}>Déconnexion </button>
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
               )}
                 
             </ul>
