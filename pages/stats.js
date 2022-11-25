@@ -16,6 +16,7 @@ import ApiContext from '../context/apiContext';
 // material ui
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
 
 export default function Stats() {
   const router = useRouter();
@@ -28,56 +29,55 @@ export default function Stats() {
     id: "",
   });
   const [lots, setLots] = React.useState([]);
-  const [sessions, setSessions] = useState([]);
+  const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
   const [isLoged, setIsLoged] = useState(false);
-  const context = useContext(ApiContext);
+  const backend = useContext(ApiContext)
+
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     localStorage.setItem("width", width);
   };
 
-  // context.backend.users.get("registration-by-day/62e4019b3c37b13c1f4b26a2");
-
   useEffect(() => {
     updateDimensions();
+    getAllSessions();
+    getAllLots();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
   
   const getAllSessions = async () => {
-    //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
-
-    try {
-      let Allsessions = await axios.get(api, config);
-      setSessions(Allsessions.data);
-      setIdSession(Allsessions.data[0]._id);
-    } catch (e) {
-      // console.log(e);
-    }
+    let sessions = backend.api.sessions.get('', {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    })
+    sessions.then((response) => {
+      if(response.statusCode){
+        console.log("vrai", response)
+      }else{
+        console.log(response)
+        setAllSessions(response);
+        setIdSession(response[0]._id);
+      }
+    })
   };
-  const getAllLots = async () => {
-    //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
 
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/group";
-    try {
-      let AllLots = await axios.get(api, config);
-      setLots(AllLots.data);
-    } catch (e) {
-      console.log(e);
-    }
+  const getAllLots = async () => {
+
+    let groups = backend.api.groups.get('', {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    })
+    groups.then((response) => {
+      if(response.statusCode){
+        console.log("vrai", response)
+      }else{
+        console.log(response)
+        setLots(response);
+      }
+    })
   };
 
   const handleChangeSession = (event) => {
@@ -180,7 +180,7 @@ export default function Stats() {
               label="session"
               onChange={handleChangeSession}
             >
-              {sessions.map((s, index) => (
+              {allsessions.map((s, index) => (
                 <MenuItem key={index} value={s._id}>
                   {s.name}
                 </MenuItem>

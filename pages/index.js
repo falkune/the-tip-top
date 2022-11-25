@@ -2,7 +2,7 @@ import React, { useEffect, useState ,useCallback } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import teab from "../image/teaBingo.png"
+import teab from "../image/TeaBingo.png"
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
@@ -10,7 +10,7 @@ import "animate.css";
 import axios from "axios";
 import Link from "next/link";
 import dayjs from "dayjs"
-import "dayjs/locale/fr"
+import "dayjs/locale/fr" 
 dayjs.locale('fr')
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
@@ -83,7 +83,7 @@ export default function Home() {
         <span style={{minWidth:160,width:"12%",marginTop:20}}>
           <Image className="animate__animated  animate__backInUp" src={teab}/>
           <Link href="/regle">
-         <p style={{textDecoration:"underline",color:"white",margin:2,lineHeight:1.5}}> Voir les règles de participation</p> 
+            <p style={{textDecoration:"underline",color:"white",margin:2,lineHeight:1.5}}> Voir les règles de participation</p> 
           </Link>
         </span>
         <span className="animate__animated animate__heartBeat animate__infinite	infinite">
