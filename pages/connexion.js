@@ -20,9 +20,7 @@ export default function Connexion() {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const backend = useContext(ApiContext)
-
   const router = useRouter();
-
   const connexion = async (e) => {
     e.preventDefault();
     const params = {

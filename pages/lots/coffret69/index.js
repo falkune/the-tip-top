@@ -63,8 +63,8 @@ export default function coffret69() {
           Et pour finir, cette boisson sera la boisson à préférer pour les femmes enceintes!
           </p>
           <section className="childLot">
-              <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
-            <Link href="lots/coffret32">Coffret 39 euros</Link>
+           <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
+            <Link href="/coffret32">Coffret 39 euros</Link>
             <Link href="lots/thesignature">100g thé signature</Link>
             <Link href="lots/thedetox">100g thé détox</Link>
             <Link href="lots/infuseur">Infuseur à thé</Link>
