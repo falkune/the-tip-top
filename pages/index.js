@@ -93,13 +93,13 @@ export default function Home() {
           Des infuseurs ou coffrets spéciaux !</h2>
         <button type="button" onClick={goResult} className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
           style={{marginBottom:20,marginTop:20,
-            boxShadow: "0px 0px 0px 13px rgba(255,255,255,0.34)"}} >
+            boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}} >
             Participer
         </button> 
         <h3  className='floating' style={{color:"white",margin:5}}> ou </h3>
         <Link href="/lots">
           <button type="button"  className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
-            style={{marginBottom:20,marginTop:20, boxShadow: "0px 0px 0px 13px rgba(255,255,255,0.34)"}}>
+            style={{marginBottom:20,marginTop:20, boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}}>
               Voir les lots à gagner
           </button> 
         </Link>
@@ -115,15 +115,15 @@ export default function Home() {
               {
                 "position": {
                   "x": 0,
-                  "y": 30
+                  "y": 50
                 },
                 "rate": {
-                  "quantity": 5,
-                  "delay": 0.10
+                  "quantity": 10,
+                  "delay": 0.8
                 },
                 "particles": {
                   "move": {
-                    "direction": "top-right",
+                    "direction": "right",
                     "outModes": {
                       "top": "none",
                       "left": "none",
@@ -135,15 +135,15 @@ export default function Home() {
               {
                 "position": {
                   "x": 100,
-                  "y": 30
+                  "y": 50
                 },
                 "rate": {
-                  "quantity": 5,
-                  "delay": 0.10
+                  "quantity": 10,
+                  "delay": 0.8
                 },
                 "particles": {
                   "move": {
-                    "direction": "top-left",
+                    "direction": "left",
                     "outModes": {
                       "top": "none",
                       "right": "none",
@@ -157,9 +157,9 @@ export default function Home() {
               "color": {
                 "value": [
                   "#ffffff",
-                  "#FF9672",
-                  "#FFAC07",
-                  "#663606"
+                  "#7EB906",
+                  "#A1E811",
+                  "#FFAC07"
                 ]
               },
               "move": {
@@ -174,8 +174,8 @@ export default function Home() {
                   "default": "destroy"
                 },
                 "speed": {
-                  "min": 50,
-                  "max": 100
+                  "min": 10,
+                  "max": 50
                 }
               },
               "number": {
@@ -192,7 +192,7 @@ export default function Home() {
                 "direction": "random",
                 "animation": {
                   "enable": true,
-                  "speed": 30
+                  "speed": 300
                 }
               },
               "tilt": {
@@ -204,7 +204,7 @@ export default function Home() {
                 },
                 "animation": {
                   "enable": true,
-                  "speed": 30
+                  "speed": 300
                 }
               },
               "size": {
@@ -216,7 +216,7 @@ export default function Home() {
                   "enable": true,
                   "startValue": "min",
                   "count": 1,
-                  "speed": 50,
+                  "speed": 150,
                   "sync": true
                 }
               },
@@ -235,8 +235,8 @@ export default function Home() {
                 "distance": 30,
                 "enable": true,
                 "speed": {
-                  "min": -7,
-                  "max": 7
+                  "min":0,
+                  "max":50
                 }
               },
               "shape": {

@@ -71,7 +71,7 @@ export default function Users({ idSession }) {
     >
       <h1 className={styles.h1}>Utilisateurs</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
-        <strong style={{ color: " #02558D" }}>{number} </strong>
+        <strong style={{ color: " #38870D" }}>{number} </strong>
         {`Utilisateur`}
       </p>
       <button style={stylez.export}>
@@ -111,12 +111,12 @@ const stylez = {
     marginBottom: 15,
     padding: 8,
     backgroundColor: "white",
-    border: "solid 1px  #02558D",
+    border: "solid 1px  #38870D",
     fontSize: 16,
     minHeight: 45,
     textAlign: "center",
     minWidth: 200,
-    color: " #02558D",
+    color: " #38870D",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

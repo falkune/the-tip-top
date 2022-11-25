@@ -1,14 +1,12 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import tea3 from "../image/tea3.png";
-import styles from "../styles/Home.module.css";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-import { useRouter } from "next/router";
+import tea3 from "../../../image/tea3.png";
+import styles from "../../../styles/Home.module.css";
+import Header from "../../../component/Header";
+import Footer from "../../../component/Footer";
 import Link from "next/link";
 
-import arrow from "../image/arrow.gif";
 
 
 
@@ -42,6 +40,7 @@ export default function thesignature() {
         margin:20,
         backgroundColor:"white",
         flexDirection:"column",
+        alignItems:"center",
         borderRadius:10 }}>
           <div>
                 <h1 style={{margin:8}}>100g thé signature</h1>
@@ -68,9 +67,8 @@ export default function thesignature() {
             <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
             <Link href="/coffret32">Coffret 39 euros</Link>
             <Link href="/coffret69">Coffret 69 euros</Link>
-            <Link href="/thesignature">100g thé signature</Link>
-            <Link href="/thedetox">100g thé détox</Link>
-            <Link href="/infuseur">Infuseur à thé</Link>
+            <Link href="lots/thedetox">100g thé détox</Link>
+            <Link href="lots/infuseur">Infuseur à thé</Link>
         </section>
 
        </div>

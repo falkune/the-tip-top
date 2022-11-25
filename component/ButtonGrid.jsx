@@ -23,7 +23,7 @@ const styles = {
         padding: 25,
     },
     button: {
-        backgroundColor: " #02558D",
+        backgroundColor: " #38870D",
         border: "none",
         color: "white",
         padding: 8,

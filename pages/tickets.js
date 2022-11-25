@@ -10,6 +10,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
 import "ag-grid-community/styles//ag-theme-alpine.css";
 import axios from "axios";
+import "animate.css";
 
 export default function Tickets() {
   const [colDefs, setColDefs] = useState([
@@ -21,10 +22,14 @@ export default function Tickets() {
       field: "jeux concours",
       minWidth: 150,
     },
-    {
+     {
       field: "go",
       minWidth: 200,
       cellRenderer: ButtonGrid,
+    },
+    {
+      field: "Lots délivré",
+      minWidth: 150,
     },
   ]);
   const [alltickets, setAlltickets] = useState([]);
@@ -86,7 +91,7 @@ export default function Tickets() {
       <h1 className={styles.h1}>Mes tickets</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
         Vous avez{" "}
-        <strong style={{ color: " #02558D" }}>{alltickets.length} </strong>
+        <strong style={{ color: " #38870D" }}>{alltickets.length} </strong>
         {`tickets gagnants`}
       </p>
       <div style={stylez.gain}>
@@ -98,6 +103,7 @@ export default function Tickets() {
           }}
         >
           <AgGridReact
+           className=" animate_animated animate__bounceInUp"
             pagination={true}
             rowData={billets}
             columnDefs={colDefs}

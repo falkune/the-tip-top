@@ -190,10 +190,10 @@ const Sessions = ({ idSession }) => {
       </button>
 
       <form style={styles.formSession}>
-        <p style={{ color: "#ABFFF3", textAlign: "center", margin: 5 }}>
+        <p style={{ color: "white", textAlign: "center", margin: 5 }}>
           Etat : <strong style={{ color: "white" }}> En cours </strong>
         </p>
-        <p style={{ color: "#ABFFF3", textAlign: "center", margin: 8 }}>
+        <p style={{ color: "white", textAlign: "center", margin: 8 }}>
           Date limite : fin dans{" "}
           <strong style={{ color: "white" }}> 25 JOURS</strong>
         </p>
@@ -247,7 +247,7 @@ const Sessions = ({ idSession }) => {
           theme="colored"
         />
       </form>
-      <Modal
+        <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -296,7 +296,7 @@ const Sessions = ({ idSession }) => {
           />
           <small
             style={{
-              color: "#ABFFF3",
+              color: "#84B71E",
               fontSize: 12,
               padding: "8px 0px 8px 8px",
             }}
@@ -311,7 +311,7 @@ const Sessions = ({ idSession }) => {
           />
           <small
             style={{
-              color: "#ABFFF3",
+              color: "#84B71E",
               fontSize: 12,
               padding: "8px 0px 8px 8px",
             }}
@@ -339,7 +339,7 @@ const styles = {
   email: {
     width: "100%",
     minHeight: 500,
-    backgroundColor: " #02558D",
+    backgroundColor: " #38870D",
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
@@ -358,7 +358,8 @@ const styles = {
     width: 350,
     padding: 15,
     fontSize: 18,
-    backgroundColor: "#3AAB9B",
+    backgroundColor: "transparent",
+    border:"solid 3px white",
     borderRadius: 8,
     margin: 10,
   },
@@ -366,7 +367,7 @@ const styles = {
     padding: 10,
     paddingLeft: 15,
     height: 50,
-    color: "#3AAB9B",
+    color: "#84B71E",
     backgroundColor: "white",
     border: "none",
     margin: 10,
@@ -380,7 +381,7 @@ const styles = {
     padding: 10,
     height: 50,
     color: "white",
-    backgroundColor: " #02558D",
+    backgroundColor: " #095719",
     border: "none",
     fontSize: 16,
     margin: 5,
@@ -390,7 +391,7 @@ const styles = {
   createButton: {
     padding: 10,
     color: "white",
-    backgroundColor: " #02558D",
+    backgroundColor: " #38870D",
     border: "solid 3px white",
     margin: 30,
     fontSize: 18,
@@ -409,7 +410,7 @@ const styles = {
     transform: "translate(-50%, -50%)",
     width: 350,
     borderRadius: 15,
-    backgroundColor: "#3AAB9B",
+    backgroundColor: "#84B71E",
     boxShadow: 24,
   },
   modalDate: {
@@ -430,7 +431,7 @@ const styles = {
     height: 50,
     padding: 8,
     color: "white",
-    background: " #02558D",
+    background: " #38870D",
     border: "none",
     margin: 5,
     marginTop: 15,

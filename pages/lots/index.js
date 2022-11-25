@@ -1,16 +1,15 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import logo from "../image/whitelogo.png";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
+import styles from "../../styles/Home.module.css";
+import Header from "../../component/Header";
+import Footer from "../../component/Footer";
 import { useRouter } from "next/router";
-import tea1 from "../image/tea1.png";
-import tea2 from "../image/tea2.png";
-import tea3 from "../image/tea3.png";
-import tea4 from "../image/tea4.png";
-import tea5 from "../image/tea5.png";
+import tea1 from "../../image/tea1.png";
+import tea2 from "../../image/tea2.png";
+import tea3 from "../../image/tea3.png";
+import tea4 from "../../image/tea4.png";
+import tea5 from "../../image/tea5.png";
 import Link from "next/link";
 import "animate.css";
 
@@ -63,7 +62,7 @@ export default function lots() {
       </Head>
       <Header menu="lots"/>
       <section style={{display:"flex",justifyContent:"center"}}>
-      <div  style={{ paddingTop: 125,
+      <div  className=" floating " style={{ paddingTop: 125,
       display:"flex",
       width:"100%",
       flexWrap:"wrap",
@@ -71,12 +70,12 @@ export default function lots() {
       paddingBottom: 50,
         minHeight:"100vh" }}>
         {gift.map((g,i) => (
-          <div key={i} className="lotsItems floating" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
+          <div key={i} className="lotsItems animate_animated animate__bounceInLeft animate__repeat-1" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
              <Image  src={g.src} alt={g.name}/>
              <div style={{display:"flex",flexDirection:"column",}}>
                 <h3>{g.name}</h3>
                 <p>{g.descrition}</p>
-                <Link href={g.href}>En savoir plus</Link>    
+                <Link href={`lots${g.href}`}>En savoir plus</Link>    
              </div> 
           </div>
             ))}
@@ -89,11 +88,11 @@ export default function lots() {
 const stylez ={
 
     dark :{
-      background:"#02558D"
+      background:"#38870D"
     },
 
     light:{
         background:"white",
-        color :"#02558D"
+        color :"#38870D"
     }
 }

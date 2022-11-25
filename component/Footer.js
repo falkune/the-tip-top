@@ -18,7 +18,7 @@ const style = {
     flexDirection:"column",
     alignItems:"center",
     justifyContent:"center",
-    background:"#02558D",
+    background:"#38870D",
 
   };
   
@@ -108,7 +108,7 @@ const styles = {
         width:"95%",
         fontSize:16,
         color:"white",
-        background:"#04304E",
+        background:"#2D6005",
         height:50,
         borderRadius:8
     },

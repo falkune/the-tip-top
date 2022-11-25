@@ -105,7 +105,8 @@ export default function Connexion() {
 
             <button
               className={styles.action}
-              style={{ animation: "pulse 1sec infite" }}>
+              style={{ animation: "pulse 1sec infite" }}
+            >
               Connexion
             </button>
           </form>
@@ -163,8 +164,7 @@ export default function Connexion() {
                 border:"none",
                 padding:10,
                 border:5
-              }}
-              onClick={goSignup}> S'inscrire</button>
+              }}onClick={goSignup}> S'inscrire</button>
           </strong>
         </small>
       </div>

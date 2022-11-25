@@ -210,7 +210,7 @@ const stylez = {
   side: {
     width: "15%",
     backgroundColor: "white",
-    backgroundColor: " #02558D",
+    backgroundColor: " #38870D",
     display: "flex",
     flexDirection: "column",
   },
@@ -224,12 +224,12 @@ const stylez = {
     width: "100%",
     border: "none",
     height: 60,
-    background: "#41C2B0",
+    background: "#96D614",
   },
   sideButtonInactive: {
     fontSize: 20,
     margin: 5,
-    color: "#3AAB9B",
+    color: "#96D614",
     marginLeft: 0,
     marginRight: 0,
     padding: 10,

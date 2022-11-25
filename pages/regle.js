@@ -23,11 +23,11 @@ export default function regle() {
       <section
 className={styles.part}
 style={{
-  color: " #02558D",
+  color: " #38870D",
   padding: 0,
 }}
 >
-<div style={{ padding: 50, background: " #02558D", width: "100%" }}>
+<div style={{ padding: 50, background: " #38870D", width: "100%" }}>
   <h2
     className={styles.h2}
     style={{
@@ -46,7 +46,7 @@ style={{
       marginBottom: 20,
     }}
   >
-    <p><strong style={{ fontSize: 50, color: " #02558D" }}>1</strong></p>
+    <p><strong style={{ fontSize: 50, color: " #38870D" }}>1</strong></p>
     <h3 style={{fontSize:"1.8em" }}>
       Récupérer votre code à  10 chiffres  </h3>
     <p style={{lineHeight:1.7}}>
@@ -64,7 +64,7 @@ style={{
   </div>
 
   <div
-    style={{ paddingTop: 30, marginBottom: 20, background: " #02558D" }}
+    style={{ paddingTop: 30, marginBottom: 20, background: " #38870D" }}
   >
     
     <p><strong style={{ fontSize: 50, color: "white" }}>2</strong></p>
@@ -82,7 +82,7 @@ style={{
   </div>
 
   <div style={{ paddingTop: 30, marginBottom: 20 }}>
-    <strong style={{ fontSize: 50, color: " #02558D" }}>3</strong>
+    <strong style={{ fontSize: 50, color: " #38870D" }}>3</strong>
     <h3 style={{fontSize:"1.8em" }}>
       Entrer vos 10 numéro pour voir votre lot gagné</h3>
     <p>
@@ -96,7 +96,7 @@ style={{
     </span>
   </div>
 
-  <div style={{ paddingTop: 30, background: " #02558D" }}>
+  <div style={{ paddingTop: 30, background: " #38870D" }}>
     <strong style={{ fontSize: 50, color: "white" }}>4</strong>
     <h3 style={{ color: "white",fontSize:"1.8em" }}>
       Aller chercher votre lot en magasin

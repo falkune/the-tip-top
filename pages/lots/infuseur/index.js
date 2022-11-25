@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
-import Header from "../component/Header";
-import Footer from "../component/Footer";
-import tea4 from "../image/tea4.png";
+import styles from "../../../styles/Home.module.css";
+import Header from "../../../component/Header";
+import Footer from "../../../component/Footer";
+import tea4 from "../../../image/tea4.png";
 import Link from "next/link";
 
 
@@ -40,13 +40,14 @@ export default function infuseur() {
         margin:20,
         backgroundColor:"white",
         flexDirection:"column",
+        alignItems:"center",
         borderRadius:10 }}>
           <div>
                 <h1 style={{margin:8}}>Infuseur à thé</h1>
                 <h2 style={{textAlign:"left",margin:8}}>Description :<br></br> INFUSION AU PAMPLEMOUSSE </h2>
           </div>
         <p style={{padding:10,color:"#8E8E8E", maxWidth:500, lineHeight:1.8, paddingRight:25}} > 
-        Ceci est un lot de notre <span style={{color:"grey",fontWeight:"bold"}} ><Link href="/"> Jeu concour </Link></span> <br></br>
+        Ceci est un lot de notre <span style={{color:"grey",fontWeight:"bold"}} ><Link href="/lots"> Jeu concour </Link></span> <br></br>
         L’infusion au pamplemousse est bien la boisson idéale avant d’aller se coucher. Cette boisson vous permet d’allier la gourmandise avec une santé de fer!
         Cette tisane, tout comme de nombreux thés, a le mérite d’apporter beaucoup de bénéfices pour la santé. Les avantages de consommer de la tisane ou une infusion comprennent la détente du corps, le refroidissement de la température corporelle, l’assouplissement de l’estomac et la réduction de la rétention d’eau dans le corps.
 
@@ -64,11 +65,10 @@ export default function infuseur() {
         </p>
         <section className="childLot">
             <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
-            <Link href="/coffret32">Coffret 39 euros</Link>
-            <Link href="/coffret69">Coffret 69 euros</Link>
-            <Link href="/thesignature">100g thé signature</Link>
-            <Link href="/thedetox">100g thé détox</Link>
-            <Link href="/infuseur">Infuseur à thé</Link>
+            <Link href="lots/coffret32">Coffret 39 euros</Link>
+            <Link href="lots/coffret69">Coffret 69 euros</Link>
+            <Link href="lots/thesignature">100g thé signature</Link>
+            <Link href="lots/thedetox">100g thé détox</Link>
         </section>
 
        </div>

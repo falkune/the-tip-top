@@ -21,13 +21,18 @@ export default function equipe() {
       <section
 className={styles.part}
 style={{
-  color: " #02558D",
+  color: " #38870D",
   padding: 0,
   paddingTop:80
 }}
 >
-<section style={{marginTop:50,minHeight:"100vh",
-width:"100%",display:"flex",flexDirection:"column",alignItems:"center"}}>
+<section style={{marginTop:50,
+minHeight:"100vh",
+width:"100%",
+display:"flex",
+flexDirection:"column",
+alignItems:"center",
+flex:1}}>
   <div className="team">  <Image  className="animate__animated  animate__backInUp"  style={{width:"50%"}} src={team} alt="team dev"/>
 </div>
 <div className="team2">

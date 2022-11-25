@@ -10,7 +10,8 @@ import gift from "../image/win.gif"
 import axios from "axios";
 import Breadcrumbs from 'nextjs-breadcrumbs'; 
 import 'nextjs-breadcrumbs/dist/index.css'
-
+import Cookies from "js-cookie";
+import "animate.css";
 
 
 export default function Bingo() {
@@ -109,7 +110,7 @@ export default function Bingo() {
           </button>
         )}
              <Link href="/#lots">
-          <small style={{ color: " #02558D", fontSize: "1.2em" }}>
+          <small style={{ color: " #38870D", fontSize: "1.2em" }}>
             Voir les differents lots
           </small>
         </Link>

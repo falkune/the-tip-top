@@ -49,7 +49,7 @@ header{
 
 footer{
 width: 100%;
-background-color: #02558D;
+background-color: #38870D;
 padding-top: 25px;
 display: flex;
 flex-direction: column;
@@ -73,7 +73,7 @@ footer ul {
 footer button{
 
   border-radius: 100px;
-  background-color:#04304E;
+  background-color:#2D6005;
   color: white;
   padding: 15px;
   border: none;
@@ -86,7 +86,7 @@ footer button{
   padding:15px;
   border-radius: 100px;
   min-width: 225px;
-  background-color:  #02558D;
+  background-color:  #38870D;
   border: none;
   color: white;
   font-size: 20px;
@@ -99,7 +99,7 @@ footer button{
   padding: 15px;
     border-radius: 100px;
     min-width: 225px;
-    background-color:  #02558D;
+    background-color:  #38870D;
     border: none;
     color: white;
     font-size: 25px;
@@ -182,7 +182,7 @@ footer button{
   padding: 10px;
   font-size: 16px;
   color:white;
-  background: #04304E;
+  background: #2D6005;
   border: none;
 }
 
@@ -233,7 +233,7 @@ a {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  background-color:  #02558D;
+  background-color:  #38870D;
   color:white;
   min-height: 60vh;
   padding: 15px;
@@ -266,7 +266,7 @@ a {
 
 .lotsItems{
   width: 100%;
-  background-color: #02558D;
+  background-color: #38870D;
   display: flex;
   flex-wrap: wrap;
   padding: 20px;
@@ -294,8 +294,8 @@ a {
 
  .lotsItems a{
   background-color: white;
-  border: solid 3px #02558D;
-  color: #02558D;
+  border: solid 3px #38870D;
+  color: #38870D;
   padding: 15px;
   margin: 30px;
   font-weight: bold;

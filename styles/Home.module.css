@@ -141,24 +141,24 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
 
 .part p{
   text-align: center;
-  color:  #02558D;
+  color:  #38870D;
 
 }
 
   .part ul{
-    color:  #02558D;
+    color:  #38870D;
 
   }
 
     .homdiv {
-      background-image: linear-gradient(rgba(2, 85, 255, 0.5), rgba(255, 172, 7, 0.8)),
+      background-image: linear-gradient(rgba(16, 132, 39, 0.4), rgba(255, 172, 7, 0.7)),
       url("../image/woaw.png");
       background-repeat: no-repeat;
       background-position: 25% 75%;
       display: flex;
       flex-direction: column;
       justify-content: start;
-      background-color:  #02558D;
+      background-color:  #38870D;
       align-items: center;
       width: 100%;
       padding: 10px;
@@ -188,20 +188,20 @@ box-shadow: 0px 1px 6px 3px rgba(71,71,71,0.11);}
               min-width: 225px;
               background-color:white ;
               border: none;
-              color:  #02558D;
+              color:  #38870D;
               font-size: 18px;
               font-weight: bold;
               box-shadow: 0px 0px 0px 8px rgb(255, 255, 255);
               margin-top: 35px;
         }
 .h1{
-  color:  #02558D;
+  color:  #38870D;
   font-size: 40px;
   margin-bottom: 0;
 }
 
 .h2{
-  color:  #02558D;
+  color:  #38870D;
 }
 
 .login{
@@ -230,7 +230,7 @@ max-width:500px ;
   padding:15px;
   border-radius: 100px;
   min-width: 225px;
-  background-color:  #02558D;
+  background-color:  #38870D;
   border: none;
   color: white;
   font-size: 20px;
@@ -306,7 +306,7 @@ max-width:500px ;
   padding-left: 25px;
   font-size: 16px;
   outline: none;
-  border: solid 2px  #02558D;
+  border: solid 2px  #38870D;
   border-radius: 5px;
 }
 
@@ -344,7 +344,7 @@ max-width:500px ;
 }
 
 .modal h2{
-  color: #02558D
+  color: #38870D
 }
 
 .modal p{
@@ -353,7 +353,7 @@ max-width:500px ;
 
 .modal input{
   border-radius: 8px;
-  border:solid 1px  #02558D;
+  border:solid 1px  #38870D;
   font-size: 19px;
 }
 

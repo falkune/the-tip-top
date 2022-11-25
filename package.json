@@ -35,10 +35,6 @@
     "nextjs-breadcrumbs": "^1.1.9",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
-<<<<<<< HEAD
-=======
-    "react-countdown": "^2.3.4",
->>>>>>> 6740139edc7fabd68e04d0357dd9fe84b56e54ce
     "react-custom-roulette": "^1.2.0",
     "react-dom": "17.0.2",
     "react-fontawesome": "^1.7.1",

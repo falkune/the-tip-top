@@ -146,7 +146,7 @@ export default function TicketChecker({ session }) {
             style={{
               width: "45%",
               display: "flex",
-              backgroundColor: " #02558D",
+              backgroundColor: " #38870D",
               justifyContent: "center",
               alignItems: "start",
               color: "white",
@@ -194,7 +194,7 @@ export default function TicketChecker({ session }) {
               </button>
             ) : (
               <p
-                style={{ background: "#3AAB9B", padding: 10, borderRadius: 8 }}
+                style={{ background: "#96D614", padding: 10, borderRadius: 8 }}
               >
                 Lot délivré
               </p>
@@ -214,7 +214,7 @@ export default function TicketChecker({ session }) {
               textAlign: "center",
             }}
           >
-            <ClipLoader color={" #02558D"} loading={true} size={100} />
+            <ClipLoader color={" #38870D"} loading={true} size={100} />
           </div>
         )}
       </div>
@@ -236,12 +236,12 @@ const stylez = {
     margin: 8,
     padding: 8,
     backgroundColor: "white",
-    border: "solid 1px  #02558D",
+    border: "solid 1px  #38870D",
     fontSize: 18,
     minHeight: 45,
     textAlign: "center",
     minWidth: 200,
-    color: " #02558D",
+    color: " #38870D",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
