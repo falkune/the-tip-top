@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OneLot from "./OneLot";
 import axios from "axios";
-import ErrorMessage from "../component/ErrorMessage";
 
 const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState([]);

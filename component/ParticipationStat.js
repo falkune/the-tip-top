@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from "react";
 import Gauge from "react-svg-gauge";
 import ApiContext from '../context/apiContext';
-import Cookies from 'js-cookie';
+
 
 export default function ParticipationStat({ticket, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
