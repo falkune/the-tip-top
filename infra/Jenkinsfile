@@ -82,8 +82,7 @@ pipeline{
                     steps{
                      sh "npm run test:cov"
                     }
-
-              }
+                }
 
               stage("SonarQube Analysis"){              
                   steps{  
@@ -92,9 +91,8 @@ pipeline{
                      }
                  }
               }
-
-                 
-        }
+        
+         }
 
         stage("deploy"){ 
             when { expression { BRANCH_NAME ==~ /(main|release)/ } }
@@ -130,5 +128,5 @@ pipeline{
             }
         }
     }
-}
+  }
 }
