@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint", 
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --env=jsdom --colors --coverage test"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
