@@ -62,7 +62,7 @@ pipeline{
             when {branch "dev"}
             environment {
                   SCANNER_HOME = tool 'SonarQubeScanner'
-                  NODEJS_HOME = "${tool 'Node 16.18.1'}"
+                  NODEJS_HOME = "${tool 'Node 14.21.1'}"
                   PATH="${env.NODEJS_HOME}/bin:${env.PATH}"    
                 }
             
