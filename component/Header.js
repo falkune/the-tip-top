@@ -21,9 +21,10 @@ const Header = ({ menu, changemenu }) => {
     setWidth(window.innerWidth);
     localStorage.setItem("width", width);
   };
+
   useEffect(() => {
-    if (localStorage.getItem("role") !== undefined) {
-      setRole(localStorage.getItem("role"));
+    if (Cookies.get("role")) {
+      setRole(Cookies.get("role"));
     }else{
       router.push("/connexion");
     }
@@ -33,7 +34,7 @@ const Header = ({ menu, changemenu }) => {
   }, [width]);
 
   const logOut = ()=> {
-    Cookies.remove('accessToken');
+    Cookies.remove('authToken');
     Cookies.remove('userRole');
     localStorage.removeItem('token');
     localStorage.removeItem('role');
@@ -207,7 +208,7 @@ const Header = ({ menu, changemenu }) => {
          
           {role ? (
             <li style={styles.toLogin} onClick={logOut}>
-              <Link href="/connexion">Déconnexion </Link>
+              <Link>Déconnexion </Link>
             </li>
           ) : (
             <li style={styles.toLogin}>

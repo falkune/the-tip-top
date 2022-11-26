@@ -10661,7 +10661,7 @@ prompts@^2.0.1:
     kleur "^3.0.3"
     sisteransi "^1.0.5"
 
-prop-types@^15.5.6, prop-types@^15.6.2, prop-types@^15.7.2, prop-types@^15.8.1:
+prop-types@^15.5.6, prop-types@^15.6.2, prop-types@^15.8.1:
   version "15.8.1"
   resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.8.1.tgz#67d87bf1a694f48435cf332c24af10214a3140b5"
   integrity sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==
@@ -10885,13 +10885,6 @@ react-chartjs-2@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/react-chartjs-2/-/react-chartjs-2-4.3.1.tgz#9941e7397fb963f28bb557addb401e9ff96c6681"
   integrity sha512-5i3mjP6tU7QSn0jvb8I4hudTzHJqS8l00ORJnVwI2sYu0ihpj83Lv2YzfxunfxTZkscKvZu2F2w9LkwNBhj6xA==
-
-react-countdown@^2.3.4:
-  version "2.3.4"
-  resolved "https://registry.yarnpkg.com/react-countdown/-/react-countdown-2.3.4.tgz#2533a166d33b47c109c22fa5a88142823f93e09a"
-  integrity sha512-AvtZOnxBYLAVDjvVoXQ9I3asZEnCHIIr1uqKdIayhaTJQTKtZvmLgK/620HjO5TP5Jce9cJCw9t1JQL/TA8gJg==
-  dependencies:
-    prop-types "^15.7.2"
 
 react-custom-roulette@^1.2.0:
   version "1.2.0"

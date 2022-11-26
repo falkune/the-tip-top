@@ -19,7 +19,7 @@ export default function Connexion() {
   const [fool, setFool] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-  const backend = useContext(ApiContext)
+  const context = useContext(ApiContext);
 
   const router = useRouter();
 
@@ -30,7 +30,7 @@ export default function Connexion() {
       password: password,
     };
 
-    let auth = backend.api.users.post('login', params, {
+    let auth = context.backend.api.users.post('login', params, {
       Accept: "Application/json",
       "Content-Type": "application/json",
     });
@@ -40,12 +40,15 @@ export default function Connexion() {
         setError(true)
         setMessage(response.message)
       } else {
-        backend.auth = new ApiClient()
+        let logedUser = new ApiClient()
         .setHeader("lang", "en")
         .setHeader("Accept", "Application/json")
         .setHeader("Content-Type", "application/json")
-        .setBearerAuth(response.accessToken);
-        // Cookies.set("logedUser", backend.auth);
+        .setBearerAuth(response.accessToken)
+        context.setBacked({ api: context.backend.api, auth : logedUser })
+        Cookies.set("authToken", response.accessToken);
+        Cookies.set('role', response.roles);
+
         if (response.roles.includes('admin')) {
           router.push({pathname: "/stats"},undefined,{shallow: true});
         }

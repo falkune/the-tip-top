@@ -1,25 +1,31 @@
 import "../styles/globals.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
 
 
-
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({
-    api : new ApiClient()
+    api: new ApiClient()
       .setHeader("lang", "en")
       .setHeader("Accept", "Application/json")
       .setHeader("Content-Type", "application/json"),
-    auth: Cookies.get("logedUser")
+    auth: Cookies.get('authToken') ? 
+      new ApiClient()
+        .setHeader("lang", "en")
+        .setHeader("Accept", "Application/json")
+        .setHeader("Content-Type", "application/json")
+        .setBearerAuth(Cookies.get('authToken'))
+      : null
   });
-
+  
   return (
-    <ApiProvider value={backend}>
+    <ApiProvider value={{backend, setBacked}}>
       <Component {...pageProps} />
     </ApiProvider>
   );
+  
 }
 
 export default MyApp;
