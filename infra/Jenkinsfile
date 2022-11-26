@@ -61,11 +61,9 @@ pipeline{
         stage("test"){
             when {branch "dev"}
             environment {
-                 
                   SCANNER_HOME = tool 'SonarQubeScanner'
                   NODEJS_HOME = "${tool 'Node 16.18.1'}"
                   PATH="${env.NODEJS_HOME}/bin:${env.PATH}"    
-                   
                 }
             
             stages {
@@ -91,7 +89,7 @@ pipeline{
                      }
                  }
               }
-        
+            }
          }
 
         stage("deploy"){ 
