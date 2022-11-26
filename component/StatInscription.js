@@ -1,18 +1,49 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Line } from "react-chartjs-2";
 import axios from "axios";
+import ApiContext from '../context/apiContext';
 
 export default function StatInscription({ days,  idSession}) {
   const [labels, setLabels] = useState([]);
   const [registration, setRegistration] = useState([]);
 
+  const context = useContext(ApiContext);
+
   useEffect(() => {
-    if(localStorage.getItem('token') && idSession != ""){
-      getRegistrationByDay();
+    if(idSession != ""){
+      getRegistrationByDayold();
     }
   },[days]);
 
   const getRegistrationByDay = async () => {
+    const labels = Array();
+    for(let i = 1; i <= days; i++){
+      labels.push("Jour "+i)
+    }
+    setLabels(labels);
+    const accessToken = localStorage.getItem('token');
+    // const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
+    // const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
+    // const registrationByDay = Array();
+    // response.data.forEach(e => {
+    //   registrationByDay.push(e.nomberOfRegitration)
+    // })
+    // setRegistration(registrationByDay)
+    const registrationByDay = Array();
+    let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession, {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    })
+    getregistrationByDay.then((response) => {
+      if(response.statusCode){
+        console.log("vrai", response)
+      }else{
+        // console.log(response)
+      }
+    })
+  }
+
+  const getRegistrationByDayold = async () => {
     const labels = Array();
     for(let i = 1; i <= days; i++){
       labels.push("Jour "+i)

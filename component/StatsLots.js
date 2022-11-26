@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OneLot from "./OneLot";
 import axios from "axios";
-import ErrorMessage from "../component/ErrorMessage";
 
 const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState([]);
@@ -33,9 +32,8 @@ const StatsLots = ({ idSession }) => {
           <OneLot 
             key={index}
             title={groupInfo.find(item => item._id == l._id).description}
-            now={l.claimbedTicket}
-            max={l.numberOfTickets}
-            value={l.numberOfTickets > 0 ? (l.claimbedTicket * 100 / l.numberOfTickets).toFixed(2) : 0.0.toFixed(2)}
+            claimbedTicket={l.claimbedTicket}
+            notClaimbedTicket={l.numberOfTickets - l.claimbedTicket}
           /> 
         ))
       }
@@ -47,10 +45,10 @@ export default StatsLots;
 const styles = {
   lot: {
     display: "flex",
-    padding: 15,
     width: "100%",
+    flexDirection: "row",
     marginBottom: 25,
-    justifyContent: "space-between",
-    flexWrap: "wrap",
+    justifyContent: "space-around",
+    flexWrap: "wrap"
   },
 };

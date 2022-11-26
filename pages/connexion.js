@@ -50,6 +50,8 @@ export default function Connexion() {
 
         if (response.roles.includes('admin')) {
           router.push({pathname: "/stats"},undefined,{shallow: true});
+        }else{
+          router.push({pathname: "/bingo"},undefined,{shallow: true});
         }
       }
     });

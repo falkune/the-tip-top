@@ -35,9 +35,7 @@ const Header = ({ menu, changemenu }) => {
 
   const logOut = ()=> {
     Cookies.remove('authToken');
-    Cookies.remove('userRole');
-    localStorage.removeItem('token');
-    localStorage.removeItem('role');
+    Cookies.remove('role');
     localStorage.removeItem('width');
     router.push("/connexion")
   }
@@ -98,9 +96,7 @@ const Header = ({ menu, changemenu }) => {
                 </li>
               )}
               {role &&   (
-      
-                  <button style={styles.login} onClick={logOut}>Déconnexion </button>
-        
+                <button style={styles.login} onClick={logOut}>Déconnexion </button>
               )}
                 
             </ul>
