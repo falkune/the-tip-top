@@ -1,60 +1,82 @@
-import React, { useEffect } from "react";
-import Gauge from "react-svg-gauge";
+import { PieChart, Pie, Cell, Legend } from "recharts";
 
-export default function OneLot({now, max, title, value}) {
-    return (
-      <div style={styles.lot}>
-        <h2 style={styles.h2}>{title} </h2>
-        <h3 style={styles.small}>Ticket validés : {now}</h3>
-        <small style={styles.small}>Total ticket : {max}</small>
-        <Gauge
-          value={value}
-          label=""
-          width={350}
-          height={200}
-          color='#ef233c'
-          backgroundColor="#ffffff"
-          topLabelStyle={{ display: "flex", fontSize: "2em" , fontWeight: "bold"}}
-          valueLabelStyle={{fontSize: "2em"}}
-          valueFormatter={number => `${number}%`}
-        />
-      </div>
-    );  
+const COLORS = ["#06d6a0", "#ff7d00"];
+
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({
+  cx,
+  cy,
+  midAngle,
+  innerRadius,
+  outerRadius,
+  percent,
+  index
+}) => {
+  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+  const x = cx + radius * Math.cos(-midAngle * RADIAN);
+  const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
+  return (
+    <text
+      x={x}
+      y={y}
+      fill="white"
+      textAnchor={x > cx ? "center" : "center"}
+      dominantBaseline="central"
+    >
+      {`${(percent * 100).toFixed(0)}%`}
+    </text>
+  );
+};
+
+export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
+  const data = [
+    { name: "Claimbed Tickes", value: claimbedTicket },
+    { name: "Not Claimbed Tickets", value: notClaimbedTicket },
+  ]
+  return (
+    <div style={styles.lot}>
+      <p style={styles.h2}>{title}</p>
+      <PieChart width={300} height={300} >
+      <Pie
+        data={data}
+        cx={150}
+        cy={150}
+        labelLine={false}
+        label={renderCustomizedLabel}
+        outerRadius={80}
+        fill="#8884d8"
+        dataKey="value"
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+      <Legend layout="horizontal" verticalAlign="top" align="center" />
+    </PieChart>
+    </div>
+    
+  );
 }
+
 
 const styles = {
   lot:{
-    textAlign:"center",
     display:"flex",
-    width:"22%",
+    maxWidth: 250,
     flexDirection:"column",
     justifyContent:"center",
-    margin:5,
-    background:" #38870D",
+    alignItems: "center",
+    margin: 10,
+    background:" #FFFFFF",
     borderRadius:8,
     padding:15,
-    color:"white"
-  },
-  h3:{
-    fontSize:2,
-    margin:2,
     color:"white"
   },
   h2:{
     fontSize:20,
     opacity:0.8,
     margin:3,
-    color:"white"
-
+    color:"#000000"
   },
-  small:{
-   fontSize:18,
-   color:"white",
-   opacity:0.9
-
-  },
- title:{
-  fontSize:20,
-  color:"white"
- }
 }

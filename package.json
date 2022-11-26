@@ -47,6 +47,7 @@
     "react-svg-gauge": "^1.0.10",
     "react-toastify": "^9.0.8",
     "react-wheel-of-prizes": "^1.0.9",
+    "recharts": "^2.1.16",
     "redux-persist": "^6.0.0",
     "reduxjs-toolkit-persist": "^7.2.1",
     "sharp": "^0.30.3",
