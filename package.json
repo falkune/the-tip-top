@@ -34,7 +34,6 @@
     "loadsh": "^0.0.4",
     "lodash-es": "^4.17.21",
     "next": "12.1.0",
-    "next-auth": "^4.3.0",
     "nextjs-breadcrumbs": "^1.1.9",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
