@@ -23,8 +23,11 @@ const Header = ({ menu, changemenu }) => {
   };
 
   useEffect(() => {
+    console.log("role",role)
     updateDimensions();
     setRole(Cookies.get('role'))
+    console.log("role",role)
+
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
