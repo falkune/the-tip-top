@@ -1,6 +1,4 @@
 make all --print-data-base --no-builtin-variables --no-builtin-rules --question
-make: *** No rule to make target 'all'.  Stop.
-
 # GNU Make 4.2.1
 # Built for x86_64-pc-linux-gnu
 # Copyright (C) 1988-2016 Free Software Foundation, Inc.
@@ -8,7 +6,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Nov 17 17:36:46 2022
+# Make data base, printed on Thu Dec  1 21:17:43 2022
 
 # Variables
 
@@ -51,7 +49,7 @@ VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:59774
+JOURNAL_STREAM = 8:49992
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -73,9 +71,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 3982
+MANAGERPID = 2590
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-8ee29359-09ac-46b8-8621-6c0246b453ac.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-053a5d04-a4e9-407c-96ea-87205e0414ca.sock
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -91,7 +89,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/4221,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/4221
+SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/2812,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/2812
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -105,7 +103,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = af7a9872dd0844018a2ca43707fa10f6
+INVOCATION_ID = 06bfbcfdadbb45f4bec8bf69a1c20aa5
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -115,7 +113,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 660269
+GIO_LAUNCHED_DESKTOP_FILE_PID = 3262
 # automatic
 %F = $(notdir $%)
 # environment
@@ -127,7 +125,7 @@ PWD = /home/donald/Documents/TheTipTop/front-end
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 4166
+SSH_AGENT_PID = 2773
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -249,7 +247,7 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 660269
+VSCODE_PID = 3262
 # variable set hash-table stats:
 # Load=119/1024=12%, Rehash=0, Collisions=17/141=12%
 
@@ -259,9 +257,9 @@ VSCODE_PID = 660269
 
 # Directories
 
-# . (device 66311, inode 10368061): 22 files, no impossibilities.
+# . (device 66311, inode 10368061): 27 files, no impossibilities.
 
-# 22 files, no impossibilities in 1 directories.
+# 27 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -296,6 +294,9 @@ makefile:
 #  Modification time never checked.
 #  File has not been updated.
 
+ 
+make: *** No rule to make target 'all'.  Stop.
+
 # Not a target:
 GNUmakefile:
 #  Implicit rule search has been done.
@@ -311,12 +312,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 30 / storage = 288 B / avg = 9 B
-# current buf: size = 8162 B / used = 288 B / count = 30 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 35 / storage = 340 B / avg = 9 B
+# current buf: size = 8162 B / used = 340 B / count = 35 / avg = 9 B
 
-# strcache performance: lookups = 33 / hit rate = 9%
+# strcache performance: lookups = 38 / hit rate = 7%
 # hash-table stats:
-# Load=30/8192=0%, Rehash=0, Collisions=1/33=3%
-# Finished Make data base on Thu Nov 17 17:36:46 2022
+# Load=35/8192=0%, Rehash=0, Collisions=1/38=3%
+# Finished Make data base on Thu Dec  1 21:17:43 2022
 
  
