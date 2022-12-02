@@ -4,9 +4,9 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
-import Link from "next/link";
-import google from "../image/google.svg";
-import facebook from "../image/facebook.png";
+//import Link from "next/link";
+//import google from "../image/google.svg";
+//import facebook from "../image/facebook.png";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiClient from '../api/api-client';
@@ -40,18 +40,18 @@ export default function Connexion() {
         setMessage(response.message)
       } else {
         let logedUser = new ApiClient()
-        .setHeader("lang", "en")
-        .setHeader("Accept", "Application/json")
-        .setHeader("Content-Type", "application/json")
-        .setBearerAuth(response.accessToken)
-        context.setBacked({ api: context.backend.api, auth : logedUser })
+          .setHeader("lang", "en")
+          .setHeader("Accept", "Application/json")
+          .setHeader("Content-Type", "application/json")
+          .setBearerAuth(response.accessToken)
+        context.setBacked({ api: context.backend.api, auth: logedUser })
         Cookies.set("authToken", response.accessToken);
         Cookies.set('role', response.roles);
 
         if (response.roles.includes('admin')) {
-          router.push({pathname: "/stats"},undefined,{shallow: true});
-        }else{
-          router.push({pathname: "/bingo"},undefined,{shallow: true});
+          router.push({ pathname: "/stats" }, undefined, { shallow: true });
+        } else {
+          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
         }
       }
     });
@@ -66,7 +66,7 @@ export default function Connexion() {
 
   const signInWith = (provider) => {
 
-    
+
   }
 
   return (
@@ -88,12 +88,18 @@ export default function Connexion() {
               Connexion
             </h1>
             <input
-              type="text"
+            label='Password'
+            name='password' 
+            aria-label='formEmail'
+              type="email"
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
             />
             <input
-              type="password"
+              label='Password'
+              name='password'
+              type='password'
+              aria-label='formPassword'
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
@@ -114,16 +120,16 @@ export default function Connexion() {
             <button
               style={{
                 backgroundColor: "#437BFF",
-                fontWeight:"bold",
+                fontWeight: "bold",
                 color: "white",
                 position: "relative",
-                height:60,
+                height: 60,
               }}
               onClick={signInWith}
             >
               <span style={{ position: "absolute", left: 20, bottom: 1 }}>
                 <Image
-                  src={facebook}
+                  src='/facebook.png'
                   width="16"
                   height="40"
                   objectFit="contain"
@@ -134,37 +140,37 @@ export default function Connexion() {
             </button>
             <button
               style={{
-                display:"flex",
-                alignItems:"center",
-                justifyContent:"center",
-                fontSize:18,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 18,
                 backgroundColor: "white",
-                fontWeight:"bold",
+                fontWeight: "bold",
                 color: "#437BFF",
-                 height:60,
+                height: 60,
                 boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
               }}
               onClick={signInWith}
             >
               <span style={{ position: "absolute", left: 8, bottom: 1 }}>
-                <Image src={google} width="40" height="40" alt="google logo" />
+                <Image src='/google.svg' width="40" height="40" alt="google logo" />
               </span>
               Connexion
             </button>
           </div>
         </section>
-        <small style={{color:"grey"}}>
+        <small style={{ color: "grey" }}>
           Pas encore de compte ?
           <strong style={{ color: "#437BFF" }}>
             {" "}
-            <button   style={{
-                margin:10,
-                fontWeight:"bold",
-                color: "#437BFF",
-                border:"none",
-                padding:10,
-                border:5
-              }}onClick={goSignup}> S'inscrire</button>
+            <button style={{
+              margin: 10,
+              fontWeight: "bold",
+              color: "#437BFF",
+              border: "none",
+              padding: 10,
+              border: 5
+            }} onClick={goSignup}> S'inscrire</button>
           </strong>
         </small>
       </div>

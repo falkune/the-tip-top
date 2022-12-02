@@ -11,4 +11,5 @@ describe("Footer", () => {
 
     expect(heading).toBeInTheDocument();
   });
+  
 });
