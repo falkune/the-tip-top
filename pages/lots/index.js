@@ -14,8 +14,6 @@ import Link from "next/link";
 import "animate.css";
 
 
-
-
 export default function lots() {
 
     const gift = [
