@@ -4,7 +4,7 @@ import Countdown from "react-countdown";
 
 const Count = ({ current }) => {
   const xtime = dayjs(current.endDate).valueOf();
-
+ console.log(xtime,"xtime")
   const renderer = ({ days, hours, minutes, seconds }) => (
     <div style={styles.count}>
       <p

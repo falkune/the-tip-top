@@ -14,8 +14,6 @@ import Link from "next/link";
 import "animate.css";
 
 
-
-
 export default function lots() {
 
     const gift = [
@@ -62,7 +60,7 @@ export default function lots() {
       </Head>
       <Header menu="lots"/>
       <section style={{display:"flex",justifyContent:"center"}}>
-      <div  className=" floating " style={{ paddingTop: 125,
+      <div  style={{ paddingTop: 125,
       display:"flex",
       width:"100%",
       flexWrap:"wrap",

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "../image/logo.png";
-import iconMenu from "../image/menu.svg";
+//import logo from "../image/logo.png";
+//import iconMenu from "../image/menu.svg";
 import Drawer from "@mui/material/Drawer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
@@ -49,7 +49,7 @@ const Header = ({ menu, changemenu }) => {
         }}
       >
         <Link href="/">
-          <Image src={logo} width={56} height={56} alt="logo" />
+          <Image src='/logo.png' width={56} height={56} alt="logo" />
         </Link>
         {width > 850 ? (
           <nav>
@@ -100,7 +100,7 @@ const Header = ({ menu, changemenu }) => {
         ) : (
           <Image
             onClick={toggleDrawer(true)}
-            src={iconMenu}
+            src='/menu.svg'
             width={30}
             height={30}
             alt="menu"
@@ -200,7 +200,7 @@ const Header = ({ menu, changemenu }) => {
          
           {role ? (
             <li style={styles.toLogin} onClick={logOut}>
-              <Link>Déconnexion </Link>
+              <Link href="/connexion">Déconnexion </Link>
             </li>
           ) : (
             <li style={styles.toLogin}>

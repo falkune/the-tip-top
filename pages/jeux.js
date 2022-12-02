@@ -11,6 +11,9 @@ import axios from "axios";
 import dayjs from "dayjs";
 import "dayjs/locale/fr";
 import wheel from "../image/wheel.gif";
+import Cookies from 'js-cookie';
+
+
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
@@ -18,22 +21,22 @@ export default function Jeux() {
   useEffect(() => {
     getCurrent();
   }, []);
+
   const getCurrent = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
     const api =
       "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/get-current-session";
     try {
-      let currenSession = await axios.get(api, config);
-      setCurrent(currenSession.data[0]);
-      localStorage.setItem("current", currenSession.data[0]);
+      let currenSession = await axios.get(api);
+      setCurrent(currenSession.data);
+      Cookies.set("current", currenSession.data);
+      console.log(currenSession.data[0]);
+      setCurrent(currenSession.data[0])
     } catch (e) {
       console.log(e);
     }
   };
+  
   return (
     <div className={styles.container}>
       <Head>
@@ -66,6 +69,7 @@ export default function Jeux() {
             Le tirage au sort dans :
           </p>
           {current && <Count current={current} />}
+          
         </div>
 
         <div
