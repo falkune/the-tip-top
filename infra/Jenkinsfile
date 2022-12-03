@@ -106,16 +106,27 @@ pipeline{
                                             }
                                         
                                         stages {
-                                            stage("Build Test Env "){
+                                            stage("Setup Test Env"){
                                             steps{
                                                     sh "node --version"
                                                     sh "npm version"
-                                                    sh "npm install"
-                                                    sh "npm run build"
-                                                    sh "npm audit fix"
                                                 }
-                                            
                                             }
+
+                                             stage("Install Packages") {
+                                                steps{
+                                                 sh "npm install"
+                                                 sh "npm fix audit"
+                                                }
+                                             }
+                                             
+                                             stage("Build Code"){
+                                                 steps{
+                                                    sh "npm run build"
+                                                 }
+
+                                             }
+                                            
                                             stage("coverage") {
                                                 steps{
                                                  sh "npm run test:cov"
