@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Thu Dec  1 21:59:48 2022
+# Make data base, printed on Sat Dec  3 11:16:05 2022
 
 # Variables
 
@@ -51,7 +51,7 @@ VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:49992
+JOURNAL_STREAM = 8:56649
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -73,9 +73,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 2590
+MANAGERPID = 2626
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-e6a29708-7497-4316-929d-c3c23a2fa11a.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4225c310-6e1a-4a38-947f-3fa76453046a.sock
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -91,7 +91,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/2812,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/2812
+SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/2850,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/2850
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -105,7 +105,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = 06bfbcfdadbb45f4bec8bf69a1c20aa5
+INVOCATION_ID = f99ace54fb104c81bb1c5bedf3c1d30d
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -115,7 +115,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 27563
+GIO_LAUNCHED_DESKTOP_FILE_PID = 21162
 # automatic
 %F = $(notdir $%)
 # environment
@@ -127,7 +127,7 @@ PWD = /home/donald/Documents/TheTipTop/front-end
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2773
+SSH_AGENT_PID = 2812
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -249,7 +249,7 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 27563
+VSCODE_PID = 21162
 # variable set hash-table stats:
 # Load=119/1024=12%, Rehash=0, Collisions=17/141=12%
 
@@ -318,6 +318,6 @@ GNUmakefile:
 # strcache performance: lookups = 37 / hit rate = 8%
 # hash-table stats:
 # Load=34/8192=0%, Rehash=0, Collisions=1/37=3%
-# Finished Make data base on Thu Dec  1 21:59:48 2022
+# Finished Make data base on Sat Dec  3 11:16:05 2022
 
  
