@@ -17,7 +17,7 @@ pipeline{
 
                        stages{
                         
-                         stage("build") {
+                         stage("Build Stage") {
                   
                            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                                 stages {
@@ -66,7 +66,7 @@ pipeline{
                                         }
                                      }
 
-                            stage("deploy"){ 
+                            stage("Deploy Stage"){ 
                                     when { expression { BRANCH_NAME ==~ /(main|release)/ } }
                                     stages{
                                         stage ('release'){
@@ -106,7 +106,7 @@ pipeline{
                                             }
                                         
                                         stages {
-                                            stage("setup"){
+                                            stage("Build Test Env "){
                                             steps{
                                                     sh "node --version"
                                                     sh "npm version"
@@ -118,7 +118,13 @@ pipeline{
                                             }
                                             stage("coverage") {
                                                 steps{
-                                                sh "npm run test:cov"
+                                                 sh "npm run test:cov"
+                                                }
+                                            }
+
+                                            stage("unit"){
+                                                steps{
+                                                 echo "Unit Testing"
                                                 }
                                             }
 
@@ -129,8 +135,18 @@ pipeline{
                                                 }
                                             }
                                           }
+
+                                          stage("Quality Gate"){              
+                                            steps{  
+                                                timeout(time: 1, unit: 'HOURS') {
+                                                // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                                                // true = set pipeline to UNSTABLE, false = don't
+                                                waitForQualityGate abortPipeline: true
+                                               }
+                                            }
+                                          }
                                         }
-                                    }
+                                     }
                      
                                  }
                         }
