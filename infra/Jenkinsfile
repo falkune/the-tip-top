@@ -6,125 +6,140 @@ pipeline{
       REGISTRY_CRED=credentials('jenkins-registry-credential')
       IMAGE_TAG=sh(returnStdout: true, script: 'cat infra/build/version | tail -1').trim()
     }
+
     stages{
+          
+          stage("CI/CD"){
 
-        stage("build") {
-            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
-                    parallel {
-                  
-                         stage("release"){  
-                                when {branch 'release'}
-                                  steps{
-                                    sh "infra/scripts/build.sh frontend release"  
-                                 }
-                         }
+              parallel {
+                 
+                  stage("Deployment"){
 
-                        stage("stable"){
-                            when{branch 'main'}
-                               steps{
-                                sh "infra/scripts/build.sh frontend stable"     
-                             } 
+                       stages{
                         
-                         }
-              
-                     }
-              }
-
-        stage("registry") {
-                when { expression { BRANCH_NAME ==~ /(main|release)/ } }
-                stages {
-
-                      stage("login"){
-                         
-                        steps{
-                               echo "Login to the docker private registry"
-                               sh "docker login -u ${REGISTRY_CRED_USR} -p ${REGISTRY_CRED_PSW} https://${DOCKER_PRIVATE_REGISTER}"    
-                           }
-                        }
-                      
-                      stage("push"){
+                         stage("build") {
+                  
+                           when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                                parallel {
                             
-                             steps{
-                                      echo "push frontend image to the docker private registry"
-                                      sh "infra/scripts/registry.sh frontend"    
+                                    stage("release"){  
+                                            when {branch 'release'}
+                                            steps{
+                                                sh "infra/scripts/build.sh frontend release"  
+                                            }
+                                    }
+
+                                    stage("stable"){
+                                        when{branch 'main'}
+                                        steps{
+                                            sh "infra/scripts/build.sh frontend stable"     
+                                        } 
+                                    
+                                    }
+                        
+                                }
+                              }
+
+                            stage("registry") {
+                                        when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                                        stages {
+
+                                            stage("login"){
+                                                
+                                                steps{
+                                                    echo "Login to the docker private registry"
+                                                    sh "docker login -u ${REGISTRY_CRED_USR} -p ${REGISTRY_CRED_PSW} https://${DOCKER_PRIVATE_REGISTER}"    
+                                                }
+                                            }
+                                            
+                                            stage("push"){
+                                                    
+                                                    steps{
+                                                            echo "push frontend image to the docker private registry"
+                                                            sh "infra/scripts/registry.sh frontend"    
+                                                        }
+
+                                                post {
+                                                    always { sh "docker system prune -af"}
+                                                }
+                                            }
+                                        }
+                                     }
+
+                            stage("deploy"){ 
+                                    when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                                    parallel{
+                                        stage ('release'){
+                                            when{ branch 'release'}
+                                            steps{
+                                                sshagent(credentials: ['devops-sshkey-private']) {
+                                                    echo "copy release infra folder env on prod remote"
+                                                    echo "Add execute permission to the start.sh file on remote"
+                                                    sh "infra/scripts/deploy.sh release"
+                                                }
+                                                
+                                            }
+                                        }
+
+                                        stage('prod'){
+                                            when { branch 'main' }
+                                            steps {
+                                                sshagent(credentials: ['devops-sshkey-private']) {
+                                                    echo "copy prod infra folder env on remote"
+                                                    echo "Add execute permission to start.sh file on remote"
+                                                    sh "infra/scripts/deploy.sh prod"
+                                                }                          
+                                            }
+                                        }
+                                    }                 
                                 }
 
-                          post {
-                              always {
-                                 sh "docker system prune -af"
-                              }
-                          }
-                     }
-                }
-             }
-
-        stage("test"){
-            when {branch "dev"}
-            environment {
-                  SCANNER_HOME = tool 'SonarQubeScanner'
-                  NODEJS_HOME = "${tool 'Node 14.21.1'}"
-                  PATH="${env.NODEJS_HOME}/bin:${env.PATH}"    
-                }
-            
-            stages {
-                stage("setup"){
-                   steps{
-                           sh "node --version"
-                           sh "npm version"
-                           sh "npm install"
-                           sh "npm run build"
-                           sh "npm audit fix"
-                       }
-                   
-                }
-                 stage("coverage") {
-                    steps{
-                     sh "npm run test:cov"
-                    }
-                }
-
-              stage("SonarQube Analysis"){              
-                  steps{  
-                     withSonarQubeEnv('SonarQube') {
-                        sh "${SCANNER_HOME}/bin/sonar-scanner -X"
-                     }
-                 }
-              }
-            }
-         }
-
-        stage("deploy"){ 
-            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
-            parallel{
-                stage ('release'){
-                    when{ branch 'release'}
-                    steps{
-                        sshagent(credentials: ['devops-sshkey-private']) {
-                               echo "copy release infra folder env on prod remote"
-                               echo "Add execute permission to the start.sh file on remote"
-                               sh "infra/scripts/deploy.sh release"
+                            }
                         }
-                           
-                    }
-                }
 
-                stage('prod'){
-                    when { branch 'main' }
-                    steps {
-                        sshagent(credentials: ['devops-sshkey-private']) {
-                             echo "copy prod infra folder env on remote"
-                             echo "Add execute permission to start.sh file on remote"
-                             sh "infra/scripts/deploy.sh prod"
-                        }                          
-                    }
-                }
-            }                 
-        }
+                                    stage("Testing"){
+                                        when {branch "dev"}
+                                        environment {
+                                            SCANNER_HOME = tool 'SonarQubeScanner'
+                                            NODEJS_HOME = "${tool 'Node 14.21.1'}"
+                                            PATH="${env.NODEJS_HOME}/bin:${env.PATH}"    
+                                            }
+                                        
+                                        stages {
+                                            stage("setup"){
+                                            steps{
+                                                    sh "node --version"
+                                                    sh "npm version"
+                                                    sh "npm install"
+                                                    sh "npm run build"
+                                                    sh "npm audit fix"
+                                                }
+                                            
+                                            }
+                                            stage("coverage") {
+                                                steps{
+                                                sh "npm run test:cov"
+                                                }
+                                            }
+
+                                        stage("SonarQube Analysis"){              
+                                            steps{  
+                                                withSonarQubeEnv('SonarQube') {
+                                                    sh "${SCANNER_HOME}/bin/sonar-scanner -X"
+                                                }
+                                            }
+                                          }
+                                        }
+                                    }
+                     
+                                 }
+                        }
 
         stage("end") {
+           
             steps{
                 echo "Successful end"
             }
         }
     }
-  }
+}
