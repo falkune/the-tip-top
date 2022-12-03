@@ -122,6 +122,7 @@ pipeline{
                                              stage("Fix Vulnerability") {
                                                 steps{
                                                  sh "npm audit fix"
+                                                 sh "npm fund"
                                                 }
                                              }
                                              
