@@ -116,7 +116,7 @@ pipeline{
                                              stage("Install Packages") {
                                                 steps{
                                                  sh "npm install"
-                                                 sh "npm fix audit"
+                                                 sh "npm  audit fix"
                                                 }
                                              }
                                              
