@@ -9,11 +9,11 @@ pipeline{
 
     stages{
           
-          stage("CI/CD"){
+          stage("WorkFlow"){
 
               parallel {
                  
-                  stage("Deploy"){
+                  stage("CI/CD"){
 
                        stages{
                         
@@ -135,11 +135,11 @@ pipeline{
                                  }
                         }
 
-        stage("end") {
-           
-            steps{
-                echo "Successful end"
+                        stage("end") {
+                        
+                            steps{
+                                echo "Successful end"
+                            }
+                        }
+                    }
             }
-        }
-    }
-}
