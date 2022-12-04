@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
+
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -13,6 +14,8 @@ import { faEye } from '@fortawesome/free-solid-svg-icons';
 import ErrorMessage from "../component/ErrorMessage";
 import axios from "axios";
 import {firebaseApp} from '../config/firebase';
+import ApiClient from '../api/api-client';
+import ApiContext from '../context/apiContext';
 import { 
   getAuth, 
   signInWithPopup, 
@@ -21,6 +24,7 @@ import {
 } from "firebase/auth"
 
 export default function Inscription() {
+  const context = useContext(ApiContext);
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [emailMatch, setEmailMatch] = useState(false);
@@ -97,13 +101,32 @@ export default function Inscription() {
     const firebaseAuth = getAuth(firebaseApp);
     signInWithPopup(firebaseAuth, GoogleProvider)
     .then((res) => {
-      console.log(res.user);
-      console.log(res.user.email);
-      console.log(res.user.reloadUserInfo.dateOfBirth);
+      const user = {
+        email: res.user.email,
+        fullName: res.user.displayName,   
+        socialNetworkUserId:res.user.uid,
+        socialNetworkAccessToken:res.user.accessToken,
+        socialNetworkProvider: res.user.providerId,
+        password: "",
+        birthday: ""
+
+      }
+
+      
+      
 
       setEmail(res.user.email);
       setNom(res.user.displayName);
-      dateNaissance(res.user.reloadUserInfo.dateOfBirth);
+      setDateNaissance(res.user.reloadUserInfo.dateOfBirth);
+
+      console.log("Registration",user);
+   context.backend.api.users.post('auth-from-social-network', user).then((res) => {
+    console.log('User est là',res)
+   })
+
+ 
+
+
     })
     .catch((error) => {
       console.log(error)
@@ -119,9 +142,19 @@ export default function Inscription() {
     const firebaseAuth = getAuth(firebaseApp);
     signInWithPopup(firebaseAuth, FacebookProvider)
     .then((res) => {
-      console.log(res.user);
-      console.log(res.user.email);
-      console.log(res.user.reloadUserInfo.dateOfBirth);
+      const user = {
+
+       email: res.user.email,
+        fullName: res.user.displayName,   
+        socialNetworkUserId:res.user.uid,
+        socialNetworkAccessToken:res.user.accessToken,
+        socialNetworkProvider: res.user.providerId,
+        password: "",
+        birthday: res.user.reloadUserInfo.dateOfBirth
+      }
+
+      console.log("THIS IS USER from facebooke ",user);
+      
 
       setEmail(res.user.email);
       setNom(res.user.displayName);
