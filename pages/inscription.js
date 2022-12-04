@@ -12,6 +12,13 @@ import { useRouter } from "next/router";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import ErrorMessage from "../component/ErrorMessage";
 import axios from "axios";
+import {firebaseApp} from '../config/firebase';
+import { 
+  getAuth, 
+  signInWithPopup, 
+  GoogleAuthProvider, 
+  FacebookAuthProvider 
+} from "firebase/auth"
 
 export default function Inscription() {
   const router = useRouter();
@@ -30,6 +37,11 @@ export default function Inscription() {
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
 
+  const GoogleProvider = new GoogleAuthProvider();
+  const FacebookProvider = new FacebookAuthProvider();
+
+  
+  
   const verifyEmail = () => {
     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
     if(!email.match(validRegex)){
@@ -82,12 +94,48 @@ export default function Inscription() {
   }
 
   const googleRegistration = () => {
-    
-  };
+    const firebaseAuth = getAuth(firebaseApp);
+    signInWithPopup(firebaseAuth, GoogleProvider)
+    .then((res) => {
+      console.log(res.user);
+      console.log(res.user.email);
+      console.log(res.user.reloadUserInfo.dateOfBirth);
 
-  const facebookRegistration = () => {
-
+      setEmail(res.user.email);
+      setNom(res.user.displayName);
+      dateNaissance(res.user.reloadUserInfo.dateOfBirth);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
+
+  // facebook start
+  const facebookRegistration = () => {
+    FacebookProvider.addScope('email');
+    FacebookProvider.addScope('user_birthday');
+    FacebookProvider.addScope('user_friends');
+    
+    const firebaseAuth = getAuth(firebaseApp);
+    signInWithPopup(firebaseAuth, FacebookProvider)
+    .then((res) => {
+      console.log(res.user);
+      console.log(res.user.email);
+      console.log(res.user.reloadUserInfo.dateOfBirth);
+
+      setEmail(res.user.email);
+      setNom(res.user.displayName);
+      dateNaissance(res.user.reloadUserInfo.dateOfBirth);
+    })
+    .catch((err) => {
+      const errorCode = err.code;
+      const errorMessage = err.message;
+      if(err.code === 'auth/account-exists-with-different-credential'){
+        console.log("error");
+      }
+    })
+  }
+  // facebook end
 
 
   const register = (e) => {
@@ -256,3 +304,5 @@ export default function Inscription() {
     </div>
   );
 }
+
+
