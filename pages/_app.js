@@ -4,6 +4,9 @@ import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
 import Script from "next/script"
+import { config } from 'dotenv';
+
+config()
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({
