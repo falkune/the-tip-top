@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "lint": "next lint",
     "test:watch": "jest --watch",
@@ -35,6 +36,7 @@
     "lodash-es": "^4.17.21",
     "next": "12.1.0",
     "next-auth": "^4.3.0",
+    "next-sitemap": "^3.1.32",
     "nextjs-breadcrumbs": "^1.1.9",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
@@ -83,7 +85,7 @@
       "ts"
     ],
     "rootDir": "./",
-   "testRegex": ".*\\.spec\\.ts$",
+    "testRegex": ".*\\.spec\\.ts$",
     "transform": {
       "^.+\\.(t|j)s$": "ts-jest"
     },

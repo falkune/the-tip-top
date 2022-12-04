@@ -23,11 +23,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
     <Script
+    id='GoogleA'
     strategy="lazyOnload"
     src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
   />
 
-  <Script strategy="lazyOnload">
+  <Script 
+      id='GoogleS'
+
+  strategy="lazyOnload">
     {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
@@ -37,6 +41,7 @@ function MyApp({ Component, pageProps }) {
         });
             `}
   </Script>
+
     <ApiProvider value={{backend, setBacked}}>
       <Component {...pageProps} />
     </ApiProvider>

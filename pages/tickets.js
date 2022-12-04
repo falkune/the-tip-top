@@ -1,4 +1,6 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
+import ApiContext from '../context/apiContext';
+import Cookies from "js-cookie";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
@@ -9,10 +11,11 @@ import ButtonGrid from "../component/ButtonGrid";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
 import "ag-grid-community/styles//ag-theme-alpine.css";
-import axios from "axios";
 import "animate.css";
 
+
 export default function Tickets() {
+  const context = useContext(ApiContext)
   const [colDefs, setColDefs] = useState([
     {
       field: "number",
@@ -35,7 +38,6 @@ export default function Tickets() {
   const [alltickets, setAlltickets] = useState([]);
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
-
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -51,29 +53,21 @@ export default function Tickets() {
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
-
   console.log("width", width);
+
   useEffect(() => {
-    getAllSessions();
+    getAllTickets();
   }, []);
 
-  const getAllSessions = async () => {
+  const getAllTickets = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    console.log("tokens", token);
-
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session";
-    console.log("config", config);
-
+    console.log('hot tickets')
     try {
-      let Allsessions = await axios.get(api, config);
-      setSessions(Allsessions.data);
-      console.log(sessions);
-      setIdSession(Allsessions.data[0]._id);
-      console.log("idsession", idSession);
+      context.backend.auth.tickets.post('tickets-by-client',{idClient:Cookies.get("idClient")}).then((value) =>
+      {console.log(value,"value") 
+      
+    }
+     )
     } catch (e) {
       console.log(e);
     }

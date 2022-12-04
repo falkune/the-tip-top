@@ -51,6 +51,19 @@ class HttpClient {
     )
   }
 
+  
+  patch(endpoint, body, options = {}) {
+    return this._fetchJSON(
+      endpoint,
+      {
+        ...options,
+        body: JSON.stringify(body),
+        method: 'PATCH'
+      }
+    )
+  }
+
+
   delete(endpoint, options = {}) {
     return this._fetchJSON(
       endpoint,

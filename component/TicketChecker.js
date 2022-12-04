@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState ,useContext} from "react";
+import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import clipboard from "../image/clipboard.png";
@@ -9,7 +10,6 @@ export default function TicketChecker({ session }) {
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [delivred, setDelivred] = useState(false);
-
   const [input, setInput] = useState("");
   const [visible, setVisible] = useState(false);
   const [ticket, setTicket] = useState({
@@ -18,32 +18,24 @@ export default function TicketChecker({ session }) {
     create_at: "07-06-2022",
     lot: "",
   });
+  const context = useContext(ApiContext)
 
   const checkTicket = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
     setLoading(true);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
 
-    const body = {
-      ticketNumber: input,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/check-ticket";
     try {
-      let nTicket = await axios.post(api, body, config);
-      console.log("newticket", nTicket.data);
+      context.backend.auth.tickets.post('check-ticket',{ticketNumber:"6620702413"}).then((value) =>
+      {console.log(value,"value");
       setTicket({
-        assigned: nTicket?.data?.idClient,
-        create_at: dayjs(nTicket.data.createdAt).format("YYYY-MM-DD"),
-        lot: nTicket.data.lot,
+        assigned:value.idClient,
+        create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
+        lot: value.lot,
       });
+  
+    } 
+     )
+    
       setLoading(false);
       setVisible(true);
     } catch (e) {
@@ -70,11 +62,11 @@ export default function TicketChecker({ session }) {
 
     // try {
     //   let nTicket = await axios.post(api, body, config);
-    //   console.log("newticket", nTicket.data);
+    //   console.log("newticket", value);
     //   setTicket({
     //     assigned: nTicket?.data?.idClient,
-    //     create_at: dayjs(nTicket.data.createdAt).format("YYYY-MM-DD"),
-    //     lot: nTicket.data.lot,
+    //     create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
+    //     lot: value.lot,
     //   });
     //   setLoading(false);
     //   setVisible(true);

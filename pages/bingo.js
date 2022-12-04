@@ -15,6 +15,7 @@ import "animate.css";
 import ApiContext from '../context/apiContext';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import "animate.css";
 
 
 export default function Bingo() {
@@ -73,7 +74,7 @@ export default function Bingo() {
         
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
           <form className={styles.bingo}>
-            <input
+            <input 
               type="number"
               name="numero"
               autoComplete="off"

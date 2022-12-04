@@ -47,6 +47,8 @@ export default function Connexion() {
         context.setBacked({ api: context.backend.api, auth: logedUser })
         Cookies.set("authToken", response.accessToken);
         Cookies.set('role', response.roles);
+        Cookies.set('idClient', response.refreshToken);
+
 
         if (response.roles.includes('admin')) {
           router.push({ pathname: "/stats" }, undefined, { shallow: true });
