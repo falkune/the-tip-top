@@ -1,6 +1,6 @@
 FROM node:14-alpine as dependencies
 WORKDIR /my-project
-COPY package.json yarn.lock ./
+COPY package.json  ./
 RUN npm install
 
 FROM node:14-alpine as builder
