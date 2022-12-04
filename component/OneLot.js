@@ -21,18 +21,18 @@ const renderCustomizedLabel = ({
       x={x}
       y={y}
       fill="white"
-      textAnchor={x > cx ? "center" : "center"}
-      dominantBaseline="central"
+      textAnchor={x > cx}
+      dominantBaseline="end"
     >
-      {`${(percent * 100).toFixed(0)}%`}
+      {`${(percent * 100).toFixed(1)}%`}
     </text>
   );
 };
 
 export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
   const data = [
-    { name: "Claimbed Tickes", value: claimbedTicket },
-    { name: "Not Claimbed Tickets", value: notClaimbedTicket },
+    { name: "Tickets Validés", value: claimbedTicket },
+    { name: "Tickets Non Validés", value: notClaimbedTicket },
   ]
   return (
     <div style={styles.lot}>
@@ -79,4 +79,7 @@ const styles = {
     margin:3,
     color:"#000000"
   },
+  legend:{
+    margin: 70,
+  }
 }

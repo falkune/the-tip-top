@@ -29,11 +29,8 @@ export default function Connexion() {
       password: password,
     };
 
-    let auth = context.backend.api.users.post('login', params, {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
-    });
-    auth.then((response) => {
+    context.backend.api.users.post('login', params)
+    .then((response) => {
       if (response.statusCode) {
         console.log("erreur", error)
         setError(true)
