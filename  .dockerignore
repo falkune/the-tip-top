@@ -32,4 +32,16 @@ yarn-error.log*
 # vercel
 .vercel
 
+
 package-lock.json
+
+node_modules
+Jenkinsfile
+infra
+
+
+package-lock.json
+
+
+package-lock.json
+

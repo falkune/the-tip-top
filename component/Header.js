@@ -1,140 +1,348 @@
 import React, { useEffect, useState } from "react";
-import Image from 'next/image'
-import Link from "next/link"
-import logo from "../image/logo.png"
-import menu from "../image/menu.svg"
-import Drawer from '@mui/material/Drawer';
+import Image from "next/image";
+import Link from "next/link";
+//import logo from "../image/logo.png";
+//import iconMenu from "../image/menu.svg";
+import Drawer from "@mui/material/Drawer";
+import { useRouter } from "next/router";
+import Cookies from 'js-cookie';
 
-const Header = () => {
+const Header = ({ menu, changemenu }) => {
+  const router = useRouter();
   const [width, setWidth] = useState(0);
+  const [role, setRole] = useState(null);
+
   const [open, setOpen] = React.useState(false);
-  const [user, setUser] = React.useState("client");
-
-
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
   const updateDimensions = () => {
     setWidth(window.innerWidth);
-  }
+    Cookies.set("width", width);
+  };
+
   useEffect(() => {
-    updateDimensions()
-    window.addEventListener('resize', updateDimensions);
-    return () => window.removeEventListener('resize', updateDimensions)
-  }, [width])
+    updateDimensions();
+    setRole(Cookies.get('role'))
+    window.addEventListener("resize", updateDimensions);
+    return () => window.removeEventListener("resize", updateDimensions);
+  }, [width]);
+
+  const logOut = ()=> {
+    Cookies.remove('authToken');
+    Cookies.remove('role');
+    Cookies.remove('width');
+    router.push("/connexion")
+  }
 
   return (
     <header style={styles.header}>
-        <div style={{width:'100%',
-        height:"100%",
-        position:"relative",
-        display:"flex",
-        padding:15,
-        justifyContent:"space-between"}}>
-            <Link href="/"> 
-              <Image src={logo} width="55" height="60" alt="logo"/> 
-            </Link>   
-              {width > 650 ? <nav>
-                    <ul style={styles.nav}>
-                   { user && user ==="client" && <Link href="/bingo"> 
-                        <li style={styles.li}>Bingo ticket</li>
-                    </Link> }
+      <div
+        style={{
+          width: "100%",
+          height: "100%",
+          position: "relative",
+          display: "flex",
+          padding: 15,
+          justifyContent: "space-between",
+        }}
+      >
+        <Link href="/">
+          <Image src='/logo.png' width={56} height={56} alt="logo" />
+        </Link>
+        {width > 850 ? (
+          <nav>
+            <ul style={styles.nav}>
+            <Link href="/equipe">
+                <li style={ menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
+              </Link>
+              <Link href="/regle">
+            <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
+          </Link>
+          <Link href="/lots">
+            <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
+          </Link>
+              {role && role === "client" && (
+                <li style={menu === "bingo" ? styles.liactive : styles.li}>
+                  {" "}
+                  <Link href="/bingo">Bingo ticket </Link>
+                </li>
+              )}
 
-                    { user && user ==="client" && <Link href="/jeux"> 
-                        <li style={styles.li}>Grand jeux concours</li>
-                    </Link> }
+              {role && role === "client" && (
+                <li style={menu === "jeux" ? styles.liactive : styles.li}>
+                  {" "}
+                  <Link href="/jeux">Grand jeux concours </Link>
+                </li>
+              )}
 
-                    { user && user ==="client" && <Link href="/tickets">
-                        <li style={styles.li}>Mes tickets</li>
-                    </Link>}
+              {role && role === "client" && (
+                <li style={menu === "tickets" ? styles.liactive : styles.li}>
+                  <Link href="/tickets">Mes tickets </Link>
+                </li>
+              )}
+              <li style={menu === "contact" ? styles.liactive : styles.li}>
+                  <Link href="/contact">Contactez nous </Link>
+                </li> 
 
-                    {user && user ==="client" && <Link href="/emails">
-                        <li style={styles.li}>Mes emails</li>
-                    </Link> }
-                   {user && user ==="pro" && <Link href="/tickets">
-                        <li style={styles.li}>Mes stats</li>
-                    </Link>}
-                    </ul>
-                </nav> :
-                <Image onClick={toggleDrawer(true)} src={menu} width="30" height="30" alt="menu"/>
-                 }
-         </div>
-         <Drawer
-                    anchor={"right"}
-                    open={open}                    
-                    onClose={toggleDrawer(false)}
-                    onOpen={toggleDrawer(true)}>
-             <ul style={styles.draw}>
-                    { user && user ==="client" && <Link href="/bingo"> 
-                        <li style={styles.li2}>Bingo ticket</li>
-                    </Link> }
-
-                    { user && user ==="client" && <Link href="/jeux"> 
-                        <li style={styles.li2}>Grand jeux concours</li>
-                    </Link> }
-
-                    { user && user ==="client" && <Link href="/tickets">
-                        <li style={styles.li2}>Mes tickets</li>
-                    </Link>}
-
-                    {user && user ==="client" && <Link href="/emails">
-                        <li style={styles.li2}>Mes emails</li>
-                    </Link> }
-                   {user && user ==="pro" && <Link href="/tickets">
-                        <li style={styles.li2}>Mes stats</li>
-                    </Link>}
+              {!role && (
+                <li style={styles.login}>
+                  <Link href="/connexion">Connexion </Link>
+                </li>
+              )}
+              {role &&   (
+                <button style={styles.login} onClick={logOut}>Déconnexion </button>
+              )}
                 
-                </ul>
-            </Drawer>
+            </ul>
+          </nav>
+        ) : (
+          <Image
+            onClick={toggleDrawer(true)}
+            src='/menu.svg'
+            width={30}
+            height={30}
+            alt="menu"
+          />
+        )}
+      </div>
+      <Drawer
+        anchor={"right"}
+        open={open}
+        onClose={toggleDrawer(false)}
+        onOpen={toggleDrawer(true)}
+      >
+        <div style={styles.draw}>
+          <ul className="responsiveMenu">
+          <Link href="/equipe">
+            <li>Qui sommes nous</li>
+          </Link>
+          <Link href="/regle">
+            <li>Règle du jeux</li>
+          </Link>
+          <Link href="/lots">
+            <li>Lot à gagner</li>
+          </Link>
+            {role && role === "client" && (
+              <Link href="/bingo">
+                <li>Bingo ticket</li>
+              </Link>
+            )}
+
+            {role && role === "client" && (
+              <Link href="/jeux">
+                <li>Grand jeux concours</li>
+              </Link>
+            )}
+
+            {role && role === "client" && (
+              <Link href="/tickets">
+                <li>Mes tickets</li>
+              </Link>
+            )}
+
+            {role && role === "admin" && (
+              <Link href="/stats">
+                <li>Mes stats</li>
+              </Link>
+            )}
+             {role && role === "admin" && (
+            <div>
+              <button
+                value={"generator"}
+                style={
+                  menu === "generator"
+                  ? styles.DrawereButtonActive
+                    : styles.DrawereButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Ticket generator
+              </button>
+              <button
+                value={"ticket"}
+                style={
+                  menu === "ticket"
+                  ? styles.DrawereButtonActive
+                  : styles.DrawereButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Ticket checker
+              </button>
+              <button
+                value={"users"}
+                style={
+                  menu === "users"
+                  ? styles.DrawereButtonActive
+                  : styles.DrawereButtonInactive
+                }
+                onClick={changemenu}
+              >
+                Listes utilisateurs
+              </button>
+              <button
+                value={"sessions"}
+                style={
+                  menu === "sessions"
+                    ? styles.DrawereButtonActive
+                    : styles.DrawereButtonInactive
+                }
+                onClick={changemenu}
+              >
+                {" "}
+                Gestions des sessions
+              </button>
+            </div>
+          )}
+          </ul>
+         
+          {role ? (
+            <li style={styles.toLogin} onClick={logOut}>
+              <Link href="/connexion">Déconnexion </Link>
+            </li>
+          ) : (
+            <li style={styles.toLogin}>
+              <Link href="/connexion">Connexion </Link>
+            </li>
+          )}
+        </div>
+      </Drawer>
     </header>
-   )
-  }
+  );
+};
 
-
-export default Header
+export default Header;
 
 const styles = {
+  header: {
+    width: "100%",
+    minHeight: 70,
+    display: "flex",
+    justifyContent: "end",
+    backgroundColor: "white",
+    alignItems: "center",
+    boxShadow: "0px 4px 15px 0px rgba(0,0,0,0.10)",
+    position: "fixed",
+    top: 0,
+    zIndex: 45739863,
+  },
+  nav: {
+    display: "flex",
+    marginRight: 25,
+    color: "#AEAEAE",
+    alignItems: "baseline",
+    listStyleType: "none",
+  },
 
-    header:{
-        width:"100%",
-        minHeight:70,
-        display:"flex",
-        justifyContent:"end",
-        backgroundColor:"white",
-        alignItems:"center",
-        boxShadow:"0px 4px 15px 0px rgba(0,0,0,0.10)",
-        position:"fixed",
-        top:0,
-        zIndex: 45739863
+  draw: {
+    display: "flex",
+    flexDirection: "column",
+    width: "70vw",
+    maxWidth: 350,
+    height: "100%",
+    paddingLeft: 15,
+    paddingTop: 100,
+  },
 
-    },
-    nav:{
-     display:"flex",
-     marginRight :25,
-     color:"#AEAEAE"
-    },
+  li: {
+    marginLeft: 15,
+    listStyleType: "none",
+    textDecoration: "none",
+    color: "gray",
+    fontWeight:"bold"
+  },
 
-    draw:{
-        flex:"flex",
-        flexDirection:"column",
-        width:"100%",
-        padding:25,
-        height:700,
-        paddingTop:100,
-        zIndex:999999999999999999,
-        justifyContent:"center"
+  liactive: {
+    marginLeft: 15,
+    listStyleType: "none",
+    textDecoration: "none",
+    color: "#38870D",
+    fontWeight:"bold"
+  },
 
-       },
+  login: {
+    backgroundColor: " #38870D",
+    color: "white",
+    width:125,
+    height:40,
+    textAlign: "center",
+    borderRadius: 100,
+    marginLeft: 15,
+    display:"flex",
+    alignItems:"center",
+    justifyContent:"center",
+    listStyleType: "none",
+    textDecoration: "none",
+    border:"none",
+    fontWeight:"bold"
+  },
+  toLogin: {
+    backgroundColor: " #38870D",
+    color: "white",
+    padding: 10,
+    textAlign: "center",
+    paddingLeft: 15,
+    paddingRight: 15,
+    borderRadius: 100,
+    margin: 10,
+    marginLeft: 0,
+    height: 50,
+    listStyleType: "none",
+    textDecoration: "none",
+    border:"none",
+    fontWeight:"bold"
 
-    li:{
-    marginLeft:15,
-    listStyleType:"none"
-    },
-
-    li2:{
-        margin:15,
-        fontSize:20,
-        listStyleType:"none"
-    }
-}
+  },
+  sideButtonActive: {
+    fontSize: 20,
+    margin: 5,
+    color: "white",
+    marginLeft: 0,
+    marginRight: 0,
+    padding: 10,
+    width: "100%",
+    border: "none",
+    height: 60,
+    background: "#96D614",
+  },
+  sideButtonInactive: {
+    fontSize: 20,
+    margin: 5,
+    color: "#96D614",
+    marginLeft: 0,
+    marginRight: 0,
+    padding: 10,
+    width: "100%",
+    border: "none",
+    height: 60,
+    background: "none",
+  },
+  DrawereButtonInactive: {
+    fontSize: 20,
+    color: "grey",
+    marginLeft: 0,
+    marginRight: 0,
+    padding:0,
+    width: "100%",
+    border: "none",
+    height: 60,
+    marginBottom:20,
+    textAlign:"left",
+    background: "none",
+  },
+  DrawereButtonActive: {
+    fontSize: 20,
+    color: "#108427",
+    marginLeft: 0,
+    marginRight: 0,
+    padding:0,
+    width: "100%",
+    border: "none",
+    height: 60,
+    marginBottom:20,
+    textAlign:"left",
+    background: "none",
+  },
+};
