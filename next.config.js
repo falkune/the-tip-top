@@ -34,8 +34,8 @@ module.exports = nextConfig
 function getEnvConfig() {
   const environment = process.env.TARGET_ENV || process.env.NODE_ENV
   try {
-    return import (`./env-${environment}.json`)
+    return import (`./env-${environment}`)
   } catch (err) {
-    return import ('./env.json')
+    return import ('./env')
   }
 }
