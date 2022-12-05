@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { login, googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
+import { notifier } from "../fonctions/utils";
 import ErrorMessage from '../component/ErrorMessage';
 
 
@@ -24,7 +25,11 @@ export default function Connexion() {
     let user = await login(context, email, password)
     if (user.statusCode) {
       console.log(user)
-      setMessage(user.message)
+     // setMessage(user.message)
+      console.log(user.message);
+      user.message.forEach(element => {
+        notifier(element ,"error","top-right",5000);
+      });
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -44,7 +49,7 @@ export default function Connexion() {
     let user = await facebookLoginRegister(context)
     if (user.statusCode) {
       console.log(user)
-      setMessage(user.message)
+     // setMessage(user.message)
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -57,8 +62,10 @@ export default function Connexion() {
     let user = await googleLoginRegister(context)
     if (user.statusCode) {
       console.log(user)
-      setMessage(user.message)
+     // setMessage(user.message)
+      
     } else {
+      
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
       else

@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
-import Script from "next/script"
+import Script from "next/script";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 // import { config } from 'dotenv';
 
 // config()
@@ -47,6 +49,7 @@ function MyApp({ Component, pageProps }) {
 
     <ApiProvider value={{backend, setBacked}}>
       <Component {...pageProps} />
+    <ToastContainer />
     </ApiProvider>
     </>
   );
