@@ -1,6 +1,6 @@
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
-import { firebaseApp } from '../config/firebase';
+import firebaseApp  from '../config/firebase';
 import {
     getAuth,
     signInWithPopup,
