@@ -18,11 +18,11 @@ export default function Tickets() {
   const context = useContext(ApiContext)
   const [colDefs, setColDefs] = useState([
     {
-      field: "number",
+      field: "ticketNumber",
       minWidth: 150,
     },
     {
-      field: "jeux concours",
+      field: "createdAt",
       minWidth: 150,
     },
      {
@@ -37,7 +37,6 @@ export default function Tickets() {
   ]);
   const [alltickets, setAlltickets] = useState([]);
   const [width, setWidth] = useState(0);
-  const [role, setRole] = useState(null);
   const [open, setOpen] = React.useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -65,6 +64,7 @@ export default function Tickets() {
     try {
       context.backend.auth.tickets.post('tickets-by-client',{idClient:Cookies.get("idClient")}).then((value) =>
       {console.log(value,"value") 
+      setAlltickets(value)
       
     }
      )
@@ -72,8 +72,10 @@ export default function Tickets() {
       console.log(e);
     }
   };
-  const number = billets.length;
-  console.log(billets);
+
+
+  const number = alltickets.length;
+  console.log(alltickets);
   return (
     <div className={styles.container}>
       <Head>
@@ -85,7 +87,7 @@ export default function Tickets() {
       <h1 className={styles.h1}>Mes tickets</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
         Vous avez{" "}
-        <strong style={{ color: " #38870D" }}>{alltickets.length} </strong>
+        <strong style={{ color: " #38870D" }}>{number} </strong>
         {`tickets gagnants`}
       </p>
       <div style={stylez.gain}>
@@ -99,7 +101,7 @@ export default function Tickets() {
           <AgGridReact
            className=" animate_animated animate__bounceInUp"
             pagination={true}
-            rowData={billets}
+            rowData={alltickets}
             columnDefs={colDefs}
           ></AgGridReact>
         </div>
