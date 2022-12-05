@@ -22,9 +22,7 @@ class ApiClient extends HttpClient {
         let response = await this.post(`/user/${route}`, body, options);
         //if (response && response.accessToken) { this.setBearerAuth(response.accessToken) }
         return response;
-
       }
-
     };
   }
 
