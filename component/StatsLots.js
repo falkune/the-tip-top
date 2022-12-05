@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import OneLot from "./OneLot";
-import axios from "axios";
 import ApiContext from '../context/apiContext';
 import LinearProgress from '@mui/material/LinearProgress';
 

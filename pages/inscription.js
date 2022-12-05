@@ -1,5 +1,4 @@
 import React, { useState,useContext } from "react";
-
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
@@ -12,8 +11,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from "next/router";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import ErrorMessage from "../component/ErrorMessage";
-import axios from "axios";
-import ApiClient from '../api/api-client';
 import ApiContext from '../context/apiContext';
 import {register, googleLoginRegister, facebookLoginRegister} from '../fonctions/users';
 import Cookies from 'js-cookie';
@@ -120,8 +117,6 @@ export default function Inscription() {
       register(context, nom, email, password, dateNaissance)
       router.push({ pathname: "/connexion" }, undefined, { shallow: true });
     }
-    // console.log(emailMatch , passwordMatch , confimation , majorite)
-    
   }
 
   return (
