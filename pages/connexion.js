@@ -6,58 +6,31 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
-import ApiClient from '../api/api-client';
-import { firebaseApp } from '../config/firebase';
 import ApiContext from '../context/apiContext';
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider
-} from "firebase/auth"
-import { googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
+import { login, googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
+import ErrorMessage from '../component/ErrorMessage';
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fool, setFool] = useState(false);
-  const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
   const context = useContext(ApiContext);
 
   const router = useRouter();
   const connexion = async (e) => {
     e.preventDefault();
-    const params = {
-      email: email,
-      password: password,
-    };
-
-    context.backend.api.users.post('login', params)
-      .then((response) => {
-        if (response.statusCode) {
-          console.log("erreur", error)
-          setError(true)
-          setMessage(response.message)
-        } else {
-          let logedUser = new ApiClient()
-            .setHeader("lang", "en")
-            .setHeader("Accept", "Application/json")
-            .setHeader("Content-Type", "application/json")
-            .setBearerAuth(response.accessToken)
-          context.setBacked({ api: context.backend.api, auth: logedUser })
-          Cookies.set("authToken", response.accessToken);
-          Cookies.set('role', response.roles);
-          Cookies.set('idClient', response.refreshToken);
-
-          if (response.roles.includes('admin')) {
-            router.push({ pathname: "/stats" }, undefined, { shallow: true });
-          } else {
-            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-          }
-        }
-      });
+    let user = await login(context, email, password)
+    if (user.statusCode) {
+      console.log(user)
+      setMessage(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
   };
 
   const goSignup = () => {
@@ -67,59 +40,30 @@ export default function Connexion() {
     });
   };
 
-  const facebookLogin = (provider) => {
-    facebookLoginRegister()
-    .then((user) => {
-      context.backend.api.users.post('auth-from-social-network', user).then((response) => {
-        console.log(response)
-        let logedUser = new ApiClient()
-          .setHeader("lang", "en")
-          .setHeader("Accept", "Application/json")
-          .setHeader("Content-Type", "application/json")
-          .setBearerAuth(response.accessToken)
-        context.setBacked({ api: context.backend.api, auth: logedUser })
-        Cookies.set("authToken", response.accessToken);
-        Cookies.set('role', response.roles);
-        Cookies.set('idClient', response.refreshToken);
-        
-        if (response.roles.includes('admin')) {
-          router.push({ pathname: "/stats" }, undefined, { shallow: true });
-        } else {
-          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-        }
-      })
-      .catch((error) => {
-        console.log( error )
-      })
-    })
+  const facebookLogin = async () => {
+    let user = await facebookLoginRegister(context)
+    if (user.statusCode) {
+      console.log(user)
+      setMessage(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
   }
 
-  const googleLogin = () => {
-    googleLoginRegister()
-      .then((user) => {
-        context.backend.api.users.post('auth-from-social-network', user).then((response) => {
-          console.log(response)
-          let logedUser = new ApiClient()
-            .setHeader("lang", "en")
-            .setHeader("Accept", "Application/json")
-            .setHeader("Content-Type", "application/json")
-            .setBearerAuth(response.accessToken)
-          context.setBacked({ api: context.backend.api, auth: logedUser })
-          Cookies.set("authToken", response.accessToken);
-          Cookies.set('role', response.roles);
-          Cookies.set('idClient', response.refreshToken);
-          
-          if (response.roles.includes('admin')) {
-            router.push({ pathname: "/stats" }, undefined, { shallow: true });
-          } else {
-            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-          }
-        })
-        .catch((error) => {
-          console.log( error )
-        })
-      })
-
+  const googleLogin = async () => {
+    let user = await googleLoginRegister(context)
+    if (user.statusCode) {
+      console.log(user)
+      setMessage(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
   }
 
   return (
@@ -161,6 +105,11 @@ export default function Connexion() {
                 Mot de passe ou email incorrecte
               </small>
             )}
+            {
+              message && (
+                <ErrorMessage errorMessage={message} />
+              )
+            }
 
             <button
               className={styles.action}

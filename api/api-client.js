@@ -65,13 +65,13 @@ class ApiClient extends HttpClient {
   get tickets() {
     return {
       get: () => this.get("/ticket"),
+      get: (id) => this.get(`/ticket/${id}`),
       delete: (id) => this.delete(`/ticket/${id}`),
       create: (user) => this.post("/ticket", user),
       update: (user) => this.put(`/ticket/${user.id}`, user),
       post: async (route, body, options) => {
         let response = await this.post(`/ticket/${route}`, body, options);
         return response;
-
       },
       patch: async (route, body, options) => {
         let response = await this.patch(`/ticket/${route}`, body, options);

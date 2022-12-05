@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useContext } from "react";
+import React, { useState,useContext } from "react";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -13,17 +13,9 @@ import { useRouter } from "next/router";
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 import ErrorMessage from "../component/ErrorMessage";
 import axios from "axios";
-import {firebaseApp} from '../config/firebase';
 import ApiClient from '../api/api-client';
 import ApiContext from '../context/apiContext';
-
-import { 
-  getAuth, 
-  signInWithPopup, 
-  GoogleAuthProvider, 
-  FacebookAuthProvider 
-} from "firebase/auth"
-import {googleLoginRegister, facebookLoginRegister} from '../fonctions/users';
+import {register, googleLoginRegister, facebookLoginRegister} from '../fonctions/users';
 import Cookies from 'js-cookie';
 
 export default function Inscription() {
@@ -43,10 +35,6 @@ export default function Inscription() {
   const [showVerifPassword, setShowVerifpassword] = useState(false);
   const [error, setError] = useState(false);
   const [message, setMessage] = useState("");
-
-  const FacebookProvider = new FacebookAuthProvider();
-
-  
   
   const verifyEmail = () => {
     let validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
@@ -98,88 +86,42 @@ export default function Inscription() {
       setMajorite(true);
     }
   }
-
-  const googleRegister = () => {
-    googleLoginRegister()
-      .then((user) => {
-        context.backend.api.users.post('auth-from-social-network', user).then((response) => {
-          console.log(response)
-          let logedUser = new ApiClient()
-            .setHeader("lang", "en")
-            .setHeader("Accept", "Application/json")
-            .setHeader("Content-Type", "application/json")
-            .setBearerAuth(response.accessToken)
-          context.setBacked({ api: context.backend.api, auth: logedUser })
-          Cookies.set("authToken", response.accessToken);
-          Cookies.set('role', response.roles);
-          Cookies.set('idClient', response.refreshToken);
-          
-          if (response.roles.includes('admin')) {
-            router.push({ pathname: "/stats" }, undefined, { shallow: true });
-          } else {
-            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-          }
-        })
-        .catch((error) => {
-          console.log( error )
-        })
-      })
+  // get register with google
+  const googleRegister = async () => {
+    let user = await googleLoginRegister(context)
+    if (user.statusCode) {
+      console.log(user)
+      setMessage(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
+  }
+  // get register with facebook
+  const facebookRegistration = async () => {
+    let user = await facebookLoginRegister(context)
+    if (user.statusCode) {
+      console.log(user)
+      setMessage(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
   }
 
-  // facebook start
-  const facebookRegistration = () => {
 
-    facebookLoginRegister()
-    .then((user) => {
-      context.backend.api.users.post('auth-from-social-network', user).then((response) => {
-        console.log(response)
-        let logedUser = new ApiClient()
-          .setHeader("lang", "en")
-          .setHeader("Accept", "Application/json")
-          .setHeader("Content-Type", "application/json")
-          .setBearerAuth(response.accessToken)
-        context.setBacked({ api: context.backend.api, auth: logedUser })
-        Cookies.set("authToken", response.accessToken);
-        Cookies.set('role', response.roles);
-        Cookies.set('idClient', response.refreshToken);
-        
-        if (response.roles.includes('admin')) {
-          router.push({ pathname: "/stats" }, undefined, { shallow: true });
-        } else {
-          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-        }
-      })
-      .catch((error) => {
-        console.log( error )
-      })
-    })
-  }
-  // facebook end
-
-
-  const register = (e) => {
+  const inscription = async (e) => {
     e.preventDefault();
     if(emailMatch && passwordMatch && confimation && majorite){
-      const url = process.env.NEXT_PUBLIC_BASE_URL+"/user";
-      axios.post(url, {
-        fullName: nom,
-        email: email,
-        password: password,
-        birthday: dateNaissance,
-      })
-      .then((response) => {
-        console.log(response)
-        router.push({
-          pathname: `connexion`,
-          query: { number: router.query.num ? router.query.num : null },
-        });
-      })
-      .catch((error) => {
-        console.log(error)
-        setError(true);
-        setMessage(error.response.data.message);
-      });
+      register(context, nom, email, password, dateNaissance)
+      router.push({ pathname: "/connexion" }, undefined, { shallow: true });
     }
+    // console.log(emailMatch , passwordMatch , confimation , majorite)
+    
   }
 
   return (
@@ -195,7 +137,7 @@ export default function Inscription() {
           <form
             className={styles.part}
             style={{ borderBottom: "solid 1px #D2D2D2" }}
-            onSubmit={(e) => register(e)}
+            onSubmit={(e) => inscription(e)}
           >
             <h1 className={styles.h1} style={{ fontSize: 25 }}>
               Inscription
