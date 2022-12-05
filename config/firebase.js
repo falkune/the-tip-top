@@ -1,5 +1,5 @@
-// import { initializeApp } from "firebase/app"
-var {initializeApp} = require('firebase/app')
+import { initializeApp } from "firebase/app"
+// var {initializeApp} = require('firebase/app')
 
 const firebaseConfig = {
 
@@ -17,5 +17,5 @@ const firebaseConfig = {
   
 };
   
-
-export const app = initializeApp(firebaseConfig)
+const app = initializeApp(firebaseConfig)
+export default app;
