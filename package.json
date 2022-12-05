@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "build-development": "cross-env TARGET_ENV=development npm run build",
+    "build-development": "cross-env TARGET_ENV=development npm run build --experimental-json-modules",
     "build-staging": "cross-env TARGET_ENV=staging npm run build",
     "build-production": "cross-env TARGET_ENV=production npm run build",
     "postbuild": "next-sitemap",
