@@ -3,8 +3,7 @@
 
 class HttpClient {
   constructor(options = {}) {
-    //  this._baseURL = options.baseURL || "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr";
-    this._baseURL = process.env.NEXT_PUBLIC_BASE_URL;
+    this._baseURL = process.env.API_BASE_URL;
     this._headers = options.headers || {};
   }
 
