@@ -47,3 +47,5 @@ function getEnvConfig() {
     return require('./env.json')
   }
 }
+
+console.log(process.env.API_BASE_URL);
