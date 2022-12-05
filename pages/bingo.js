@@ -73,7 +73,7 @@ export default function Bingo() {
           <h1 className={styles.h1}>Bingo ticket</h1>
         
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
-          <form className={styles.bingo}>
+          <form className="bingo animate__animated  animate__backInUp">
             <input 
               type="number"
               name="numero"
@@ -114,7 +114,7 @@ export default function Bingo() {
               Valider
             </button>
           )}
-               <Link href="/#lots">
+               <Link href="/lots">
             <small style={{ color: " #38870D", fontSize: "1.2em" }}>
               Voir les differents lots
             </small>

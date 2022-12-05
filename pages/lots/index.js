@@ -68,7 +68,7 @@ export default function lots() {
       paddingBottom: 50,
         minHeight:"100vh" }}>
         {gift.map((g,i) => (
-          <div key={i} className="lotsItems animate_animated animate__bounceInLeft animate__repeat-1" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
+          <div key={i} className="lotsItems animate_animated animate__bounceInLeft " style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
              <Image  src={g.src} alt={g.name}/>
              <div style={{display:"flex",flexDirection:"column",}}>
                 <h3>{g.name}</h3>

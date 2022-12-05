@@ -63,11 +63,11 @@ export default function thedetox() {
           Et pour finir, cette boisson sera la boisson à préférer pour les femmes enceintes!
           </p>
           <section className="childLot">
-              <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
-            <Link href="lots/coffret32">Coffret 39 euros</Link>
-            <Link href="lots/coffret69">Coffret 69 euros</Link>
-            <Link href="lots/thesignature">100g thé signature</Link>
-            <Link href="lots/infuseur">Infuseur à thé</Link>
+            <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
+            <Link href={{ pathname: '/lots/coffret69'}}>Coffret 69 euros</Link>
+            <Link href={{ pathname: '/lots/coffret32'}}>Coffret 32 euros</Link>
+            <Link  href={{ pathname: '/lots/thesignature'}}>100g thé signature</Link>
+            <Link  href={{ pathname: '/lots/infuseur'}}>Infuseur à thé</Link>
           </section>
 
          </div>
