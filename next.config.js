@@ -24,6 +24,14 @@ const nextConfig = {
           },
         },
       ],
+    },
+    {
+      test: /\.json5$/i,
+      loader: 'json5-loader',
+      options: {
+        esModule: true,
+      },
+      type: 'javascript/auto',
     })
     return config
   },
