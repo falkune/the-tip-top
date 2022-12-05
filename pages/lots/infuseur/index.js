@@ -65,10 +65,10 @@ export default function infuseur() {
         </p>
         <section className="childLot">
             <strong style={{color:"grey",marginBottom:10}}>Voir les autres lots</strong>
-            <Link href="lots/coffret32">Coffret 39 euros</Link>
-            <Link href="lots/coffret69">Coffret 69 euros</Link>
-            <Link href="lots/thesignature">100g thé signature</Link>
-            <Link href="lots/thedetox">100g thé détox</Link>
+            <Link href={{ pathname: '/lots/coffret69'}}>Coffret 69 euros</Link>
+            <Link href={{ pathname: '/lots/coffret32'}}>Coffret 32 euros</Link>
+            <Link  href={{ pathname: '/lots/thesignature'}}>100g thé signature</Link>
+            <Link  href={{ pathname: '/lots/thedetox'}}>100g thé détox</Link>
         </section>
 
        </div>

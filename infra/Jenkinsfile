@@ -116,6 +116,7 @@ pipeline{
                                              stage("Install Packages") {
                                                 steps{
                                                  sh "npm install"
+                                                 sh "npm update"
                                                 }
                                              }
 
@@ -128,7 +129,7 @@ pipeline{
                                              
                                              stage("Build Code"){
                                                  steps{
-                                                    sh "npm run build"
+                                                    sh "npm run build-development"
                                                  }
 
                                              }

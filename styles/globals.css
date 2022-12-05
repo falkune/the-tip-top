@@ -71,7 +71,6 @@ footer ul {
 }
 
 footer button{
-
   border-radius: 100px;
   background-color:#2D6005;
   color: white;
@@ -82,7 +81,6 @@ footer button{
 }
 
 .homebutton {
-
   padding:15px;
   border-radius: 100px;
   min-width: 225px;
@@ -276,7 +274,7 @@ a {
   padding-bottom: 35px;
   margin:10px;
   transform: translatey(0px);
-  animation: float 3s ease-in-out infinite;
+  animation: float 3s ease-in-out;
   border-radius: 15px;
 }
 
@@ -352,6 +350,32 @@ a {
 
 
 
+.bingo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 1.1em;
+  height: 60px;
+  width: 90%;
+  max-width: 500px;
+  padding: 10px;
+  padding-left: 15px;
+  border: solid 1px  #D2D2D2;
+  border-radius: 5px;
+  margin-top: 15px;
+  outline: none;
+  background-color: white;
+  margin-bottom: 15px;
+}
+
+.bingo input{
+  margin: 10px;
+  width: 90%;
+  max-width: 500px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  }
 
 
 
