@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { notifier } from "../fonctions/utils";
+import {getLogout} from '../fonctions/users';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
@@ -31,16 +32,17 @@ const Header = ({ menu, changemenu }) => {
   }, [width]);
 
   const logOut = () => {
-    context.backend.api.users.post('logout', { refreshToken: Cookies.get('idClient') })
-      .then((response) => {
-        if (response.message) {
-          notifier(response.message, "success");
-          Cookies.remove('authToken');
-          Cookies.remove('role');
-          Cookies.remove('idClient');
-          router.push("/connexion")
-        }
-      })
+    getLogout(context)
+    .then((response) => {
+      notifier(response.message, "success");
+      Cookies.remove('authToken');
+      Cookies.remove('role');
+      Cookies.remove('idClient');
+      router.push("/connexion")
+    })
+    .catch((error) => {
+      notifier(error);
+    })
   }
 
   return (
