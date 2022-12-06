@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://dsp-archiwebo21-ct-df-an-cd.fr/
+Host: https://dev.dsp-archiwebo21-ct-df-an-cd.fr/
 
 # Sitemaps
-Sitemap: https://dsp-archiwebo21-ct-df-an-cd.fr/sitemap.xml
+Sitemap: https://dev.dsp-archiwebo21-ct-df-an-cd.fr/sitemap.xml
