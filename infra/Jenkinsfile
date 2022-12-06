@@ -129,7 +129,7 @@ pipeline{
                                              
                                              stage("Build Code"){
                                                  steps{
-                                                    sh "npm run build-development"
+                                                    sh "npm run build:dev"
                                                  }
 
                                              }

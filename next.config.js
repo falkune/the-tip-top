@@ -1,6 +1,16 @@
 /** @type {import('next').NextConfig} */
+
+/*function getEnvConfig() {
+  const environment = process.env.TARGET_ENV || process.env.NODE_ENV
+  try {
+     return require(`./env-${environment}.json`)
+  } catch (err) {
+    return require('./env.json')
+  }
+}*/
+
 const nextConfig = {
-  env: getEnvConfig(),
+ // env: getEnvConfig(),
   /** `exportPathMap` is exclusive to `next export`, see https://nextjs.org/docs/api-reference/next.config.js/exportPathMap */
   exportPathMap: async function () {
     return {
@@ -38,14 +48,3 @@ const nextConfig = {
 }
 
 module.exports = nextConfig
-
-function getEnvConfig() {
-  const environment = process.env.TARGET_ENV || process.env.NODE_ENV
-  try {
-     return require(`./env-${environment}.json`)
-  } catch (err) {
-    return require('./env.json')
-  }
-}
-
-console.log(process.env.API_BASE_URL);

@@ -7,8 +7,7 @@ import Script from "next/script";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 // import { config } from 'dotenv';
-
-// config()
+//config()
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({
