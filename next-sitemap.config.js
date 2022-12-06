@@ -3,3 +3,5 @@ module.exports = {
     generateRobotsTxt: true, // (optional)
     // ...other options
   }
+
+  console.log(process.env);
