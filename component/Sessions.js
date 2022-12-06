@@ -1,10 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState ,useContext} from "react";
 import Modal from "@mui/material/Modal";
+import ApiContext from '../context/apiContext';
 import axios from "axios";
 import dayjs from "dayjs";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Sessions = ({ idSession }) => {
+  const context = useContext(ApiContext)
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -30,16 +32,19 @@ const Sessions = ({ idSession }) => {
       headers: { Authorization: `Bearer ${token}` },
     };
     const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
+
     try {
-      let newsession = await axios.get(api, config);
-      setOneSession({
-        name: newsession.data.name,
-        start: newsession.data.startDate,
-        end: newsession.data.endDate,
-        description: newsession.data.description,
-        limit: newsession.data.limitTicket,
-        id: newsession.data._id,
-      });
+      context.backend.auth.session.post({idSession:idSession}).then((value) =>
+      {console.log(value,"value");
+        setOneSession({
+          name: value.data.name,
+          start: value.data.startDate,
+          end: value.data.endDate,
+          description: value.data.description,
+          limit: value.data.limitTicket,
+          id: value.data._id,
+        });} 
+     )
     } catch (e) {
       console.log(e);
     }
