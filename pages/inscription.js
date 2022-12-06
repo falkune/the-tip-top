@@ -119,6 +119,8 @@ export default function Inscription() {
     }
   }
 
+  
+
   return (
     <div>
       <div className={styles.container}>

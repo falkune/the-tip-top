@@ -7,29 +7,35 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
-import { login, googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
+import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
-import ErrorMessage from '../component/ErrorMessage';
+import Link from "next/link";
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fool, setFool] = useState(false);
-  const [message, setMessage] = useState("");
   const context = useContext(ApiContext);
+  const [resetPassword, setResetPassword] = useState(false);
+  let [btnText, setBtnText] = useState("Connexion");
 
   const router = useRouter();
-  const connexion = async (e) => {
-    e.preventDefault();
+  const connexion = async () => {
     let user = await login(context, email, password)
     if (user.statusCode) {
       console.log(user)
      // setMessage(user.message)
-      console.log(user.message);
-      user.message.forEach(element => {
-        notifier(element ,"error","top-right",5000);
-      });
+      
+      if(Array.isArray(user.message)){
+        user.message.forEach(element => {
+          console.log("dans le if ",user.message)
+          notifier(element ,"error","top-right",5000);
+        });
+      }else{
+        console.log("dans le else", user.message)
+        notifier(user.message)
+      }
+      
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -39,10 +45,11 @@ export default function Connexion() {
   };
 
   const goSignup = () => {
-    router.push({
-      pathname: `inscription`,
-      query: { number: router.query.num ? router.query.num : null },
-    });
+    router.push({ pathname: "/inscription" }, undefined, { shallow: true });
+    // router.push({
+    //   pathname: `inscription`,
+    //   query: { number: router.query.num ? router.query.num : null },
+    // });
   };
 
   const facebookLogin = async () => {
@@ -73,6 +80,22 @@ export default function Connexion() {
     }
   }
 
+  const resetPasswor = async() => {
+    forgotPassword(context, email)
+    .then((response) => {
+      notifier(response.message)
+    })
+  }
+
+
+  const valider = (e) => {
+    e.preventDefault();
+    if(resetPassword){
+      resetPasswor();
+    }else{
+      connexion();
+    }
+  }
   return (
     <div>
       <div className={styles.container}>
@@ -86,7 +109,6 @@ export default function Connexion() {
           <form
             className={styles.log}
             style={{ borderBottom: "solid 1px #D2D2D2" }}
-            onSubmit={(e) => connexion(e)}
           >
             <h1 className={styles.h1} style={{ fontSize: 25 }}>
               Connexion
@@ -99,7 +121,8 @@ export default function Connexion() {
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
+            {!resetPassword && (
+              <input
               label='Password'
               name='password'
               type='password'
@@ -107,24 +130,19 @@ export default function Connexion() {
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {fool && (
-              <small style={{ color: "red" }}>
-                Mot de passe ou email incorrecte
-              </small>
             )}
-            {
-              message && (
-                <ErrorMessage errorMessage={message} />
-              )
-            }
 
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
+              onClick={e => valider(e)}
             >
-              Connexion
+              {btnText = resetPassword ? "changer mot de passe" : "Connexion"}
             </button>
           </form>
+          <div>
+           <Link href=""><span onClick={() => setResetPassword(true)}>mot de passe oublié</span></Link>
+          </div>
           <div className={styles.social}>
             <button
               style={{
@@ -187,3 +205,9 @@ export default function Connexion() {
     </div>
   );
 }
+
+// const stylese = {
+//   link:hover:{
+//     cursor: "pointer"
+//   }
+// }
