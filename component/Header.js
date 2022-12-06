@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import Link from "next/link";
-//import logo from "../image/logo.png";
-//import iconMenu from "../image/menu.svg";
 import Drawer from "@mui/material/Drawer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
+import ApiContext from '../context/apiContext';
+import { notifier } from "../fonctions/utils";
+import {getLogout} from '../fonctions/users';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
+  const context = useContext(ApiContext);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -29,11 +31,18 @@ const Header = ({ menu, changemenu }) => {
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
 
-  const logOut = ()=> {
-    Cookies.remove('authToken');
-    Cookies.remove('role');
-    Cookies.remove('width');
-    router.push("/connexion")
+  const logOut = () => {
+    getLogout(context)
+    .then((response) => {
+      notifier(response.message, "success");
+      Cookies.remove('authToken');
+      Cookies.remove('role');
+      Cookies.remove('idClient');
+      router.push("/connexion")
+    })
+    .catch((error) => {
+      notifier(error);
+    })
   }
 
   return (
@@ -54,15 +63,23 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-            <Link href="/equipe">
-                <li style={ menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
-              </Link>
-              <Link href="/regle">
-            <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
-          </Link>
-          <Link href="/lots">
-            <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
-          </Link>
+              {Cookies.get('role') == null || Cookies.get('role') == 'client' ? (
+                <>
+                  <Link href="/equipe">
+                    <li style={menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
+                  </Link>
+                  <Link href="/regle">
+                    <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
+                  </Link>
+                  <Link href="/lots">
+                    <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
+                  </Link>
+                </>
+              ):(
+                <></>
+              )}
+              
+              
               {role && role === "client" && (
                 <li style={menu === "bingo" ? styles.liactive : styles.li}>
                   {" "}
@@ -82,19 +99,21 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-              <li style={menu === "contact" ? styles.liactive : styles.li}>
+              {Cookies.get('role') == null || Cookies.get('role') == 'client' ?
+                (<li style={menu === "contact" ? styles.liactive : styles.li}>
                   <Link href="/contact">Contactez nous </Link>
-                </li> 
+                </li>):(<></>)
+              }
 
               {!role && (
                 <li style={styles.login}>
                   <Link href="/connexion">Connexion </Link>
                 </li>
               )}
-              {role &&   (
+              {role && (
                 <button style={styles.login} onClick={logOut}>Déconnexion </button>
               )}
-                
+
             </ul>
           </nav>
         ) : (
@@ -115,15 +134,15 @@ const Header = ({ menu, changemenu }) => {
       >
         <div style={styles.draw}>
           <ul className="responsiveMenu">
-          <Link href="/equipe">
-            <li>Qui sommes nous</li>
-          </Link>
-          <Link href="/regle">
-            <li>Règle du jeux</li>
-          </Link>
-          <Link href="/lots">
-            <li>Lot à gagner</li>
-          </Link>
+            {!role || role === 'client' && (
+              <Link href="/equipe">
+                <li>Qui sommes nous</li>
+              </Link>
+            )}
+
+            <Link href="/lots">
+              <li>Lot à gagner</li>
+            </Link>
             {role && role === "client" && (
               <Link href="/bingo">
                 <li>Bingo ticket</li>
@@ -147,57 +166,57 @@ const Header = ({ menu, changemenu }) => {
                 <li>Mes stats</li>
               </Link>
             )}
-             {role && role === "admin" && (
-            <div>
-              <button
-                value={"generator"}
-                style={
-                  menu === "generator"
-                  ? styles.DrawereButtonActive
-                    : styles.DrawereButtonInactive
-                }
-                onClick={changemenu}
-              >
-                Ticket generator
-              </button>
-              <button
-                value={"ticket"}
-                style={
-                  menu === "ticket"
-                  ? styles.DrawereButtonActive
-                  : styles.DrawereButtonInactive
-                }
-                onClick={changemenu}
-              >
-                Ticket checker
-              </button>
-              <button
-                value={"users"}
-                style={
-                  menu === "users"
-                  ? styles.DrawereButtonActive
-                  : styles.DrawereButtonInactive
-                }
-                onClick={changemenu}
-              >
-                Listes utilisateurs
-              </button>
-              <button
-                value={"sessions"}
-                style={
-                  menu === "sessions"
-                    ? styles.DrawereButtonActive
-                    : styles.DrawereButtonInactive
-                }
-                onClick={changemenu}
-              >
-                {" "}
-                Gestions des sessions
-              </button>
-            </div>
-          )}
+            {role && role === "admin" && (
+              <div>
+                <button
+                  value={"generator"}
+                  style={
+                    menu === "generator"
+                      ? styles.DrawereButtonActive
+                      : styles.DrawereButtonInactive
+                  }
+                  onClick={changemenu}
+                >
+                  Ticket generator
+                </button>
+                <button
+                  value={"ticket"}
+                  style={
+                    menu === "ticket"
+                      ? styles.DrawereButtonActive
+                      : styles.DrawereButtonInactive
+                  }
+                  onClick={changemenu}
+                >
+                  Ticket checker
+                </button>
+                <button
+                  value={"users"}
+                  style={
+                    menu === "users"
+                      ? styles.DrawereButtonActive
+                      : styles.DrawereButtonInactive
+                  }
+                  onClick={changemenu}
+                >
+                  Listes utilisateurs
+                </button>
+                <button
+                  value={"sessions"}
+                  style={
+                    menu === "sessions"
+                      ? styles.DrawereButtonActive
+                      : styles.DrawereButtonInactive
+                  }
+                  onClick={changemenu}
+                >
+                  {" "}
+                  Gestions des sessions
+                </button>
+              </div>
+            )}
           </ul>
-         
+
           {role ? (
             <li style={styles.toLogin} onClick={logOut}>
               <Link href="/connexion">Déconnexion </Link>
@@ -251,7 +270,7 @@ const styles = {
     listStyleType: "none",
     textDecoration: "none",
     color: "gray",
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
 
   liactive: {
@@ -259,24 +278,24 @@ const styles = {
     listStyleType: "none",
     textDecoration: "none",
     color: "#38870D",
-    fontWeight:"bold"
+    fontWeight: "bold"
   },
 
   login: {
     backgroundColor: " #38870D",
     color: "white",
-    width:125,
-    height:40,
+    width: 125,
+    height: 40,
     textAlign: "center",
     borderRadius: 100,
     marginLeft: 15,
-    display:"flex",
-    alignItems:"center",
-    justifyContent:"center",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     listStyleType: "none",
     textDecoration: "none",
-    border:"none",
-    fontWeight:"bold"
+    border: "none",
+    fontWeight: "bold"
   },
   toLogin: {
     backgroundColor: " #38870D",
@@ -291,8 +310,8 @@ const styles = {
     height: 50,
     listStyleType: "none",
     textDecoration: "none",
-    border:"none",
-    fontWeight:"bold"
+    border: "none",
+    fontWeight: "bold"
 
   },
   sideButtonActive: {
@@ -324,12 +343,12 @@ const styles = {
     color: "grey",
     marginLeft: 0,
     marginRight: 0,
-    padding:0,
+    padding: 0,
     width: "100%",
     border: "none",
     height: 60,
-    marginBottom:20,
-    textAlign:"left",
+    marginBottom: 20,
+    textAlign: "left",
     background: "none",
   },
   DrawereButtonActive: {
@@ -337,12 +356,12 @@ const styles = {
     color: "#108427",
     marginLeft: 0,
     marginRight: 0,
-    padding:0,
+    padding: 0,
     width: "100%",
     border: "none",
     height: 60,
-    marginBottom:20,
-    textAlign:"left",
+    marginBottom: 20,
+    textAlign: "left",
     background: "none",
   },
 };
