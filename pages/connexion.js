@@ -22,20 +22,14 @@ export default function Connexion() {
   const router = useRouter();
   const connexion = async () => {
     let user = await login(context, email, password)
-    if (user.statusCode) {
-      console.log(user)
-     // setMessage(user.message)
-      
+    if (user.statusCode) {      
       if(Array.isArray(user.message)){
         user.message.forEach(element => {
-          console.log("dans le if ",user.message)
           notifier(element ,"error","top-right",5000);
         });
       }else{
-        console.log("dans le else", user.message)
         notifier(user.message)
       }
-      
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -46,17 +40,12 @@ export default function Connexion() {
 
   const goSignup = () => {
     router.push({ pathname: "/inscription" }, undefined, { shallow: true });
-    // router.push({
-    //   pathname: `inscription`,
-    //   query: { number: router.query.num ? router.query.num : null },
-    // });
   };
 
   const facebookLogin = async () => {
     let user = await facebookLoginRegister(context)
     if (user.statusCode) {
-      console.log(user)
-     // setMessage(user.message)
+      notifier(user.message)
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -68,11 +57,8 @@ export default function Connexion() {
   const googleLogin = async () => {
     let user = await googleLoginRegister(context)
     if (user.statusCode) {
-      console.log(user)
-     // setMessage(user.message)
-      
+      notifier(user.message)
     } else {
-      
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
       else
@@ -137,12 +123,13 @@ export default function Connexion() {
               style={{ animation: "pulse 1sec infite" }}
               onClick={e => valider(e)}
             >
-              {btnText = resetPassword ? "changer mot de passe" : "Connexion"}
+              {btnText = resetPassword ? "Changer de mot de passe" : "Connexion"}
             </button>
           </form>
-          <div>
-           <Link href=""><span onClick={() => setResetPassword(true)}>mot de passe oublié</span></Link>
-          </div>
+          {!resetPassword && (
+            <div>
+            <span style={{color: "#437BFF", fontWeight: "bold"}} onClick={() => setResetPassword(true)}><Link href="#update-password" >mot de passe oublié</Link></span>
+           </div>)}
           <div className={styles.social}>
             <button
               style={{
@@ -205,9 +192,3 @@ export default function Connexion() {
     </div>
   );
 }
-
-// const stylese = {
-//   link:hover:{
-//     cursor: "pointer"
-//   }
-// }

@@ -1,11 +1,9 @@
 import { useState, useContext } from "react";
 import Head from "next/head";
-import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
-import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { resetPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
@@ -15,16 +13,18 @@ export default function Changepassword() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const context = useContext(ApiContext);
+    const router = useRouter();
 
     const modifierPassword = (e) => {
         e.preventDefault();
         resetPassword(context, email, password)
-        .then((response) => {
-            notifier(response.message, 'success');
-        })
-        .catch((error) => {
-            notifier(error.message);
-        })
+            .then((response) => {
+                notifier(response.message, 'success');
+                router.push({ pathname: "/connexion" }, undefined, { shallow: true });
+            })
+            .catch((error) => {
+                notifier(error.message);
+            })
     }
 
     return (
@@ -70,10 +70,7 @@ export default function Changepassword() {
                             Changer votre mot de passe
                         </button>
                     </form>
-                    
-                    
                 </section>
-                
             </div>
             <Footer />
         </div>
