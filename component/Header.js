@@ -61,15 +61,23 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-              <Link href="/equipe">
-                <li style={menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
-              </Link>
-              <Link href="/regle">
-                <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
-              </Link>
-              <Link href="/lots">
-                <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
-              </Link>
+              {Cookies.get('role') == null || Cookies.get('role') == 'client' ? (
+                <>
+                  <Link href="/equipe">
+                    <li style={menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
+                  </Link>
+                  <Link href="/regle">
+                    <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
+                  </Link>
+                  <Link href="/lots">
+                    <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
+                  </Link>
+                </>
+              ):(
+                <></>
+              )}
+              
+              
               {role && role === "client" && (
                 <li style={menu === "bingo" ? styles.liactive : styles.li}>
                   {" "}
@@ -89,9 +97,11 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-              <li style={menu === "contact" ? styles.liactive : styles.li}>
-                <Link href="/contact">Contactez nous </Link>
-              </li>
+              {Cookies.get('role') == null || Cookies.get('role') == 'client' ?
+                (<li style={menu === "contact" ? styles.liactive : styles.li}>
+                  <Link href="/contact">Contactez nous </Link>
+                </li>):(<></>)
+              }
 
               {!role && (
                 <li style={styles.login}>
