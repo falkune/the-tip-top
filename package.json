@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "build:dev": "NODE_ENV=development npm run build",
-    "build:staging":"env-cmd -f .env.staging npm run build",
+    "build:staging": "env-cmd -f .env.staging npm run build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "start:staging": "env-cmd -f .env.staging npm run start",
