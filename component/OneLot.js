@@ -52,7 +52,7 @@ export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
           <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
         ))}
       </Pie>
-      <Legend layout="horizontal" verticalAlign="top" align="center" />
+      <Legend layout="vertical" verticalAlign="top" align="center" />
     </PieChart>
     </div>
     
@@ -68,7 +68,6 @@ const styles = {
     justifyContent:"center",
     alignItems: "center",
     margin: 10,
-    background:" #FFFFFF",
     borderRadius:8,
     padding:15,
     color:"white"
