@@ -18,10 +18,8 @@ services:
     volumes:
        - /etc/localtime:/etc/localtime:ro
     restart: unless-stopped
-    external_links:
-     - api-release:api
     depends_on:
-      - api
+      - api-release
     labels:
         - traefik.enable=true
         - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)
