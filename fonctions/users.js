@@ -180,4 +180,17 @@ const resetPassword  = async (context, email, password) => {
     })
 }
 
-export { login, register, refreshToken, googleLoginRegister, facebookLoginRegister, forgotPassword, resetPassword };
+
+const getLogout = async (context) => {
+    return new Promise((resolve, reject) => {
+        context.backend.api.users.post('logout', { refreshToken: Cookies.get('idClient') })
+        .then((response) => {
+            resolve(response)
+        })
+        .catch((error) => {
+            reject(error)
+        })
+    })
+}
+
+export { login, register, refreshToken, googleLoginRegister, facebookLoginRegister, forgotPassword, resetPassword, getLogout };
