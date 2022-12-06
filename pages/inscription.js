@@ -119,6 +119,8 @@ export default function Inscription() {
     }
   }
 
+  
+
   return (
     <div>
       <div className={styles.container}>
@@ -235,7 +237,7 @@ export default function Inscription() {
               onClick={googleRegister}
             >
               <span style={{ position: "absolute", left: 8, bottom: 1 }}>
-                <Image src={google} width="40" height="40" alt="google logo" />
+                <Image src='/google.svg' width="40" height="40" alt="google logo" />
               </span>
               S'inscrire
             </button>

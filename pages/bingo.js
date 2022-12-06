@@ -7,8 +7,6 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import gift from "../image/win.gif"
-import axios from "axios";
-import Breadcrumbs from 'nextjs-breadcrumbs';
 import 'nextjs-breadcrumbs/dist/index.css'
 import Cookies from "js-cookie";
 import "animate.css";
@@ -119,12 +117,7 @@ export default function Bingo() {
               Voir les differents lots
             </small>
           </Link>
-  
-  
-            <Image src={gift} height={250} width={250} alt="logo" />
-  
-  
-     
+          <Image src={gift} height={250} width={250} alt="logo" />
         </section>
         <Footer />
       </div>

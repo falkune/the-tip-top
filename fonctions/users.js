@@ -158,4 +158,26 @@ const facebookLoginRegister = async (context) => {
 
 }
 
-export { login, register, refreshToken, googleLoginRegister, facebookLoginRegister };
+
+const forgotPassword = async (context, email) => {
+    return new Promise((resolve, rejecte) => {
+        context.backend.api.users.post('forgot-password', {email: email})
+        .then((response) => {
+            resolve(response);
+        })
+        .catch((error) => rejecte(error));
+    })
+}
+
+
+const resetPassword  = async (context, email, password) => {
+    return new Promise((resolve, rejecte) => {
+        context.backend.api.users.post('reset-password', {email: email, password: password})
+        .then((response) => {
+            resolve(response);
+        })
+        .catch((error) => rejecte(error));
+    })
+}
+
+export { login, register, refreshToken, googleLoginRegister, facebookLoginRegister, forgotPassword, resetPassword };

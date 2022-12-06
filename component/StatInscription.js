@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from 'js-cookie';
 import Exemple  from "./LineChart";
+import {notifier} from '../fonctions/utils';
 
 export default function StatInscription({ days,  idSession}) {
   const [registration, setRegistration] = useState([]);
@@ -17,7 +18,7 @@ export default function StatInscription({ days,  idSession}) {
     let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession)
     getregistrationByDay.then((response) => {
       if(response.statusCode){
-        console.log("faux =>", response)
+        notifier(response.message)
       }else{
         setRegistration(response)
       }

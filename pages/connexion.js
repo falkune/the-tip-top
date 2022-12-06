@@ -7,29 +7,29 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
-import { login, googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
+import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
-import ErrorMessage from '../component/ErrorMessage';
+import Link from "next/link";
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fool, setFool] = useState(false);
-  const [message, setMessage] = useState("");
   const context = useContext(ApiContext);
+  const [resetPassword, setResetPassword] = useState(false);
+  let [btnText, setBtnText] = useState("Connexion");
 
   const router = useRouter();
-  const connexion = async (e) => {
-    e.preventDefault();
+  const connexion = async () => {
     let user = await login(context, email, password)
-    if (user.statusCode) {
-      console.log(user)
-     // setMessage(user.message)
-      console.log(user.message);
-      user.message.forEach(element => {
-        notifier(element ,"error","top-right",5000);
-      });
+    if (user.statusCode) {      
+      if(Array.isArray(user.message)){
+        user.message.forEach(element => {
+          notifier(element ,"error","top-right",5000);
+        });
+      }else{
+        notifier(user.message)
+      }
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -39,17 +39,13 @@ export default function Connexion() {
   };
 
   const goSignup = () => {
-    router.push({
-      pathname: `inscription`,
-      query: { number: router.query.num ? router.query.num : null },
-    });
+    router.push({ pathname: "/inscription" }, undefined, { shallow: true });
   };
 
   const facebookLogin = async () => {
     let user = await facebookLoginRegister(context)
     if (user.statusCode) {
-      console.log(user)
-     // setMessage(user.message)
+      notifier(user.message)
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -61,11 +57,8 @@ export default function Connexion() {
   const googleLogin = async () => {
     let user = await googleLoginRegister(context)
     if (user.statusCode) {
-      console.log(user)
-     // setMessage(user.message)
-      
+      notifier(user.message)
     } else {
-      
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
       else
@@ -73,6 +66,22 @@ export default function Connexion() {
     }
   }
 
+  const resetPasswor = async() => {
+    forgotPassword(context, email)
+    .then((response) => {
+      notifier(response.message)
+    })
+  }
+
+
+  const valider = (e) => {
+    e.preventDefault();
+    if(resetPassword){
+      resetPasswor();
+    }else{
+      connexion();
+    }
+  }
   return (
     <div>
       <div className={styles.container}>
@@ -86,7 +95,6 @@ export default function Connexion() {
           <form
             className={styles.log}
             style={{ borderBottom: "solid 1px #D2D2D2" }}
-            onSubmit={(e) => connexion(e)}
           >
             <h1 className={styles.h1} style={{ fontSize: 25 }}>
               Connexion
@@ -99,7 +107,8 @@ export default function Connexion() {
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
+            {!resetPassword && (
+              <input
               label='Password'
               name='password'
               type='password'
@@ -107,24 +116,20 @@ export default function Connexion() {
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {fool && (
-              <small style={{ color: "red" }}>
-                Mot de passe ou email incorrecte
-              </small>
             )}
-            {
-              message && (
-                <ErrorMessage errorMessage={message} />
-              )
-            }
 
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
+              onClick={e => valider(e)}
             >
-              Connexion
+              {btnText = resetPassword ? "Changer de mot de passe" : "Connexion"}
             </button>
           </form>
+          {!resetPassword && (
+            <div>
+            <span style={{color: "#437BFF", fontWeight: "bold"}} onClick={() => setResetPassword(true)}><Link href="#update-password" >mot de passe oublié</Link></span>
+           </div>)}
           <div className={styles.social}>
             <button
               style={{
@@ -170,16 +175,16 @@ export default function Connexion() {
         </section>
         <small style={{ color: "grey" }}>
           Pas encore de compte ?
-          <strong style={{ color: "#437BFF" }}>
-            {" "}
-            <button style={{
-              margin: 10,
-              fontWeight: "bold",
-              color: "#437BFF",
-              border: "none",
-              padding: 10,
-              border: 5
-            }} onClick={goSignup}> S'inscrire</button>
+          <strong style={{
+                backgroundColor:"#F2F2F2",
+                margin:10,
+                fontWeight:"bold",
+                color: "#437BFF",
+                border:"none",
+                padding:10,
+                border:5
+              }}>
+            <Link href="/inscription"> S'inscrire</Link>
           </strong>
         </small>
       </div>
