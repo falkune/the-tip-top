@@ -20,8 +20,6 @@ COPY --from=builder_s /my-project/.next ./.next
 COPY --from=builder_s /my-project/node_modules ./node_modules
 COPY --from=builder_s /my-project/package.json ./package.json
 COPY --from=builder_s /my-project/.env.staging ./.env.staging
-
-RUN ls
 EXPOSE 3000
 CMD ["npm", "run", "start:staging"]
 
