@@ -20,7 +20,7 @@ COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
 VOLUME [ "/my-project" ]
 EXPOSE 3000
-CMD ["npm", "start:staging"]
+CMD ["npm", "run", "start:staging"]
 
 FROM node:14-alpine as production
 WORKDIR /my-project
