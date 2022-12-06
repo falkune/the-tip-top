@@ -13,13 +13,15 @@ import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-
-// material ui
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
-import { responseSymbol } from "next/dist/server/web/spec-compliant/fetch-event";
+import { getSessions } from "../fonctions/sessions";
+import { getGroups } from "../fonctions/groups";
+import { notifier } from "../fonctions/utils";
+
 
 export default function Stats() {
+  const context = useContext(ApiContext)
   const router = useRouter();
   const [menu, setMenu] = useState("stats");
   const [session, setSession] = React.useState({
@@ -33,8 +35,7 @@ export default function Stats() {
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
-  const [isLoged, setIsLoged] = useState(false);
-  const context = useContext(ApiContext)
+  
 
 
   const updateDimensions = () => {
@@ -54,33 +55,20 @@ export default function Stats() {
   }, [width]);
   
   const getAllSessions = async () => {
-    let sessions = context.backend.api.sessions.get('', {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
+    getSessions(context)
+    .then((response) => {
+      setAllSessions(response);
+      setIdSession(response[0]._id);
     })
-    sessions.then((response) => {
-      if(response.statusCode){
-        console.log("vrai", response)
-      }else{
-        setAllSessions(response);
-        setIdSession(response[0]._id);
-      }
-    })
+    .catch(() => { notifier()})
   };
 
   const getAllLots = async () => {
-
-    let groups = context.backend.api.groups.get('', {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
+    getGroups(context)
+    .then((response) => {
+      setLots(response);
     })
-    groups.then((response) => {
-      if(response.statusCode){
-        console.log("vrai", response)
-      }else{
-        setLots(response);
-      }
-    })
+    .catch(() => notifier())
   };
 
   const handleChangeSession = (event) => {
