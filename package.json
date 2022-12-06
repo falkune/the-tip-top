@@ -58,7 +58,8 @@
     "react-wheel-of-prizes": "^1.0.9",
     "recharts": "^2.1.16",
     "sharp": "^0.30.3",
-    "tsparticles": "^2.5.3"
+    "tsparticles": "^2.5.3",
+    "json-loader": "latest"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",

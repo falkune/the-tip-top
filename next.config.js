@@ -24,6 +24,14 @@ const nextConfig = {
           },
         },
       ],
+    },
+    {
+      test: /\.json5$/i,
+      loader: 'json5-loader',
+      options: {
+        esModule: true,
+      },
+      type: 'javascript/auto',
     })
     return config
   },
@@ -34,8 +42,10 @@ module.exports = nextConfig
 function getEnvConfig() {
   const environment = process.env.TARGET_ENV || process.env.NODE_ENV
   try {
-    return import (`./env-${environment}.json`)
+     return require(`./env-${environment}.json`)
   } catch (err) {
-    return import ('./env.json')
+    return require('./env.json')
   }
 }
+
+console.log(process.env.API_BASE_URL);
