@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from "react";
 import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
-
+import Cookies from 'js-cookie';
 
 export default function ParticipationStat({ticket, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
@@ -17,7 +17,12 @@ export default function ParticipationStat({ticket, idSession}) {
     context.backend.auth.tickets.post('claimbed-tickets-by-session', {idSession : idSession})
     .then((response) => {
       if(response.statusCode){
-        console.log('bad =>', response)
+        if(response.statusCode == 401){
+          context.backend.api.users.post('refresh-access-token', {refreshToken: Cookies.get('idClient')})
+          .then((response) => {
+            Cookies.set('authToken', response.accessToken)
+          })
+        }
       }else{
         setNumberOfClaimbedTicket(response.length);
       }

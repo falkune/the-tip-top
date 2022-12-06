@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import OneLot from "./OneLot";
-import axios from "axios";
+import ApiContext from '../context/apiContext';
+import LinearProgress from '@mui/material/LinearProgress';
 
 const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState([]);
   const [allGroup, setAllGroup] = useState([]);
+  const context = useContext(ApiContext);
 
   useEffect(() => {
     if(idSession != ""){
@@ -14,31 +16,50 @@ const StatsLots = ({ idSession }) => {
   },[idSession]);
 
   const getTicketStats = async () => {
-    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/get-ticket-stats/"+idSession;
-    const response = await axios.get(url);
-    setAllGroup(response.data);
+    context.backend.api.tickets.get('get-ticket-stats/'+idSession)
+    .then((response) => {
+      setAllGroup(response);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
   }
 
-  const getAllGroup = async () => {
-    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Group";
-    const response = await axios.get(url);
-    setGroupInfo(response.data);
+  const getAllGroup = () => {
+    context.backend.api.groups.get('')
+    .then((response) => {
+      setGroupInfo(response);
+    })
+    .catch((error) => {
+      console.log(error)
+    })
+  }
+
+  if(groupInfo.length != 0){
+    return (
+      <div style={styles.lot}>
+        { 
+          allGroup.map((l,index)=> (
+            <OneLot 
+              key={index}
+              title={groupInfo.find(item => item._id == l._id).description}
+              claimbedTicket={l.claimbedTicket}
+              notClaimbedTicket={l.numberOfTickets - l.claimbedTicket}
+            /> 
+          ))
+        }
+      </div>
+    )
+  }else{
+    return(
+      <>
+        <LinearProgress color="secondary" style={{margin: 10}}/>
+        <LinearProgress color="success" style={{margin: 10}}/>
+        <LinearProgress color="inherit" style={{margin: 10}}/>
+      </>
+    )
   }
    
-  return (
-    <div style={styles.lot}>
-      { 
-        allGroup.map((l,index)=> (
-          <OneLot 
-            key={index}
-            title={groupInfo.find(item => item._id == l._id).description}
-            claimbedTicket={l.claimbedTicket}
-            notClaimbedTicket={l.numberOfTickets - l.claimbedTicket}
-          /> 
-        ))
-      }
-    </div>
-  )
 }
 export default StatsLots;
 

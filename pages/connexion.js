@@ -6,122 +6,82 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
-import ApiClient from '../api/api-client';
-import { firebaseApp } from '../config/firebase';
 import ApiContext from '../context/apiContext';
-import {
-  getAuth,
-  signInWithPopup,
-  GoogleAuthProvider,
-  FacebookAuthProvider
-} from "firebase/auth"
-import { googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
+import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
+import { notifier } from "../fonctions/utils";
+import Link from "next/link";
 
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fool, setFool] = useState(false);
-  const [error, setError] = useState(false);
-  const [message, setMessage] = useState("");
   const context = useContext(ApiContext);
+  const [resetPassword, setResetPassword] = useState(false);
+  let [btnText, setBtnText] = useState("Connexion");
 
   const router = useRouter();
-  const connexion = async (e) => {
-    e.preventDefault();
-    const params = {
-      email: email,
-      password: password,
-    };
-
-    context.backend.api.users.post('login', params)
-      .then((response) => {
-        if (response.statusCode) {
-          console.log("erreur", error)
-          setError(true)
-          setMessage(response.message)
-        } else {
-          let logedUser = new ApiClient()
-            .setHeader("lang", "en")
-            .setHeader("Accept", "Application/json")
-            .setHeader("Content-Type", "application/json")
-            .setBearerAuth(response.accessToken)
-          context.setBacked({ api: context.backend.api, auth: logedUser })
-          Cookies.set("authToken", response.accessToken);
-          Cookies.set('role', response.roles);
-          Cookies.set('idClient', response.refreshToken);
-
-          if (response.roles.includes('admin')) {
-            router.push({ pathname: "/stats" }, undefined, { shallow: true });
-          } else {
-            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-          }
-        }
-      });
+  const connexion = async () => {
+    let user = await login(context, email, password)
+    if (user.statusCode) {      
+      if(Array.isArray(user.message)){
+        user.message.forEach(element => {
+          notifier(element ,"error","top-right",5000);
+        });
+      }else{
+        notifier(user.message)
+      }
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
   };
 
   const goSignup = () => {
-    router.push({
-      pathname: `inscription`,
-      query: { number: router.query.num ? router.query.num : null },
-    });
+    router.push({ pathname: "/inscription" }, undefined, { shallow: true });
   };
 
-  const facebookLogin = (provider) => {
-    facebookLoginRegister()
-    .then((user) => {
-      context.backend.api.users.post('auth-from-social-network', user).then((response) => {
-        console.log(response)
-        let logedUser = new ApiClient()
-          .setHeader("lang", "en")
-          .setHeader("Accept", "Application/json")
-          .setHeader("Content-Type", "application/json")
-          .setBearerAuth(response.accessToken)
-        context.setBacked({ api: context.backend.api, auth: logedUser })
-        Cookies.set("authToken", response.accessToken);
-        Cookies.set('role', response.roles);
-        Cookies.set('idClient', response.refreshToken);
-        
-        if (response.roles.includes('admin')) {
-          router.push({ pathname: "/stats" }, undefined, { shallow: true });
-        } else {
-          router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-        }
-      })
-      .catch((error) => {
-        console.log( error )
-      })
+  const facebookLogin = async () => {
+    let user = await facebookLoginRegister(context)
+    if (user.statusCode) {
+      notifier(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
+  }
+
+  const googleLogin = async () => {
+    let user = await googleLoginRegister(context)
+    if (user.statusCode) {
+      notifier(user.message)
+    } else {
+      if (Cookies.get('role') == "admin")
+        router.push({ pathname: "/stats" }, undefined, { shallow: true });
+      else
+        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
+    }
+  }
+
+  const resetPasswor = async() => {
+    forgotPassword(context, email)
+    .then((response) => {
+      notifier(response.message)
     })
   }
 
-  const googleLogin = () => {
-    googleLoginRegister()
-      .then((user) => {
-        context.backend.api.users.post('auth-from-social-network', user).then((response) => {
-          console.log(response)
-          let logedUser = new ApiClient()
-            .setHeader("lang", "en")
-            .setHeader("Accept", "Application/json")
-            .setHeader("Content-Type", "application/json")
-            .setBearerAuth(response.accessToken)
-          context.setBacked({ api: context.backend.api, auth: logedUser })
-          Cookies.set("authToken", response.accessToken);
-          Cookies.set('role', response.roles);
-          Cookies.set('idClient', response.refreshToken);
-          
-          if (response.roles.includes('admin')) {
-            router.push({ pathname: "/stats" }, undefined, { shallow: true });
-          } else {
-            router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-          }
-        })
-        .catch((error) => {
-          console.log( error )
-        })
-      })
 
+  const valider = (e) => {
+    e.preventDefault();
+    if(resetPassword){
+      resetPasswor();
+    }else{
+      connexion();
+    }
   }
-
   return (
     <div>
       <div className={styles.container}>
@@ -135,7 +95,6 @@ export default function Connexion() {
           <form
             className={styles.log}
             style={{ borderBottom: "solid 1px #D2D2D2" }}
-            onSubmit={(e) => connexion(e)}
           >
             <h1 className={styles.h1} style={{ fontSize: 25 }}>
               Connexion
@@ -148,7 +107,8 @@ export default function Connexion() {
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
             />
-            <input
+            {!resetPassword && (
+              <input
               label='Password'
               name='password'
               type='password'
@@ -156,19 +116,20 @@ export default function Connexion() {
               placeholder="Mot de passe"
               onChange={(e) => setPassword(e.target.value)}
             />
-            {fool && (
-              <small style={{ color: "red" }}>
-                Mot de passe ou email incorrecte
-              </small>
             )}
 
             <button
               className={styles.action}
               style={{ animation: "pulse 1sec infite" }}
+              onClick={e => valider(e)}
             >
-              Connexion
+              {btnText = resetPassword ? "Changer de mot de passe" : "Connexion"}
             </button>
           </form>
+          {!resetPassword && (
+            <div>
+            <span style={{color: "#437BFF", fontWeight: "bold"}} onClick={() => setResetPassword(true)}><Link href="#update-password" >mot de passe oublié</Link></span>
+           </div>)}
           <div className={styles.social}>
             <button
               style={{
@@ -214,16 +175,16 @@ export default function Connexion() {
         </section>
         <small style={{ color: "grey" }}>
           Pas encore de compte ?
-          <strong style={{ color: "#437BFF" }}>
-            {" "}
-            <button style={{
-              margin: 10,
-              fontWeight: "bold",
-              color: "#437BFF",
-              border: "none",
-              padding: 10,
-              border: 5
-            }} onClick={goSignup}> S'inscrire</button>
+          <strong style={{
+                backgroundColor:"#F2F2F2",
+                margin:10,
+                fontWeight:"bold",
+                color: "#437BFF",
+                border:"none",
+                padding:10,
+                border:5
+              }}>
+            <Link href="/inscription"> S'inscrire</Link>
           </strong>
         </small>
       </div>
