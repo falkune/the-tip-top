@@ -175,16 +175,16 @@ export default function Connexion() {
         </section>
         <small style={{ color: "grey" }}>
           Pas encore de compte ?
-          <strong style={{ color: "#437BFF" }}>
-            {" "}
-            <button style={{
-              margin: 10,
-              fontWeight: "bold",
-              color: "#437BFF",
-              border: "none",
-              padding: 10,
-              border: 5
-            }} onClick={goSignup}> S'inscrire</button>
+          <strong style={{
+                backgroundColor:"#F2F2F2",
+                margin:10,
+                fontWeight:"bold",
+                color: "#437BFF",
+                border:"none",
+                padding:10,
+                border:5
+              }}>
+            <Link href="/inscription"> S'inscrire</Link>
           </strong>
         </small>
       </div>

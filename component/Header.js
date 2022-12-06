@@ -13,7 +13,7 @@ const Header = ({ menu, changemenu }) => {
   const [role, setRole] = useState(null);
   const context = useContext(ApiContext);
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -41,7 +41,6 @@ const Header = ({ menu, changemenu }) => {
           router.push("/connexion")
         }
       })
-
   }
 
   return (
