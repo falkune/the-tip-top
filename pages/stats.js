@@ -42,6 +42,8 @@ export default function Stats() {
   };
 
   useEffect(() => {
+    
+    console.log("test", process.env.NEXT_PUBLIC_API_BASE_URL)
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
@@ -207,6 +209,7 @@ const stylez = {
   },
   side: {
     width: "15%",
+    paddingTop:100,
     backgroundColor: "white",
     backgroundColor: " #38870D",
     display: "flex",

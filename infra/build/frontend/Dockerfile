@@ -19,7 +19,7 @@ COPY --from=builder_s /my-project/public ./public
 COPY --from=builder_s /my-project/.next ./.next
 COPY --from=builder_s /my-project/node_modules ./node_modules
 COPY --from=builder_s /my-project/package.json ./package.json
-RUN ls
+COPY --from=builder_s /my-project/.env.staging ./.env.staging
 EXPOSE 3000
 CMD ["npm", "run", "start:staging"]
 
@@ -39,5 +39,7 @@ COPY --from=builder /my-project/public ./public
 COPY --from=builder /my-project/.next ./.next
 COPY --from=builder /my-project/node_modules ./node_modules
 COPY --from=builder /my-project/package.json ./package.json
+COPY --from=builder /my-project/.env.production ./.env.production
+
 EXPOSE 3000
 CMD ["npm", "start"]

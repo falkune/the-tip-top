@@ -3,10 +3,10 @@ import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import clipboard from "../image/clipboard.png";
-import axios from "axios";
 import dayjs from "dayjs";
 
 export default function TicketChecker({ session }) {
+  const context = useContext(ApiContext)
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [delivred, setDelivred] = useState(false);
@@ -18,7 +18,6 @@ export default function TicketChecker({ session }) {
     create_at: "07-06-2022",
     lot: "",
   });
-  const context = useContext(ApiContext)
 
   const checkTicket = async () => {
     //fonction pour créer un ticket
@@ -31,11 +30,8 @@ export default function TicketChecker({ session }) {
         assigned:value.idClient,
         create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
         lot: value.lot,
-      });
-  
-    } 
+      });} 
      )
-    
       setLoading(false);
       setVisible(true);
     } catch (e) {

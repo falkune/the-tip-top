@@ -9,6 +9,8 @@ services:
     image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
     container_name: frontend-release
     hostname: dev.dsp-archiwebo21-ct-df-an-cd.fr
+    extra_hosts:
+      - "api.dev.dsp-archiwebo21-ct-df-an-cd.fr:45.155.170.65" 
     logging:
       driver: gelf
       options:

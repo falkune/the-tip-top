@@ -78,7 +78,13 @@ const Header = ({ menu, changemenu }) => {
               ):(
                 <></>
               )}
-              
+                {role && role === "admin" && (
+                <li style={menu === "bingo" ? styles.liactive : styles.li}>
+                  {" "}
+                  <Link href="/stats">Administration </Link>
+                </li>
+              )}
+
               
               {role && role === "client" && (
                 <li style={menu === "bingo" ? styles.liactive : styles.li}>

@@ -3,9 +3,11 @@
 
 class HttpClient {
   constructor(options = {}) {
-    this._baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-    //this._baseURL = options.baseURL || "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr";
+    this._baseURL = process.env.NEXT_PUBLIC_BASE_URL;
     this._headers = options.headers || {};
+    console.log("baseUrl",this._baseURL)
+    console.log("test2",process.env.NEXT_PUBLIC_BASE_URL)
+
   }
 
   setHeader(key, value) {

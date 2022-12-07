@@ -101,7 +101,7 @@ export default function Connexion() {
             </h1>
             <input
               label='Password'
-              name='password'
+              name='email'
               aria-label='formEmail'
               type="email"
               placeholder="Email"
