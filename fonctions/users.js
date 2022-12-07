@@ -62,11 +62,6 @@ const register = async (context, fullName, email, password, birthday) => {
     })
     
 }
-///////////////// REFRESH TOKEN FUCNTION ////////////////////
-
-const refreshToken = (refreshToken) => {
-
-}
 
 ///////////////// GOOGLE LOGIN ////////////////////
 
@@ -114,6 +109,7 @@ const googleLoginRegister = async (context) => {
 }
 
 ///////////////// FACEBOOK LOGIN ////////////////////
+
 const facebookLoginRegister = async (context) => {
     const firebaseAuth = getAuth(firebaseApp);
     return new Promise((resolve, reject) => {
@@ -129,7 +125,6 @@ const facebookLoginRegister = async (context) => {
                 birthday: ""
 
             }
-
 
             context.backend.api.users.post('auth-from-social-network', user)
             .then((response) => {
@@ -193,4 +188,12 @@ const getLogout = async (context) => {
     })
 }
 
-export { login, register, refreshToken, googleLoginRegister, facebookLoginRegister, forgotPassword, resetPassword, getLogout };
+export { 
+    login, 
+    register, 
+    googleLoginRegister, 
+    facebookLoginRegister, 
+    forgotPassword, 
+    resetPassword, 
+    getLogout 
+};

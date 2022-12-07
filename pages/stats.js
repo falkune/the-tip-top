@@ -24,20 +24,18 @@ export default function Stats() {
   const context = useContext(ApiContext)
   const router = useRouter();
   const [menu, setMenu] = useState("stats");
-  const [session, setSession] = React.useState({
+  const [session, setSession] = useState({
     name: "",
     start: "",
     end: "",
     limit: 15000,
     id: "",
   });
-  const [lots, setLots] = React.useState([]);
+  const [lots, setLots] = useState([]);
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
   
-
-
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     Cookies.set("width", width);
