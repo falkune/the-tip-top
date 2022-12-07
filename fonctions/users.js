@@ -55,22 +55,11 @@ const register = async (context, fullName, email, password, birthday) => {
 
     return new Promise((resolve, rejecte) => {
         context.backend.api.users.post('', params)
-            .then((response) => {
-                resolve(response);
-            })
+            .then((response) => resolve(response))
             .catch((error) => rejecte(error));
     })
 
 }
-///////////////// REFRESH TOKEN FUCNTION ////////////////////
-
-
-  
-
-
-
-
-
 
 ///////////////// GOOGLE LOGIN ////////////////////
 
@@ -167,9 +156,7 @@ const facebookLoginRegister = async (context) => {
 const forgotPassword = async (context, email) => {
     return new Promise((resolve, rejecte) => {
         context.backend.api.users.post('forgot-password', { email: email })
-            .then((response) => {
-                resolve(response);
-            })
+            .then((response) => resolve(response))
             .catch((error) => rejecte(error));
     })
 }
@@ -178,9 +165,7 @@ const forgotPassword = async (context, email) => {
 const resetPassword = async (context, email, password) => {
     return new Promise((resolve, rejecte) => {
         context.backend.api.users.post('reset-password', { email: email, password: password })
-            .then((response) => {
-                resolve(response);
-            })
+            .then((response) => resolve(response))
             .catch((error) => rejecte(error));
     })
 }
@@ -189,13 +174,17 @@ const resetPassword = async (context, email, password) => {
 const getLogout = async (context) => {
     return new Promise((resolve, reject) => {
         context.backend.api.users.post('logout', { refreshToken: Cookies.get('idClient') })
-            .then((response) => {
-                resolve(response)
-            })
-            .catch((error) => {
-                reject(error)
-            })
+            .then((response) => resolve(response))
+            .catch((error) => reject(error))
     })
 }
 
-export { login, register, googleLoginRegister, facebookLoginRegister, forgotPassword, resetPassword, getLogout };
+export { 
+    login, 
+    register, 
+    googleLoginRegister, 
+    facebookLoginRegister, 
+    forgotPassword, 
+    resetPassword, 
+    getLogout 
+};

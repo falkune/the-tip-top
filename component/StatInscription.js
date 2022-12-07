@@ -2,8 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from 'js-cookie';
 import Exemple  from "./LineChart";
-import {refreshToken} from '../fonctions/utils'
-
+import {refreshToken} from '../fonctions/utils';
 
 export default function StatInscription({ days,  idSession}) {
   const [registration, setRegistration] = useState([]);

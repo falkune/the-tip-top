@@ -5,7 +5,6 @@ import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Link from "next/link";
-import google from "../image/google.svg";
 import facebook from "../image/facebook.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from "next/router";
@@ -14,6 +13,7 @@ import ErrorMessage from "../component/ErrorMessage";
 import ApiContext from '../context/apiContext';
 import {register, googleLoginRegister, facebookLoginRegister} from '../fonctions/users';
 import Cookies from 'js-cookie';
+import { notifier } from "../fonctions/utils";
 
 export default function Inscription() {
   const context = useContext(ApiContext);
