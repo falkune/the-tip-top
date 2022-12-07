@@ -3,6 +3,7 @@ import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
 import {notifier, refreshToken} from '../fonctions/utils';
 import {claimedTickeBySession} from '../fonctions/tickets';
+import Gaugecart from './gauge'
 
 export default function ParticipationStat({ticket, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
@@ -15,7 +16,7 @@ export default function ParticipationStat({ticket, idSession}) {
   }, [idSession]);
 
   const validationTicketsStats = () => {
-    claimedTickeBySession(idSession, context)
+    claimedTickeBySession(context, idSession)
     .then((response) => {
       if(response.statusCode){
         refreshToken(response, context);
@@ -23,15 +24,21 @@ export default function ParticipationStat({ticket, idSession}) {
         setNumberOfClaimbedTicket(response.length);
       }
     })
-    .catch(error => notifier())
+    .catch(() => notifier())
   }
 
   return (
-    <div>
-      <OneLot 
-        claimbedTicket={numberOfClaimbedTicket}
-        notClaimbedTicket={ticket - numberOfClaimbedTicket}
-      /> 
+    <div style={styles.container}>
+      <Gaugecart claimed={numberOfClaimbedTicket} notClaimed={ticket - numberOfClaimbedTicket}/>
+      <OneLot claimbedTicket={numberOfClaimbedTicket} notClaimbedTicket={ticket - numberOfClaimbedTicket}/>
     </div>
   );
+}
+
+const styles = {
+  container:{
+    display: 'flex',
+    justifyContent: "space-around",
+    flexWrap: "wrap"
+  }
 }

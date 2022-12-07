@@ -152,6 +152,7 @@ const facebookLoginRegister = async (context) => {
 
 }
 
+///////////////// FORGOT PASSWORD FUNCTION ////////////////////
 
 const forgotPassword = async (context, email) => {
     return new Promise((resolve, rejecte) => {
@@ -161,6 +162,7 @@ const forgotPassword = async (context, email) => {
     })
 }
 
+///////////////// RESET PASSWORD FUNCTION ////////////////////
 
 const resetPassword = async (context, email, password) => {
     return new Promise((resolve, rejecte) => {
@@ -170,12 +172,23 @@ const resetPassword = async (context, email, password) => {
     })
 }
 
+///////////////// LOGOUT FUNCTION ////////////////////
 
 const getLogout = async (context) => {
     return new Promise((resolve, reject) => {
         context.backend.api.users.post('logout', { refreshToken: Cookies.get('idClient') })
             .then((response) => resolve(response))
             .catch((error) => reject(error))
+    })
+}
+
+///////////////// REGISTRATION BY DAY BY SESSION ////////////////////
+
+const getRegistrationByDayBySession = async (context, idSession) => {
+    return new Promise((resolve, reject) => {
+        context.backend.auth.users.get('registration-by-day/'+idSession)
+        .then(res => resolve(res))
+        .catch(err => reject(err))
     })
 }
 
@@ -186,5 +199,6 @@ export {
     facebookLoginRegister, 
     forgotPassword, 
     resetPassword, 
-    getLogout 
+    getLogout,
+    getRegistrationByDayBySession
 };
