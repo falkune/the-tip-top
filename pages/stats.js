@@ -17,7 +17,6 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { getSessions } from "../fonctions/sessions";
 import { getGroups } from "../fonctions/groups";
-import { notifier } from "../fonctions/utils";
 
 
 export default function Stats() {
@@ -42,8 +41,6 @@ export default function Stats() {
   };
 
   useEffect(() => {
-    
-    console.log("test", process.env.NEXT_PUBLIC_API_BASE_URL)
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
@@ -60,7 +57,6 @@ export default function Stats() {
       setAllSessions(response);
       setIdSession(response[0]._id);
     })
-    .catch(() => { notifier()})
   };
 
   const getAllLots = async () => {
@@ -68,7 +64,6 @@ export default function Stats() {
     .then((response) => {
       setLots(response);
     })
-    .catch(() => notifier())
   };
 
   const handleChangeSession = (event) => {
