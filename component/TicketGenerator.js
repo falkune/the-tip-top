@@ -1,11 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState ,useContext} from "react";
+import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function TicketGenerator({ session_id }) {
+  const context = useContext(ApiContext)
   const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
@@ -27,27 +28,17 @@ export default function TicketGenerator({ session_id }) {
 
   const generateTicket = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
     setLoading(true);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const body = {
-      idSession: session_id,
-    };
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket";
-
     try {
-      let newTicket = await axios.post(api, body, config);
-      console.log("newticket", newTicket.data);
-      setTicket(newTicket.data.ticketNumber);
+      context.backend.auth.tickets.post('',{idSession:session_id}).then((value) =>
+      {console.log(value,"value");
+      setTicket(value.ticketNumber);
       setLoading(false);
-      setGenerate(true);
+      setGenerate(true);})
     } catch (e) {
       console.log(e);
+      setLoading(false);
+      alert("error")
     }
   };
 

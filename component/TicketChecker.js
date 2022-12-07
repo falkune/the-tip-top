@@ -3,7 +3,6 @@ import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import clipboard from "../image/clipboard.png";
-import axios from "axios";
 import dayjs from "dayjs";
 
 export default function TicketChecker({ session }) {
