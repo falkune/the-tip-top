@@ -28,7 +28,7 @@ export default function Users({ idSession }) {
     },
   ]);
 
-  const number = users.length;
+  const number = userz.length;
   const columns = [];
 
   useEffect(() => {
@@ -38,8 +38,9 @@ export default function Users({ idSession }) {
   const getAllUser = async () => {
     //fonction pour récupérer tout les utilisateurs
     try {
-        context.backend.auth.tickets.post('users-by-session',{idSession:idSession}).then((value) =>
+        context.backend.auth.users.post('users-by-session',{idSession:idSession}).then((value) =>
       {console.log(value,"value");  
+      setUserz(value)
     } 
      )
     } catch (e) {
@@ -73,7 +74,7 @@ export default function Users({ idSession }) {
           <DataGrid
             getRowId={(row) => row._id}
             rows={userz}
-            columns={columns}
+            columns={colDefs}
             pageSize={15}
             rowsPerPageOptions={[2]}
             disableSelectionOnClick

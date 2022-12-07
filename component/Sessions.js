@@ -3,6 +3,7 @@ import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import axios from "axios";
 import dayjs from "dayjs";
+import { notifier } from "../fonctions/utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 const Sessions = ({ idSession }) => {
@@ -27,22 +28,16 @@ const Sessions = ({ idSession }) => {
 
   const getSession = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
-
     try {
-      context.backend.auth.session.post({idSession:idSession}).then((value) =>
+      context.backend.auth.sessions.get(idSession).then((value) =>
       {console.log(value,"value");
         setOneSession({
-          name: value.data.name,
-          start: value.data.startDate,
-          end: value.data.endDate,
-          description: value.data.description,
-          limit: value.data.limitTicket,
-          id: value.data._id,
+          name: value.name,
+          start: value.startDate,
+          end: value.endDate,
+          description: value.description,
+          limit: value.limitTicket,
+          id: value._id,
         });} 
      )
     } catch (e) {
@@ -55,13 +50,11 @@ const Sessions = ({ idSession }) => {
     console.log("take OneSession", OneSession);
   }, [idSession]);
 
-  const CreateSession = async () => {
+  const CreateSession = async (e) => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
+    e.preventDefault()
     const body = {
+      idSession:idSession,
       startDate: newSession.startDate,
       endDate: newSession.endDate,
       name: newSession.name,
@@ -69,17 +62,17 @@ const Sessions = ({ idSession }) => {
       limitTicket: Number(newSession.limit),
     };
 
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/`;
-    console.log("new session", newSession);
-
-    console.log("body", body);
-
-    try {
-      await axios.post(api, body, config);
-      toast("Session crée!");
-    } catch (e) {
-      console.log(e);
+     createSessionAPI(context, body).finally((session)=>{
+    if(Array.isArray(session.message)){
+      session.message.forEach(element => {
+        notifier(element ,"error","top-right",5000);
+      });
+    }else{
+      notifier(session.message)
     }
+
+   });
+  
   };
 
   const UpdateSession = async () => {
@@ -455,3 +448,22 @@ const styles = {
     fontWeight: "bold",
   },
 };
+
+function createSessionAPI(context, body) {
+  return new Promise((resolve, reject) => {
+    try {
+      context.backend.auth.sessions.post('', body).then((value) => {
+        console.log(value, "value");
+        toast("Session crée!");
+        resolve(value)
+      }
+      );
+    } catch (e) {
+      console.log(e);
+      reject(e) 
+    }
+    
+  })
+
+}
+

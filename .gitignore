@@ -41,3 +41,6 @@ yarn.lock
 *.tsbuildinfo
 
 .vscode
+
+#env
+.env
