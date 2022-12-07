@@ -30,8 +30,8 @@ export default function Home() {
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async container => {
-    await  
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container)
   }, []);
 
   useEffect(() => {

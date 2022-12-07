@@ -35,7 +35,7 @@ export default function Bingo() {
         pathname: `resultat`,
         query: { number: num },
       });
-    } else  
+    }
   };
 
   const getCurrent = async () => {
