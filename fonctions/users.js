@@ -1,6 +1,6 @@
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
-import firebaseApp  from '../config/firebase';
+import firebaseApp from '../config/firebase';
 import {
     getAuth,
     signInWithPopup,
@@ -55,13 +55,22 @@ const register = async (context, fullName, email, password, birthday) => {
 
     return new Promise((resolve, rejecte) => {
         context.backend.api.users.post('', params)
-        .then((response) => {
-            resolve(response);
-        })
-        .catch((error) => rejecte(error));
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => rejecte(error));
     })
-    
+
 }
+///////////////// REFRESH TOKEN FUCNTION ////////////////////
+
+
+  
+
+
+
+
+
 
 ///////////////// GOOGLE LOGIN ////////////////////
 
@@ -69,41 +78,41 @@ const googleLoginRegister = async (context) => {
     const firebaseAuth = getAuth(firebaseApp);
     return new Promise((resolve, reject) => {
         signInWithPopup(firebaseAuth, GoogleProvider)
-        .then((res) => {
-        const user = {
-            email: res.user.email,
-            fullName: res.user.displayName,
-            socialNetworkUserId: res.user.uid,
-            socialNetworkAccessToken: res.user.accessToken,
-            socialNetworkProvider: res.user.providerId,
-            password: "1234678910",
-            birthday: ""
+            .then((res) => {
+                const user = {
+                    email: res.user.email,
+                    fullName: res.user.displayName,
+                    socialNetworkUserId: res.user.uid,
+                    socialNetworkAccessToken: res.user.accessToken,
+                    socialNetworkProvider: res.user.providerId,
+                    password: "1234678910",
+                    birthday: ""
 
-        }
+                }
 
-        context.backend.api.users.post('auth-from-social-network', user)
-            .then((response) => {
-                console.log(response)
-                let logedUser = new ApiClient()
-                    .setHeader("lang", "en")
-                    .setHeader("Accept", "Application/json")
-                    .setHeader("Content-Type", "application/json")
-                    .setBearerAuth(response.accessToken)
-                context.setBacked({ api: context.backend.api, auth: logedUser })
-                Cookies.set("authToken", response.accessToken);
-                Cookies.set('role', response.roles);
-                Cookies.set('idClient', response.refreshToken);
+                context.backend.api.users.post('auth-from-social-network', user)
+                    .then((response) => {
+                        console.log(response)
+                        let logedUser = new ApiClient()
+                            .setHeader("lang", "en")
+                            .setHeader("Accept", "Application/json")
+                            .setHeader("Content-Type", "application/json")
+                            .setBearerAuth(response.accessToken)
+                        context.setBacked({ api: context.backend.api, auth: logedUser })
+                        Cookies.set("authToken", response.accessToken);
+                        Cookies.set('role', response.roles);
+                        Cookies.set('idClient', response.refreshToken);
 
-                resolve(logedUser)
+                        resolve(logedUser)
+                    })
+                    .catch((error) => {
+                        reject(error)
+                    })
             })
             .catch((error) => {
+                console.log(error)
                 reject(error)
             })
-        })
-        .catch((error) => {
-            console.log(error)
-            reject(error)
-        })
     })
 
 }
@@ -114,41 +123,42 @@ const facebookLoginRegister = async (context) => {
     const firebaseAuth = getAuth(firebaseApp);
     return new Promise((resolve, reject) => {
         signInWithPopup(firebaseAuth, FacebookProvider)
-        .then((res) => {
-            const user = {
-                email: res.user.email,
-                fullName: res.user.displayName,
-                socialNetworkUserId: res.user.uid,
-                socialNetworkAccessToken: res.user.accessToken,
-                socialNetworkProvider: res.user.providerId,
-                password: "1234678910",
-                birthday: ""
+            .then((res) => {
+                const user = {
+                    email: res.user.email,
+                    fullName: res.user.displayName,
+                    socialNetworkUserId: res.user.uid,
+                    socialNetworkAccessToken: res.user.accessToken,
+                    socialNetworkProvider: res.user.providerId,
+                    password: "1234678910",
+                    birthday: ""
 
-            }
+                }
 
-            context.backend.api.users.post('auth-from-social-network', user)
-            .then((response) => {
-                console.log(response)
-                let logedUser = new ApiClient()
-                    .setHeader("lang", "en")
-                    .setHeader("Accept", "Application/json")
-                    .setHeader("Content-Type", "application/json")
-                    .setBearerAuth(response.accessToken)
-                context.setBacked({ api: context.backend.api, auth: logedUser })
-                Cookies.set("authToken", response.accessToken);
-                Cookies.set('role', response.roles);
-                Cookies.set('idClient', response.refreshToken);
 
-                resolve(logedUser)
+                context.backend.api.users.post('auth-from-social-network', user)
+                    .then((response) => {
+                        console.log(response)
+                        let logedUser = new ApiClient()
+                            .setHeader("lang", "en")
+                            .setHeader("Accept", "Application/json")
+                            .setHeader("Content-Type", "application/json")
+                            .setBearerAuth(response.accessToken)
+                        context.setBacked({ api: context.backend.api, auth: logedUser })
+                        Cookies.set("authToken", response.accessToken);
+                        Cookies.set('role', response.roles);
+                        Cookies.set('idClient', response.refreshToken);
+
+                        resolve(logedUser)
+                    })
+                    .catch((error) => {
+                        reject(error)
+                    })
             })
             .catch((error) => {
+                console.log(error)
                 reject(error)
             })
-        })
-        .catch((error) => {
-            console.log(error)
-            reject(error)
-        })
     })
 
 }
@@ -156,22 +166,22 @@ const facebookLoginRegister = async (context) => {
 
 const forgotPassword = async (context, email) => {
     return new Promise((resolve, rejecte) => {
-        context.backend.api.users.post('forgot-password', {email: email})
-        .then((response) => {
-            resolve(response);
-        })
-        .catch((error) => rejecte(error));
+        context.backend.api.users.post('forgot-password', { email: email })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => rejecte(error));
     })
 }
 
 
-const resetPassword  = async (context, email, password) => {
+const resetPassword = async (context, email, password) => {
     return new Promise((resolve, rejecte) => {
-        context.backend.api.users.post('reset-password', {email: email, password: password})
-        .then((response) => {
-            resolve(response);
-        })
-        .catch((error) => rejecte(error));
+        context.backend.api.users.post('reset-password', { email: email, password: password })
+            .then((response) => {
+                resolve(response);
+            })
+            .catch((error) => rejecte(error));
     })
 }
 
@@ -179,21 +189,13 @@ const resetPassword  = async (context, email, password) => {
 const getLogout = async (context) => {
     return new Promise((resolve, reject) => {
         context.backend.api.users.post('logout', { refreshToken: Cookies.get('idClient') })
-        .then((response) => {
-            resolve(response)
-        })
-        .catch((error) => {
-            reject(error)
-        })
+            .then((response) => {
+                resolve(response)
+            })
+            .catch((error) => {
+                reject(error)
+            })
     })
 }
 
-export { 
-    login, 
-    register, 
-    googleLoginRegister, 
-    facebookLoginRegister, 
-    forgotPassword, 
-    resetPassword, 
-    getLogout 
-};
+export { login, register, googleLoginRegister, facebookLoginRegister, forgotPassword, resetPassword, getLogout };

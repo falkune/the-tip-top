@@ -76,7 +76,7 @@ export default function Tickets() {
     }
      )
     } catch (e) {
-      console.log(e);
+       
     }
   };
 

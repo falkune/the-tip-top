@@ -31,12 +31,12 @@ export default function TicketGenerator({ session_id }) {
     setLoading(true);
     try {
       context.backend.auth.tickets.post('',{idSession:session_id}).then((value) =>
-      {console.log(value,"value");
+      { 
       setTicket(value.ticketNumber);
       setLoading(false);
       setGenerate(true);})
     } catch (e) {
-      console.log(e);
+       
       setLoading(false);
       alert("error")
     }

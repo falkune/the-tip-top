@@ -1,11 +1,15 @@
-import React, { useEffect, useRef, useState ,useContext} from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import axios from "axios";
 import dayjs from "dayjs";
+import Cookies from 'js-cookie';
+
 import { notifier } from "../fonctions/utils";
+import { refreshToken } from "../fonctions/utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { createSession } from "../fonctions/sessions";
 const Sessions = ({ idSession }) => {
   const context = useContext(ApiContext)
   const [open, setOpen] = React.useState(false);
@@ -29,8 +33,8 @@ const Sessions = ({ idSession }) => {
   const getSession = async () => {
     //fonction pour créer un ticket
     try {
-      context.backend.auth.sessions.get(idSession).then((value) =>
-      {console.log(value,"value");
+      context.backend.auth.sessions.get(idSession).then((value) => {
+         
         setOneSession({
           name: value.name,
           start: value.startDate,
@@ -38,23 +42,24 @@ const Sessions = ({ idSession }) => {
           description: value.description,
           limit: value.limitTicket,
           id: value._id,
-        });} 
-     )
+        });
+      }
+      )
     } catch (e) {
-      console.log(e);
+       
     }
   };
 
   useEffect(() => {
     getSession();
-    console.log("take OneSession", OneSession);
+     
   }, [idSession]);
 
   const CreateSession = async (e) => {
     //fonction pour créer un ticket
     e.preventDefault()
     const body = {
-      idSession:idSession,
+      idSession: idSession,
       startDate: newSession.startDate,
       endDate: newSession.endDate,
       name: newSession.name,
@@ -62,22 +67,29 @@ const Sessions = ({ idSession }) => {
       limitTicket: Number(newSession.limit),
     };
 
-     createSessionAPI(context, body).finally((session)=>{
-    if(Array.isArray(session.message)){
-      session.message.forEach(element => {
-        notifier(element ,"error","top-right",5000);
-      });
-    }else{
-      notifier(session.message)
+
+
+    let session = await createSession(context, body);
+
+    if (session.statusCode) {
+      refreshToken(session, context);
+
+
+      if (Array.isArray(session.message)) {
+        session.message.forEach(element => {
+          notifier(element, "error", "top-right", 5000);
+        });
+      } else {
+        console.error(session);
+        notifier(session.message);
+      }
     }
 
-   });
-  
   };
 
   const UpdateSession = async () => {
     //fonction pour créer un ticket
-    console.log("take session");
+     
     event.preventDefault();
     const token = localStorage.getItem("token");
     const config = {
@@ -96,7 +108,7 @@ const Sessions = ({ idSession }) => {
       await axios.put(api, body, config);
       toast("Modification prise en compte ! ");
     } catch (e) {
-      console.log(e);
+       
     }
   };
 
@@ -112,7 +124,7 @@ const Sessions = ({ idSession }) => {
       await axios.delete(api, config);
       toast("Session supprimé ! ");
     } catch (e) {
-      console.log(e);
+       
     }
   };
 
@@ -131,7 +143,7 @@ const Sessions = ({ idSession }) => {
       let res = await axios.patch(api, body, config);
       toast("Cette session est active !");
     } catch (e) {
-      console.log(e);
+       
     }
   };
 
@@ -141,28 +153,28 @@ const Sessions = ({ idSession }) => {
       ...newSession,
       name: e.target.value,
     });
-    console.log(e.target.value);
+     
   };
   const UpdateNewSessionStart = (e) => {
     setNewsession({
       ...newSession,
       startDate: e.target.value,
     });
-    console.log(e.target.value);
+     
   };
   const UpdateNewSessionEnd = (e) => {
     setNewsession({
       ...newSession,
       endDate: e.target.value,
     });
-    console.log(e.target.value);
+     
   };
   const UpdateLimited = (e) => {
     setNewsession({
       ...newSession,
       limit: e.target.value,
     });
-    console.log(e.target.value);
+     
   };
 
   // Update session
@@ -245,7 +257,7 @@ const Sessions = ({ idSession }) => {
           theme="colored"
         />
       </form>
-        <Modal
+      <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
@@ -357,7 +369,7 @@ const styles = {
     padding: 15,
     fontSize: 18,
     backgroundColor: "transparent",
-    border:"solid 3px white",
+    border: "solid 3px white",
     borderRadius: 8,
     margin: 10,
   },
@@ -449,21 +461,5 @@ const styles = {
   },
 };
 
-function createSessionAPI(context, body) {
-  return new Promise((resolve, reject) => {
-    try {
-      context.backend.auth.sessions.post('', body).then((value) => {
-        console.log(value, "value");
-        toast("Session crée!");
-        resolve(value)
-      }
-      );
-    } catch (e) {
-      console.log(e);
-      reject(e) 
-    }
-    
-  })
 
-}
 

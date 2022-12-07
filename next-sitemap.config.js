@@ -4,4 +4,4 @@ module.exports = {
     // ...other options
   }
 
-  console.log(process.env);
+   

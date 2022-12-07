@@ -60,7 +60,7 @@ export default function Resultat() {
        )
  
     } catch (e) {
-      console.log(e);
+       
     }
   };
 

@@ -39,12 +39,12 @@ export default function Users({ idSession }) {
     //fonction pour récupérer tout les utilisateurs
     try {
         context.backend.auth.users.post('users-by-session',{idSession:idSession}).then((value) =>
-      {console.log(value,"value");  
+      {   
       setUserz(value)
     } 
      )
     } catch (e) {
-      console.log(e);
+       
     }
   };
 

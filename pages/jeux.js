@@ -30,10 +30,10 @@ export default function Jeux() {
       let currenSession = await axios.get(api);
       setCurrent(currenSession.data);
       Cookies.set("current", currenSession.data);
-      console.log(currenSession.data[0]);
+       
       setCurrent(currenSession.data[0])
     } catch (e) {
-      console.log(e);
+       
     }
   };
   
