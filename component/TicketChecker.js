@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState ,useContext} from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import clipboard from "../image/clipboard.png";
+import { checkTicketApi } from "../fonctions/tickets";
+import { refreshToken, notifier } from "../fonctions/utils";
 import dayjs from "dayjs";
 
 export default function TicketChecker({ session }) {
@@ -22,21 +24,32 @@ export default function TicketChecker({ session }) {
   const checkTicket = async () => {
     //fonction pour créer un ticket
     setLoading(true);
+    let ticket = await checkTicketApi(context, input);
+    refreshToken(ticket);
+    if (ticket.statusCode) {
+      refreshToken(ticket, context);
+      notifier(ticket.message);
+    } else {
+      // logic
 
-    try {
-      context.backend.auth.tickets.post('check-ticket',{ticketNumber:"6620702413"}).then((value) =>
-      {console.log(value,"value");
-      setTicket({
-        assigned:value.idClient,
-        create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
-        lot: value.lot,
-      });} 
-     )
-      setLoading(false);
-      setVisible(true);
-    } catch (e) {
-      console.log(e);
     }
+
+
+    /*try {
+        context.backend.auth.tickets.post('check-ticket',{ticketNumber:input}).then((value) =>
+        { 
+        setTicket({
+          assigned:value.idClient,
+          create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
+          lot: value.lot,
+        });} 
+       )
+        setLoading(false);
+        setVisible(true);
+      } catch (e) {
+         
+      } */
+
   };
 
   const DelivredLot = async () => {
@@ -58,7 +71,7 @@ export default function TicketChecker({ session }) {
 
     // try {
     //   let nTicket = await axios.post(api, body, config);
-    //   console.log("newticket", value);
+    //    
     //   setTicket({
     //     assigned: nTicket?.data?.idClient,
     //     create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
@@ -67,14 +80,16 @@ export default function TicketChecker({ session }) {
     //   setLoading(false);
     //   setVisible(true);
     // } catch (e) {
-    //   console.log(e);
+    //    
     // }
+
+
     setDelivred(true);
   };
 
   const UpdateInput = (e) => {
     setInput(e.target.value);
-    console.log(e.target.value);
+     
   };
   const Cleaner = () => {
     setInput("");
