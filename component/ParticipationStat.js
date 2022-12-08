@@ -1,7 +1,11 @@
 import React, {useEffect, useState, useContext} from "react";
 import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
-import Cookies from 'js-cookie';
+import {notifier, refreshToken} from '../fonctions/utils';
+import {claimedTickeBySession} from '../fonctions/tickets';
+import Gaugecart from './gauge';
+import LinearProgress from '@mui/material/LinearProgress';
+import Box from '@mui/material/Box';
 
 export default function ParticipationStat({ticket, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
@@ -14,27 +18,29 @@ export default function ParticipationStat({ticket, idSession}) {
   }, [idSession]);
 
   const validationTicketsStats = () => {
-    context.backend.auth.tickets.post('claimbed-tickets-by-session', {idSession : idSession})
+    claimedTickeBySession(context, idSession)
     .then((response) => {
       if(response.statusCode){
-        if(response.statusCode == 401){
-          context.backend.api.users.post('refresh-access-token', {refreshToken: Cookies.get('idClient')})
-          .then((response) => {
-            Cookies.set('authToken', response.accessToken)
-          })
-        }
+        refreshToken(response, context);
       }else{
         setNumberOfClaimbedTicket(response.length);
       }
     })
+    .catch(() => notifier())
   }
 
   return (
-    <div>
-      <OneLot 
-        claimbedTicket={numberOfClaimbedTicket}
-        notClaimbedTicket={ticket - numberOfClaimbedTicket}
-      /> 
+    <div style={styles.container}>
+      {/* <Gaugecart claimed={numberOfClaimbedTicket} notClaimed={ticket - numberOfClaimbedTicket}/> */}
+      <OneLot claimbedTicket={numberOfClaimbedTicket} notClaimbedTicket={ticket - numberOfClaimbedTicket}/>
     </div>
   );
+}
+
+const styles = {
+  container:{
+    display: 'flex',
+    justifyContent: "space-around",
+    flexWrap: "wrap"
+  }
 }
