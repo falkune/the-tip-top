@@ -22,12 +22,12 @@ export default function Connexion() {
   const router = useRouter();
   const connexion = async () => {
     let user = await login(context, email, password)
-    if (user.statusCode) {      
-      if(Array.isArray(user.message)){
+    if (user.statusCode) {
+      if (Array.isArray(user.message)) {
         user.message.forEach(element => {
-          notifier(element ,"error","top-right",5000);
+          notifier(element, "error", "top-right", 5000);
         });
-      }else{
+      } else {
         notifier(user.message)
       }
     } else {
@@ -45,7 +45,13 @@ export default function Connexion() {
   const facebookLogin = async () => {
     let user = await facebookLoginRegister(context)
     if (user.statusCode) {
-      notifier(user.message)
+      if (Array.isArray(user.message)) {
+        user.message.forEach(element => {
+          notifier(element, "error", "bottom-right", 5000);
+        });
+      } else {
+        notifier(user.message, "error", "bottom-right", 5000);
+      }
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -56,8 +62,15 @@ export default function Connexion() {
 
   const googleLogin = async () => {
     let user = await googleLoginRegister(context)
+    
     if (user.statusCode) {
-      notifier(user.message)
+      if (Array.isArray(user.message)) {
+        user.message.forEach(element => {
+          notifier(element, "error", "bottom-right", 5000);
+        });
+      } else {
+        notifier(user.message, "error", "bottom-right", 5000);
+      }
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -66,19 +79,19 @@ export default function Connexion() {
     }
   }
 
-  const resetPasswor = async() => {
+  const resetPasswor = async () => {
     forgotPassword(context, email)
-    .then((response) => {
-      notifier(response.message)
-    })
+      .then((response) => {
+        notifier(response.message)
+      })
   }
 
 
   const valider = (e) => {
     e.preventDefault();
-    if(resetPassword){
+    if (resetPassword) {
       resetPasswor();
-    }else{
+    } else {
       connexion();
     }
   }
@@ -109,13 +122,13 @@ export default function Connexion() {
             />
             {!resetPassword && (
               <input
-              label='Password'
-              name='password'
-              type='password'
-              aria-label='formPassword'
-              placeholder="Mot de passe"
-              onChange={(e) => setPassword(e.target.value)}
-            />
+                label='Password'
+                name='password'
+                type='password'
+                aria-label='formPassword'
+                placeholder="Mot de passe"
+                onChange={(e) => setPassword(e.target.value)}
+              />
             )}
 
             <button
@@ -128,8 +141,8 @@ export default function Connexion() {
           </form>
           {!resetPassword && (
             <div>
-            <span style={{color: "#437BFF", fontWeight: "bold"}} onClick={() => setResetPassword(true)}><Link href="#update-password" >mot de passe oublié</Link></span>
-           </div>)}
+              <span style={{ color: "#437BFF", fontWeight: "bold" }} onClick={() => setResetPassword(true)}><Link href="#update-password" >mot de passe oublié</Link></span>
+            </div>)}
           <div className={styles.social}>
             <button
               style={{
@@ -176,14 +189,14 @@ export default function Connexion() {
         <small style={{ color: "grey" }}>
           Pas encore de compte ?
           <strong style={{
-                backgroundColor:"#F2F2F2",
-                margin:10,
-                fontWeight:"bold",
-                color: "#437BFF",
-                border:"none",
-                padding:10,
-                border:5
-              }}>
+            backgroundColor: "#F2F2F2",
+            margin: 10,
+            fontWeight: "bold",
+            color: "#437BFF",
+            border: "none",
+            padding: 10,
+            border: 5
+          }}>
             <Link href="/inscription"> S'inscrire</Link>
           </strong>
         </small>

@@ -4,8 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
-import Link from "next/link";
-import google from "../image/google.svg";
+import Link from "next/link"; 
 import facebook from "../image/facebook.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useRouter } from "next/router";
@@ -14,6 +13,7 @@ import ErrorMessage from "../component/ErrorMessage";
 import ApiContext from '../context/apiContext';
 import {register, googleLoginRegister, facebookLoginRegister} from '../fonctions/users';
 import Cookies from 'js-cookie';
+import { notifier } from "../fonctions/utils";
 
 export default function Inscription() {
   const context = useContext(ApiContext);
@@ -88,7 +88,13 @@ export default function Inscription() {
     let user = await googleLoginRegister(context)
     if (user.statusCode) {
       console.log(user)
-      setMessage(user.message)
+      if (Array.isArray(user.message)) {
+        user.message.forEach(element => {
+          notifier(element, "error", "bottom-right", 5000);
+        });
+      } else {
+        notifier(user.message, "error", "bottom-right", 5000);
+      }
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -98,10 +104,17 @@ export default function Inscription() {
   }
   // get register with facebook
   const facebookRegistration = async () => {
-    let user = await facebookLoginRegister(context)
+    let user = await facebookLoginRegister(context);
+
     if (user.statusCode) {
       console.log(user)
-      setMessage(user.message)
+      if (Array.isArray(user.message)) {
+        user.message.forEach(element => {
+          notifier(element, "error", "bottom-right", 5000);
+        });
+      } else {
+        notifier(user.message, "error", "bottom-right", 5000);
+      }
     } else {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
@@ -141,6 +154,7 @@ export default function Inscription() {
             </h1>
             <input
               type="email"
+              name="email" 
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
               onBlur={verifyEmail}
@@ -150,7 +164,8 @@ export default function Inscription() {
             <label style={{color: "red", display: (emailMatch || email == "") ? "none" : "block"}}>Vous email invalide !</label>
             <input
               type="text"
-              placeholder="Nom prénom"
+              name="firstName" 
+              placeholder="Nom prénom" 
               onChange={(e) => setNom(e.target.value)}
               onBlur={verifyName}
               onFocus={() => setValideName(true)}
@@ -159,6 +174,7 @@ export default function Inscription() {
             <label style={{color: "red", display: (valideName || nom == "") ? "none" : "block"}}>le nom complet doit faire minimum 6 caractères</label>
             <input
               type="date"
+              name="birthday" 
               placeholder="Date de naissance"
               onChange={(e) => setDateNaissance(e.target.value)}
               onBlur={verifMajorite}
@@ -169,6 +185,7 @@ export default function Inscription() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Mot de passe"
+                name="password" 
                 onChange={(e) => setPassword(e.target.value)}
                 onBlur={verifyPassword}
                 onFocus={() => setPasswordMatch(true)}
@@ -186,6 +203,7 @@ export default function Inscription() {
               <input
                 type={showVerifPassword ? "text" : "password"}
                 placeholder="Confirmation du mot de passe"
+                name="confimPassword" 
                 onChange={(e) => setConfirmPassword(e.target.value)}
                 onBlur={verifyPaswords}
                 style={{color : (password == confirmPassword) ? "black" : "orange" }}

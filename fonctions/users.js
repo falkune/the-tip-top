@@ -86,7 +86,8 @@ const googleLoginRegister = async (context) => {
                     socialNetworkAccessToken: res.user.accessToken,
                     socialNetworkProvider: res.user.providerId,
                     password: "1234678910",
-                    birthday: ""
+                    birthday: "",
+                    verified:true
 
                 }
 
@@ -103,7 +104,7 @@ const googleLoginRegister = async (context) => {
                         Cookies.set('role', response.roles);
                         Cookies.set('idClient', response.refreshToken);
 
-                        resolve(logedUser)
+                        resolve(response)
                     })
                     .catch((error) => {
                         reject(error)
@@ -131,7 +132,8 @@ const facebookLoginRegister = async (context) => {
                     socialNetworkAccessToken: res.user.accessToken,
                     socialNetworkProvider: res.user.providerId,
                     password: "1234678910",
-                    birthday: ""
+                    birthday: "",
+                    verified:true
 
                 }
 
