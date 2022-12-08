@@ -8,8 +8,6 @@ class HttpClient {
     //this._baseURL = "http://localhost:3000";
     this._baseURL = process.env.NEXT_PUBLIC_BASE_URL;
     this._headers = options.headers || {};
-    console.log("baseUrl", this._baseURL)
-    console.log("test2", process.env.NEXT_PUBLIC_BASE_URL)
 
   }
 
