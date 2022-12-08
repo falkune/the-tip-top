@@ -60,8 +60,8 @@ export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
 const styles = {
   lot:{
     display:"flex",
-    maxWidth: 250,
     flexDirection:"column",
+    background: "#ffffff",
     justifyContent:"center",
     alignItems: "center",
     margin: 10,

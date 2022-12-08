@@ -29,7 +29,7 @@ export default function ParticipationStat({ticket, idSession}) {
 
   return (
     <div style={styles.container}>
-      <Gaugecart claimed={numberOfClaimbedTicket} notClaimed={ticket - numberOfClaimbedTicket}/>
+      {/* <Gaugecart claimed={numberOfClaimbedTicket} notClaimed={ticket - numberOfClaimbedTicket}/> */}
       <OneLot claimbedTicket={numberOfClaimbedTicket} notClaimbedTicket={ticket - numberOfClaimbedTicket}/>
     </div>
   );

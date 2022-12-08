@@ -36,9 +36,9 @@ export default function Gaugecart({ claimed, notClaimed }){
 const styles = {
     lot:{
       display:"flex",
-      maxWidth: 250,
       flexDirection:"column",
       justifyContent:"center",
+      background: "#ffffff",
       alignItems: "center",
       margin: 10,
       borderRadius:8,
