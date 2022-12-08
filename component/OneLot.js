@@ -28,7 +28,7 @@ const renderCustomizedLabel = ({
   );
 };
 
-export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
+export default function OneLot({title, claimbedTicket, notClaimbedTicket, numberOfTickets}) {
   const data = [
     { name: "Tickets assignés", value: claimbedTicket },
     { name: "Tickets Non assignés", value: notClaimbedTicket },
@@ -36,6 +36,9 @@ export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
   return (
     <div style={styles.lot}>
       <p style={styles.h2}>{title}</p>
+      {/* <p style={styles.h2}>Total tickets : {numberOfTickets}</p>
+      <p style={styles.h2}>Tickets assignés : {claimbedTicket}</p>
+      <p style={styles.h2}>Tickets non assignés : {notClaimbedTicket}</p> */}
       <PieChart width={300} height={300} >
         <Pie
           data={data}
@@ -61,6 +64,7 @@ const styles = {
   lot:{
     display:"flex",
     flexDirection:"column",
+    width: 250,
     background: "#ffffff",
     justifyContent:"center",
     alignItems: "center",
@@ -73,7 +77,7 @@ const styles = {
     fontSize:20,
     opacity:0.8,
     margin:3,
-    color:"#000000"
+    color:"#38870D"
   },
   legend:{
     margin: 70,

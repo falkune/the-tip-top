@@ -44,7 +44,8 @@ const StatsLots = ({ idSession }) => {
               key={index}
               title={groupInfo.find(item => item._id == l._id).description}
               claimbedTicket={l.claimbedTicket}
-              notClaimbedTicket={l.numberOfTickets - l.claimbedTicket}
+              notClaimbedTicket={l.notClaimbedTicket}
+              numberOfTickets={l.numberOfTickets}
             /> 
           ))
         }

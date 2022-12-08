@@ -6,7 +6,8 @@ import {
     signInWithPopup,
     GoogleAuthProvider,
     FacebookAuthProvider
-} from "firebase/auth"
+} from "firebase/auth";
+import { notifier } from "../fonctions/utils";
 const GoogleProvider = new GoogleAuthProvider();
 const FacebookProvider = new FacebookAuthProvider();
 
@@ -56,7 +57,7 @@ const register = async (context, fullName, email, password, birthday) => {
     return new Promise((resolve, rejecte) => {
         context.backend.api.users.post('', params)
             .then((response) => resolve(response))
-            .catch((error) => rejecte(error));
+            .catch((error) => notifier(error));
     })
 
 }
