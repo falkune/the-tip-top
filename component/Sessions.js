@@ -30,6 +30,10 @@ const Sessions = ({ idSession }) => {
     limit: "",
   });
 
+  useEffect(() => {
+    getSession();
+  }, [idSession]);
+
   const getSession = async () => {
     //fonction pour créer un ticket
     try {
@@ -50,10 +54,7 @@ const Sessions = ({ idSession }) => {
     }
   };
 
-  useEffect(() => {
-    getSession();
-     
-  }, [idSession]);
+
 
   const CreateSession = async (e) => {
     //fonction pour créer un ticket
@@ -261,8 +262,7 @@ const Sessions = ({ idSession }) => {
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
+        aria-describedby="modal-modal-description">
         <form style={styles.modalSession}>
           <p
             style={{

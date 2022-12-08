@@ -1,7 +1,7 @@
- 
+///////////////////// CREATE SESSION FUNCTION ////////////////////////
+
 const createSession = async (context,body) => {
      
-
     return new Promise((resolve, reject) => {
 
         
@@ -20,3 +20,24 @@ const createSession = async (context,body) => {
 };
 
 export {createSession};
+
+
+///////////////////// CREATE SESSION FUNCTION ////////////////////////
+
+const getSessions = async (context,body) => {
+     
+    return new Promise((resolve, reject) => {
+        context.backend.auth.sessions.get('', body)
+            .then((response) => {
+                if (response.statusCode) {
+                    resolve(response);
+                } 
+            })
+            .catch((error) => {
+                reject(error)
+            });
+    })
+};
+
+export {getSessions};
+

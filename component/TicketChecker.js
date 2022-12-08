@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState, useContext } from "react";
+import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
@@ -97,54 +98,70 @@ export default function TicketChecker({ session }) {
   };
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", minHeight: 1000 }}>
+    <div style={{ display: "flex", flexDirection: "column", alignItems:"center",minHeight: 1000 }}>
       <div
         style={{
           display: "flex",
           background: "white",
           alignItems: "center",
           justifyContent: "center",
+          width:"100%",
           padding: 15,
           height: 500,
+          maxWidth:400,
           marginTop: 25,
+          backgroundColor:'white'
         }}
       >
         <div
           style={{
-            width: "50%",
+            width: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
             flexDirection: "column",
-            maxWidth: 350,
             padding: 10,
             textAlign: "center",
           }}
         >
+          
+          {load === true ?
+          <ClipLoader color={" #38870D"} loading={true} size={100} /> :
+          <> 
           <img src={clipboard} alt="" />
-          <h2 className={styles.h2}>Vérification du ticket</h2>
-          <input
-            onChange={UpdateInput}
-            className={styles.input}
-            maxLength={10}
-            value={input}
-            type="number"
-            placeholder="Indiquer votre numéro de ticket"
-          />
-          {input.length === 10 ? (
-            <button onClick={checkTicket} className={styles.action}>
-              Valider
+            <h2 className={styles.h2}>Vérification du ticket</h2>
+            <input
+              onChange={UpdateInput}
+              className={styles.input}
+              maxLength={10}
+              value={input}
+              type="number"
+              placeholder="Indiquer votre numéro de ticket"
+            />
+            {input.length === 10 ? (
+              <button onClick={checkTicket} className={styles.action}>
+                Valider
+              </button>
+            ) : (
+              <button style={{ opacity: 0.7 }} className={styles.noaction}>
+                Valider
+              </button>
+            )}
+            <button onClick={Cleaner} className={styles.noaction}>
+              Réinitaliser
             </button>
-          ) : (
-            <button style={{ opacity: 0.7 }} className={styles.noaction}>
-              Valider
-            </button>
-          )}
-          <button onClick={Cleaner} className={styles.noaction}>
-            Réinitaliser
-          </button>
+           </>
+
+        }
+     
+    
         </div>
         {visible === true && load === false && (
+        <Modal
+        open={true}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
           <div
             style={{
               width: "45%",
@@ -163,6 +180,7 @@ export default function TicketChecker({ session }) {
               textAlign: "center",
             }}
           >
+
             {ticket.lot != null ? <p>Lot : {ticket.lot}</p> : <p>invalide</p>}
 
             {ticket.assigned != null ? (
@@ -203,22 +221,7 @@ export default function TicketChecker({ session }) {
               </p>
             )}
           </div>
-        )}
-        {load === true && (
-          <div
-            style={{
-              width: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexDirection: "column",
-              maxWidth: 350,
-              padding: 10,
-              textAlign: "center",
-            }}
-          >
-            <ClipLoader color={" #38870D"} loading={true} size={100} />
-          </div>
+          </Modal>
         )}
       </div>
     </div>

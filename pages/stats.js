@@ -57,6 +57,7 @@ export default function Stats() {
   const getAllSessions = async () => {
     getSessions(context)
     .then((response) => {
+      console.log(response,'rep')
       setAllSessions(response);
       setIdSession(response[0]._id);
     })
@@ -161,7 +162,7 @@ export default function Stats() {
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                marginTop: "50px",
+                marginTop: "100px",
               }}
             >
               <h2 className={styles.h2}>Selectionner une session</h2>
@@ -240,7 +241,7 @@ const stylez = {
     background: "none",
   },
   stat: {
-    backgroundColor: "#F1F1F1",
+    backgroundColor: "#c7c7c7",
     padding: 25,
     width: "85%",
   },

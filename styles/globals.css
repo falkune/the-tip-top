@@ -43,9 +43,24 @@ body {margin: 0;
 }
 
 header{
-  height: 90px;
   background-color: gainsboro;
+  min-height: 70px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  background-Color: white;
+  align-Items: center;
+  box-Shadow: 0px 4px 15px 0px rgba(0,0,0,0.10);
+  position: fixed;
+  top: 0;
+  z-Index: 45739863;
 }
+
+
+nav li a:hover {
+  color: #38870D;
+}
+
 
 footer{
 width: 100%;
