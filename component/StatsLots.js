@@ -2,7 +2,6 @@ import React, { useEffect, useState, useContext } from "react";
 import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
 import LinearProgress from '@mui/material/LinearProgress';
-import {CardSummary} from './CardSummary';
 
 const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState([]);
@@ -19,6 +18,7 @@ const StatsLots = ({ idSession }) => {
   const getTicketStats = async () => {
     context.backend.api.tickets.get('get-ticket-stats/'+idSession)
     .then((response) => {
+      console.log(response)
       setAllGroup(response);
     })
     .catch((error) => {
@@ -39,22 +39,12 @@ const StatsLots = ({ idSession }) => {
   if(groupInfo.length != 0){
     return (
       <div style={styles.lot}>
-        {/* { 
-          allGroup.map((l,index)=> (
-            <OneLot 
-              key={index}
-              title={groupInfo.find(item => item._id == l._id).description}
-              claimbedTicket={l.claimbedTicket}
-              notClaimbedTicket={l.notClaimbedTicket}
-            /> 
-          ))
-        } */}
-
         { 
           allGroup.map((l,index)=> (
-            <CardSummary
+            <OneLot
+              key={index}
               title={groupInfo.find(item => item._id == l._id).description}
-              totalTicket={l.claimbedTicket+l.notClaimbedTicket} 
+              totalTicket={l.numberOfTickets} 
               claimbedTicket={l.claimbedTicket}  
               notClaimbedTicket={l.notClaimbedTicket} 
               percentage={(l.claimbedTicket * 100) / (l.claimbedTicket+l.notClaimbedTicket)}/>

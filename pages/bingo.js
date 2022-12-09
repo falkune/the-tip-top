@@ -10,11 +10,13 @@ import gift from "../image/win.gif"
 import 'nextjs-breadcrumbs/dist/index.css'
 import Cookies from "js-cookie";
 import "animate.css";
+import { verifTicketApi } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
+import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import "animate.css";
-
+import { notifier ,refreshToken} from "../fonctions/utils";
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -30,6 +32,7 @@ export default function Bingo() {
   }, []);
 
   const goResult = () => {
+    console.log("goresult")
     if (num.length === 10) {
       router.push({
         pathname: `resultat`,
@@ -37,6 +40,18 @@ export default function Bingo() {
       });
     }
   };
+
+  const VerifyTicket = async (n) => {
+    e.preventd
+    let ticket = await verifTicketApi( context, n.toString())
+    if (ticket.statusCode) {
+     refreshToken(ticket, context);
+     notifier(ticket.message);
+     console.log(ticket.message,"message error")
+   } else {
+     console.log(ticket,"t") 
+   }
+ };
 
   const getCurrent = async () => {
     let sessions = context.backend.api.sessions.get('get-current-session', {
@@ -67,11 +82,13 @@ export default function Bingo() {
           <link rel="icon" href="/fav.png" />
         </Head>
         <Header menu="bingo" />
-        <section className={styles.block}>
+      <section style={{paddingTop:125,display:"flex",flexDirection:"column",minHeight:"100vh",alignItems:"center"}}>
+
           <h1 className={styles.h1}>Bingo ticket</h1>
         
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
-          <form className="bingo">
+          <form  style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>
+            <div className="bingo">
             <input 
               type="number"
               name="numero"
@@ -81,8 +98,9 @@ export default function Bingo() {
               onChange={handleNameChange}
               value={num}
             />
+            </div>
+
           </form>
-        
           {num !== null && num.length === 10 && (
             <small
               style={{
@@ -96,7 +114,8 @@ export default function Bingo() {
           )}
           {num !== null && num.length === 10 ? (
             <button
-              type="button"
+              type="submit"
+              // onClick={() =>VerifyTicket(num)}
               onClick={goResult}
               className="action"
               style={{ margin: 25 }}
@@ -112,6 +131,7 @@ export default function Bingo() {
               Valider
             </button>
           )}
+        
                <Link href="/lots">
             <small style={{ color: " #38870D", fontSize: "1.2em" }}>
               Voir les differents lots

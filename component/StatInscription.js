@@ -28,16 +28,19 @@ export default function StatInscription({ days,  idSession}) {
   }
   
   return (
-    <div style={styles.containe}>
-      <h3 style={{textAlign:"center"}}>Nombre d'inscription par jour</h3>
+    <div style={styles.container}>
+      <h3 style={{textAlign:"center", color: "#003e1f"}}>Nombre d'inscription par jour</h3>
       <Exemple data={registration} width={Cookies.get('width')}/>
     </div>
   );
 }
 
 const styles = {
-  containe:{
+  container:{
     width: "100%",
-    height: 600
+    height: 600,
+    background: "#FFFFFF",
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
+    paddingTop: "35px"
   }
 }

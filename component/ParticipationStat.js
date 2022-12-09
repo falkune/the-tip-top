@@ -1,12 +1,10 @@
 import React, {useEffect, useState, useContext} from "react";
-import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
 import {notifier, refreshToken} from '../fonctions/utils';
 import {claimedTickeBySession} from '../fonctions/tickets';
 import {CardSummary} from './CardSummary';
-import Gaugecart from './gauge';
-import LinearProgress from '@mui/material/LinearProgress';
-import Box from '@mui/material/Box';
+import AgeStat from './AgeStat';
+
 
 export default function ParticipationStat({ticket, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
@@ -38,7 +36,7 @@ export default function ParticipationStat({ticket, idSession}) {
         claimbedTicket={numberOfClaimbedTicket}  
         notClaimbedTicket={ticket - numberOfClaimbedTicket} 
         percentage={numberOfClaimbedTicket * 100 / ticket}/>
-      {/* <OneLot claimbedTicket={numberOfClaimbedTicket} notClaimbedTicket={ticket - numberOfClaimbedTicket}/> */}
+        <AgeStat/>
     </div>
   );
 }
@@ -47,6 +45,7 @@ const styles = {
   container:{
     display: 'flex',
     justifyContent: "space-around",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    margin: 20,
   }
 }

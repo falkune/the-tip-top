@@ -6,7 +6,7 @@ const createSession = async (context, body) => {
                 if (response.statusCode) {
                     resolve(response);
                 } else {
-                    resolve({ message: "Session créée avec success!" });
+                    resolve({ message: "Session crée avec success!" });
                 }
             })
             .catch((error) => {
@@ -69,7 +69,7 @@ const getSessionDetails = async (context, idSession) => {
 
 const deleteSession = async (context, idSession) => {
     return new Promise((resolve, reject) => {
-        context.backend.api.sessions.delete(idSession)
+        context.backend.auth.sessions.delete(idSession)
             .then((response) => resolve(response))
             .catch((error) => reject(error))
     })
