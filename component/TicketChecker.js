@@ -127,15 +127,15 @@ export default function TicketChecker({ session }) {
               placeholder="Indiquer votre numéro de ticket"
             />
             {input.length === 10 ? (
-              <button onClick={checkTicket} className={styles.action}>
+              <button onClick={checkTicket} className="action">
                 Valider
               </button>
             ) : (
-              <button style={{ opacity: 0.7 }} className={styles.noaction}>
+              <button style={{ opacity: 0.7 }} className="noaction">
                 Valider
               </button>
             )}
-            <button onClick={Cleaner} className={styles.noaction}>
+            <button onClick={Cleaner} className="noaction">
               Réinitaliser
             </button>
            </>

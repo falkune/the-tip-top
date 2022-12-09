@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState ,useContext} from "react";
+import React, { useEffect, useState ,useContext} from "react";
 import ApiContext from '../context/apiContext';
 import Image from "next/image";
 import styles from "../styles/Home.module.css";

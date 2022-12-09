@@ -98,7 +98,7 @@ export default function Bingo() {
             <button
               type="button"
               onClick={goResult}
-              className={styles.action}
+              className="action"
               style={{ margin: 25 }}
             >
               Valider
@@ -106,7 +106,7 @@ export default function Bingo() {
           ) : (
             <button
               disabled={true}
-              className={styles.noaction}
+              className="noaction"
               style={{ margin: 25 }}
             >
               Valider

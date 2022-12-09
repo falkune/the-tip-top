@@ -82,11 +82,11 @@ const Header = ({ menu, changemenu }) => {
                   </li>
        
                 {role && role === "admin" && (
+                <li style={menu === "bingo" ? styles.liactive : styles.li}>
                   <Link href="/stats">
-                    <li style={menu === "bingo" ? styles.liactive : styles.li}>
                         Administration  
-                    </li>
                   </Link>
+                  </li>
                 )}
 
               

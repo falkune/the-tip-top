@@ -1,10 +1,6 @@
 
 const createSession = async (context, body) => {
-
-
     return new Promise((resolve, reject) => {
-
-
         context.backend.auth.sessions.post('', body)
             .then((response) => {
                 if (response.statusCode) {
@@ -19,6 +15,39 @@ const createSession = async (context, body) => {
     })
 };
 
+
+const updateSession = async (context, body) => {
+    return new Promise((resolve, reject) => {
+        context.backend.auth.sessions.update('', body)
+            .then((response) => {
+                if (response.statusCode) {
+                    resolve(response);
+                } else {
+                    resolve({ message: "Session modifié avec success!" });
+                }
+            })
+            .catch((error) => {
+                reject(error)
+            });
+    })
+};
+
+
+const currentSession = async (context, body) => {
+    return new Promise((resolve, reject) => {
+        context.backend.auth.sessions.patch('', body)
+            .then((response) => {
+                if (response.statusCode) {
+                    resolve(response);
+                } else {
+                    resolve({ message: "Session modifié avec success!" });
+                }
+            })
+            .catch((error) => {
+                reject(error)
+            });
+    })
+};
 
 const getSessions = async (context) => {
     return new Promise((resolve, reject) => {
@@ -36,4 +65,15 @@ const getSessionDetails = async (context, idSession) => {
             .catch((error) => reject(error))
     })
 }
-export { createSession, getSessions, getSessionDetails };
+
+
+const deleteSession = async (context, idSession) => {
+    return new Promise((resolve, reject) => {
+        context.backend.api.sessions.delete(idSession)
+            .then((response) => resolve(response))
+            .catch((error) => reject(error))
+    })
+}
+
+
+export { createSession, getSessions, getSessionDetails , updateSession,deleteSession,currentSession};

@@ -147,11 +147,11 @@ export default function TicketGenerator({ session_id }) {
                     textAlign: "center",
                   }}>
             <div>
-              <h2 className={styles.h2}>Générateur de ticket</h2>
-              <button onClick={generateTicket} className={styles.action}>
+              <h2 >Générateur de ticket</h2>
+              <button onClick={generateTicket} className="action">
                 Générer un ticket
               </button>
-              <button onClick={closeTicket} className={styles.noaction}>
+              <button onClick={closeTicket} className="noaction">
                 Quitter
               </button>
             </div>

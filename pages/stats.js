@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import AllStats from "../component/AllStats";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
@@ -196,7 +195,7 @@ export default function Stats() {
                 ))}
               </Select>
             </div>
-            {menu === "stats" && <AllStats lots={lots} idSession={idSession} />}
+            {/* {menu === "stats" && <AllStats lots={lots} idSession={idSession} />} */}
             {menu === "ticket" && <TicketChecker session={idSession} />}
             {menu === "users" && <Users idSession={idSession} />}
             {menu === "generator" && <TicketGenerator session_id={idSession} />}
