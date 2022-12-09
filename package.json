@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "env-cmd -f .env.development next dev",
     "build": "next build",
     "build:dev": "NODE_ENV=development npm run build",
     "build:staging": "env-cmd -f .env.staging npm run build",

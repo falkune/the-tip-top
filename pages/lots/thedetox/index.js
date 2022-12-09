@@ -28,14 +28,18 @@ export default function thedetox() {
          flexDirection:"column",
          justifyContent:"flex-start",
          alignItems:"center",
-         background:"#F3F3F3",
+         background:" rgb(205, 224, 205)",
          width:"100%" }}>
         <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",  alignItems:"start",}}>
-          <div style={{backgroundColor:"white",borderRadius:10,margin:20}}>
+          <div 
+          className="animate__animated animate__bounceInLeft"
+          style={{backgroundColor:"white",borderRadius:10,margin:20}}>
                <Image src={tea5} alt="coffret tea" />
           </div>
 
-          <div style={{display:"flex",
+          <div 
+          className="animate__animated animate__bounceInRight"
+          style={{display:"flex",
           padding:15,
           margin:20,
           backgroundColor:"white",

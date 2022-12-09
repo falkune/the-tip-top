@@ -4,6 +4,8 @@ import StatInscription from './StatInscription';
 import AgeStat from './AgeStat';
 import ParticipationStat from './ParticipationStat';
 import ApiContext from '../context/apiContext';
+import { getDaysBetweenTwoDates } from "../fonctions/utils";
+import { getSessionDetails } from '../fonctions/sessions';
 
 const AllStats = (props) => {
   const [limitTicket, setLimitTicket] = useState(0);
@@ -11,30 +13,16 @@ const AllStats = (props) => {
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    getSessionDetails(props.idSession);
+    getDetailsSession(props.idSession);
   },[props.idSession])
 
 
-  const getSessionDetails = (idSession) => {
-    context.backend.api.sessions.get(idSession)
+  const getDetailsSession = (idSession) => {
+    getSessionDetails(context, idSession)
     .then((response) => {
-      if(response.statusCode){
-        console.log("statusCode ", response)
-      }else{
-        setLimitTicket(response.limitTicket)
-        setNumberDay(getDatesBetweenDates(new Date(response.endDate), new Date(response.startDate)))
-      }
+      setLimitTicket(response.limitTicket)
+      setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
     })
-  }
-  const getDatesBetweenDates = (startDate, endDate) => {
-    let dates = []
-    const theDate = new Date(startDate)
-    while (theDate < new Date(endDate)) {
-      dates = [...dates, new Date(theDate)]
-      theDate.setDate(theDate.getDate() + 1);
-    }
-    dates = [...dates, new Date(endDate)]
-    return dates
   }
 
   return (
@@ -42,7 +30,7 @@ const AllStats = (props) => {
       <ParticipationStat ticket={limitTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots idSession={props.idSession}/>
-      <AgeStat data={[25, 9, 7, 13]}/>
+      <AgeStat/>
     </div>
   )
 }
