@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
@@ -10,7 +10,6 @@ import dayjs from "dayjs";
 
 export default function TicketChecker({ session }) {
   const context = useContext(ApiContext)
-  const [load, setLoad] = useState(false);
   const [loading, setLoading] = useState(false);
   const [delivred, setDelivred] = useState(false);
   const [input, setInput] = useState("");
@@ -25,34 +24,23 @@ export default function TicketChecker({ session }) {
   const checkTicket = async () => {
     //fonction pour créer un ticket
     setLoading(true);
+    console.log('input',input)
     let ticket = await checkTicketApi(context, input);
-    refreshToken(ticket);
-    if (ticket.statusCode) {
+     if (ticket.statusCode) {
       refreshToken(ticket, context);
       notifier(ticket.message);
     } else {
-      // logic
-
+      console.log(ticket,'ticket')
+      setTicket(
+        { deliverd: ticket?.isDelivered,
+          assigned: ticket?.idClient,
+          create_at: ticket?.createdAt,
+          lot:ticket.lot})
+      setVisible(true)
+      setLoading(false)   
     }
-
-
-    /*try {
-        context.backend.auth.tickets.post('check-ticket',{ticketNumber:input}).then((value) =>
-        { 
-        setTicket({
-          assigned:value.idClient,
-          create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
-          lot: value.lot,
-        });} 
-       )
-        setLoading(false);
-        setVisible(true);
-      } catch (e) {
-         
-      } */
-
   };
-
+  const handleClose = () => setVisible(false);
   const DelivredLot = async () => {
     //fonction pour créer un ticket
     const token = localStorage.getItem("token");
@@ -125,7 +113,7 @@ export default function TicketChecker({ session }) {
           }}
         >
           
-          {load === true ?
+          {loading === true ?
           <ClipLoader color={" #38870D"} loading={true} size={100} /> :
           <> 
           <img src={clipboard} alt="" />
@@ -156,35 +144,35 @@ export default function TicketChecker({ session }) {
      
     
         </div>
-        {visible === true && load === false && (
         <Modal
-        open={true}
+        open={visible}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-          <div
+        <div 
+          style={stylez.modalSession} >
+          <button
+            onClick={handleClose}
             style={{
-              width: "45%",
-              display: "flex",
-              backgroundColor: " #38870D",
-              justifyContent: "center",
-              alignItems: "start",
+              position: "absolute",
+              right: 10,
+              top: 8,
               color: "white",
-              height: "80%",
-              flexDirection: "column",
+              border: "none",
               borderRadius: 8,
-              maxWidth: 350,
-              padding: 10,
-              paddingLeft: 50,
-              fontSize: 18,
-              textAlign: "center",
+              padding: 8,
+              background: "#318176",
             }}
           >
+            Fermer
+          </button>
 
-            {ticket.lot != null ? <p>Lot : {ticket.lot}</p> : <p>invalide</p>}
+            {ticket.lot != null ? <p>Lot : 
+              <strong> {ticket.lot}</strong></p>:
+              <strong> <p>invalide</p></strong>}
 
-            {ticket.assigned != null ? (
-              <p>Assigné :{ticket.assigned}</p>
+            {ticket.assigned  ? (
+              <p>Ticket Assigné</p>
             ) : (
               <p>Ticket non assigné</p>
             )}
@@ -193,8 +181,8 @@ export default function TicketChecker({ session }) {
             ) : (
               <p> Lot pas encore récupéré</p>
             )}
-            {ticket.create_at != null ? (
-              <p>Date de création : {ticket.create_at}</p>
+            {ticket.create_at ? (
+              <p>Date de création : <strong>{dayjs(ticket.create_at).format('MMMM D, YYYY')}</strong></p>
             ) : (
               <p>invalide</p>
             )}
@@ -222,7 +210,6 @@ export default function TicketChecker({ session }) {
             )}
           </div>
           </Modal>
-        )}
       </div>
     </div>
   );
@@ -253,4 +240,20 @@ const stylez = {
     alignItems: "center",
     position: "relative",
   },
+  modalSession: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems:"center",
+    padding: 20,
+    fontSize: 18,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 350,
+    borderRadius: 15,
+    backgroundColor: "#84B71E",
+    color:'white',
+    boxShadow: 24,
+  }
 };

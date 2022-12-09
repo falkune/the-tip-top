@@ -22,9 +22,25 @@ export default function contact() {
         <link rel="icon" href="/fav.png" />
       </Head>
       <Header menu="contact"/>
-      <section style={{ paddingTop: 125, paddingBottom: 50,height:"100vh" }}>
-
-     <p>Qui sommes nous</p>
+      <section 
+          style = {{  background:"rgb(56,135,13",
+          background:"linear-gradient(83deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 50%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
+          width:"100%",        
+          paddingTop: 125,
+          paddingBottom: 50,
+          display:"flex",
+          flexDirection:"column",
+          alignItems:"center",
+          height:"100vh" }}>
+          <form className="login animate__animated animate__fadeInUp">
+          <h1 style={{ fontSize: 25,color:"green" }}>
+              Contactez nous
+            </h1>
+            <input type="text" placeholder="Nom"/>
+            <input type="email" placeholder="Email"/>
+            <textarea rows="10" placeholder="Décrire votre message"/>
+            <button className="action">Envoyer</button>
+          </form>
       </section>
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 import { notifier } from "./utils";
 
 const checkTicketApi = async (context, input) => {
+    console.log("checkticketapi")
 
     return new Promise((resolve, reject) => {
 
@@ -8,7 +9,7 @@ const checkTicketApi = async (context, input) => {
             .then((response) => {
 
                 resolve(response);
-
+                console.log("reponse",response)
             })
             .catch((error) => {
                 reject(error)

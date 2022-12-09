@@ -3,11 +3,8 @@ import ApiContext from '../context/apiContext';
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
-import { users } from "../component/Data";
 import { DataGrid } from "@mui/x-data-grid";
-// or
-import { IconButton } from "@mui/material";
-import axios from "axios";
+
 
 export default function Users({ idSession }) {
   const context = useContext(ApiContext)
@@ -64,9 +61,9 @@ export default function Users({ idSession }) {
         {`Utilisateur`}
       </p>
       <button style={stylez.export}>
-        Exporter mail
-        <span style={{ margin: 5, position: "absolute", right: 8, top: 4 }}>
-          <Image src={arrow} width={13} height={20.8} alt="arrow" />
+        Exporter 
+        <span style={{ margin: 5, position: "absolute", right: 15, top: 9 }}>
+          <Image src={arrow} width={18} height={18} alt="arrow" />
         </span>
       </button>
       <div style={stylez.gain}>
@@ -99,13 +96,13 @@ const stylez = {
     margin: 10,
     marginBottom: 15,
     padding: 8,
-    backgroundColor: "white",
-    border: "solid 1px  #38870D",
+    backgroundColor: "#38870D",
     fontSize: 16,
-    minHeight: 45,
+    minHeight: 50,
     textAlign: "center",
     minWidth: 200,
-    color: " #38870D",
+    color: "white",
+    border:"none",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
