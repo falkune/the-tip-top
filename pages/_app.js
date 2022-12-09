@@ -7,6 +7,9 @@ import Script from "next/script";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import "animate.css";
+import dayjs from "dayjs";
+import "dayjs/locale/fr" 
+dayjs.locale('fr')
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({

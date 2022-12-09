@@ -17,6 +17,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import "animate.css";
 import { notifier ,refreshToken} from "../fonctions/utils";
+import dayjs from "dayjs";
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -54,6 +55,7 @@ export default function Bingo() {
  };
 
   const getCurrent = async () => {
+    console.log("getcurrent")
     let sessions = context.backend.api.sessions.get('get-current-session', {
       Accept: "Application/json",
       "Content-Type": "application/json",
@@ -63,6 +65,8 @@ export default function Bingo() {
         console.log("vrai", response)
       }else{
         setCurrent(response[0]._id);
+        Cookies.set('currentStart',response[0].startDate)
+        Cookies.set('currentEnd',response[0].endDate)
       }
     })
   };
@@ -87,7 +91,7 @@ export default function Bingo() {
           <h1 className={styles.h1}>Bingo ticket</h1>
         
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
-          <form  style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>
+          <form  target="#" style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>
             <div className="bingo">
             <input 
               type="number"

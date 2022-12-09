@@ -5,7 +5,7 @@ import Countdown from "react-countdown";
 const Count = ({ current }) => {
   const xtime = dayjs(current.endDate).valueOf();
  console.log(xtime,"xtime")
-  const renderer = ({ days, hours, minutes, seconds }) => (
+  const renderer = ({ days, hours, minutes, seconds,completed }) => (
     <div style={styles.count}>
       <p
         style={{
@@ -62,7 +62,7 @@ const Count = ({ current }) => {
 
   return (
     <>
-      <Countdown date={xtime} renderer={renderer} />,
+      <Countdown date={xtime} renderer={renderer} />
     </>
   );
 };
