@@ -3,9 +3,12 @@
 
 class HttpClient {
   constructor(options = {}) {
-    this._baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
-    //this._baseURL = options.baseURL || "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr";
+     
+    //this._baseURL = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr";
+    // this._baseURL = "http://localhost:3000";
+    this._baseURL = process.env.NEXT_PUBLIC_BASE_URL;
     this._headers = options.headers || {};
+
   }
 
   setHeader(key, value) {
@@ -17,7 +20,7 @@ class HttpClient {
     this._headers.Authorization = `Bearer ${token}`
     return this
   }
- 
+
 
   async _fetchJSON(endpoint, options = {}) {
     const res = await fetch(this._baseURL + endpoint, {
@@ -50,7 +53,7 @@ class HttpClient {
     )
   }
 
-  
+
   patch(endpoint, body, options = {}) {
     return this._fetchJSON(
       endpoint,

@@ -2,7 +2,8 @@ import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from 'js-cookie';
 import Exemple  from "./LineChart";
-import {notifier} from '../fonctions/utils';
+import {notifier, refreshToken} from '../fonctions/utils';
+import { getRegistrationByDayBySession } from '../fonctions/users';
 
 export default function StatInscription({ days,  idSession}) {
   const [registration, setRegistration] = useState([]);
@@ -15,16 +16,17 @@ export default function StatInscription({ days,  idSession}) {
   },[days]);
 
   const getRegistrationByDay = async () => {
-    let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession)
-    getregistrationByDay.then((response) => {
+    getRegistrationByDayBySession(context, idSession)
+    .then((response) => {
       if(response.statusCode){
-        notifier(response.message)
+        refreshToken(response, context);
       }else{
-        setRegistration(response)
+        setRegistration(response);
       }
     })
+    .catch(() => notifier())
   }
-
+  
   return (
     <div style={styles.containe}>
       <h3 style={{textAlign:"center"}}>Nombre d'inscription par jour</h3>

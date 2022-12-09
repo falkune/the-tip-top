@@ -19,8 +19,7 @@ class ApiClient extends HttpClient {
       create: (user) => this.post("/user", user),
       update: (user) => this.put(`/user/${user.id}`, user),
       post: async (route, body, options) => {
-        let response = await this.post(`/user/${route}`, body, options);
-        //if (response && response.accessToken) { this.setBearerAuth(response.accessToken) }
+        let response = await this.post(`/user/${route}`, body, options); 
         return response;
       }
     };

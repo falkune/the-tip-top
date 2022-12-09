@@ -68,7 +68,7 @@ export default function lots() {
       paddingBottom: 50,
         minHeight:"100vh" }}>
         {gift.map((g,i) => (
-          <div key={i} className="lotsItems animate_animated animate__bounceInLeft " style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
+          <div key={i} className="lotsItems animate__animated  animate__backInUp" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
              <Image  src={g.src} alt={g.name}/>
              <div style={{display:"flex",flexDirection:"column",}}>
                 <h3>{g.name}</h3>
@@ -86,7 +86,9 @@ export default function lots() {
 const stylez ={
 
     dark :{
-      background:"#38870D"
+      background:"rgb(56,135,13",
+      background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 28%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
+  
     },
 
     light:{

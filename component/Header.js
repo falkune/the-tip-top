@@ -46,7 +46,7 @@ const Header = ({ menu, changemenu }) => {
   }
 
   return (
-    <header style={styles.header}>
+    <header>
       <div
         style={{
           width: "100%",
@@ -63,22 +63,32 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-              {Cookies.get('role') == null || Cookies.get('role') == 'client' ? (
-                <>
+                   <li style={menu === "equipe" ? styles.liactive : styles.li}>
                   <Link href="/equipe">
-                    <li style={menu === "equipe" ? styles.liactive : styles.li}>Qui sommes nous ?</li>
+                      Qui sommes nous ?
                   </Link>
-                  <Link href="/regle">
-                    <li style={menu === "regle" ? styles.liactive : styles.li}>Règle du jeux</li>
+                  </li>
+             
+                  <li style={menu === "regle" ? styles.liactive : styles.li}>
+                    <Link href="/regle">
+                      Règle du jeux
+                    </Link>
+                  </li>
+
+                  <li style={menu === "lots" ? styles.liactive : styles.li}>
+                      <Link href="/lots">
+                        Lot à gagner
+                    </Link>
+                  </li>
+       
+                {role && role === "admin" && (
+                  <Link href="/stats">
+                    <li style={menu === "bingo" ? styles.liactive : styles.li}>
+                        Administration  
+                    </li>
                   </Link>
-                  <Link href="/lots">
-                    <li style={menu === "lots" ? styles.liactive : styles.li}>Lot à gagner</li>
-                  </Link>
-                </>
-              ):(
-                <></>
-              )}
-              
+                )}
+
               
               {role && role === "client" && (
                 <li style={menu === "bingo" ? styles.liactive : styles.li}>

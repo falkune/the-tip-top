@@ -6,8 +6,7 @@ import Cookies from 'js-cookie';
 import Script from "next/script";
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
-// import { config } from 'dotenv';
-//config()
+import "animate.css";
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({

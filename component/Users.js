@@ -1,14 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState ,useContext} from "react";
+import ApiContext from '../context/apiContext';
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
-import { users } from "../component/Data";
 import { DataGrid } from "@mui/x-data-grid";
-// or
-import { IconButton } from "@mui/material";
-import axios from "axios";
+
 
 export default function Users({ idSession }) {
+  const context = useContext(ApiContext)
   const [userz, setUserz] = useState([]);
   const [colDefs, setColDefs] = useState([
     { field: "fullName", headerName: "Nom", width: 250 },
@@ -26,7 +25,7 @@ export default function Users({ idSession }) {
     },
   ]);
 
-  const number = users.length;
+  const number = userz.length;
   const columns = [];
 
   useEffect(() => {
@@ -35,27 +34,14 @@ export default function Users({ idSession }) {
 
   const getAllUser = async () => {
     //fonction pour récupérer tout les utilisateurs
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-
-    const body = {
-      idSession: idSession,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/users-by-session";
     try {
-      let allusers = await axios.get(api, body, config);
-      console.log("alluser", allusers);
-      console.log("allusers", allusers.data);
-      setUserz(allusers.data);
+        context.backend.auth.users.post('users-by-session',{idSession:idSession}).then((value) =>
+      {   
+      setUserz(value)
+    } 
+     )
     } catch (e) {
-      console.log(e);
+       
     }
   };
 
@@ -75,9 +61,9 @@ export default function Users({ idSession }) {
         {`Utilisateur`}
       </p>
       <button style={stylez.export}>
-        Exporter mail
-        <span style={{ margin: 5, position: "absolute", right: 8, top: 4 }}>
-          <Image src={arrow} width={13} height={20.8} alt="arrow" />
+        Exporter 
+        <span style={{ margin: 5, position: "absolute", right: 15, top: 9 }}>
+          <Image src={arrow} width={18} height={18} alt="arrow" />
         </span>
       </button>
       <div style={stylez.gain}>
@@ -85,7 +71,7 @@ export default function Users({ idSession }) {
           <DataGrid
             getRowId={(row) => row._id}
             rows={userz}
-            columns={columns}
+            columns={colDefs}
             pageSize={15}
             rowsPerPageOptions={[2]}
             disableSelectionOnClick
@@ -110,13 +96,13 @@ const stylez = {
     margin: 10,
     marginBottom: 15,
     padding: 8,
-    backgroundColor: "white",
-    border: "solid 1px  #38870D",
+    backgroundColor: "#38870D",
     fontSize: 16,
-    minHeight: 45,
+    minHeight: 50,
     textAlign: "center",
     minWidth: 200,
-    color: " #38870D",
+    color: "white",
+    border:"none",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",

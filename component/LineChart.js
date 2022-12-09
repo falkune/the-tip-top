@@ -39,3 +39,18 @@ export default function Exemple({ data, width }) {
     </ResponsiveContainer>
   );
 }
+
+
+const styles = {
+  lot: {
+    display: "flex",
+    flexDirection: "column",
+    background: "#ffffff",
+    justifyContent: "center",
+    alignItems: "center",
+    margin: 10,
+    borderRadius: 8,
+    padding: 15,
+    color: "white"
+  }
+}

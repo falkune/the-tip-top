@@ -23,15 +23,15 @@ export default function Home() {
 
 
   const particlesInit = useCallback(async engine => {
-    console.log(engine);
+     
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
   }, []);
 
-  const particlesLoaded = useCallback(async container => {
-    await console.log(container);
+  const particlesLoaded = useCallback(async (container) => {
+    await console.log(container)
   }, []);
 
   useEffect(() => {
@@ -46,10 +46,10 @@ export default function Home() {
       let currenSession = await axios.get(api);
       setCurrent(currenSession.data);
       Cookies.set("current", currenSession.data);
-      console.log(currenSession.data[0]);
+       
       setCurrent(currenSession.data[0])
     } catch (e) {
-      console.log(e);
+       
     }
   };
   const goResult = () => {
