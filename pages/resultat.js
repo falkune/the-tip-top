@@ -11,21 +11,31 @@ import tea3 from "../image/tea3.png";
 import tea4 from "../image/tea4.png";
 import tea5 from "../image/tea5.png";
 import confuse from "../image/confuse.gif";
+import surprise from "../image/surprise.gif";
 import { verifTicketApi } from "../fonctions/tickets";
+import { refreshToken,isSessionFinished } from "../fonctions/utils";
 import ApiContext from '../context/apiContext';
 import Modal from "@mui/material/Modal";
 import Cookies from "js-cookie";
-import { ToastContainer, toast } from "react-toastify";
-
-
+import dayjs from "dayjs";
+import "dayjs/locale/fr" 
+dayjs.locale('fr')
 
 export default function Resultat() {
+var relativeTime = require('dayjs/plugin/relativeTime')
+dayjs.extend(relativeTime)
   const context = useContext(ApiContext)
   const [win, setWin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [invalide,SetInvalide] = useState(false)
-  const [inconnu,SetInconnu] = useState(false)
+  const [isfinish,SetIsFinish] = useState(false)
+  const [remind,SetRemind] = useState("")
   const [lot, setLot] = useState("");
+  const [error,setError] = useState({
+  title:"",
+  description:""
+
+  })
 
   const router = useRouter();
   useEffect(() => {
@@ -49,20 +59,30 @@ export default function Resultat() {
     router.push('/bingo')
   }
   
-;
+
+  
 
   const VerifyTicket = async (n) => {
-     let ticket = verifTicketApi( context, n.toString())
-     if ( ticket.statusCode){
+
+    if(n === undefined){
+      n ="6176182680"
+    }
+    
+     let ticket = await verifTicketApi( context, n.toString())
+     if ( ticket.statusCode  ){
       refreshToken(ticket, context);
-      notifier(ticket.message);
-      toast(ticket.message)
-      SetInconnu(true)
-      console.log(ticket,"error") 
+      setError({
+        title:ticket.error,
+        description:ticket.message
+      })
+      SetInvalide(true)
     } 
     else {
-      console.log(ticket,"t") 
-      SetInconnu(true)
+      SetIsFinish(isSessionFinished())
+      setLot(ticket.description)
+      setWin(true)
+      SetRemind(dayjs().to(dayjs(Cookies.get('currentEnd'))))
+
     }
   };
 
@@ -95,18 +115,6 @@ export default function Resultat() {
            <LoadingScreen />  }
           
       </div>
-      <ToastContainer
-                      position="bottom-center"
-                      autoClose={1250}
-                      hideProgressBar
-                      newestOnTop={false}
-                      closeOnClick
-                      rtl={false}
-                      pauseOnFocusLoss={false}
-                      draggable={false}
-                      pauseOnHover={false}
-                      theme="colored"
-                    />   
       <Modal
         open={win}
         style={{ border: "none" }}
@@ -132,15 +140,30 @@ export default function Resultat() {
             textAlign: "center" }} >
               
           <h2 style={{ color: " #38870D", marginBottom: 0 }}> Vous avez gagné ! </h2>
-          { lot === "Coffret 69 euros" && <Image src={tea1} /> }
-          { lot === "Coffret 39 euros" && <Image src={tea2} /> }
-          { lot === "thé signature" && <Image src={tea3} /> }
-          { lot === "Infuseur à thé" && <Image src={tea4} /> }
-          { lot === "100g thé detox" && <Image src={tea5} /> }
-          <p style={{fontWeight:"bold",margin:5}}>{lot}</p>
-          <small style={{ color: "grey" }}>
-            Rendez-vous dans votre <br></br> magasin pour venir le récuperer
-          </small>
+            { isfinish ?
+                   <>
+                   { lot === "Coffret 69 euros" && <Image src={tea1} /> }
+                   { lot === "Coffret 39 euros" && <Image src={tea2} /> }
+                   { lot === "thé signature" && <Image src={tea3} /> }
+                   { lot === "Infuseur à thé" && <Image src={tea4} /> }
+                   { lot === "100g thé detox" && <Image src={tea5} /> }
+                   <p style={{fontWeight:"bold",margin:5}}>{lot}</p>
+                   <small style={{ color: "grey" }}>
+                     Rendez-vous dans votre <br></br> magasin pour venir le récuperer
+                   </small>
+                   </> :
+                    <>
+                    <Image src={surprise} alt="gift"/>
+                   <p>Pour voir votre lot <br></br>veuillez patienter{' '}
+                   <strong style={{color:"#38870D"}}>
+                   {remind}
+                    </strong>
+                   </p>
+                   </>
+              
+            }
+       
+         
           <button
             onClick={handleClose}
             style={{
@@ -154,10 +177,12 @@ export default function Resultat() {
               borderRadius: 5 }}>
             ok
           </button>
-          
-
         </div>
       </Modal>
+
+
+
+
       <Modal
         open={invalide}
         style={{ border: "none" }}
@@ -182,8 +207,9 @@ export default function Resultat() {
             boxShadow: 24,
             textAlign: "center" }} >
               
-              <h2 style={{ color: " #38870D", marginBottom: 0 }}> Ticket déjà utilisé ! </h2>
+              <h2 style={{ color: " #38870D", marginBottom: 0 }}> Oops !</h2>
               <Image src={confuse} />
+              <small>{error.description}</small>
               <button
                 onClick={handleClose}
                 style={{
@@ -197,57 +223,6 @@ export default function Resultat() {
                   borderRadius: 5 }}>
              Réesseyer
               </button>
-        </div>
-      </Modal>
-      <Modal
-        open={win}
-        style={{ border: "none" }}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description">
-        <div
-          style={{
-            position: "relative",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            padding: 15,
-            fontSize: 18,
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            width: 350,
-            border: "none",
-            borderRadius: 8,
-            backgroundColor: "white",
-            boxShadow: 24,
-            textAlign: "center" }} >
-              
-          <h2 style={{ color: " #38870D", marginBottom: 0 }}> Numéro invalide ! </h2>
-          { lot === "Coffret 69 euros" && <Image src={tea1} /> }
-          { lot === "Coffret 39 euros" && <Image src={tea2} /> }
-          { lot === "thé signature" && <Image src={tea3} /> }
-          { lot === "Infuseur à thé" && <Image src={tea4} /> }
-          { lot === "100g thé detox" && <Image src={tea5} /> }
-          <p style={{fontWeight:"bold",margin:5}}>{lot}</p>
-          <small style={{ color: "grey" }}>
-           Réesseyer avec un autre numéro 
-          </small>
-          <button
-            onClick={handleClose}
-            style={{
-              width: 180,
-              height: 40,
-              background: " #38870D",
-              color: "white",
-              border: "none",
-              margin: 15,
-              fontSize: 18,
-              borderRadius: 5 }}>
-            ok
-          </button>
-          
-
         </div>
       </Modal>
       <Footer />

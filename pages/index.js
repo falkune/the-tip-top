@@ -10,8 +10,6 @@ import "animate.css";
 import axios from "axios";
 import Link from "next/link";
 import dayjs from "dayjs"
-import "dayjs/locale/fr" 
-dayjs.locale('fr')
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import Cookies from 'js-cookie';

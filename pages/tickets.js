@@ -6,6 +6,7 @@ import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import ButtonGrid from "../component/ButtonGrid";
+import DeliveredInfos from "../component/DeliveredInfos"
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
 import "ag-grid-community/styles//ag-theme-alpine.css";
@@ -14,6 +15,9 @@ import { notifier } from "../fonctions/utils";
 import { useRouter } from "next/router";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
+import dayjs from "dayjs";
+import "dayjs/locale/fr" 
+dayjs.locale('fr')
 
 
 export default function Tickets() {
@@ -28,7 +32,12 @@ export default function Tickets() {
       minWidth: 150,
     },
     {
-      field: "createdAt",
+      field: "updatedAt",
+      minWidth: 150,
+    },
+    {
+      field: "Lots délivré",
+      cellRenderer: DeliveredInfos,
       minWidth: 150,
     },
      {
@@ -36,10 +45,7 @@ export default function Tickets() {
       minWidth: 200,
       cellRenderer: ButtonGrid,
     },
-    {
-      field: "Lots délivré",
-      minWidth: 150,
-    },
+ 
   ]);
 
 
@@ -76,7 +82,11 @@ export default function Tickets() {
     try {
       context.backend.auth.tickets.post('tickets-by-client',
       {idClient:Cookies.get("idClient")}).then((value) =>
-      {console.log(value,"value") 
+      {console.log(value,"value")
+      value.forEach(el => {
+        el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
+      }); 
+      console.log(value,"value2")
       setAlltickets(value)
       
     }

@@ -5,7 +5,6 @@ import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Count from "../component/Countdown";
-import tea1 from "../image/tea1.png";
 import ClipLoader from "react-spinners/ClockLoader";
 import axios from "axios";
 import dayjs from "dayjs";
