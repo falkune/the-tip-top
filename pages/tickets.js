@@ -18,6 +18,10 @@ import LinearProgress from '@mui/material/LinearProgress';
 
 export default function Tickets() {
   const context = useContext(ApiContext)
+  const [lot,setLot] = useState("")
+  const [alltickets, setAlltickets] = useState([]);
+  const [width, setWidth] = useState(0);
+  const router = useRouter();
   const [colDefs, setColDefs] = useState([
     {
       field: "ticketNumber",
@@ -37,10 +41,10 @@ export default function Tickets() {
       minWidth: 150,
     },
   ]);
-  const [alltickets, setAlltickets] = useState([]);
-  const [width, setWidth] = useState(0);
-  const [open, setOpen] = React.useState(false);
-  const router = useRouter();
+
+
+
+
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
@@ -57,6 +61,7 @@ export default function Tickets() {
     getAllTickets();
   }, []);
 
+
   useEffect(() => {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
@@ -69,7 +74,8 @@ export default function Tickets() {
     //fonction pour créer un ticket
     console.log('hot tickets')
     try {
-      context.backend.auth.tickets.post('tickets-by-client',{idClient:Cookies.get("idClient")}).then((value) =>
+      context.backend.auth.tickets.post('tickets-by-client',
+      {idClient:Cookies.get("idClient")}).then((value) =>
       {console.log(value,"value") 
       setAlltickets(value)
       

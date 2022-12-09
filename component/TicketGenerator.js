@@ -3,6 +3,8 @@ import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
+import { generateTicketApi } from "../fonctions/tickets";
+import { refreshToken, notifier } from "../fonctions/utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -27,15 +29,18 @@ export default function TicketGenerator({ session_id }) {
   const generateTicket = async () => {
     //fonction pour créer un ticket
     setLoading(true);
-    try {
-      context.backend.auth.tickets.post('',{idSession:session_id}).then((value) =>
-      { 
-      setTicket(value.ticketNumber);
-      setLoading(false);
-      setGenerate(true);})
-    } catch (e) {
-      setLoading(false);
-    }
+    let ticket = await generateTicketApi(context, session_id);
+    if (ticket.statusCode) {
+     refreshToken(ticket, context);
+     notifier(ticket.message);
+     setLoading(false);
+    } 
+
+   else {
+     console.log(ticket,'ticket')
+     setTicket(value.ticketNumber);
+     setLoading(false);
+     setGenerate(true);}  
   };
 
   const closeTicket = () => {

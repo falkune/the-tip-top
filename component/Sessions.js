@@ -3,7 +3,7 @@ import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import { notifier } from "../fonctions/utils";
 import { refreshToken } from "../fonctions/utils";
-import { ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createSession ,updateSession , deleteSession,currentSession} from "../fonctions/sessions";
 
@@ -80,7 +80,6 @@ const Sessions = ({ idSession }) => {
 
   const CreateSession = async (e) => {
     //fonction pour créer un ticket
-    e.preventDefault()
     const body = {
       idSession: idSession,
       startDate: newSession.startDate,
@@ -95,7 +94,6 @@ const Sessions = ({ idSession }) => {
     if (session.statusCode) {
       refreshToken(session, context);
 
-
       if (Array.isArray(session.message)) {
         session.message.forEach(element => {
           notifier(element, "error", "top-right", 5000);
@@ -103,6 +101,7 @@ const Sessions = ({ idSession }) => {
       } else {
         console.error(session);
         notifier(session.message);
+        toast("session crée")
       }
     }
 

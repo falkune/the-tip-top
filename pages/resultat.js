@@ -10,10 +10,12 @@ import tea2 from "../image/tea2.png";
 import tea3 from "../image/tea3.png";
 import tea4 from "../image/tea4.png";
 import tea5 from "../image/tea5.png";
-import confuse from "../image/confuse.gif"
+import confuse from "../image/confuse.gif";
+import { verifTicketApi } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
 import Modal from "@mui/material/Modal";
 import Cookies from "js-cookie";
+import { ToastContainer, toast } from "react-toastify";
 
 
 
@@ -22,6 +24,7 @@ export default function Resultat() {
   const [win, setWin] = useState(false);
   const [loading, setLoading] = useState(true);
   const [invalide,SetInvalide] = useState(false)
+  const [inconnu,SetInconnu] = useState(false)
   const [lot, setLot] = useState("");
 
   const router = useRouter();
@@ -36,7 +39,7 @@ export default function Resultat() {
   }, []);
 
   const showLot = () =>{
-    verifyTicket(router?.query?.number).finally( ()=> {
+    VerifyTicket(router?.query?.number).finally( ()=> {
       setLoading(false);
     })
   }
@@ -48,19 +51,18 @@ export default function Resultat() {
   
 ;
 
-  const verifyTicket = async (n) => {
-    try {
-      context.backend.auth.tickets.patch('assign-ticket',{idClient:Cookies.get("idClient"),ticketNumber:n.toString()}).then((value) =>
-        {console.log(value,"value")
-        if ( value.statusCode != 409 )
-        {setLot(value.description)
-          setWin(true)
-        }
-        else {SetInvalide(true)} } 
-       )
- 
-    } catch (e) {
-       
+  const VerifyTicket = async (n) => {
+     let ticket = verifTicketApi( context, n.toString())
+     if ( ticket.statusCode){
+      refreshToken(ticket, context);
+      notifier(ticket.message);
+      toast(ticket.message)
+      SetInconnu(true)
+      console.log(ticket,"error") 
+    } 
+    else {
+      console.log(ticket,"t") 
+      SetInconnu(true)
     }
   };
 
@@ -93,6 +95,18 @@ export default function Resultat() {
            <LoadingScreen />  }
           
       </div>
+      <ToastContainer
+                      position="bottom-center"
+                      autoClose={1250}
+                      hideProgressBar
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss={false}
+                      draggable={false}
+                      pauseOnHover={false}
+                      theme="colored"
+                    />   
       <Modal
         open={win}
         style={{ border: "none" }}
@@ -183,6 +197,57 @@ export default function Resultat() {
                   borderRadius: 5 }}>
              Réesseyer
               </button>
+        </div>
+      </Modal>
+      <Modal
+        open={win}
+        style={{ border: "none" }}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <div
+          style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: 15,
+            fontSize: 18,
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 350,
+            border: "none",
+            borderRadius: 8,
+            backgroundColor: "white",
+            boxShadow: 24,
+            textAlign: "center" }} >
+              
+          <h2 style={{ color: " #38870D", marginBottom: 0 }}> Numéro invalide ! </h2>
+          { lot === "Coffret 69 euros" && <Image src={tea1} /> }
+          { lot === "Coffret 39 euros" && <Image src={tea2} /> }
+          { lot === "thé signature" && <Image src={tea3} /> }
+          { lot === "Infuseur à thé" && <Image src={tea4} /> }
+          { lot === "100g thé detox" && <Image src={tea5} /> }
+          <p style={{fontWeight:"bold",margin:5}}>{lot}</p>
+          <small style={{ color: "grey" }}>
+           Réesseyer avec un autre numéro 
+          </small>
+          <button
+            onClick={handleClose}
+            style={{
+              width: 180,
+              height: 40,
+              background: " #38870D",
+              color: "white",
+              border: "none",
+              margin: 15,
+              fontSize: 18,
+              borderRadius: 5 }}>
+            ok
+          </button>
+          
+
         </div>
       </Modal>
       <Footer />
