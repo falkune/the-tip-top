@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
 import LinearProgress from '@mui/material/LinearProgress';
+import {CardSummary} from './CardSummary';
 
 const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState([]);
@@ -38,15 +39,25 @@ const StatsLots = ({ idSession }) => {
   if(groupInfo.length != 0){
     return (
       <div style={styles.lot}>
-        { 
+        {/* { 
           allGroup.map((l,index)=> (
             <OneLot 
               key={index}
               title={groupInfo.find(item => item._id == l._id).description}
               claimbedTicket={l.claimbedTicket}
               notClaimbedTicket={l.notClaimbedTicket}
-              numberOfTickets={l.numberOfTickets}
             /> 
+          ))
+        } */}
+
+        { 
+          allGroup.map((l,index)=> (
+            <CardSummary
+              title={groupInfo.find(item => item._id == l._id).description}
+              totalTicket={l.claimbedTicket+l.notClaimbedTicket} 
+              claimbedTicket={l.claimbedTicket}  
+              notClaimbedTicket={l.notClaimbedTicket} 
+              percentage={(l.claimbedTicket * 100) / (l.claimbedTicket+l.notClaimbedTicket)}/>
           ))
         }
       </div>
@@ -69,8 +80,8 @@ const styles = {
     display: "flex",
     width: "100%",
     flexDirection: "row",
-    marginBottom: 25,
     justifyContent: "space-around",
-    flexWrap: "wrap"
+    flexWrap: "wrap",
+    margin: 10
   },
 };

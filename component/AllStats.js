@@ -20,6 +20,7 @@ const AllStats = (props) => {
   const getDetailsSession = (idSession) => {
     getSessionDetails(context, idSession)
     .then((response) => {
+      console.log(response)
       setLimitTicket(response.limitTicket)
       setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
     })
@@ -28,8 +29,8 @@ const AllStats = (props) => {
   return (
     <div style={styles.stat}>
       <ParticipationStat ticket={limitTicket} idSession={props.idSession}/>
+      {/* <StatsLots idSession={props.idSession}/> */}
       <StatInscription days={numberDay} idSession={props.idSession}/>
-      <StatsLots idSession={props.idSession}/>
       <AgeStat/>
     </div>
   )

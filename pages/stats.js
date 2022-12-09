@@ -49,14 +49,14 @@ export default function Stats() {
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
-    getAllSessions();
-    getAllLots();
+    getAllSessions(context);
+    getAllLots(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
   
-  const getAllSessions = async () => {
+  const getAllSessions = async (context) => {
     getSessions(context)
     .then((response) => {
       setAllSessions(response);
@@ -64,7 +64,7 @@ export default function Stats() {
     })
   };
 
-  const getAllLots = async () => {
+  const getAllLots = async (context) => {
     getGroups(context)
     .then((response) => {
       setLots(response);
@@ -195,7 +195,7 @@ export default function Stats() {
                 ))}
               </Select>
             </div>
-            {/* {menu === "stats" && <AllStats lots={lots} idSession={idSession} />} */}
+            {menu === "stats" && <AllStats lots={lots} idSession={idSession} />}
             {menu === "ticket" && <TicketChecker session={idSession} />}
             {menu === "users" && <Users idSession={idSession} />}
             {menu === "generator" && <TicketGenerator session_id={idSession} />}
@@ -205,7 +205,8 @@ export default function Stats() {
         <Footer />
       </div>
     );
-  }else{
+  }
+  else{
     return(
       <Box sx={{ width: '100%' }}>
         <LinearProgress />

@@ -3,6 +3,7 @@ import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
 import {notifier, refreshToken} from '../fonctions/utils';
 import {claimedTickeBySession} from '../fonctions/tickets';
+import {CardSummary} from './CardSummary';
 import Gaugecart from './gauge';
 import LinearProgress from '@mui/material/LinearProgress';
 import Box from '@mui/material/Box';
@@ -30,9 +31,14 @@ export default function ParticipationStat({ticket, idSession}) {
   }
 
   return (
-    <div style="container">
-      {/* <Gaugecart claimed={numberOfClaimbedTicket} notClaimed={ticket - numberOfClaimbedTicket}/> */}
-      <OneLot claimbedTicket={numberOfClaimbedTicket} notClaimbedTicket={ticket - numberOfClaimbedTicket}/>
+    <div style={styles.container}>
+      <CardSummary
+        title="stats global"
+        totalTicket={ticket} 
+        claimbedTicket={numberOfClaimbedTicket}  
+        notClaimbedTicket={ticket - numberOfClaimbedTicket} 
+        percentage={numberOfClaimbedTicket * 100 / ticket}/>
+      {/* <OneLot claimbedTicket={numberOfClaimbedTicket} notClaimbedTicket={ticket - numberOfClaimbedTicket}/> */}
     </div>
   );
 }
