@@ -2,7 +2,7 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 
-function OneLot({ title, totalTicket, limitTicket, claimbedTicket, claimbedTicketPercentage}) {
+function OneLot({ title, totalTicket, limitTicket, claimbedTicket, claimbedTicketPercentage, numberOfTicketsPercentage}) {
   return (
     <Card style={styles.card}>
       <Typography style={styles.title}>{title}</Typography>
@@ -10,7 +10,7 @@ function OneLot({ title, totalTicket, limitTicket, claimbedTicket, claimbedTicke
         <div>
           <p style={styles.titre}>Generate</p>
           <Typography> <span style={styles.generate}>{totalTicket}</span> / {limitTicket}</Typography>
-          <Typography style={styles.percentage}>{(totalTicket * 100 / limitTicket).toFixed(2)} <FontAwesomeIcon icon={faPercent}/></Typography>
+          <Typography style={styles.percentage}>{numberOfTicketsPercentage} <FontAwesomeIcon icon={faPercent}/></Typography>
         </div>
 
         <div>
@@ -34,7 +34,7 @@ const styles = {
   card: {
     display: "flex",
     minWidth: 200,
-    width: 300,
+    width: 340,
     height: 250,
     flexDirection: "column",
     padding: "35px 25px",
@@ -47,15 +47,15 @@ const styles = {
     color: "#003e1f",
   },
   generate: {
-    fontSize: "2em",
+    fontSize: "2.5em",
     fontWeight: "bold",
     textAlign: 'center',
     color: "#38870D"
   },
   percentage: {
-    fontSize: "1em",
+    fontSize: "1.3em",
     fontWeight: "bold",
-    textAlign: "center",
+    // textAlign: "center",
     color: "#fb8500"
   },
   titre: {

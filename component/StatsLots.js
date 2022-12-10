@@ -9,7 +9,7 @@ const StatsLots = ({ idSession }) => {
   const [groupInfo, setGroupInfo] = useState([]);
   const [allGroup, setAllGroup] = useState([]);
   const context = useContext(ApiContext);
-
+  const COLOR = ["red", "yellow", "blue", "gainsboro", "white", "bisque"]
   useEffect(() => {
     if(idSession != ""){
       getStatLots(context, idSession);
@@ -20,6 +20,7 @@ const StatsLots = ({ idSession }) => {
   const getStatLots = (context, idSession) => {
     statLots(context, idSession)
     .then((response) => {
+      console.log(response)
       setAllGroup(response.groupStats);
     })
     .catch((error) => console.log(error))
@@ -48,7 +49,7 @@ const StatsLots = ({ idSession }) => {
               limitTicket={l.limitTicket}
               claimbedTicketPercentage={l.claimbedTicketPercentage}
               notClaimbedTicket={l.notClaimbedTicket} 
-              percentage={(l.claimbedTicket * 100) / (l.claimbedTicket+l.notClaimbedTicket)}/>
+              numberOfTicketsPercentage={l.numberOfTicketsPercentage}/>
           ))
         }
       </div>
