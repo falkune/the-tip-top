@@ -7,7 +7,6 @@ const checkTicketApi = async (context, input) => {
 
         context.backend.auth.tickets.post('check-ticket', { ticketNumber: input })
             .then((response) => {
-
                 resolve(response);
                 console.log("reponse",response)
             })
@@ -21,6 +20,20 @@ const verifTicketApi = async (context, ticketNumber) => {
 
     return new Promise((resolve, reject) => {
         context.backend.auth.tickets.patch('assign-ticket',{idClient:Cookies.get("idClient"),ticketNumber:ticketNumber})
+            .then((response) => {
+                resolve(response);
+                console.log("reponse",response)
+            })
+            .catch((error) => {
+                reject(error)
+            });
+    })
+};
+
+const delivredLot = async (context, ticketNumber) => {
+
+    return new Promise((resolve, reject) => {
+        context.backend.auth.tickets.patch('deliver-ticket-by-admin',{ticketNumber:ticketNumber})
             .then((response) => {
                 resolve(response);
                 console.log("reponse",response)
@@ -72,4 +85,4 @@ const generateTicketApi = async (context, idSession) => {
     })
 }
 
-export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi};
+export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot};

@@ -4,7 +4,7 @@ import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import clipboard from "../image/clipboard.png";
-import { checkTicketApi } from "../fonctions/tickets";
+import { checkTicketApi,delivredLot } from "../fonctions/tickets";
 import { refreshToken, notifier } from "../fonctions/utils";
 import dayjs from "dayjs";
 
@@ -18,6 +18,8 @@ export default function TicketChecker({ session }) {
     deliverd: null,
     assigned: "",
     create_at: "07-06-2022",
+    name:"",
+    email:"",
     lot: "",
   });
 
@@ -25,55 +27,34 @@ export default function TicketChecker({ session }) {
     //fonction pour créer un ticket
     setLoading(true);
     console.log('input',input)
-    let ticket = await checkTicketApi(context, input);
+    let ticket = await checkTicketApi(context, input.toString());
      if (ticket.statusCode) {
       refreshToken(ticket, context);
       notifier(ticket.message);
     } else {
-      console.log(ticket,'ticket')
       setTicket(
-        { deliverd: ticket?.isDelivered,
-          assigned: ticket?.idClient,
-          create_at: ticket?.createdAt,
-          lot:ticket.lot})
+        { deliverd:ticket?.isDelivered,
+          name:ticket?.fullName,
+          email:ticket?.email,
+          assigned:ticket?.idClient,
+          create_at:ticket?.createdAt,
+          lot:ticket?.lot})
       setVisible(true)
       setLoading(false)   
     }
   };
   const handleClose = () => setVisible(false);
+
   const DelivredLot = async () => {
-    //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    setLoading(true);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const body = {
-      ticketNumber: input,
-    };
-
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket/check-ticket";
-
-    // try {
-    //   let nTicket = await axios.post(api, body, config);
-    //    
-    //   setTicket({
-    //     assigned: nTicket?.data?.idClient,
-    //     create_at: dayjs(value.createdAt).format("YYYY-MM-DD"),
-    //     lot: value.lot,
-    //   });
-    //   setLoading(false);
-    //   setVisible(true);
-    // } catch (e) {
-    //    
-    // }
-
-
+    let ticket = await delivredLot( context, input)
+    if ( ticket.statusCode  ){
+     refreshToken(ticket, context);
+     notifier(ticket.message);
+   } 
+   else {
     setDelivred(true);
+    notifier("Lot délivré");
+   }
   };
 
   const UpdateInput = (e) => {
@@ -176,6 +157,12 @@ export default function TicketChecker({ session }) {
             ) : (
               <p>Ticket non assigné</p>
             )}
+
+            
+          {ticket.name && <p>{ticket.name}</p>}
+          {ticket.email && <p>{ticket.email}</p>}
+
+
             {ticket.deliverd === true ? (
               <p>Lot délivré</p>
             ) : (

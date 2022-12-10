@@ -38,7 +38,7 @@ export default function TicketGenerator({ session_id }) {
 
    else {
      console.log(ticket,'ticket')
-     setTicket(value.ticketNumber);
+     setTicket(ticket.ticketNumber);
      setLoading(false);
      setGenerate(true);}  
   };
