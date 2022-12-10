@@ -3,12 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "env-cmd -f .env.development next dev",
     "build": "next build",
+    "build:dev": "NODE_ENV=development npm run build",
+    "build:staging": "env-cmd -f .env.staging npm run build",
+    "postbuild": "next-sitemap",
     "start": "next start",
-    "lint": "next lint", 
+    "start:staging": "env-cmd -f .env.staging npm run start",
+    "lint": "next lint",
     "test:watch": "jest --watch",
-    "test:cov": "jest --coverage"
+    "test:cov": "jest --config ./config/jest.config.js"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -16,6 +20,7 @@
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@material-ui/core": "^4.12.4",
     "@material/drawer": "^13.0.0",
     "@mui/material": "^5.10.0",
     "@mui/x-data-grid": "^5.15.3",
@@ -28,41 +33,75 @@
     "crypto-js": "^4.1.1",
     "d3": "^7.6.1",
     "dayjs": "^1.11.5",
-    "firebase": "^9.6.10",
+    "env-cmd": "^10.1.0",
+    "firebase": "^9.14.0",
     "js-cookie": "^3.0.1",
     "jsonwebtoken": "^8.5.1",
     "loadsh": "^0.0.4",
     "lodash-es": "^4.17.21",
     "next": "12.1.0",
     "next-auth": "^4.3.0",
+    "next-sitemap": "^3.1.32",
     "nextjs-breadcrumbs": "^1.1.9",
     "react": "^17.0.2",
     "react-chartjs-2": "^4.3.1",
     "react-countdown": "^2.3.5",
-    "react-custom-roulette": "^1.2.0",
+    "react-csv-downloader": "^2.9.0",
+    "react-custom-roulette": "^1.1.5",
     "react-dom": "17.0.2",
     "react-fontawesome": "^1.7.1",
+    "react-loader-spinner": "^5.3.4",
     "react-lottie": "^1.2.3",
     "react-particles": "^2.5.3",
-    "react-redux": "^8.0.5",
     "react-spinners": "^0.11.0",
     "react-svg-gauge": "^1.0.10",
-    "react-toastify": "^9.0.8",
+    "react-toastify": "^9.1.1",
     "react-wheel-of-prizes": "^1.0.9",
     "recharts": "^2.1.16",
-    "redux-persist": "^6.0.0",
-    "reduxjs-toolkit-persist": "^7.2.1",
     "sharp": "^0.30.3",
     "tsparticles": "^2.5.3"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
+    "@testing-library/react": "^12.1.2",
     "@types/node": "17.0.21",
-    "@types/react": "17.0.39",
+    "@types/react": "^17.0.39",
+    "@types/react-dom": "^18.0.9",
+    "babel-jest": "^29.3.1",
+    "cross-env": "^7.0.3",
     "eslint": "8.10.0",
     "eslint-config-next": "12.1.0",
     "jest": "^29.3.1",
+    "jest-css-modules": "^2.1.0",
+    "jest-environment-jsdom": "28.1.0",
+    "jest-sonar-reporter": "^2.0.0",
+    "ts-jest": "^29.0.3",
     "typescript": "4.6.2"
+  },
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": "test-reporter.xml",
+    "indent": 4
+  },
+  "jest": {
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "ts"
+    ],
+    "rootDir": "./",
+    "testRegex": ".*\\.spec\\.ts$",
+    "transform": {
+      "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "collectCoverageFrom": [
+      "**/*.(t|j)s"
+    ],
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "testResultsProcessor": "jest-sonar-reporter"
   }
 }

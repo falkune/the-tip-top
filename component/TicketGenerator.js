@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState ,useContext} from "react";
+import Modal from "@mui/material/Modal";
+import ApiContext from '../context/apiContext';
 import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
-import axios from "axios";
+import { generateTicketApi } from "../fonctions/tickets";
+import { refreshToken, notifier } from "../fonctions/utils";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function TicketGenerator({ session_id }) {
-  const [load, setLoad] = useState(false);
+  const context = useContext(ApiContext)
   const [loading, setLoading] = useState(false);
-  const [input, setInput] = useState("");
-  const [visible, setVisible] = useState(false);
   const [generate, setGenerate] = useState(false);
   const [ticket, setTicket] = useState(null);
 
@@ -27,34 +28,28 @@ export default function TicketGenerator({ session_id }) {
 
   const generateTicket = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
     setLoading(true);
-    const config = {
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    };
-    const body = {
-      idSession: session_id,
-    };
-    const api = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/ticket";
+    let ticket = await generateTicketApi(context, session_id);
+    if (ticket.statusCode) {
+     refreshToken(ticket, context);
+     notifier(ticket.message);
+     setLoading(false);
+    } 
 
-    try {
-      let newTicket = await axios.post(api, body, config);
-      console.log("newticket", newTicket.data);
-      setTicket(newTicket.data.ticketNumber);
-      setLoading(false);
-      setGenerate(true);
-    } catch (e) {
-      console.log(e);
-    }
+   else {
+     console.log(ticket,'ticket')
+     setTicket(ticket.ticketNumber);
+     setLoading(false);
+     setGenerate(true);}  
   };
 
   const closeTicket = () => {
     //fonction pour créer un ticket
     setGenerate(false);
   };
+
+  const handleClose = () => setGenerate(false);
+
 
   return (
     <div
@@ -65,6 +60,71 @@ export default function TicketGenerator({ session_id }) {
         minHeight: 1000,
       }}
     >
+         <Modal
+            open={generate}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description">
+
+          <div style={stylez.modalSession} >
+          <button
+            onClick={handleClose}
+            style={{
+              position: "absolute",
+              right: 10,
+              top: 8,
+              color: "white",
+              border: "none",
+              borderRadius: 8,
+              padding: 8,
+              background: "#318176"}} >
+            Fermer
+          </button>
+          
+
+    {ticket != null && loading === false ? 
+        <span
+            style={{
+              display: "flex",
+              justifyContent: "space-around",
+              borderRadius: 8,
+              margin: 35,
+              maxWidth: "100%",
+              padding:"10px 10px",
+              backgroundColor: " #38870D"}}>
+            
+              <p style={{ color: "white" }}>{ticket}</p>
+                    <button
+                      onClick={copyCode}
+                      value={ticket}
+                      style={{
+                        border: "none",
+                        padding: 10,
+                        color: "white",
+                        marginLeft:15,
+                        background: "#96D614"}} >
+                          Copier
+                    </button>
+              </span>   
+                : 
+                <span
+                style={{
+                  display: "flex",
+                  justifyContent: "space-around",
+                  borderRadius: 8,
+                  margin: 35,
+                  maxWidth: "100%",
+                  padding:"10px 10px",
+                  backgroundColor: " #38870D"}}>
+                
+                  <p style={{ color: "white" }}>Invalide</p>
+                     
+                  </span>  
+                 }
+          
+   
+          </div>   
+        </Modal>
       <div
         style={{
           display: "flex",
@@ -73,85 +133,48 @@ export default function TicketGenerator({ session_id }) {
           justifyContent: "center",
           marginTop: 30,
           padding: 15,
+          minWidth:360,
           height: 500,
         }}
       >
-        <div
-          style={{
-            width: "50%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexDirection: "column",
-            maxWidth: 350,
-            padding: 10,
-            textAlign: "center",
-          }}
-        >
-          <div>
-            <h2 className={styles.h2}>Générateur de ticket</h2>
-            <button onClick={generateTicket} className={styles.action}>
-              Générer un ticket
-            </button>
-            <button onClick={closeTicket} className={styles.noaction}>
-              Quitter
-            </button>
-          </div>
-        </div>
-
-        {generate === true && loading === false && (
-          <span
-            style={{
-              width: "50%",
-              display: "flex",
-              justifyContent: "space-around",
-              borderRadius: 8,
-              margin: 35,
-              maxWidth: 350,
-              padding: 10,
-              backgroundColor: " #38870D",
-            }}
-          >
-            {ticket != null ? (
-              <>
-                {" "}
-                <p style={{ color: "white" }}>Numéro : {ticket}</p>
-                <button
-                  onClick={copyCode}
-                  value={ticket}
-                  style={{
-                    border: "none",
-                    padding: 10,
-                    color: "white",
-                    background: "#96D614",
-                  }}
-                >
-                  Copier
-                </button>
-                <ToastContainer
-                  position="bottom-center"
-                  autoClose={1250}
-                  hideProgressBar
-                  newestOnTop={false}
-                  closeOnClick
-                  rtl={false}
-                  pauseOnFocusLoss={false}
-                  draggable={false}
-                  pauseOnHover={false}
-                  theme="colored"
-                />
-              </>
-            ) : (
-              <p>invalide</p>
-            )}
-          </span>
-        )}
-        {loading === true && (
-          <div style={{ width: "50%", display: "flex", marginLeft: 70 }}>
+      
+             { loading === true ? 
             <ClipLoader color={" #38870D"} loading={true} size={70} />
-          </div>
-        )}
+            :   <div
+                  style={{
+                    width: "50%",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    flexDirection: "column",
+                    maxWidth: 350,
+                    padding: 10,
+                    textAlign: "center",
+                  }}>
+            <div>
+              <h2 >Générateur de ticket</h2>
+              <button onClick={generateTicket} className="action">
+                Générer un ticket
+              </button>
+              <button onClick={closeTicket} className="noaction">
+                Quitter
+              </button>
+            </div>
+          </div> }
       </div>
+      
+      <ToastContainer
+                      position="bottom-center"
+                      autoClose={1250}
+                      hideProgressBar
+                      newestOnTop={false}
+                      closeOnClick
+                      rtl={false}
+                      pauseOnFocusLoss={false}
+                      draggable={false}
+                      pauseOnHover={false}
+                      theme="colored"
+                    />    
     </div>
   );
 }
@@ -181,4 +204,20 @@ const stylez = {
     alignItems: "center",
     position: "relative",
   },
-};
+    modalSession: {
+    position: "relative",
+    display: "flex",
+    flexDirection: "column",
+    alignItems:"center",
+    padding: 20,
+    fontSize: 18,
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 350,
+    borderRadius: 15,
+    backgroundColor: "#84B71E",
+    color:'white',
+    boxShadow: 24,
+}
+}

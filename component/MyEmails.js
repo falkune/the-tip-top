@@ -10,7 +10,7 @@ export default function MyEmails() {
   const number = users.length
 
   return (
-    <div className={styles.container}>
+    <div className="container">
     <button>Ticket cheaker</button>
     </div>
   )

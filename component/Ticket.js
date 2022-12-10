@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useEffect} from "react"
 import Image from 'next/image'
 import Link from "next/link"
 import logo from "../image/logo.png"
@@ -7,7 +7,9 @@ import tea2 from "../image/tea2.png"
 import tea3 from "../image/tea3.png"
 import tea4 from "../image/tea4.png"
 
+
 const Ticket = (props) => {
+
   return (
     <div style={styles.ticket}>   
       <div style={styles.bloc}>

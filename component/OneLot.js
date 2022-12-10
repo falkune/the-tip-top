@@ -1,82 +1,66 @@
-import { PieChart, Pie, Cell, Legend } from "recharts";
+import { Card, CardContent, Typography } from "@material-ui/core";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPercent } from '@fortawesome/free-solid-svg-icons';
 
-const COLORS = ["#06d6a0", "#ff7d00"];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index
-}) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
+function OneLot({ title, totalTicket, limitTicket, claimbedTicket, claimbedTicketPercentage}) {
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "center" : "center"}
-      dominantBaseline="central"
-    >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
+    <Card style={styles.card}>
+      <Typography style={styles.title}>{title}</Typography>
+      <CardContent style={styles.box}>
+        <div>
+          <p style={styles.titre}>Generate</p>
+          <Typography> <span style={styles.generate}>{totalTicket}</span> / {limitTicket}</Typography>
+          <Typography style={styles.percentage}>{(totalTicket * 100 / limitTicket).toFixed(2)} <FontAwesomeIcon icon={faPercent}/></Typography>
+        </div>
 
-export default function OneLot({title, claimbedTicket, notClaimbedTicket}) {
-  const data = [
-    { name: "Claimbed Tickes", value: claimbedTicket },
-    { name: "Not Claimbed Tickets", value: notClaimbedTicket },
-  ]
-  return (
-    <div style={styles.lot}>
-      <p style={styles.h2}>{title}</p>
-      <PieChart width={300} height={300} >
-      <Pie
-        data={data}
-        cx={150}
-        cy={150}
-        labelLine={false}
-        label={renderCustomizedLabel}
-        outerRadius={80}
-        fill="#8884d8"
-        dataKey="value"
-      >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-      <Legend layout="horizontal" verticalAlign="top" align="center" />
-    </PieChart>
-    </div>
-    
+        <div>
+          <p style={styles.titre}>Claimed</p>
+          <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {totalTicket}</Typography>
+          <Typography style={styles.percentage}>{claimbedTicketPercentage} <FontAwesomeIcon icon={faPercent} /></Typography>
+        </div>
+      </CardContent>
+    </Card>
   );
 }
 
+export default OneLot;
 
 const styles = {
-  lot:{
-    display:"flex",
-    maxWidth: 250,
-    flexDirection:"column",
-    justifyContent:"center",
-    alignItems: "center",
-    margin: 10,
-    background:" #FFFFFF",
-    borderRadius:8,
-    padding:15,
-    color:"white"
+  box: {
+    display: 'flex',
+    justifyContent: "space-between",
+    
   },
-  h2:{
-    fontSize:20,
-    opacity:0.8,
-    margin:3,
-    color:"#000000"
+  card: {
+    display: "flex",
+    minWidth: 200,
+    width: 300,
+    height: 250,
+    flexDirection: "column",
+    padding: "35px 25px",
+    marginTop: 20
   },
+  title: {
+    fontSize: '1.2em',
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#003e1f",
+  },
+  generate: {
+    fontSize: "2em",
+    fontWeight: "bold",
+    textAlign: 'center',
+    color: "#38870D"
+  },
+  percentage: {
+    fontSize: "1em",
+    fontWeight: "bold",
+    textAlign: "center",
+    color: "#fb8500"
+  },
+  titre: {
+    fontSize: "1em",
+    fontWeight: "bold",
+    color: "#003e1f"
+  }
 }

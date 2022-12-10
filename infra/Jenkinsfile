@@ -6,136 +6,174 @@ pipeline{
       REGISTRY_CRED=credentials('jenkins-registry-credential')
       IMAGE_TAG=sh(returnStdout: true, script: 'cat infra/build/version | tail -1').trim()
     }
+
     stages{
+          
+          stage("Jenkins Flow"){
 
-        stage("build") {
-            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
-                    parallel {
-                  
-                         stage("release"){  
-                                when {branch 'release'}
-                                  steps{
-                                    sh "infra/scripts/build.sh frontend release"  
-                                 }
-                         }
+              parallel {
+                 
+                  stage("CI/CD"){
 
-                        stage("stable"){
-                            when{branch 'main'}
-                               steps{
-                                sh "infra/scripts/build.sh frontend stable"     
-                             } 
+                       stages{
                         
-                         }
-              
-                     }
-              }
-
-        stage("registry") {
-                when { expression { BRANCH_NAME ==~ /(main|release)/ } }
-                stages {
-
-                      stage("login"){
-                         
-                        steps{
-                               echo "Login to the docker private registry"
-                               sh "docker login -u ${REGISTRY_CRED_USR} -p ${REGISTRY_CRED_PSW} https://${DOCKER_PRIVATE_REGISTER}"    
-                           }
-                        }
-                      
-                      stage("push"){
+                         stage("Build Docker Image") {
+                  
+                           when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                                stages {
                             
-                             steps{
-                                     echo "push frontend image to the docker private registry"
-                                      sh "infra/scripts/registry.sh frontend"    
+                                    stage("release"){  
+                                            when {branch 'release'}
+                                            steps{
+                                                sh "infra/scripts/build.sh frontend release"  
+                                            }
+                                    }
+
+                                    stage("stable"){
+                                        when{branch 'main'}
+                                        steps{
+                                            sh "infra/scripts/build.sh frontend stable"     
+                                        } 
+                                    
+                                    }
+                        
+                                }
+                              }
+
+                            stage("Register Docker Image") {
+                                        when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                                        stages {
+
+                                            stage("login"){
+                                                
+                                                steps{
+                                                    echo "Login to the docker private registry"
+                                                    sh "docker login -u ${REGISTRY_CRED_USR} -p ${REGISTRY_CRED_PSW} https://${DOCKER_PRIVATE_REGISTER}"    
+                                                }
+                                            }
+                                            
+                                            stage("push"){
+                                                    
+                                                    steps{
+                                                            echo "push frontend image to the docker private registry"
+                                                            sh "infra/scripts/registry.sh frontend"    
+                                                        }
+
+                                                post {
+                                                    always { sh "docker system prune -af"}
+                                                }
+                                            }
+                                        }
+                                     }
+
+                            stage("Deploy Stage"){ 
+                                    when { expression { BRANCH_NAME ==~ /(main|release)/ } }
+                                    stages{
+                                        stage ('release'){
+                                            when{ branch 'release'}
+                                            steps{
+                                                sshagent(credentials: ['devops-sshkey-private']) {
+                                                    echo "copy release infra folder env on prod remote"
+                                                    echo "Add execute permission to the start.sh file on remote"
+                                                    sh "infra/scripts/deploy.sh release"
+                                                }
+                                                
+                                            }
+                                        }
+
+                                        stage('prod'){
+                                            when { branch 'main' }
+                                            steps {
+                                                sshagent(credentials: ['devops-sshkey-private']) {
+                                                    echo "copy prod infra folder env on remote"
+                                                    echo "Add execute permission to start.sh file on remote"
+                                                    sh "infra/scripts/deploy.sh prod"
+                                                }                          
+                                            }
+                                        }
+                                    }                 
                                 }
 
-                          post {
-                              always {
-                                 sh "docker system prune -af"
-                              }
-                          }
-                     }
-                }
-             }
-
-        stage("test"){
-            when {branch "dev"}
-            agent {docker {image "node:14-alpine"}}
-
-            stages {
-                stage("setup"){
-                   steps{
-                           sh "node --version"
-                           sh "npm version"
-                           sh "npm install"
-                           sh "npm run build"
-                       }
-                   
-                }
-                 stage("coverage") {
-                    steps{
-                     echo "Any  cov test to achieve"
-                     //sh "npm run test:cov"
-                     //sh "scripts/test.sh cov"
-                    }
-
-                 post{
-                     always{  
-                        clover(cloverReportDir: 'coverage', cloverReportFileName: 'clover.xml',
-                            // optional, default is: method=70, conditional=80, statement=80
-                            healthyTarget: [methodCoverage: 70, conditionalCoverage: 80, statementCoverage: 80],
-                            // optional, default is none
-                            unhealthyTarget: [methodCoverage: 50, conditionalCoverage: 50, statementCoverage: 50],
-                            // optional, default is none
-                            failingTarget: [methodCoverage: 0, conditionalCoverage: 0, statementCoverage: 0]
-                        )
-                    }
-                     
-                 }
-              }
-
-                 /*stage("e2e"){
-                     when {branch "dev"}
-                     steps{
-                        echo "handle e2e test"
-                        //sh "npm run test:e2e" 
-                     }
-                 }*/
-            }
-        }
-
-        stage("deploy"){ 
-            when { expression { BRANCH_NAME ==~ /(main|release)/ } }
-            parallel{
-                stage ('release'){
-                    when{ branch 'release'}
-                    steps{
-                        sshagent(credentials: ['devops-sshkey-private']) {
-                               echo "copy release infra folder env on prod remote"
-                               echo "Add execute permission to the start.sh file on remote"
-                               sh "infra/scripts/deploy.sh release"
+                            }
                         }
-                           
-                    }
-                }
 
-                stage('prod'){
-                    when { branch 'main' }
-                    steps {
-                        sshagent(credentials: ['devops-sshkey-private']) {
-                             echo "copy prod infra folder env on remote"
-                             echo "Add execute permission to start.sh file on remote"
-                             sh "infra/scripts/deploy.sh prod"
-                        }                          
-                    }
-                }
-            }                 
-        }
+                                    stage("Testing"){
+                                        when {branch "dev"}
+                                        environment {
+                                            SCANNER_HOME = tool 'SonarQubeScanner'
+                                            NODEJS_HOME = "${tool 'Node 14.21.1'}"
+                                            PATH="${env.NODEJS_HOME}/bin:${env.PATH}"    
+                                            }
+                                        
+                                        stages {
+                                            stage("Setup Test Env"){
+                                            steps{
+                                                    sh "node --version"
+                                                    sh "npm version"
+                                                }
+                                            }
 
-        stage("end") {
-            steps{
-                echo "Successful end"
+                                             stage("Install Packages") {
+                                                steps{
+                                                 sh "npm install"
+                                                 sh "npm update"
+                                                }
+                                             }
+
+                                             stage("Fix Vulnerability") {
+                                                steps{
+                                                 sh "npm audit fix"
+                                                 sh "npm fund"
+                                                }
+                                             }
+                                             
+                                             stage("Build Code"){
+                                                 steps{
+                                                    sh "npm run build:dev"
+                                                 }
+
+                                             }
+                                            
+                                            stage("coverage") {
+                                                steps{
+                                                 sh "npm run test:cov"
+                                                }
+                                            }
+
+                                            stage("unit"){
+                                                steps{
+                                                 echo "Unit Testing"
+                                                }
+                                            }
+
+                                        stage("SonarQube Analysis"){              
+                                            steps{  
+                                                withSonarQubeEnv('SonarQube') {
+                                                    sh "${SCANNER_HOME}/bin/sonar-scanner -X"
+                                                }
+                                            }
+                                          }
+
+                                          stage("Quality Gate"){              
+                                            steps{  
+                                                timeout(time: 1, unit: 'HOURS') {
+                                                // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
+                                                // true = set pipeline to UNSTABLE, false = don't
+                                                waitForQualityGate abortPipeline: false
+                                               }
+                                            }
+                                          }
+                                        }
+                                     }
+                     
+                                 }
+                        }
+
+                        stage("end") {
+                        
+                            steps{
+                                echo "Successful end"
+                            }
+                        }
+                    }
             }
-        }
-    }
-}

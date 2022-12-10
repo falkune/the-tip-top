@@ -4,29 +4,24 @@ networks:
   preprod:
      external: true  
 
-#volumes:
-#  code: 
-
 services:
-  frontend:
+  frontend-release:
     image: ${IMAGE_BASE}/release/frontend:${FRONTEND_RELEASE_TAG}
+    container_name: frontend-release
+    hostname: dev.dsp-archiwebo21-ct-df-an-cd.fr
+    extra_hosts:
+      - "api.dev.dsp-archiwebo21-ct-df-an-cd.fr:45.155.170.65" 
     logging:
       driver: gelf
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
     environment:
       - TZ=Europe/Paris
-      - API_BASE_URL=http://api-release:3000
     volumes:
        - /etc/localtime:/etc/localtime:ro
-    #   - code:/my-project:rw
-    #   - /usr/src/app/node_modules
     restart: unless-stopped
-    links:
-     - api-release:api
-    container_name: frontend-release
     depends_on:
-      - api
+      - api-release
     labels:
         - traefik.enable=true
         - traefik.http.routers.frontend-release.rule=Host(`dev.${DOMAIN_BASE}`)

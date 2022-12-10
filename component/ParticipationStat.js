@@ -1,46 +1,51 @@
 import React, {useEffect, useState, useContext} from "react";
-import Gauge from "react-svg-gauge";
 import ApiContext from '../context/apiContext';
+import {notifier, refreshToken} from '../fonctions/utils';
+import {claimedTickeBySession} from '../fonctions/tickets';
+import {CardSummary} from './CardSummary';
+import AgeStat from './AgeStat';
 
 
-export default function ParticipationStat({ticket, idSession}) {
-  const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
-  const [percentageOfClaimbedTicket, setpercentageOfClaimbedTicket] = useState(0);
+export default function ParticipationStat({asignTicket, limitTicket, idSession}) {
+  const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0)
   const context = useContext(ApiContext);
 
-  // console.log("dans parti",context.backend.auth)
   useEffect(() => {
     if(idSession != ""){
-      ticketValidationstats();
+      validationTicketsStats();
     }
-  })
+  }, [idSession]);
 
-  const ticketValidationstats = async () => {
-    let claimbedTicketBySession = context.backend.auth.tickets.get('claimbed-tickets-by-session')
-    claimbedTicketBySession.then((response) => {
+  const validationTicketsStats = () => {
+    claimedTickeBySession(context, idSession)
+    .then((response) => {
       if(response.statusCode){
-        console.log("vrai", response)
+        refreshToken(response, context);
       }else{
         setNumberOfClaimbedTicket(response.length);
-        setpercentageOfClaimbedTicket((numberOfClaimbedTicket * 100 / ticket).toFixed(2));
       }
     })
-    
+    .catch(() => notifier())
   }
 
   return (
-    <div>
-      <Gauge
-        value={percentageOfClaimbedTicket}
-        label={"validation des tickets"}
-        width={500}
-        height={400}
-        color='#2a9d8f'
-        backgroundColor="#edf2f4"
-        topLabelStyle={{ display: "flex", fontSize: "2em" , fontWeight: "bold"}}
-        valueLabelStyle={{fontSize: "4em"}}
-        valueFormatter={number => `${number}%`}
-      />
+    <div style={styles.container}>
+      <CardSummary
+        title="stats global"
+        totalTicket={limitTicket}
+        asignTicket={asignTicket}
+        claimbedTicket={numberOfClaimbedTicket}  
+        percentage={numberOfClaimbedTicket != 0 ? (numberOfClaimbedTicket * 100 / asignTicket).toFixed(2) : numberOfClaimbedTicket.toFixed(2)}/>
+        {/* <AgeStat/> */}
     </div>
   );
+}
+
+const styles = {
+  container:{
+    display: 'flex',
+    justifyContent: "space-around",
+    flexWrap: "wrap",
+    margin: 20,
+  }
 }

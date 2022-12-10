@@ -3,7 +3,13 @@ import { useState, useEffect } from "react";
 import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
-
+import Script from "next/script";
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
+import "animate.css";
+import dayjs from "dayjs";
+import "dayjs/locale/fr" 
+dayjs.locale('fr')
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({
@@ -21,9 +27,32 @@ function MyApp({ Component, pageProps }) {
   });
   
   return (
+    <>
+    <Script
+    id='GoogleA'
+    strategy="lazyOnload"
+    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+  />
+
+  <Script 
+      id='GoogleS'
+
+  strategy="lazyOnload">
+    {`
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
+        page_path: window.location.pathname,
+      });
+    `}
+  </Script>
+
     <ApiProvider value={{backend, setBacked}}>
       <Component {...pageProps} />
+    <ToastContainer />
     </ApiProvider>
+    </>
   );
   
 }

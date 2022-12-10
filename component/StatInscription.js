@@ -1,93 +1,46 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Line } from "react-chartjs-2";
-import axios from "axios";
 import ApiContext from '../context/apiContext';
 import Cookies from 'js-cookie';
+import Exemple  from "./LineChart";
+import {notifier, refreshToken} from '../fonctions/utils';
+import { getRegistrationByDayBySession } from '../fonctions/users';
 
 export default function StatInscription({ days,  idSession}) {
-  const [labels, setLabels] = useState([]);
   const [registration, setRegistration] = useState([]);
-
   const context = useContext(ApiContext);
 
   useEffect(() => {
     if(idSession != ""){
-      // getRegistrationByDayold();
+      getRegistrationByDay();
     }
   },[days]);
 
   const getRegistrationByDay = async () => {
-    const labels = Array();
-    for(let i = 1; i <= days; i++){
-      labels.push("Jour "+i)
-    }
-    setLabels(labels);
-    const accessToken = Cookies.get('token');
-    // const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
-    // const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
-    // const registrationByDay = Array();
-    // response.data.forEach(e => {
-    //   registrationByDay.push(e.nomberOfRegitration)
-    // })
-    // setRegistration(registrationByDay)
-    const registrationByDay = Array();
-    let getregistrationByDay = context.backend.auth.users.get('registration-by-day/'+idSession)
-    getregistrationByDay.then((response) => {
+    getRegistrationByDayBySession(context, idSession)
+    .then((response) => {
       if(response.statusCode){
-        console.log("vrai", response)
+        refreshToken(response, context);
       }else{
-        // console.log(response)
+        setRegistration(response);
       }
     })
+    .catch(() => notifier())
   }
-
-  const getRegistrationByDayold = async () => {
-    const labels = Array();
-    for(let i = 1; i <= days; i++){
-      labels.push("Jour "+i)
-    }
-    setLabels(labels);
-    const accessToken = Cookies.get('token');
-    const url = "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/user/registration-by-day/"+idSession
-    const response = await axios.get(url, { headers: { "Authorization" : `Bearer ${accessToken}` }})
-    const registrationByDay = Array();
-    response.data.forEach(e => {
-      registrationByDay.push(e.nomberOfRegitration)
-    })
-    setRegistration(registrationByDay)
-  }
-
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: "Nombre d'inscrit",
-        data: registration,
-        fill: true,
-        backgroundColor: "rgba(75,192,192,0.2)",
-        borderColor: "rgba(75,192,192,1)",
-      }
-    ]
-  };
-      
-  const options = {
-    scales: {
-      yAxes: {
-        ticks: {
-          display: true,
-        }
-      },
-      xAxes: {
-        ticks: {
-          display: true,
-        }
-      }
-    }
-  };
-
+  
   return (
-    <div className="App">
-      <Line height={80} data={data} options={options}/>
+    <div style={styles.container}>
+      <h3 style={{textAlign:"center", color: "#003e1f"}}>Nombre d'inscription par jour</h3>
+      <Exemple data={registration} width={Cookies.get('width')}/>
     </div>
   );
+}
+
+const styles = {
+  container:{
+    width: "100%",
+    height: 600,
+    background: "#FFFFFF",
+    boxShadow: '0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)',
+    paddingTop: "35px"
+  }
 }

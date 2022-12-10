@@ -10,17 +10,17 @@ networks:
 services:
   frontend:
     image: ${IMAGE_BASE}/stable/frontend:${FRONTEND_STABLE_TAG}
+    hostname: dsp-archiwebo21-ct-df-an-cd.fr
+    extra_hosts:
+      - "api.dsp-archiwebo21-ct-df-an-cd.fr:45.155.170.65" 
     logging:
       driver: gelf
       options:
         gelf-address: udp://${DEVOPS_HOST}:12201
     environment:
       - TZ=Europe/Paris
-      - API_BASE_URL=http://api:3000
     volumes:
        - /etc/localtime:/etc/localtime:ro
-    #   - code:/my-project
-    #   - /usr/src/app/node_modules
     restart: unless-stopped
     container_name: frontend
     depends_on:

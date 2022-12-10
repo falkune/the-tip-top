@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Wed Aug 24 09:01:10 2022
+# Make data base, printed on Sat Dec  3 11:16:05 2022
 
 # Variables
 
@@ -30,8 +30,6 @@ XDG_SESSION_CLASS = user
 XDG_SESSION_TYPE = x11
 # environment
 VSCODE_LOG_NATIVE = false
-# environment
-NVM_INC = /home/donald/.nvm/versions/node/v17.6.0/include/node
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
@@ -53,7 +51,7 @@ VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:53642
+JOURNAL_STREAM = 8:56649
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -75,9 +73,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 2496
+MANAGERPID = 2626
 # environment
-LESSOPEN = | /usr/bin/lesspipe %s
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4225c310-6e1a-4a38-947f-3fa76453046a.sock
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -85,15 +83,19 @@ VSCODE_CWD = /home/donald
 # default
 MAKE_HOST := x86_64-pc-linux-gnu
 # environment
-PATH = /home/donald/.local/bin:/home/donald/.nvm/versions/node/v17.6.0/bin:/home/donald/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin:/usr/local/go/bin
+PATH = /home/donald/.nvm/versions/node/v17.6.0/bin:/home/donald/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/usr/local/go/bin
 # environment
 GPG_AGENT_INFO = /run/user/1000/gnupg/S.gpg-agent:0:1
 # environment
 GJS_DEBUG_OUTPUT = stderr
 # environment
-SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/2721,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/2721
+LSCOLORS = Gxfxcxdxbxegedabagacad
+# environment
+SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/2850,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/2850
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
+# environment
+SPACESHIP_VERSION = 4.6.1
 # environment
 NVM_BIN = /home/donald/.nvm/versions/node/v17.6.0/bin
 # environment
@@ -103,7 +105,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = ecc8caa35b3049bc9ded43ebc3dff91f
+INVOCATION_ID = f99ace54fb104c81bb1c5bedf3c1d30d
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -113,7 +115,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 6310
+GIO_LAUNCHED_DESKTOP_FILE_PID = 21162
 # automatic
 %F = $(notdir $%)
 # environment
@@ -125,7 +127,7 @@ PWD = /home/donald/Documents/TheTipTop/front-end
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2679
+SSH_AGENT_PID = 2812
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -135,17 +137,17 @@ VSCODE_AMD_ENTRYPOINT = vs/workbench/api/node/extensionHostProcess
 # environment
 HOME = /home/donald
 # environment
-LESSCLOSE = /usr/bin/lesspipe %s %s
-# environment
 VSCODE_CODE_CACHE_PATH = /home/donald/.config/Code/CachedData/da15b6fd3ef856477bf6f4fb29ba1b7af717770d
 # environment
 LOGNAME = donald
 # environment
 APPLICATION_INSIGHTS_NO_DIAGNOSTIC_CHANNEL = 1
 # environment
-NVM_CD_FLAGS = 
+NVM_CD_FLAGS = -q
 # automatic
 +F = $(notdir $+)
+# environment
+ZSH = /home/donald/.oh-my-zsh
 # environment
 VSCODE_HANDLES_UNCAUGHT_ERRORS = true
 # environment
@@ -166,8 +168,6 @@ QT_DEVICE_PIXEL_RATIO = auto
 SHLVL = 0
 # environment
 GNOME_SHELL_SESSION_MODE = ubuntu
-# environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-0fc85e1a-bc78-43b3-bf76-db034d731c61.sock
 # default
 MAKE_VERSION := 4.2.1
 # environment
@@ -178,6 +178,8 @@ LC_MONETARY = fr_FR.UTF-8
 .DEFAULT_GOAL := 
 # environment
 XDG_CURRENT_DESKTOP = Unity
+# environment
+LESS = -R
 # automatic
 %D = $(patsubst %/,%,$(dir $%))
 # environment
@@ -221,9 +223,13 @@ LC_NUMERIC = fr_FR.UTF-8
 # environment
 LC_MEASUREMENT = fr_FR.UTF-8
 # environment
+PAGER = less
+# environment
 LC_ALL = C
 # environment
 GJS_DEBUG_TOPICS = JS ERROR;JS LOG
+# environment
+SPACESHIP_ROOT = /home/donald/.oh-my-zsh/custom/themes/spaceship-prompt
 # automatic
 ^F = $(notdir $^)
 # default
@@ -243,9 +249,9 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 6310
+VSCODE_PID = 21162
 # variable set hash-table stats:
-# Load=116/1024=11%, Rehash=0, Collisions=18/138=13%
+# Load=119/1024=12%, Rehash=0, Collisions=17/141=12%
 
 # Pattern-specific Variable Values
 
@@ -253,9 +259,9 @@ VSCODE_PID = 6310
 
 # Directories
 
-# . (device 66311, inode 10368061): 20 files, no impossibilities.
+# . (device 66311, inode 10368061): 26 files, no impossibilities.
 
-# 20 files, no impossibilities in 1 directories.
+# 26 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -298,6 +304,7 @@ GNUmakefile:
 #  Failed to be updated.
 
 # files hash-table stats:
+ 
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
@@ -305,12 +312,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 28 / storage = 260 B / avg = 9 B
-# current buf: size = 8162 B / used = 260 B / count = 28 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 34 / storage = 329 B / avg = 9 B
+# current buf: size = 8162 B / used = 329 B / count = 34 / avg = 9 B
 
-# strcache performance: lookups = 31 / hit rate = 9%
+# strcache performance: lookups = 37 / hit rate = 8%
 # hash-table stats:
-# Load=28/8192=0%, Rehash=0, Collisions=1/31=3%
-# Finished Make data base on Wed Aug 24 09:01:10 2022
+# Load=34/8192=0%, Rehash=0, Collisions=1/37=3%
+# Finished Make data base on Sat Dec  3 11:16:05 2022
 
  

@@ -1,51 +1,48 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
-import AgeStat from './AgeStat';
 import ParticipationStat from './ParticipationStat';
-import axios from "axios";
+import ApiContext from '../context/apiContext';
+import { getDaysBetweenTwoDates } from "../fonctions/utils";
+import { getSessionDetails } from '../fonctions/sessions';
+import {statLots} from '../fonctions/tickets';
+import AgeStat from './AgeStat';
 
 const AllStats = (props) => {
-  const [numberTicket, setNumberTicket] = useState(0);
+  const [limitTicket, setLimitTicket] = useState(0);
   const [numberDay, setNumberDay] = useState([]);
+  const [asignTicket, setAsignTicket] = useState(0);
+  const context = useContext(ApiContext);
 
   useEffect(() => {
-    getNumberDay(props.idSession);
-  },[props])
+    setAsignTicket(0)
+    getAsignTicket(context, props.idSession);
+    getDetailsSession(context, props.idSession);
+  },[props.idSession])
 
- 
-
-
-  const getNumberDay = (idSession) => {
-    axios.get("https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/"+idSession)
+  const getDetailsSession = (context, idSession) => {
+    getSessionDetails(context, idSession)
     .then((response) => {
-      setNumberTicket(response.data.limitTicket);
-      const endDate = new Date(response.data.endDate);
-      const startDate = new Date(response.data.startDate);
-      // const timeDiference = endDate.getTime() - startDate.getTime();
-      // const dayDiference = (timeDiference / (1000 * 3600 * 24));
-      // setNumberDay(dayDiference);
-      setNumberDay(getDatesBetweenDates(startDate, endDate))
+      setLimitTicket(response.limitTicket)
+      setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
     })
   }
 
-  const getDatesBetweenDates = (startDate, endDate) => {
-    let dates = []
-    const theDate = new Date(startDate)
-    while (theDate < new Date(endDate)) {
-      dates = [...dates, new Date(theDate)]
-      theDate.setDate(theDate.getDate() + 1);
-    }
-    dates = [...dates, new Date(endDate)]
-    return dates
+  const getAsignTicket = (context, idSession) => {
+    statLots(context, idSession)
+    .then((response) => { 
+      if(!response.statusCode){
+        setAsignTicket(response.sessionStats.sessionTotalNumberOfTickets)
+      }
+    })
   }
 
   return (
     <div style={styles.stat}>
-      <ParticipationStat ticket={numberTicket} idSession={props.idSession}/>
+      <ParticipationStat asignTicket={asignTicket} limitTicket={limitTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots idSession={props.idSession}/>
-      <AgeStat data={[25, 9, 7, 13]}/>
+      <AgeStat/>
     </div>
   )
 }
@@ -53,7 +50,7 @@ export default AllStats;
 
 const styles = {
   stat:{
-    backgroundColor:"#F1F1F1",
+    background:"none",
     padding:25
   }
 }
