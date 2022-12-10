@@ -3,6 +3,7 @@ import ApiContext from '../context/apiContext';
 import {notifier, refreshToken} from '../fonctions/utils';
 import {claimedTickeBySession} from '../fonctions/tickets';
 import {CardSummary} from './CardSummary';
+import PieGraph from './Piecharte';
 
 
 export default function ParticipationStat({asignTicket, limitTicket, percentage, percentageGenerate, idSession}) {
@@ -33,7 +34,7 @@ export default function ParticipationStat({asignTicket, limitTicket, percentage,
         title="stats global"
         totalTicket={limitTicket}
         asignTicket={asignTicket}
-        claimbedTicket={numberOfClaimbedTicket}  
+        claimbedTicket={numberOfClaimbedTicket}
         percentage={percentage}
         percentageGenerate={percentageGenerate}/>
     </div>

@@ -1,13 +1,11 @@
-import { PieChart, Pie, Cell } from 'recharts';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28'];
-// const data = [
-//     { name: 'Group A', value: 400 },
-//     { name: 'Group B', value: 300 },
-//     { name: 'Group C', value: 300 },
-//   ];
+import { PieChart, Pie, Cell, Legend } from 'recharts';
+
+
+const COLORS = ['#197278', '#0091ad', '#c8553d'];
+
 const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent }) => {
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
     const x = cx + radius * Math.cos(-midAngle * RADIAN);
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
@@ -20,9 +18,9 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 };
 
 export default function PieGraph({ title, data }) {
-    // console.log(data)
+
     return (
-        <div style={styles.card}>
+        <div style={styles.card} width="100%" height="100%">
             <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie
@@ -30,7 +28,7 @@ export default function PieGraph({ title, data }) {
                     cx={150}
                     cy={150}
                     labelLine={false}
-                    // label={renderCustomizedLabel}
+                    label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
                     dataKey="value"
@@ -39,15 +37,19 @@ export default function PieGraph({ title, data }) {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
+                <Legend iconType="circle" />
             </PieChart>
         </div>
     );
-}
 
+}
 
 const styles = {
     card: {
         color: "#023047",
+        margin: "7px 2px",
+        backgroundColor: "#FFFFFF",
+        boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
     },
     title: {
         fontSize: 25,

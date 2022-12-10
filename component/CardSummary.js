@@ -11,13 +11,13 @@ function CardSummary({ title, totalTicket, asignTicket, claimbedTicket, percenta
         <div>
           <p style={styles.titre}>Generate ticket</p>
           <Typography> <span style={styles.generate}>{asignTicket}</span> / {totalTicket}</Typography>
-          <Typography style={styles.percentage}>{percentage} <FontAwesomeIcon icon={faPercent} /></Typography>
+          {/* <Typography style={styles.percentage}>{percentage} <FontAwesomeIcon icon={faPercent} /></Typography> */}
         </div>
 
         <div>
           <p style={styles.titre}>Claimed ticket</p>
           <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {asignTicket}</Typography>
-          <Typography style={styles.percentage}>{percentageGenerate} <FontAwesomeIcon icon={faPercent} /></Typography>
+          {/* <Typography style={styles.percentage}>{percentageGenerate} <FontAwesomeIcon icon={faPercent} /></Typography> */}
         </div>
       </CardContent>
     </Card>

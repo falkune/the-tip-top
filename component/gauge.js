@@ -23,7 +23,7 @@ export default function Gauge({ title, data }) {
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
-                <Legend iconType="circle" fontWeight="bold" />
+                <Legend iconType="circle" />
             </PieChart>
         </div>
     );
@@ -33,6 +33,9 @@ export default function Gauge({ title, data }) {
 const styles = {
     card: {
         color: "#023047",
+        margin: "7px 2px",
+        backgroundColor: "#FFFFFF",
+        boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
     },
     title: {
         fontSize: 25,
