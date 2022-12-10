@@ -405,7 +405,6 @@ a {
  .lds-hourglass {
     display: inline-block;
     position: relative;
-    background-color: red;
     width: 250px;
     height: 250px;
 }

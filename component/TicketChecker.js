@@ -53,7 +53,7 @@ export default function TicketChecker({ session }) {
    } 
    else {
     setDelivred(true);
-    notifier("Lot délivré");
+    notifier("Lot délivré","success");
    }
   };
 
