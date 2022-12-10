@@ -82,11 +82,9 @@ export default function Tickets() {
     try {
       context.backend.auth.tickets.post('tickets-by-client',
       {idClient:Cookies.get("idClient")}).then((value) =>
-      {console.log(value,"value")
-      value.forEach(el => {
+      {value.forEach(el => {
         el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
       }); 
-      console.log(value,"value2")
       setAlltickets(value)
       
     }

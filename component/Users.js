@@ -4,7 +4,10 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
 import { DataGrid } from "@mui/x-data-grid";
-
+import CsvDownloader from 'react-csv-downloader';
+import dayjs from "dayjs";
+import "dayjs/locale/fr" 
+dayjs.locale('fr')
 
 export default function Users({ idSession }) {
   const context = useContext(ApiContext)
@@ -23,10 +26,15 @@ export default function Users({ idSession }) {
       width: 250,
       editable: false,
     },
+    {
+      field: "userLocation",
+      headerName: "location",
+      width: 250,
+      editable: false,
+    },
   ]);
 
   const number = userz.length;
-  const columns = [];
 
   useEffect(() => {
     getAllUser();
@@ -38,6 +46,12 @@ export default function Users({ idSession }) {
         context.backend.auth.users.post('users-by-session',{idSession:idSession}).then((value) =>
       {   
       setUserz(value)
+      console.log(value)
+      value.forEach(el => {
+        el.birthday = dayjs(el.updatedAt).format(" DD/MM/YYYY ")
+        el.userLocation = el.userLocation.city
+      }); 
+      console.log(value)
     } 
      )
     } catch (e) {
@@ -60,12 +74,20 @@ export default function Users({ idSession }) {
         <strong style={{ color: " #38870D" }}>{number} </strong>
         {`Utilisateur`}
       </p>
-      <button style={stylez.export}>
-        Exporter 
-        <span style={{ margin: 5, position: "absolute", right: 15, top: 9 }}>
-          <Image src={arrow} width={18} height={18} alt="arrow" />
-        </span>
-      </button>
+
+          <CsvDownloader
+           filename="myemail"
+           extension=".csv"
+           separator=";"
+            datas={userz}>
+                  <button style={stylez.export}>
+                  Exporter 
+                  <span style={{ margin: 5, position: "absolute", right: 15, top: 9 }}>
+                    <Image src={arrow} width={18} height={18} alt="arrow" />
+                  </span>
+                </button>
+          </CsvDownloader>
+    
       <div style={stylez.gain}>
         {userz.length > 0 ? (
           <DataGrid
