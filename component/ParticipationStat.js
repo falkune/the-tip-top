@@ -3,7 +3,6 @@ import ApiContext from '../context/apiContext';
 import {notifier, refreshToken} from '../fonctions/utils';
 import {claimedTickeBySession} from '../fonctions/tickets';
 import {CardSummary} from './CardSummary';
-import AgeStat from './AgeStat';
 
 
 export default function ParticipationStat({asignTicket, limitTicket, percentage, percentageGenerate, idSession}) {
@@ -37,7 +36,6 @@ export default function ParticipationStat({asignTicket, limitTicket, percentage,
         claimbedTicket={numberOfClaimbedTicket}  
         percentage={percentage}
         percentageGenerate={percentageGenerate}/>
-        {/* <AgeStat/> */}
     </div>
   );
 }

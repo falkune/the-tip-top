@@ -15,7 +15,7 @@ class CustomizedAxisTick extends PureComponent {
   }
 }
 
-export default function Exemple({ data, width }) {
+export default function LineGraph({ data, width }) {
   return (
     <ResponsiveContainer width="100%" height="80%">
       <LineChart

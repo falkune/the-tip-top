@@ -1,15 +1,12 @@
-import { useState } from 'react';
-import { PieChart, Pie, Cell, Legend } from "recharts";
+import { PieChart, Pie, Cell, Legend } from 'recharts';
 
-const COLORS = ["#2a9d8f", "#e63946"];
+const COLORS = ['#0088FE', '#595959', '#FB8500'];
 
-export default function Gaugecart({ claimed, notClaimed }){
-    const [data, setData] = useState([
-        { name: "nombre de ticket assignés", value: claimed }, 
-        { name: "nombre de ticket non assignés", value: notClaimed }])
 
+export default function Gauge({ title, data }) {
     return (
-        <div style={styles.lot}>
+        <div style={styles.card}>
+            <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie
                     data={data}
@@ -23,26 +20,23 @@ export default function Gaugecart({ claimed, notClaimed }){
                     dataKey="value"
                 >
                     {data.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                     ))}
                 </Pie>
-                <Legend layout="vertical" verticalAlign="top" align="center" />
+                <Legend iconType="circle" fontWeight="bold" />
             </PieChart>
-        </div>     
+        </div>
     );
 }
 
 
 const styles = {
-    lot:{
-      display:"flex",
-      flexDirection:"column",
-      justifyContent:"center",
-      background: "#ffffff",
-      alignItems: "center",
-      margin: 10,
-      borderRadius:8,
-      padding:15,
-      color:"white"
-    }
+    card: {
+        color: "#023047",
+    },
+    title: {
+        fontSize: 25,
+        textAlign: "center",
+        color: "#003e1f",
+    },
 }

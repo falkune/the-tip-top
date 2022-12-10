@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 
 
-
 function CardSummary({ title, totalTicket, asignTicket, claimbedTicket, percentage, percentageGenerate }) {
   return (
     <Card style={styles.card}>

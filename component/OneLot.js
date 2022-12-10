@@ -29,7 +29,6 @@ const styles = {
   box: {
     display: 'flex',
     justifyContent: "space-between",
-    
   },
   card: {
     display: "flex",
@@ -55,7 +54,6 @@ const styles = {
   percentage: {
     fontSize: "1.3em",
     fontWeight: "bold",
-    // textAlign: "center",
     color: "#fb8500"
   },
   titre: {
