@@ -2,21 +2,21 @@ import { Card, CardContent, Typography } from "@material-ui/core";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPercent } from '@fortawesome/free-solid-svg-icons';
 
-function OneLot({ title, totalTicket, claimbedTicket, notClaimbedTicket, percentage }) {
+function OneLot({ title, totalTicket, limitTicket, claimbedTicket, claimbedTicketPercentage}) {
   return (
     <Card style={styles.card}>
       <Typography style={styles.title}>{title}</Typography>
       <CardContent style={styles.box}>
         <div>
           <p style={styles.titre}>Generate</p>
-          <Typography> <span style={styles.generate}>{totalTicket}</span> / {totalTicket}</Typography>
-          <Typography style={styles.percentage}>{(476 * 100 / totalTicket).toFixed(2)} <FontAwesomeIcon icon={faPercent}/></Typography>
+          <Typography> <span style={styles.generate}>{totalTicket}</span> / {limitTicket}</Typography>
+          <Typography style={styles.percentage}>{(totalTicket * 100 / limitTicket).toFixed(2)} <FontAwesomeIcon icon={faPercent}/></Typography>
         </div>
 
         <div>
           <p style={styles.titre}>Claimed</p>
-          <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {476}</Typography>
-          <Typography style={styles.percentage}>{(claimbedTicket * 100 / 476).toFixed(2)} <FontAwesomeIcon icon={faPercent} /></Typography>
+          <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {totalTicket}</Typography>
+          <Typography style={styles.percentage}>{claimbedTicketPercentage} <FontAwesomeIcon icon={faPercent} /></Typography>
         </div>
       </CardContent>
     </Card>

@@ -6,8 +6,8 @@ import {CardSummary} from './CardSummary';
 import AgeStat from './AgeStat';
 
 
-export default function ParticipationStat({ticket, idSession}) {
-  const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0);
+export default function ParticipationStat({asignTicket, limitTicket, idSession}) {
+  const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0)
   const context = useContext(ApiContext);
 
   useEffect(() => {
@@ -32,11 +32,11 @@ export default function ParticipationStat({ticket, idSession}) {
     <div style={styles.container}>
       <CardSummary
         title="stats global"
-        totalTicket={ticket} 
+        totalTicket={limitTicket}
+        asignTicket={asignTicket}
         claimbedTicket={numberOfClaimbedTicket}  
-        notClaimbedTicket={ticket - numberOfClaimbedTicket} 
-        percentage={numberOfClaimbedTicket * 100 / ticket}/>
-        <AgeStat/>
+        percentage={numberOfClaimbedTicket != 0 ? (numberOfClaimbedTicket * 100 / asignTicket).toFixed(2) : numberOfClaimbedTicket.toFixed(2)}/>
+        {/* <AgeStat/> */}
     </div>
   );
 }
