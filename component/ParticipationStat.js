@@ -3,10 +3,10 @@ import ApiContext from '../context/apiContext';
 import {notifier, refreshToken} from '../fonctions/utils';
 import {claimedTickeBySession} from '../fonctions/tickets';
 import {CardSummary} from './CardSummary';
-import AgeStat from './AgeStat';
+import PieGraph from './Piecharte';
 
 
-export default function ParticipationStat({asignTicket, limitTicket, idSession}) {
+export default function ParticipationStat({asignTicket, limitTicket, percentage, percentageGenerate, idSession}) {
   const [numberOfClaimbedTicket, setNumberOfClaimbedTicket] = useState(0)
   const context = useContext(ApiContext);
 
@@ -34,9 +34,9 @@ export default function ParticipationStat({asignTicket, limitTicket, idSession})
         title="stats global"
         totalTicket={limitTicket}
         asignTicket={asignTicket}
-        claimbedTicket={numberOfClaimbedTicket}  
-        percentage={numberOfClaimbedTicket != 0 ? (numberOfClaimbedTicket * 100 / asignTicket).toFixed(2) : numberOfClaimbedTicket.toFixed(2)}/>
-        {/* <AgeStat/> */}
+        claimbedTicket={numberOfClaimbedTicket}
+        percentage={percentage}
+        percentageGenerate={percentageGenerate}/>
     </div>
   );
 }

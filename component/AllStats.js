@@ -12,6 +12,8 @@ const AllStats = (props) => {
   const [limitTicket, setLimitTicket] = useState(0);
   const [numberDay, setNumberDay] = useState([]);
   const [asignTicket, setAsignTicket] = useState(0);
+  const [percentage, setPercentage] = useState(0);
+  const [percentageGenerate, setPercentageGenerate] = useState(0);
   const context = useContext(ApiContext);
 
   useEffect(() => {
@@ -33,13 +35,15 @@ const AllStats = (props) => {
     .then((response) => { 
       if(!response.statusCode){
         setAsignTicket(response.sessionStats.sessionTotalNumberOfTickets)
+        setPercentage(response.sessionStats.sessionTotalNumberOfTicketsPercentage);
+        setPercentageGenerate(response.sessionStats.sessionClaimbedTicketPercentage)
       }
     })
   }
 
   return (
     <div style={styles.stat}>
-      <ParticipationStat asignTicket={asignTicket} limitTicket={limitTicket} idSession={props.idSession}/>
+      <ParticipationStat asignTicket={asignTicket} limitTicket={limitTicket} percentage={percentage} percentageGenerate={percentageGenerate} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots idSession={props.idSession}/>
       <AgeStat/>

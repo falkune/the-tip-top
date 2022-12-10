@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from 'js-cookie';
-import Exemple  from "./LineChart";
+import LineGraph  from "./LineChart";
 import {notifier, refreshToken} from '../fonctions/utils';
 import { getRegistrationByDayBySession } from '../fonctions/users';
 
@@ -30,7 +30,7 @@ export default function StatInscription({ days,  idSession}) {
   return (
     <div style={styles.container}>
       <h3 style={{textAlign:"center", color: "#003e1f"}}>Nombre d'inscription par jour</h3>
-      <Exemple data={registration} width={Cookies.get('width')}/>
+      <LineGraph data={registration} width={Cookies.get('width')}/>
     </div>
   );
 }

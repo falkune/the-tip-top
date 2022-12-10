@@ -1,12 +1,11 @@
 import React, { useEffect, useState, useContext } from "react";
 import OneLot from "./OneLot";
 import ApiContext from '../context/apiContext';
-import LinearProgress from '@mui/material/LinearProgress';
 import {statLots} from '../fonctions/tickets';
-import {notifier} from '../fonctions/utils';
+import Gauge from './gauge';
+import PieGraph from './Piecharte';
 
 const StatsLots = ({ idSession }) => {
-  const [groupInfo, setGroupInfo] = useState([]);
   const [allGroup, setAllGroup] = useState([]);
   const context = useContext(ApiContext);
 
@@ -14,55 +13,53 @@ const StatsLots = ({ idSession }) => {
     if(idSession != ""){
       getStatLots(context, idSession);
     }
-    getAllGroup();
   },[idSession]);
 
   const getStatLots = (context, idSession) => {
     statLots(context, idSession)
     .then((response) => {
+      console.log(response)
       setAllGroup(response.groupStats);
     })
     .catch((error) => console.log(error))
   }
 
-  const getAllGroup = () => {
-    context.backend.api.groups.get('')
-    .then((response) => {
-      setGroupInfo(response);
-    })
-    .catch((error) => {
-      console.log(error)
-    })
-  }
-
-  if(groupInfo.length != 0){
-    return (
+  return (
+    <div>
       <div style={styles.lot}>
         { 
           allGroup.map((l,index)=> (
             <OneLot
               key={index}
-              title={groupInfo.find(item => item._id == l._id).description}
+              title={l.groupName}
               totalTicket={l.numberOfTickets} 
               claimbedTicket={l.claimbedTicket}  
               limitTicket={l.limitTicket}
               claimbedTicketPercentage={l.claimbedTicketPercentage}
               notClaimbedTicket={l.notClaimbedTicket} 
-              percentage={(l.claimbedTicket * 100) / (l.claimbedTicket+l.notClaimbedTicket)}/>
+              numberOfTicketsPercentage={l.numberOfTicketsPercentage}/>
           ))
         }
       </div>
-    )
-  }else{
-    return(
-      <>
-        <LinearProgress color="secondary" style={{margin: 10}}/>
-        <LinearProgress color="success" style={{margin: 10}}/>
-        <LinearProgress color="inherit" style={{margin: 10}}/>
-      </>
-    )
-  }
-   
+
+      <div style={styles.pieBloc}>
+        { 
+          allGroup.map((l,index)=> (
+            <Gauge title={l.groupName} data={[{name: 'Tickets generés', value: l.numberOfTickets},{name: 'Tickets assignés', value: l.claimbedTicket},{name: 'Tickets livrés', value: l.deliveredTicket}]}/>
+          ))
+        }
+      </div>
+
+      <div style={styles.pieBloc}>
+        { 
+          allGroup.map((l,index)=> (
+            <PieGraph title={l.groupName} data={[{ name: 'Tickets generés', value: l.numberOfTickets },{ name: 'Tickets assignés', value: l.claimbedTicket },{ name: 'Tickets livrés', value: l.deliveredTicket }]}/>
+          ))
+        }
+      </div>
+    </div>
+
+  )
 }
 export default StatsLots;
 
@@ -73,6 +70,15 @@ const styles = {
     flexDirection: "row",
     justifyContent: "space-around",
     flexWrap: "wrap",
-    margin: 10
+    margin: 10,
   },
+  pieBloc:{
+    width: "100%",
+    display: "flex",
+    justifyContent:"space-around",
+    margin: "20px 10px",
+    flexWrap: "wrap",
+    // backgroundColor: "#FFFFFF",
+    // boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
+  }
 };
