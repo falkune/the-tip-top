@@ -90,7 +90,7 @@ export default function Stats() {
         </Head>
         <Header changemenu={changemenu} stylez={stylez} menu={menu} />
   
-        <div style={{ display: "flex", width: "100%", background: "#c7c7c7" }}>
+        <div style={{ display: "flex", width: "100%",background: "#c7c7c7" }}>
           {width > 850 && (
             <div style={stylez.side}>
               <h2 style={{ color: "white", textAlign: "center" }}>Dashboard</h2>
@@ -265,14 +265,15 @@ const stylez = {
   },
   stat: {
     backgroundColor: "#c7c7c7",
-    paddingTop:125,
     padding: 25,
+    paddingTop:125,
     width: "85%",
   },
 
   fullStat: {
-    backgroundColor: "#F1F1F1",
+    backgroundColor: "white",
     padding: 25,
+    paddingTop: 125,
     width: "100%",
   },
 

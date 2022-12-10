@@ -53,12 +53,15 @@ const Header = ({ menu, changemenu }) => {
           height: "100%",
           position: "relative",
           display: "flex",
+          alignItems:"center",
           padding: 15,
           justifyContent: "space-between",
         }}
       >
         <Link href="/">
+          <span style={{width:56,height:56}}>
           <Image src='/logo.png' width={56} height={56} alt="logo" />
+          </span>
         </Link>
         {width > 850 ? (
           <nav>

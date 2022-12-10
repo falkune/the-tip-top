@@ -175,7 +175,7 @@ export default function Connexion() {
                 fontWeight: "bold",
                 color: "#437BFF",
                 height: 60,
-                boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
+                boxShadow: "0px 0px 6px 8px rgba(0,0,0,0.14)",
               }}
               onClick={googleLogin}
             >
