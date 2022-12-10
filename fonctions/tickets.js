@@ -79,4 +79,12 @@ const generateTicketApi = async (context, idSession) => {
     })
 }
 
-export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot};
+
+const statLots = async (context, idSession) => {
+    return new Promise((resolve, reject) => {
+        context.backend.api.tickets.get('get-ticket-stats/'+idSession)
+        .then((response) => resolve(response))
+        .catch((error) => reject(error))
+    })
+}
+export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot,statLots};
