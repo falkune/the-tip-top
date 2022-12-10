@@ -1,23 +1,26 @@
 import React, { useEffect, useState, useContext } from "react";
 import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
-import AgeStat from './AgeStat';
 import ParticipationStat from './ParticipationStat';
 import ApiContext from '../context/apiContext';
 import { getDaysBetweenTwoDates } from "../fonctions/utils";
 import { getSessionDetails } from '../fonctions/sessions';
+import {statLots} from '../fonctions/tickets';
+import AgeStat from './AgeStat';
 
 const AllStats = (props) => {
   const [limitTicket, setLimitTicket] = useState(0);
   const [numberDay, setNumberDay] = useState([]);
+  const [asignTicket, setAsignTicket] = useState(0);
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    getDetailsSession(props.idSession);
+    setAsignTicket(0)
+    getAsignTicket(context, props.idSession);
+    getDetailsSession(context, props.idSession);
   },[props.idSession])
 
-
-  const getDetailsSession = (idSession) => {
+  const getDetailsSession = (context, idSession) => {
     getSessionDetails(context, idSession)
     .then((response) => {
       setLimitTicket(response.limitTicket)
@@ -25,12 +28,21 @@ const AllStats = (props) => {
     })
   }
 
+  const getAsignTicket = (context, idSession) => {
+    statLots(context, idSession)
+    .then((response) => { 
+      if(!response.statusCode){
+        setAsignTicket(response.sessionStats.sessionTotalNumberOfTickets)
+      }
+    })
+  }
+
   return (
     <div style={styles.stat}>
-      <ParticipationStat ticket={limitTicket} idSession={props.idSession}/>
+      <ParticipationStat asignTicket={asignTicket} limitTicket={limitTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession}/>
       <StatsLots idSession={props.idSession}/>
-      {/* <AgeStat/> */}
+      <AgeStat/>
     </div>
   )
 }

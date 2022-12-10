@@ -48,14 +48,8 @@ const verifyLot = async (context, ticketNumber) => {
 
     return new Promise((resolve, reject) => {
         context.backend.auth.tickets.post('verify-ticket',{ticketNumber:ticketNumber})
-            .then((response) => {
-                resolve(response);
-                console.log("reponse",response)
-
-            })
-            .catch((error) => {
-                reject(error)
-            });
+            .then((response) => resolve(response))
+            .catch((error) => reject(error));
     })
 };
 
@@ -85,4 +79,12 @@ const generateTicketApi = async (context, idSession) => {
     })
 }
 
-export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot};
+
+const statLots = async (context, idSession) => {
+    return new Promise((resolve, reject) => {
+        context.backend.api.tickets.get('get-ticket-stats/'+idSession)
+        .then((response) => resolve(response))
+        .catch((error) => reject(error))
+    })
+}
+export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot,statLots};
