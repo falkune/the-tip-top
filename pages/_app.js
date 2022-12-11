@@ -1,5 +1,5 @@
 import "../styles/globals.css";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
@@ -37,7 +37,7 @@ function MyApp({ Component, pageProps }) {
   <Script 
       id='GoogleS'
 
-  strategy="lazyOnload">
+      strategy="lazyOnload">
     {`
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
