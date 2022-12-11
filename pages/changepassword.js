@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
@@ -41,7 +40,7 @@ export default function Changepassword() {
                         className={styles.log}
                         style={{ borderBottom: "solid 1px #D2D2D2" }}
                     >
-                        <h1 className={styles.h1} style={{ fontSize: 25 }}>
+                        <h1 className="h1" style={{ fontSize: 25 }}>
                             Modification de mot de passe
                         </h1>
                         <input

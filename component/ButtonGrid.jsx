@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Image from "next/image";
 import { verifyLot } from "../fonctions/tickets";
@@ -72,11 +72,11 @@ const VerifyTicket = async (n) => {
             textAlign: "center" }} >
               
           <h2 style={{ color: " #38870D", marginBottom: 0 }}> {lot} </h2>
-          { lot === "Coffret 69 euros" && <Image src={tea1} /> }
-          { lot === "Coffret 39 euros" && <Image src={tea2} /> }
-          { lot === "thé signature" && <Image src={tea3} /> }
-          { lot === "Infuseur à thé" && <Image src={tea4} /> }
-          { lot === "100g thé detox" && <Image src={tea5} /> }
+          { lot === "Coffret 69 euros" && <Image src={tea1} alt ="Coffret Tea" /> }
+          { lot === "Coffret 39 euros" && <Image src={tea2} alt ="Coffret Tea" /> }
+          { lot === "thé signature" && <Image src={tea3} alt ="Coffret Tea"/> }
+          { lot === "Infuseur à thé" && <Image src={tea4} alt ="Coffret Tea" /> }
+          { lot === "100g thé detox" && <Image src={tea5} alt ="Coffret Tea" /> }
        { props.data.isDelivred ? <p style={{fontWeight:"bold",marginTop:15}}> Vous pouvez aller <br>
           </br>le chercher en magasin</p> :<p>Lot délivré</p> }
          

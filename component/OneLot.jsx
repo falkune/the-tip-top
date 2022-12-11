@@ -33,11 +33,11 @@ const styles = {
   card: {
     display: "flex",
     minWidth: 200,
-    width: 340,
-    height: 200,
+    width: 320,
     flexDirection: "column",
-    padding: "30px 25px",
-    marginTop: 20
+    padding: 25,
+    borderRadius:15,
+    margin: 5
   },
   title: {
     fontSize: '1.2em',

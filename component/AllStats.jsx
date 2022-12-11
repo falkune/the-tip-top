@@ -55,6 +55,5 @@ export default AllStats;
 const styles = {
   stat:{
     background:"none",
-    padding:25
   }
 }

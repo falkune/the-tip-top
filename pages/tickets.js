@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from "js-cookie";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+;
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import ButtonGrid from "../component/ButtonGrid";
@@ -105,7 +105,7 @@ export default function Tickets() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header menu="tickets"/>
-        <h1 className={styles.h1}>Mes tickets</h1>
+        <h1 className="h1">Mes tickets</h1>
         <p style={{ fontSize: 18, color: "grey" }}>
           Vous avez{" "}
           <strong style={{ color: " #38870D" }}>{number} </strong>

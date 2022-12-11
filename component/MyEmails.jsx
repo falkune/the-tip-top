@@ -1,9 +1,9 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
-import Email from "../component/Email"
+import Email from "./Email"
 import arrow from "../image/topArrow.png"
-import { users } from "../component/Data"
+import { users } from "./Data"
 
 export default function MyEmails() {
 

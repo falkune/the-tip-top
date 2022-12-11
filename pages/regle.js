@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
 import ticket from "../image/ticket.gif";
@@ -32,7 +31,7 @@ export default function regle() {
       </Head>
       <Header menu="regle"/>
       <section
-className={styles.part}
+className="part"
 style={{
   color: " #38870D",
   padding: 0,
@@ -40,7 +39,7 @@ style={{
 >
 <div style={{ padding: 50, background: " #38870D", width: "100%" }}>
   <h2
-    className={styles.h2}
+    className="h2"
     style={{
       color: "white",
       marginBottom: 0,

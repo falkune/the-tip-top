@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Count from "../component/Countdown";
@@ -47,7 +46,7 @@ export default function Jeux() {
       </Head>
       <Header menu="jeux" />
       <section
-        className={styles.block}
+        className="block"
         style={{ borderBottom: "solid 1px white" }}
       >
         <div
@@ -68,7 +67,7 @@ export default function Jeux() {
                     <>
                     <ClipLoader color={"white"} loading={true} size={100} />
 
-        <h1 className={styles.h1} style={{ color: "white" }}>
+        <h1 className="h1" style={{ color: "white" }}>
           Grand jeux concour
         </h1>
         <p style={{ fontSize: 20, color: "white" }}>
@@ -101,7 +100,7 @@ export default function Jeux() {
               }}
           >
           <h2
-            className={styles.h2}
+            className="h2"
             style={{
               fontSize: 30,
               padding: 15,

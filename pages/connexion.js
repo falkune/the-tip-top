@@ -4,6 +4,7 @@ import Image from "next/image";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
+import ClipLoader from "react-spinners/ClipLoader";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
@@ -14,6 +15,7 @@ import Link from "next/link";
 
 export default function Connexion() {
   const [email, setEmail] = useState("");
+  const [load, setLoad] = useState(false);
   const [password, setPassword] = useState("");
   const context = useContext(ApiContext);
   const [resetPassword, setResetPassword] = useState(false);
@@ -21,6 +23,7 @@ export default function Connexion() {
 
   const router = useRouter();
   const connexion = async () => {
+    setLoad(true)
     let user = await login(context, email, password)
     if (user.statusCode) {
       if (Array.isArray(user.message)) {
@@ -43,6 +46,7 @@ export default function Connexion() {
   };
 
   const facebookLogin = async () => {
+    setLoad(true)
     let user = await facebookLoginRegister(context)
     if (user.statusCode) {
       if (Array.isArray(user.message)) {
@@ -61,6 +65,7 @@ export default function Connexion() {
   }
 
   const googleLogin = async () => {
+    setLoad(true)
     let user = await googleLoginRegister(context)
     
     if (user.statusCode) {
@@ -133,11 +138,12 @@ export default function Connexion() {
               />
             )}
 
-            <button
-              className="action"
-              onClick={e => valider(e)}>
-              {btnText = resetPassword ? "Changer de mot de passe" : "Connexion"}
-            </button>
+           {!load?
+                 <button
+                 className="action"
+                 onClick={e => valider(e)}>
+                 {btnText = resetPassword ? "Changer de mot de passe" : "Connexion"}
+               </button>  : <ClipLoader color={" #38870D"} loading={true} size={70} />} 
           </form>
           {!resetPassword && (
             <div>

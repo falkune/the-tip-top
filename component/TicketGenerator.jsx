@@ -1,7 +1,6 @@
 import React, { useEffect, useState ,useContext} from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
-import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import { generateTicketApi } from "../fonctions/tickets";
 import { refreshToken, notifier } from "../fonctions/utils";
@@ -129,6 +128,7 @@ export default function TicketGenerator({ session_id }) {
         style={{
           display: "flex",
           background: "white",
+          borderRadius:15,
           alignItems: "center",
           justifyContent: "center",
           marginTop: 30,
@@ -152,7 +152,7 @@ export default function TicketGenerator({ session_id }) {
                     textAlign: "center",
                   }}>
             <div>
-              <h2 >Générateur de ticket</h2>
+              <h2 className="h2" >Générateur de ticket</h2>
               <button onClick={generateTicket} className="action">
                 Générer un ticket
               </button>

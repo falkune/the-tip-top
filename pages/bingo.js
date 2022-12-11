@@ -2,22 +2,17 @@ import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import gift from "../image/win.gif"
-import 'nextjs-breadcrumbs/dist/index.css'
 import Cookies from "js-cookie";
-import "animate.css";
 import { verifTicketApi } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
-import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import "animate.css";
 import { notifier ,refreshToken} from "../fonctions/utils";
-import dayjs from "dayjs";
+import 'nextjs-breadcrumbs/dist/index.css'
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -55,7 +50,6 @@ export default function Bingo() {
  };
 
   const getCurrent = async () => {
-    console.log("getcurrent")
     let sessions = context.backend.api.sessions.get('get-current-session', {
       Accept: "Application/json",
       "Content-Type": "application/json",
@@ -65,6 +59,8 @@ export default function Bingo() {
         console.log("vrai", response)
       }else{
         setCurrent(response[0]._id);
+        console.log("good", response)
+        // console.log(Cookies.get(""))
         Cookies.set('currentStart',response[0].startDate)
         Cookies.set('currentEnd',response[0].endDate)
       }
@@ -102,7 +98,7 @@ export default function Bingo() {
      padding:30,
      borderRadius:20
      }} >
-          <h1 className={styles.h1}>Bingo ticket</h1>
+          <h1 className="h1">Bingo ticket</h1>
         
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
           <form  target="#" style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>

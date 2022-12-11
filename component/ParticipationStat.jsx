@@ -46,6 +46,5 @@ const styles = {
     display: 'flex',
     justifyContent: "space-around",
     flexWrap: "wrap",
-    margin: 20,
   }
 }

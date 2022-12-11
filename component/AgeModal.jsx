@@ -1,5 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
-import styles from '../styles/Home.module.css';
+import React from "react"
 import Modal from '@mui/material/Modal';
 
 export default function AgeModal({numAge,giveAge,closeAge,handlechange, showHide}) {
@@ -8,7 +7,7 @@ export default function AgeModal({numAge,giveAge,closeAge,handlechange, showHide
     <div style={{display : showHideClassName ? "flex" : "none"}}>
         <Modal  open={giveAge}
                 onClose={closeAge} >
-            <div className={styles.modal}>
+            <div className="modal">
                 <h2 style={{marginBottom:5,fontSize:28}}>Votre age</h2>
                 <p>Pour participer au jeu, nous avons besoin de votre age </p>
                 <input style={{padding:10,width:"90%",height:50}}

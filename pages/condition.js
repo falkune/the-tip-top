@@ -13,8 +13,8 @@ export default function Conditions() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <section className={styles.part}>
-        <h1 className={styles.h1}>Mention légales</h1>
+      <section className="part">
+        <h1 className="h1">Mention légales</h1>
         <p>
         POLITIQUE DE CONFIDENTIALITE DES DONNEES DU SITE 
 

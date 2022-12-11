@@ -5,8 +5,7 @@ const Ticket = () => {
     
   return (
     <div style={styles.load}>   
-     {/* <ClipLoader color={"white"} loading={true}  size={250} /> */}
-     <div className="lds-hourglass"></div>
+     <ClipLoader color={"white"} loading={true}  size={250} />
     </div>
   )
 }

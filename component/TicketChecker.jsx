@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
-import styles from "../styles/Home.module.css";
 import ClipLoader from "react-spinners/ClipLoader";
 import clipboard from "../image/clipboard.png";
 import { checkTicketApi,delivredLot } from "../fonctions/tickets";
@@ -79,6 +78,7 @@ export default function TicketChecker({ session }) {
           height: 500,
           maxWidth:400,
           marginTop: 25,
+          borderRadius:15,
           backgroundColor:'white'
         }}
       >
@@ -98,10 +98,10 @@ export default function TicketChecker({ session }) {
           <ClipLoader color={" #38870D"} loading={true} size={100} /> :
           <> 
           <img src={clipboard} alt="" />
-            <h2 className={styles.h2}>Vérification du ticket</h2>
+            <h2 className="h2">Vérification du ticket</h2>
             <input
               onChange={UpdateInput}
-              className={styles.input}
+              className="input"
               maxLength={10}
               value={input}
               type="number"

@@ -266,14 +266,14 @@ const stylez = {
   stat: {
     backgroundColor: "#c7c7c7",
     padding: 25,
-    paddingTop:125,
+    paddingTop:120,
     width: "85%",
   },
 
   fullStat: {
     backgroundColor: "white",
     padding: 25,
-    paddingTop: 125,
+    paddingTop: 100,
     width: "100%",
   },
 

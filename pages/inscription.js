@@ -1,7 +1,6 @@
 import React, { useState,useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Link from "next/link"; 
@@ -147,7 +146,7 @@ export default function Inscription() {
         <Header />
         <section className="login animate__animated animate__fadeInUp">
           <form
-            className={styles.part}
+            className="part"
             style={{ borderBottom: "solid 1px #D2D2D2" }}
             onSubmit={(e) => inscription(e)}
           >

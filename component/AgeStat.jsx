@@ -49,7 +49,7 @@ const AgeStat = () => {
     <div style={styles.bloc}>
       <h3 style={{textAlign:"center", color: "#003e1f"}}>Statistique age</h3>
       <BarChart
-        width={500}
+        width={300}
         height={300}
         data={data}
         margin={{

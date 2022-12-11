@@ -34,6 +34,7 @@ const styles = {
   card: {
     display: "flex",
     minWidth: 400,
+    borderRadius:15,
     width: "100%",
     color: "#023047",
     flexDirection: "column",

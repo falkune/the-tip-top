@@ -1,7 +1,6 @@
 import React, { useEffect, useState ,useContext} from "react";
 import ApiContext from '../context/apiContext';
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import arrow from "../image/topArrow.png";
 import { DataGrid } from "@mui/x-data-grid";
 import CsvDownloader from 'react-csv-downloader';
@@ -66,10 +65,11 @@ export default function Users({ idSession }) {
         display: "flex",
         flexDirection: "column",
         backgroundColor: "white",
+        borderRadius:15,
         alignItems: "center",
       }}
     >
-      <h1 className={styles.h1}>Utilisateurs</h1>
+      <h1 className="h1">Utilisateurs</h1>
       <p style={{ fontSize: 18, color: "grey" }}>
         <strong style={{ color: " #38870D" }}>{number} </strong>
         {`Utilisateur`}

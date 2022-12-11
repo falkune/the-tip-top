@@ -1,6 +1,4 @@
 import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
 
@@ -13,8 +11,8 @@ export default function Politique() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header/>
-      <section className={styles.part}>
-        <h1 className={styles.h1}>Politique de confidentialié</h1>
+      <section className="part">
+        <h1 className="h1">Politique de confidentialié</h1>
       </section>
 
       <Footer/>

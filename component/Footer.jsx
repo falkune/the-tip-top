@@ -52,8 +52,8 @@ const Footer = () => {
                      <form style={styles.form}>
                         <h3>Newsletter</h3>
                         <small>Suivre notre actualité</small>
-                        <input style={styles.input} placeholder="Nom" type="text"/>
-                        <input style={styles.input} placeholder="Email" type="email"/>
+                        <input style="input" placeholder="Nom" type="text"/>
+                        <input style="input" placeholder="Email" type="email"/>
                         <button style={styles.button}>S'inscrire</button>
                      </form>
                 </div>

@@ -68,15 +68,15 @@ const styles = {
     display: "flex",
     width: "100%",
     flexDirection: "row",
-    justifyContent: "space-around",
+    borderRadius:15,
     flexWrap: "wrap",
     margin: 10,
   },
   pieBloc:{
     width: "100%",
     display: "flex",
-    justifyContent:"space-around",
-    margin: "20px 10px",
+    margin: 20,
+    borderRadius:15,
     flexWrap: "wrap",
     // backgroundColor: "#FFFFFF",
     // boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
