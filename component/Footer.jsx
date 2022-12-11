@@ -28,7 +28,7 @@ const Footer = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
-        <div style={styles.footer}>
+        <footer style={styles.footer}>
             <button onClick={handleOpen}>
                 S'inscrire à la newsletter
             </button>
@@ -59,7 +59,7 @@ const Footer = () => {
                 </div>
             </Modal>
 
-        </div>
+        </footer>
     )
 }
 
