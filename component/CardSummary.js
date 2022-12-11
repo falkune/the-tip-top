@@ -1,23 +1,19 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPercent } from '@fortawesome/free-solid-svg-icons';
 
 
-function CardSummary({ title, totalTicket, asignTicket, claimbedTicket, percentage, percentageGenerate }) {
+function CardSummary({ title, totalInscrit, totalDay }) {
   return (
     <Card style={styles.card}>
       <Typography style={styles.title}>{title}</Typography>
       <CardContent style={styles.box}>
         <div>
-          <p style={styles.titre}>Generate ticket</p>
-          <Typography> <span style={styles.generate}>{asignTicket}</span> / {totalTicket}</Typography>
-          {/* <Typography style={styles.percentage}>{percentage} <FontAwesomeIcon icon={faPercent} /></Typography> */}
+          <p style={styles.titre}>Total</p>
+          <Typography style={styles.total}>{totalInscrit}</Typography>
         </div>
 
         <div>
-          <p style={styles.titre}>Claimed ticket</p>
-          <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {asignTicket}</Typography>
-          {/* <Typography style={styles.percentage}>{percentageGenerate} <FontAwesomeIcon icon={faPercent} /></Typography> */}
+          <p style={styles.titre}>Aujourd'hui</p>
+          <Typography style={styles.today}>{totalDay}</Typography>
         </div>
       </CardContent>
     </Card>
@@ -30,33 +26,40 @@ const styles = {
   box: {
     display: 'flex',
     justifyContent: "space-around",
+    flexWrap: "wrap",
   },
   card: {
     display: "flex",
-    minWidth: 400,
-    width: "100%",
-    color: "#023047",
+    width: "45%",
+    minWidth: 300,
+    height: 400,
     flexDirection: "column",
-    padding: "40px 20px",
+    padding: "50px 20px",
     margin: "10px 0" ,
+    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
+    borderRadius: 15
   },
   title: {
-    fontSize: 25,
+    height: 10,
+    fontWeight: "bold",
     textAlign: "center",
     color: "#003e1f",
   },
   total: {
-    fontSize: 15,
-    textAlign: 'center'
-  },
-  claimed: {
-    fontSize: 30,
-    textAlign: "center",
-  },
-  generate: {
+    fontWeight: "bold",
     fontSize: "4em",
     textAlign: 'center',
-    color: "#38870D"
+    color: "#0b5d1e"
+  },
+  claimed: {
+    fontSize: 15,
+    textAlign: "center",
+  },
+  today: {
+    fontSize: "4em",
+    fontWeight: "bold",
+    textAlign: 'center',
+    color: "#b16f6f"
   },
   percentage: {
     fontSize: "1.4em",
@@ -64,6 +67,6 @@ const styles = {
     color: "#fb8500"
   },
   titre: {
-    fontSize: "1em",
+    fontSize: "1.4em",
   }
 }

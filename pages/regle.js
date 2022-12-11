@@ -7,11 +7,22 @@ import ticket from "../image/ticket.gif";
 import store from "../image/store.gif";
 import keyboard from "../image/keyboard.gif";
 import login from "../image/login.gif";
-import magasin from "../image/magasin.jpg";
+import { useRouter } from "next/router";
+import Cookies from 'js-cookie'
 
 
 
 export default function regle() {
+  const router = useRouter();
+
+  const goGame = () =>{
+    if(!Cookies.get('role')) {
+      router.push("/connexion");
+    }
+    else{
+      router.push("/bingo");
+    }
+  }
   return (
     <div className="container">
       <Head>
@@ -96,7 +107,7 @@ style={{
     </span>
   </div>
 
-  <div style={{ paddingTop: 30, background: " #38870D" }}>
+  <div style={{ paddingTop: 30, background: " #38870D" ,display:"flex",alignItems:"center",flexDirection:"column"}}>
     <strong style={{ fontSize: 50, color: "white" }}>4</strong>
     <h3 style={{ color: "white",fontSize:"1.8em" }}>
       Aller chercher votre lot en magasin
@@ -106,9 +117,21 @@ style={{
       </br> rendez-vous dans n'importe quelle magasin <br></br>
       Tiptop pour venir votre lot auprès d'un de nos vendeur.
     </p>
-    <span style={{ width: 250 }}>
+    <div style={{ width: 250,display:"flex",justifyContent:"center" }}>
       <Image src={store} height={250} width={250} alt="logo" />
-    </span>
+    </div>
+
+   <button onClick={goGame} 
+   style={{width:150,
+    fontSize:17,
+    fontWeight:"bold",
+    height:150,
+    borderRadius:"100%",
+    border:"none",
+    margin:50}}>
+    Commencer
+    </button>
+
   </div>
 </div>
 </section>

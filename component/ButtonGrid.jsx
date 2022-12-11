@@ -3,6 +3,7 @@ import Modal from "@mui/material/Modal";
 import Image from "next/image";
 import { verifyLot } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
+import { isSessionFinished } from "../fonctions/utils";
 import tea1 from "../image/tea1.png";
 import tea2 from "../image/tea2.png";
 import tea3 from "../image/tea3.png";
@@ -16,6 +17,7 @@ const ButtonGrid = (props) => {
   const context = useContext(ApiContext)
   const [lot,setLot] = useState(false);
   const [open,setOpen] = useState(false);
+  const [isFinished, setIsFinished] = useState(isSessionFinished())
 
 
 const VerifyTicket = async (n) => {
@@ -40,7 +42,10 @@ const VerifyTicket = async (n) => {
     }
     
   return (
+  
      <span>
+     { isFinished ? <>
+   
           {<button style={styles.button} onClick={() => buttonClicked()}>Voir le lot </button>} 
           <Modal
         open={open}
@@ -72,8 +77,10 @@ const VerifyTicket = async (n) => {
           { lot === "thé signature" && <Image src={tea3} /> }
           { lot === "Infuseur à thé" && <Image src={tea4} /> }
           { lot === "100g thé detox" && <Image src={tea5} /> }
-          <p style={{fontWeight:"bold",marginTop:15}}> Vous pouvez aller <br>
-          </br>le chercher en magasin</p>
+       { props.data.isDelivred ? <p style={{fontWeight:"bold",marginTop:15}}> Vous pouvez aller <br>
+          </br>le chercher en magasin</p> :<p>Lot délivré</p> }
+         
+  
           <button
             onClick={handleClose}
             style={{
@@ -89,6 +96,8 @@ const VerifyTicket = async (n) => {
           </button>
         </div>
       </Modal>
+      </> : <p style={{margin:0}}>Bientot disponible</p>
+      }
     </span>
   );
 };

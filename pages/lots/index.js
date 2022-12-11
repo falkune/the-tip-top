@@ -64,7 +64,6 @@ export default function lots() {
       display:"flex",
       width:"100%",
       flexWrap:"wrap",
-      maxWidth:960,
       paddingBottom: 50,
         minHeight:"100vh" }}>
         {gift.map((g,i) => (
