@@ -1,22 +1,18 @@
 import { Card, CardContent, Typography } from "@material-ui/core";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPercent } from '@fortawesome/free-solid-svg-icons';
 
-function OneLot({ title, totalTicket, limitTicket, claimbedTicket, claimbedTicketPercentage, numberOfTicketsPercentage}) {
+function OneLot({ title, totalTicket, limitTicket, claimbedTicket}) {
   return (
     <Card style={styles.card}>
       <Typography style={styles.title}>{title}</Typography>
       <CardContent style={styles.box}>
         <div>
-          <p style={styles.titre}>Generate</p>
-          <Typography> <span style={styles.generate}>{totalTicket}</span> / {limitTicket}</Typography>
-          {/* <Typography style={styles.percentage}>{numberOfTicketsPercentage} <FontAwesomeIcon icon={faPercent}/></Typography> */}
+          <p style={styles.titre}>Tickets générés</p>
+          <Typography > <span style={styles.generate}>{totalTicket}</span> / {limitTicket}</Typography>
         </div>
 
         <div>
-          <p style={styles.titre}>Claimed</p>
+          <p style={styles.titre}>Tickets assignés</p>
           <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {totalTicket}</Typography>
-          {/* <Typography style={styles.percentage}>{claimbedTicketPercentage} <FontAwesomeIcon icon={faPercent} /></Typography> */}
         </div>
       </CardContent>
     </Card>
@@ -32,24 +28,24 @@ const styles = {
   },
   card: {
     display: "flex",
-    minWidth: 200,
-    width: 340,
-    height: 200,
+    width: 300,
+    height: 130,
     flexDirection: "column",
-    padding: "30px 25px",
-    marginTop: 20
+    padding: "10px 15px",
+    margin:'10px 0',
+    borderRadius: 15
   },
   title: {
-    fontSize: '1.2em',
+    height: 10,
     fontWeight: "bold",
     textAlign: "center",
-    color: "#003e1f",
+    color: "#212529",
   },
   generate: {
     fontSize: "2.5em",
     fontWeight: "bold",
     textAlign: 'center',
-    color: "#38870D"
+    color: "#f15152"
   },
   percentage: {
     fontSize: "1.3em",
@@ -57,8 +53,7 @@ const styles = {
     color: "#fb8500"
   },
   titre: {
-    fontSize: "1em",
-    fontWeight: "bold",
-    color: "#003e1f"
+    fontSize: "0.7em",
+    color: "#212529"
   }
 }

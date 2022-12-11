@@ -18,7 +18,6 @@ const StatsLots = ({ idSession }) => {
   const getStatLots = (context, idSession) => {
     statLots(context, idSession)
     .then((response) => {
-      console.log(response)
       setAllGroup(response.groupStats);
     })
     .catch((error) => console.log(error))
@@ -34,10 +33,7 @@ const StatsLots = ({ idSession }) => {
               title={l.groupName}
               totalTicket={l.numberOfTickets} 
               claimbedTicket={l.claimbedTicket}  
-              limitTicket={l.limitTicket}
-              claimbedTicketPercentage={l.claimbedTicketPercentage}
-              notClaimbedTicket={l.notClaimbedTicket} 
-              numberOfTicketsPercentage={l.numberOfTicketsPercentage}/>
+              limitTicket={l.limitTicket}/>
           ))
         }
       </div>
@@ -71,6 +67,7 @@ const styles = {
     justifyContent: "space-around",
     flexWrap: "wrap",
     margin: 10,
+    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
   },
   pieBloc:{
     width: "100%",
@@ -78,7 +75,6 @@ const styles = {
     justifyContent:"space-around",
     margin: "20px 10px",
     flexWrap: "wrap",
-    // backgroundColor: "#FFFFFF",
-    // boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
+    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)"
   }
 };

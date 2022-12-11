@@ -9,15 +9,12 @@ import { statLots } from '../fonctions/tickets';
 import AgeStat from './AgeStat';
 
 const AllStats = (props) => {
-  const [limitTicket, setLimitTicket] = useState(0);
   const [numberDay, setNumberDay] = useState([]);
-  const [asignTicket, setAsignTicket] = useState(0);
-  const [percentage, setPercentage] = useState(0);
-  const [percentageGenerate, setPercentageGenerate] = useState(0);
+  const [claimbedTicket, setClaimbedTicket] = useState(0)
+  const [deliveredTicket, setDeliveredTicket] = useState(0)
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    setAsignTicket(0)
     getAsignTicket(context, props.idSession);
     getDetailsSession(context, props.idSession);
   }, [props.idSession])
@@ -25,7 +22,6 @@ const AllStats = (props) => {
   const getDetailsSession = (context, idSession) => {
     getSessionDetails(context, idSession)
       .then((response) => {
-        setLimitTicket(response.limitTicket)
         setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
       })
   }
@@ -34,19 +30,18 @@ const AllStats = (props) => {
     statLots(context, idSession)
       .then((response) => {
         if (!response.statusCode) {
-          setAsignTicket(response.sessionStats.sessionTotalNumberOfTickets)
-          setPercentage(response.sessionStats.sessionTotalNumberOfTicketsPercentage);
-          setPercentageGenerate(response.sessionStats.sessionClaimbedTicketPercentage)
+          console.log(response)
+          setClaimbedTicket(response.sessionStats.sessionTotalClaimbedTicket)
+          setDeliveredTicket(response.sessionStats.sessionTotalDeliveredTicket)
         }
       })
   }
 
   return (
     <div style={styles.stat}>
-      <ParticipationStat asignTicket={asignTicket} limitTicket={limitTicket} percentage={percentage} percentageGenerate={percentageGenerate} idSession={props.idSession} />
+      <ParticipationStat claimbedTicket={claimbedTicket} deliveredTicket={deliveredTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession} />
       <StatsLots idSession={props.idSession} />
-      <AgeStat />
     </div>
   )
 }
