@@ -1,5 +1,5 @@
-import "../styles/globals.css";
 import React, { useState, useEffect } from "react";
+import "../styles/globals.css";
 import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
 import Cookies from 'js-cookie';
