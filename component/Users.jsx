@@ -45,12 +45,10 @@ export default function Users({ idSession }) {
         context.backend.auth.users.post('users-by-session',{idSession:idSession}).then((value) =>
       {   
       setUserz(value)
-      console.log(value)
       value.forEach(el => {
         el.birthday = dayjs(el.updatedAt).format(" DD/MM/YYYY ")
         el.userLocation = el.userLocation.city
       }); 
-      console.log(value)
     } 
      )
     } catch (e) {
