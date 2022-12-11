@@ -11,7 +11,7 @@ import Cookies from 'js-cookie'
 
 
 
-export default function regle() {
+export default function Regle() {
   const router = useRouter();
 
   const goGame = () =>{

@@ -1,36 +1,23 @@
 
 import { PieChart, Pie, Cell, Legend } from 'recharts';
+const COLORS = ['#d04142', '#053b06'];
 
-
-const COLORS = ['#197278', '#0091ad', '#c8553d'];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
-    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-    const x = cx + radius * Math.cos(-midAngle * RADIAN);
-    const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
+export default function HalfPie({title, data}) {
     return (
-        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
-            {`${(percent * 100).toFixed(0)}%`}
-        </text>
-    );
-};
-
-export default function PieGraph({ title, data }) {
-
-    return (
-        <div style={styles.card} width="100%" height="100%">
+        <div style={styles.card} width="100%">
             <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie
                     data={data}
                     cx={150}
                     cy={150}
-                    labelLine={false}
-                    label={renderCustomizedLabel}
+                    startAngle={180}
+                    endAngle={0}
+                    label
+                    innerRadius={60}
                     outerRadius={80}
                     fill="#8884d8"
+                    paddingAngle={2}
                     dataKey="value"
                 >
                     {data.map((entry, index) => (
@@ -41,15 +28,12 @@ export default function PieGraph({ title, data }) {
             </PieChart>
         </div>
     );
-
 }
 
 const styles = {
     card: {
         color: "#023047",
-        margin: 5,
-        padding:10,
-        borderRadius:15,
+        margin: "7px 2px",
         backgroundColor: "#FFFFFF",
         boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12)",
         paddingBottom: 15,
