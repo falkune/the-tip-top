@@ -62,6 +62,7 @@ export default StatsLots;
 const styles = {
   lot: {
     display: "flex",
+    justifyContent: "space-between",
     width: "100%",
     flexDirection: "row",
     borderRadius:15,

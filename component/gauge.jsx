@@ -6,7 +6,7 @@ const COLORS = ['#0088FE', '#595959', '#FB8500'];
 
 export default function Gauge({ title, data }) {
     return (
-        <div style={styles.card}>
+        <div style={styles.card} width="50%" height="100%">
             <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie
@@ -33,6 +33,7 @@ export default function Gauge({ title, data }) {
 
 const styles = {
     card: {
+        width: 340,
         color: "#023047",
         margin: 5,
         padding:10,

@@ -83,7 +83,6 @@ const googleLoginRegister = async (context) => {
 
                 context.backend.api.users.post('auth-from-social-network', user)
                     .then((response) => {
-                        console.log(response)
                         let logedUser = new ApiClient()
                             .setHeader("lang", "en")
                             .setHeader("Accept", "Application/json")
@@ -195,6 +194,14 @@ const getRegistrationByDayBySession = async (context, idSession) => {
     })
 }
 
+const getuserBySession = async (context, idSession) => {
+    return new Promise((resolve, reject) => {
+        context.backend.auth.users.post('users-by-session/',{idSession: idSession})
+        .then(res => resolve(res))
+        .catch(err => reject(err))
+    })
+}
+
 export { 
     login, 
     register, 
@@ -203,5 +210,6 @@ export {
     forgotPassword, 
     resetPassword, 
     getLogout,
-    getRegistrationByDayBySession
+    getRegistrationByDayBySession,
+    getuserBySession
 };

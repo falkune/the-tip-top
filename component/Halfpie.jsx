@@ -4,7 +4,7 @@ const COLORS = ['#d04142', '#053b06'];
 
 export default function HalfPie({title, data}) {
     return (
-        <div style={styles.card} width="100%">
+        <div style={styles.card} width="47%">
             <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie

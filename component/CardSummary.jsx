@@ -33,7 +33,7 @@ const styles = {
     display: "flex",
     minWidth: 400,
     borderRadius:15,
-    width: "100%",
+    width: "62%",
     color: "#023047",
     flexDirection: "column",
     padding: "50px 20px",
