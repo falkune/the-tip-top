@@ -4,7 +4,6 @@ import { notifier, refreshToken } from '../fonctions/utils';
 import { claimedTickeBySession } from '../fonctions/tickets';
 import { CardSummary } from './CardSummary';
 import PieGraph from './Piecharte';
-import Bargraph from './BarChart';
 import HalfPie from './Halfpie';
 
 
