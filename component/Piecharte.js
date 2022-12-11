@@ -1,22 +1,36 @@
+
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 
-const COLORS = ['#0088FE', '#595959', '#FB8500'];
 
+const COLORS = ['#197278', '#0091ad', '#c8553d'];
 
-export default function Gauge({ title, data }) {
+const RADIAN = Math.PI / 180;
+const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
+    const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
+    const x = cx + radius * Math.cos(-midAngle * RADIAN);
+    const y = cy + radius * Math.sin(-midAngle * RADIAN);
+
     return (
-        <div style={styles.card}>
+        <text x={x} y={y} fill="white" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+            {`${(percent * 100).toFixed(0)}%`}
+        </text>
+    );
+};
+
+export default function PieGraph({ title, data }) {
+
+    return (
+        <div style={styles.card} width="100%" height="100%">
             <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie
                     data={data}
                     cx={150}
                     cy={150}
-                    label
-                    innerRadius={60}
+                    labelLine={false}
+                    label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
-                    paddingAngle={5}
                     dataKey="value"
                 >
                     {data.map((entry, index) => (
@@ -27,8 +41,8 @@ export default function Gauge({ title, data }) {
             </PieChart>
         </div>
     );
-}
 
+}
 
 const styles = {
     card: {

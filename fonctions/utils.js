@@ -28,4 +28,11 @@ const getDaysBetweenTwoDates = (startDate, endDate) => {
     return dates
 }
 
-export { notifier, refreshToken, getDaysBetweenTwoDates };
+const isSessionFinished = () => {
+    const end = new Date(Cookies.get("currentEnd"))
+    const now = new Date ()
+    const isfished = now.getTime() > end.getTime() 
+    return isfished
+}
+
+export { notifier, refreshToken, getDaysBetweenTwoDates ,isSessionFinished };

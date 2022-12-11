@@ -37,6 +37,12 @@ class ApiClient extends HttpClient {
         //if (response && response.accessToken) { this.setBearerAuth(response.accessToken) }
         return response;
 
+      },
+      patch: async (route, body, options) => {
+        let response = await this.patch(`/Session/${route}`, body, options);
+        //if (response && response.accessToken) { this.setBearerAuth(response.accessToken) }
+        return response;
+
       }
 
     };

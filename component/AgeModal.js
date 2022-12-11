@@ -15,7 +15,7 @@ export default function AgeModal({numAge,giveAge,closeAge,handlechange, showHide
                 type="date" onChange={handlechange} />
                 <p>Age : {numAge}{numAge != null && " ans"}</p>
                 { numAge != null && numAge > 17 &&  <button  onClick={UpdateAge} className={styles.action}>Confirmer</button>}
-                { numAge != null || numAge < 18 &&  <button className={styles.noaction}>Confirmer</button>}
+                { numAge != null || numAge < 18 &&  <button className="noaction">Confirmer</button>}
                 {numAge != null && numAge < 18 &&<small style={{color:"red"}}>Vous devez être majeur pour continuer</small> }
             </div>         
         </Modal>

@@ -1,15 +1,12 @@
-import React, { useEffect, useRef, useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
-import axios from "axios";
-import dayjs from "dayjs";
-import Cookies from 'js-cookie';
-
 import { notifier } from "../fonctions/utils";
 import { refreshToken } from "../fonctions/utils";
-import { ToastContainer, toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { createSession } from "../fonctions/sessions";
+import { createSession ,updateSession , deleteSession,currentSession} from "../fonctions/sessions";
+
 const Sessions = ({ idSession }) => {
   const context = useContext(ApiContext)
   const [open, setOpen] = React.useState(false);
@@ -21,6 +18,15 @@ const Sessions = ({ idSession }) => {
     end: "",
     limit: 15000,
     id: "",
+    isCurrent:""
+  });
+  const [DefaultSession, setDefaultSession] = React.useState({
+    name: "",
+    start: "",
+    end: "",
+    limit: 15000,
+    id: "",
+    isCurrent:""
   });
   const [newSession, setNewsession] = React.useState({
     name: "",
@@ -32,6 +38,11 @@ const Sessions = ({ idSession }) => {
 
   useEffect(() => {
     getSession();
+    console.log(OneSession,"inesession")
+    console.log(DefaultSession,"default")
+    console.log("default", OneSession == DefaultSession)
+
+
   }, [idSession]);
 
   const getSession = async () => {
@@ -46,6 +57,17 @@ const Sessions = ({ idSession }) => {
           description: value.description,
           limit: value.limitTicket,
           id: value._id,
+          isCurrent:value?.isCurrent
+        });
+
+        setDefaultSession({
+          name: value.name,
+          start: value.startDate,
+          end: value.endDate,
+          description: value.description,
+          limit: value.limitTicket,
+          id: value._id,
+          isCurrent:value?.isCurrent
         });
       }
       )
@@ -58,7 +80,6 @@ const Sessions = ({ idSession }) => {
 
   const CreateSession = async (e) => {
     //fonction pour créer un ticket
-    e.preventDefault()
     const body = {
       idSession: idSession,
       startDate: newSession.startDate,
@@ -68,14 +89,40 @@ const Sessions = ({ idSession }) => {
       limitTicket: Number(newSession.limit),
     };
 
-
-
     let session = await createSession(context, body);
 
     if (session.statusCode) {
       refreshToken(session, context);
 
+      if (Array.isArray(session.message)) {
+        session.message.forEach(element => {
+          notifier(element, "error", "top-right", 5000);
+        });
+      } else {
+        console.error(session);
+        notifier(session.message);
+        toast("session crée")
+      }
+    }
 
+  };
+
+  const UpdateSession = async (e) => {
+    //fonction pour créer un ticket
+     
+    e.preventDefault();
+    const body = {
+      startDate: OneSession.start,
+      endDate: OneSession.end,
+      name: OneSession.name,
+      description: OneSession.description,
+      limitTicket: Number(OneSession.limit),
+    };
+
+    let session = await updateSession(context, body);
+
+    if (session.statusCode) {
+      refreshToken(session, context);
       if (Array.isArray(session.message)) {
         session.message.forEach(element => {
           notifier(element, "error", "top-right", 5000);
@@ -85,67 +132,45 @@ const Sessions = ({ idSession }) => {
         notifier(session.message);
       }
     }
-
   };
 
-  const UpdateSession = async () => {
+  const DeleteSession = async (e) => {
     //fonction pour créer un ticket
-     
-    event.preventDefault();
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
+    e.preventDefault();
+    let session = await deleteSession(context,idSession);
 
-    const body = {
-      startDate: OneSession.start,
-      endDate: OneSession.end,
-      name: OneSession.name,
-      description: OneSession.description,
-      limitTicket: Number(OneSession.limit),
-    };
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
-    try {
-      await axios.put(api, body, config);
-      toast("Modification prise en compte ! ");
-    } catch (e) {
-       
-    }
-  };
-
-  const DeleteSession = async () => {
-    //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
-
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/session/${idSession}`;
-    try {
-      await axios.delete(api, config);
-      toast("Session supprimé ! ");
-    } catch (e) {
-       
+    if (session.statusCode) {
+      refreshToken(session, context);
+      if (Array.isArray(session.message)) {
+        session.message.forEach(element => {
+          notifier(element, "error", "top-right", 5000);
+        });
+      } else {
+        console.error(session);
+        notifier(session.message);
+      }
     }
   };
 
   const CurrentSession = async () => {
     //fonction pour créer un ticket
-    const token = localStorage.getItem("token");
-    const config = {
-      headers: { Authorization: `Bearer ${token}` },
-    };
     const body = {
       isCurrent: true,
       idSession: idSession,
     };
-    const api = `https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/set-current-session`;
-    try {
-      let res = await axios.patch(api, body, config);
-      toast("Cette session est active !");
-    } catch (e) {
-       
-    }
+      let session = await currentSession(context, body);
+
+      if (session.statusCode) {
+        refreshToken(session, context);
+        if (Array.isArray(session.message)) {
+          session.message.forEach(element => {
+            notifier(element, "error", "top-right", 5000);
+          });
+        } else {
+          console.error(session);
+          notifier(session.message);
+        }
+      }
   };
 
   // create session
@@ -234,17 +259,19 @@ const Sessions = ({ idSession }) => {
           type="date"
           value={OneSession.end}
         />
-        <button onClick={UpdateSession} style={styles.dateButton}>
+        { OneSession != DefaultSession && <button onClick={UpdateSession} style={styles.dateButton}>
           {" "}
           Mettre à jour
-        </button>
+        </button> }
+
+        
         <button onClick={DeleteSession} style={styles.dateButton}>
           {" "}
           Supprimer la session
         </button>
-        <button onClick={CurrentSession} style={styles.dateButton}>
+       { OneSession.isCurrent === false && <button onClick={CurrentSession} style={styles.dateButton}>
           Appliquer comme session active
-        </button>
+        </button>}
         <ToastContainer
           position="bottom-center"
           autoClose={1250}
@@ -357,6 +384,7 @@ const styles = {
     color: "white",
     marginTop: 10,
     padding: 50,
+    borderRadius:10
   },
 
   elem: {
@@ -402,11 +430,10 @@ const styles = {
   createButton: {
     padding: 10,
     color: "white",
-    backgroundColor: " #38870D",
-    border: "solid 3px white",
+    backgroundColor: " #095719",
+    border: "none",
     margin: 30,
     fontSize: 18,
-    fontWeight: "bold",
     minHeight: 50,
     borderRadius: 5,
   },
