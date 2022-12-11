@@ -35,9 +35,8 @@ export default function Changepassword() {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Header />
-                <section className={styles.login}>
+                <section >
                     <form
-                        className={styles.log}
                         style={{ borderBottom: "solid 1px #D2D2D2" }}
                     >
                         <h1 className="h1" style={{ fontSize: 25 }}>
@@ -62,7 +61,7 @@ export default function Changepassword() {
                         />
 
                         <button
-                            className={styles.action}
+
                             style={{ animation: "pulse 1sec infite" }}
                             onClick={e => modifierPassword(e)}
                         >

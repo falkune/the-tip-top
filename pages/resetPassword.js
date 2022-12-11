@@ -1,11 +1,7 @@
 import { useState, useContext } from "react";
 import Head from "next/head";
-import Image from "next/image";
-;
 import Header from "../component/Header";
 import Footer from "../component/Footer";
-import { useRouter } from "next/router";
-import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { resetPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
@@ -36,9 +32,9 @@ export default function Resetpassword() {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Header />
-                <section className={styles.login}>
+                <section >
                     <form
-                        className={styles.log}
+                        
                         style={{ borderBottom: "solid 1px #D2D2D2" }}
                     >
                         <h1 className="h1" style={{ fontSize: 25 }}>
@@ -63,7 +59,7 @@ export default function Resetpassword() {
                         />
 
                         <button
-                            className={styles.action}
+                  
                             style={{ animation: "pulse 1sec infite" }}
                             onClick={e => modifierPassword(e)}
                         >
