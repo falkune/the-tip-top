@@ -24,11 +24,6 @@ body {margin: 0;
 }
 
 
-.login{
-  display: flex;
-  justify-content: space-around;
-}
-
 .login-form{
   width: 40%;
 }
@@ -95,7 +90,7 @@ nav li a:hover {
   margin-top: 50px;
   margin-bottom: 50px;
   border-radius: 10px;
-  width: 80%;
+  width: 90%;
   max-width:500px ;
   
   }
@@ -352,6 +347,7 @@ a {
 
 .lotsItems{
   width: 100%;
+  max-width: 350px;
   background-color: #38870D;
   display: flex;
   justify-content: center;

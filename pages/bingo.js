@@ -86,8 +86,22 @@ export default function Bingo() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header menu="bingo" />
-      <section style={{paddingTop:125,display:"flex",flexDirection:"column",minHeight:"100vh",alignItems:"center"}}>
-
+      <section style={{paddingTop:100,display:"flex",
+      flexDirection:"column",
+      minHeight:"100vh",
+      width:"100%",
+      background:"linear-gradient(83deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 50%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
+      alignItems:"center"
+      }}>
+     <div
+     className="animate__animated animate__fadeInUp" 
+     style={{display:"flex",
+     flexDirection:"column",
+     alignItems:"center",
+     background:"white",
+     padding:30,
+     borderRadius:20
+     }} >
           <h1 className={styles.h1}>Bingo ticket</h1>
         
           <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
@@ -142,6 +156,7 @@ export default function Bingo() {
             </small>
           </Link>
           <Image src={gift} height={250} width={250} alt="logo" />
+          </div>
         </section>
         <Footer />
       </div>

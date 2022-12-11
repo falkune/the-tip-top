@@ -11,11 +11,13 @@ import dayjs from "dayjs";
 import "dayjs/locale/fr";
 import wheel from "../image/wheel.gif";
 import Cookies from 'js-cookie';
-
+import { isSessionFinished } from "../fonctions/utils";
 
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
+  const [isFinished, setIsFinished] = useState(isSessionFinished())
+
 
   useEffect(() => {
     getCurrent();
@@ -59,31 +61,45 @@ export default function Jeux() {
             background:"rgb(56,135,13",
             background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 28%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
       
-          }}
-        >
-          <ClipLoader color={"white"} loading={true} size={100} />
+          }} >
+            {
+              isFinished ? <p>Gagné</p> :
+          
+                    <>
+                    <ClipLoader color={"white"} loading={true} size={100} />
 
-          <h1 className={styles.h1} style={{ color: "white" }}>
-            Grand jeux concour
-          </h1>
-          <p style={{ fontSize: 20, color: "white" }}>
-            Le tirage au sort dans :
-          </p>
-          {current && <Count current={current} />}
+        <h1 className={styles.h1} style={{ color: "white" }}>
+          Grand jeux concour
+        </h1>
+        <p style={{ fontSize: 20, color: "white" }}>
+          Le tirage au sort dans :
+        </p>
+                {current && <Count current={current} />}</>
+            }
           
         </div>
 
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
+             flexWrap:"wrap",
             justifyContent: "center",
           }}
         >
-          {" "}
+          { isFinished ? <p>Vous avez gagné c'est cool</p> :
+          <>
           <div>
             <Image src={wheel} style={{ marginBottom: 50 }} alt="" />
           </div>
+          <div
+               style={{
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                width:"100%",
+                maxWidth:500,
+              }}
+          >
           <h2
             className={styles.h2}
             style={{
@@ -109,6 +125,9 @@ export default function Jeux() {
           >
             1 an de thé d'une valeur de 360 euros
           </p>
+          </div>
+          </> }
+    
         </div>
       </section>
 
