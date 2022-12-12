@@ -53,21 +53,19 @@ const register = async (context, fullName, email, password, birthday) => {
         password: password,
         birthday: birthday
     };
-    try{
-        let user = await context.backend.api.users.post('', params)
-        // .then((response) => console.log("ok ",response))
-        // .catch((error) => console.log("no ",error))
-        console.log("ok ",user)
-        return(user)
-    }catch(e){
-        console.log("pas", e)
-    }
-
-    // return new Promise((resolve, rejecte) => {
+    // try{
     //     let user = await context.backend.api.users.post('', params)
-    //         .then((response) => {resolve(response)})
-    //         .catch((error) => {console.log(error)})
-    // })
+    //     console.log("ok ",user)
+    //     return(user)
+    // }catch(e){
+    //     console.log("pas", e)
+    // }
+
+    return new Promise((resolve, rejecte) => {
+        context.backend.api.users.post('', params)
+            .then((response) => {resolve(response)})
+            .catch((error) => {console.log(error)})
+    })
 
 }
 

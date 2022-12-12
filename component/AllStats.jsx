@@ -44,7 +44,7 @@ const AllStats = (props) => {
     <div style={styles.stat}>
       <ParticipationStat claimbedTicket={claimbedTicket} deliveredTicket={deliveredTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession} />
-      <StatsLots allGroup={allGroup}  />
+      <StatsLots allGroup={allGroup}/>
     </div>
   )
 }

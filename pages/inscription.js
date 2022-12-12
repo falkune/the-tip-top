@@ -179,7 +179,7 @@ export default function Inscription() {
             </button>
           </form>
           <div className="social">
-            <button
+            {/* <button
               style={{
                 backgroundColor: "#437BFF",
                 fontWeight: "bold",
@@ -198,7 +198,7 @@ export default function Inscription() {
                 />
               </span>
               S'inscrire
-            </button>
+            </button> */}
             <button
               style={{
                 backgroundColor: "white",
@@ -229,7 +229,6 @@ export default function Inscription() {
             </strong>
           </small>
         </section>
-
       </div>
       <Footer />
     </div>
