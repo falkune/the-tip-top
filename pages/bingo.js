@@ -37,19 +37,7 @@ export default function Bingo() {
       });
     }
   };
-
-  const VerifyTicket = async (n) => {
-    e.preventd
-    let ticket = await verifTicketApi( context, n.toString())
-    if (ticket.statusCode) {
-     refreshToken(ticket, context);
-     notifier(ticket.message);
-     console.log(ticket.message,"message error")
-   } else {
-     console.log(ticket,"t") 
-   }
- };
-
+  
   const getCurrent = async () => {
     let sessions = context.backend.api.sessions.get('get-current-session', {
       Accept: "Application/json",
@@ -132,7 +120,6 @@ export default function Bingo() {
           {num !== null && num.length === 10 ? (
             <button
               type="submit"
-              // onClick={() =>VerifyTicket(num)}
               onClick={goResult}
               className="action"
               style={{ margin: 25 }}

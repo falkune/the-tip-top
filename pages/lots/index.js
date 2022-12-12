@@ -97,7 +97,6 @@ export default function lots() {
 const stylez ={
 
     dark :{
-      background:"rgb(56,135,13",
       background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 28%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
   
     },

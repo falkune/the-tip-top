@@ -227,7 +227,6 @@ const stylez = {
   side: {
     width: "15%",
     paddingTop:100,
-    background:"rgb(56,135,13",
     background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 91%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
     display: "flex",
     flexDirection: "column",
