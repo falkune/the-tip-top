@@ -30,7 +30,6 @@ const AllStats = (props) => {
     statLots(context, idSession)
       .then((response) => {
         if (!response.statusCode) {
-          console.log(response)
           setClaimbedTicket(response.sessionStats.sessionTotalClaimbedTicket)
           setDeliveredTicket(response.sessionStats.sessionTotalDeliveredTicket)
         }
