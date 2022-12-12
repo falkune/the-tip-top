@@ -10,12 +10,12 @@ const StatsLots = ({ idSession }) => {
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    if(idSession != ""){
+    if(idSession){
       getStatLots(context, idSession);
     }
   },[idSession]);
 
-  const getStatLots = (context, idSession) => {
+  const getStatLots = () => {
     statLots(context, idSession)
     .then((response) => {
       setAllGroup(response.groupStats);
@@ -62,6 +62,7 @@ export default StatsLots;
 const styles = {
   lot: {
     display: "flex",
+    justifyContent: "space-between",
     width: "100%",
     flexDirection: "row",
     borderRadius:15,

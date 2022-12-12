@@ -53,12 +53,21 @@ const register = async (context, fullName, email, password, birthday) => {
         password: password,
         birthday: birthday
     };
+    try{
+        let user = await context.backend.api.users.post('', params)
+        // .then((response) => console.log("ok ",response))
+        // .catch((error) => console.log("no ",error))
+        console.log("ok ",user)
+        return(user)
+    }catch(e){
+        console.log("pas", e)
+    }
 
-    return new Promise((resolve, rejecte) => {
-        context.backend.api.users.post('', params)
-            .then((response) => resolve(response))
-            .catch((error) => notifier(error));
-    })
+    // return new Promise((resolve, rejecte) => {
+    //     let user = await context.backend.api.users.post('', params)
+    //         .then((response) => {resolve(response)})
+    //         .catch((error) => {console.log(error)})
+    // })
 
 }
 
@@ -83,7 +92,6 @@ const googleLoginRegister = async (context) => {
 
                 context.backend.api.users.post('auth-from-social-network', user)
                     .then((response) => {
-                        console.log(response)
                         let logedUser = new ApiClient()
                             .setHeader("lang", "en")
                             .setHeader("Accept", "Application/json")
@@ -195,6 +203,14 @@ const getRegistrationByDayBySession = async (context, idSession) => {
     })
 }
 
+const getuserBySession = async (context, idSession) => {
+    return new Promise((resolve, reject) => {
+        context.backend.auth.users.post('users-by-session/',{idSession: idSession})
+        .then(res => resolve(res))
+        .catch(err => reject(err))
+    })
+}
+
 export { 
     login, 
     register, 
@@ -203,5 +219,6 @@ export {
     forgotPassword, 
     resetPassword, 
     getLogout,
-    getRegistrationByDayBySession
+    getRegistrationByDayBySession,
+    getuserBySession
 };

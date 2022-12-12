@@ -1,3 +1,4 @@
+import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
 function OneLot({ title, totalTicket, limitTicket, claimbedTicket}) {
@@ -29,7 +30,8 @@ const styles = {
   card: {
     display: "flex",
     minWidth: 200,
-    width: 320,
+    width: 344,
+    height:160,
     flexDirection: "column",
     padding: 25,
     borderRadius:15,

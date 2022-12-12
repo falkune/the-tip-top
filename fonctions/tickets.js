@@ -81,6 +81,7 @@ const generateTicketApi = async (context, idSession) => {
 
 
 const statLots = async (context, idSession) => {
+    console.log(idSession)
     return new Promise((resolve, reject) => {
         context.backend.api.tickets.get('get-ticket-stats/'+idSession)
         .then((response) => resolve(response))

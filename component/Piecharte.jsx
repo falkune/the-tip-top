@@ -1,4 +1,4 @@
-
+import React from "react";
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 
 
@@ -20,7 +20,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
 export default function PieGraph({ title, data }) {
 
     return (
-        <div style={styles.card} width="100%" height="100%">
+        <div style={styles.card} width="50%" height="100%">
             <p style={styles.title}>{title}</p>
             <PieChart width={300} height={300}>
                 <Pie
@@ -46,7 +46,7 @@ export default function PieGraph({ title, data }) {
 
 const styles = {
     card: {
-        color: "#023047",
+        width: 340,
         margin: 5,
         padding:10,
         borderRadius:15,
