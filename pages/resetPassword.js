@@ -59,7 +59,6 @@ export default function Resetpassword() {
                         />
 
                         <button
-
                             style={{ animation: "pulse 1sec infite" }}
                             onClick={e => modifierPassword(e)}
                         >
