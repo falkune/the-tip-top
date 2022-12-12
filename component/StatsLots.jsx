@@ -1,28 +1,9 @@
 import React, { useEffect, useState, useContext } from "react";
 import OneLot from "./OneLot";
-import ApiContext from '../context/apiContext';
-import {statLots} from '../fonctions/tickets';
 import Gauge from './gauge';
 import PieGraph from './Piecharte';
 
-const StatsLots = ({ idSession }) => {
-  const [allGroup, setAllGroup] = useState([]);
-  const context = useContext(ApiContext);
-
-  useEffect(() => {
-    if(idSession){
-      getStatLots(context, idSession);
-    }
-  },[idSession]);
-
-  const getStatLots = () => {
-    statLots(context, idSession)
-    .then((response) => {
-      setAllGroup(response.groupStats);
-    })
-    .catch((error) => console.log(error))
-  }
-
+const StatsLots = ({ allGroup }) => {
   return (
     <div>
       <div style={styles.lot}>

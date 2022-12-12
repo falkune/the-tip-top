@@ -10,8 +10,9 @@ import AgeStat from './AgeStat';
 
 const AllStats = (props) => {
   const [numberDay, setNumberDay] = useState([]);
-  const [claimbedTicket, setClaimbedTicket] = useState(0)
-  const [deliveredTicket, setDeliveredTicket] = useState(0)
+  const [claimbedTicket, setClaimbedTicket] = useState(0);
+  const [deliveredTicket, setDeliveredTicket] = useState(0);
+  const [allGroup, setAllGroup] = useState([]);
   const context = useContext(ApiContext);
 
   useEffect(() => {
@@ -32,8 +33,9 @@ const AllStats = (props) => {
     statLots(context, idSession)
       .then((response) => {
         if (!response.statusCode) {
-          setClaimbedTicket(response.sessionStats.sessionTotalClaimbedTicket)
-          setDeliveredTicket(response.sessionStats.sessionTotalDeliveredTicket)
+          setClaimbedTicket(response.sessionStats.sessionTotalClaimbedTicket);
+          setDeliveredTicket(response.sessionStats.sessionTotalDeliveredTicket);
+          setAllGroup(response.groupStats);
         }
       })
   }
@@ -42,7 +44,7 @@ const AllStats = (props) => {
     <div style={styles.stat}>
       <ParticipationStat claimbedTicket={claimbedTicket} deliveredTicket={deliveredTicket} idSession={props.idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession} />
-      <StatsLots idSession={props.idSession} />
+      <StatsLots allGroup={allGroup}  />
     </div>
   )
 }
