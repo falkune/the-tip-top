@@ -10,6 +10,7 @@ import tea4 from "../../image/tea4.png";
 import tea5 from "../../image/tea5.png";
 import Link from "next/link";
 import "animate.css";
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 
 export default function lots() {
@@ -57,8 +58,20 @@ export default function lots() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Header menu="lots"/>
-      <section style={{display:"flex",justifyContent:"center"}}>
-      <div  style={{ paddingTop: 125,
+      <div style ={{paddingTop:100}}>   
+        
+         <h1 className="h1">Lots à gagner</h1>
+         <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+
+
+      </div>
+  
+      <section style={{display:"flex",
+      justifyContent:"center",
+      flexDirection:"column",
+      alignItems:"center"
+     }}>
+      <div  style={{ paddingTop:50,
       display:"flex",
       width:"100%",
       flexWrap:"wrap",
@@ -66,11 +79,12 @@ export default function lots() {
         minHeight:"100vh" }}>
         {gift.map((g,i) => (
           <div key={i} className="lotsItems animate__animated  animate__backInUp" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
+                          <Link href={`lots${g.href}`}>En savoir plus</Link>    
+
              <Image  src={g.src} alt={g.name}/>
              <div style={{display:"flex",flexDirection:"column",}}>
                 <h3>{g.name}</h3>
                 <p>{g.descrition}</p>
-                <Link href={`lots${g.href}`}>En savoir plus</Link>    
              </div> 
           </div>
             ))}

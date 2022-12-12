@@ -18,6 +18,7 @@ import LinearProgress from '@mui/material/LinearProgress';
 import dayjs from "dayjs";
 import "dayjs/locale/fr" 
 dayjs.locale('fr')
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 
 export default function Tickets() {
@@ -82,11 +83,15 @@ export default function Tickets() {
     try {
       context.backend.auth.tickets.post('tickets-by-client',
       {idClient:Cookies.get("idClient")}).then((value) =>
-      {value?.forEach(el => {
-        el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
-      }); 
-      setAlltickets(value)
-      
+      { if(value === undefined){
+        value?.forEach(el => {
+          el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
+        }); 
+        setAlltickets(value)
+      } else {
+         value = []
+         setAlltickets(value)
+      }   
     }
      )
     } catch (e) {
@@ -105,13 +110,15 @@ export default function Tickets() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header menu="tickets"/>
+        <div style={stylez.gain}>
         <h1 className="h1">Mes tickets</h1>
+        <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+
         <p style={{ fontSize: 18, color: "grey" }}>
           Vous avez{" "}
           <strong style={{ color: " #38870D" }}>{number} </strong>
           {`tickets gagnants`}
         </p>
-        <div style={stylez.gain}>
           <div
             className="ag-theme-alpine"
             style={{
@@ -142,6 +149,8 @@ const stylez = {
   gain: {
     display: "flex",
     flexDirection: "column",
+    paddingTop:100,
+    paddingBottom:50,
     alignItems: "center",
     width: "100vw",
     minHeight: "100vh",

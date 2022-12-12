@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import { notifier ,refreshToken} from "../fonctions/utils";
 import 'nextjs-breadcrumbs/dist/index.css'
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -27,8 +28,8 @@ export default function Bingo() {
     getCurrent();
   }, []);
 
-  const goResult = () => {
-    console.log("goresult")
+  const goResult = (e) => {
+    e.preventDefault();
     if (num.length === 10) {
       router.push({
         pathname: `resultat`,
@@ -60,7 +61,6 @@ export default function Bingo() {
       }else{
         setCurrent(response[0]._id);
         console.log("good", response)
-        // console.log(Cookies.get(""))
         Cookies.set('currentStart',response[0].startDate)
         Cookies.set('currentEnd',response[0].endDate)
       }
@@ -94,13 +94,16 @@ export default function Bingo() {
      style={{display:"flex",
      flexDirection:"column",
      alignItems:"center",
+     width:"100%",
+     maxWidth:500,
      background:"white",
-     padding:30,
+     padding:13,
      borderRadius:20
      }} >
           <h1 className="h1">Bingo ticket</h1>
-        
-          <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
+          <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+
+          <p style={{textAlign:"center"}}>Tester votre ticket <br></br>pour voir votre lot remporté (100% gagnant )</p>
           <form  target="#" style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>
             <div className="bingo">
             <input 

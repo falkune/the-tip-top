@@ -377,10 +377,11 @@ a {
 
  .lotsItems a{
   background-color: white;
-  border: solid 3px #38870D;
+  border: solid 3px #86c307;
   color: #38870D;
   padding: 15px;
   margin: 30px;
+  width: 70%;
   font-weight: bold;
   border-radius: 100px;
   text-align: center;
@@ -645,6 +646,7 @@ a {
   justify-content: center;
   align-items: center;
   width:100% ;
+  max-width: 800px;
   padding: 10px;
   text-align: center;
 }
@@ -656,6 +658,28 @@ a {
 }
 
   .part ul{
+    color:  #38870D;
+
+  }
+
+  
+.rule{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100% ;
+  padding: 10px;
+  text-align: center;
+}
+
+.rule p{
+  text-align: center;
+  color:  #38870D;
+
+}
+
+  .rule ul{
     color:  #38870D;
 
   }
