@@ -52,7 +52,6 @@ body {margin: 0;
 }
 
 header{
-  background-color: gainsboro;
   min-height: 70px;
   width: 100%;
   display: flex;
@@ -479,7 +478,6 @@ a {
   margin-top: 15px;
   font-size: 16px;
   position: relative;
-  font-size: 16;
 }
 
 
