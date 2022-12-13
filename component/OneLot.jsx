@@ -30,7 +30,7 @@ const styles = {
   card: {
     display: "flex",
     minWidth: 200,
-    width: 344,
+    width: 400,
     height:160,
     flexDirection: "column",
     padding: 25,
