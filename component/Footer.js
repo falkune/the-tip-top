@@ -1,30 +1,13 @@
-import React from "react"
+import { useState } from 'react';
 import Link from "next/link"
 import Modal from '@mui/material/Modal';
 
 
-const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    background: "white",
-    width: 320,
-    height: 320,
-    bgcolor: 'background.paper',
-    boxShadow: 24,
-    p: 4,
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
-    background: "#38870D",
 
-};
 
 
 const Footer = () => {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
     return (
@@ -48,7 +31,7 @@ const Footer = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description">
-                <div style={style}>
+                <div style={styles.modal}>
                     <form style={styles.form}>
                         <h3>Newsletter</h3>
                         <small>Suivre notre actualité</small>
@@ -101,7 +84,6 @@ const styles = {
     },
 
     button: {
-        height: 40,
         border: "none",
         margin: 10,
         width: "95%",
@@ -123,7 +105,23 @@ const styles = {
         marginLeft: 10,
         textAlign: "center"
     },
-
+modal:{
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    background: "white",
+    width: 320,
+    height: 320,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    background: "#38870D",
+}
 
 
 }

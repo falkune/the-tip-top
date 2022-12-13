@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useCallback } from "react";
+import React, { useEffect, useState ,useCallback,useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import teab from "../image/TeaBingo.png"
@@ -7,17 +7,18 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import "animate.css";
-import axios from "axios";
 import Link from "next/link";
 import dayjs from "dayjs"
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import Cookies from 'js-cookie';
+import ApiContext from '../context/apiContext';
 
 
 export default function Home() {
   const [current, setCurrent] = useState("");
   const router = useRouter();
+  const context = useContext(ApiContext)
 
 
   const particlesInit = useCallback(async engine => {
@@ -37,19 +38,22 @@ export default function Home() {
   }, []);
 
   const getCurrent = async () => {
-    //fonction pour créer un ticket
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/get-current-session";
-    try {
-      let currenSession = await axios.get(api);
-      setCurrent(currenSession.data);
-      Cookies.set("current", currenSession.data);
-       
-      setCurrent(currenSession.data[0])
-    } catch (e) {
-       
-    }
+    let sessions = context.backend.api.sessions.get('get-current-session', {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    })
+    sessions.then((response) => {
+      if(response.statusCode){
+        console.log("vrai", response)
+      }else{
+        setCurrent(response[0]._id);
+        console.log("good", response)
+        Cookies.set('currentStart',response[0].startDate)
+        Cookies.set('currentEnd',response[0].endDate)
+      }
+    })
   };
+
   const goResult = () => {
       router.push({
         pathname: `connexion`,

@@ -7,11 +7,9 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import gift from "../image/win.gif"
 import Cookies from "js-cookie";
-import { verifTicketApi } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import { notifier ,refreshToken} from "../fonctions/utils";
 import 'nextjs-breadcrumbs/dist/index.css'
 import Breadcrumbs from 'nextjs-breadcrumbs';
 

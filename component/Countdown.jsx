@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import Countdown from "react-countdown";
 
 const Count = ({ current }) => {
   const xtime = dayjs(current.endDate).valueOf();
- console.log(xtime,"xtime")
-  const renderer = ({ days, hours, minutes, seconds,completed }) => (
+  const renderer = ({ days, hours, minutes, seconds }) => (
     <div style={styles.count}>
       <p
         style={{
