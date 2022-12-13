@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from "js-cookie";

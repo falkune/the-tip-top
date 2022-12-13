@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState ,useCallback,useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -85,7 +86,7 @@ export default function Home() {
         Du {dayjs(current.startDate).format('DD MMMM YYYY')} au  {dayjs(current.endDate).format('DD MMMM YYYY')}</h3> }
       
         <span style={{minWidth:160,width:"12%",marginTop:20}}>
-          <Image className="animate__animated  animate__backInUp" src={teab}/>
+          <Image className="animate__animated  animate__backInUp" src={teab} alt="teaBingo title"/>
         </span>
 
           <div style =

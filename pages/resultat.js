@@ -142,11 +142,11 @@ dayjs.extend(relativeTime)
           <h2 style={{ color: " #38870D", marginBottom: 0 }}> Vous avez gagné ! </h2>
             { isfinish ?
                    <>
-                   { lot === "Coffret 69 euros" && <Image src={tea1} /> }
-                   { lot === "Coffret 39 euros" && <Image src={tea2} /> }
-                   { lot === "thé signature" && <Image src={tea3} /> }
-                   { lot === "Infuseur à thé" && <Image src={tea4} /> }
-                   { lot === "100g thé detox" && <Image src={tea5} /> }
+                   { lot === "Coffret 69 euros" && <Image src={tea1} alt="Coffret de thé" /> }
+                   { lot === "Coffret 39 euros" && <Image src={tea2} alt="Coffret de thé" /> }
+                   { lot === "thé signature" && <Image src={tea3} alt="Coffret de thé" /> }
+                   { lot === "Infuseur à thé" && <Image src={tea4} alt="Coffret de thé" /> }
+                   { lot === "100g thé detox" && <Image src={tea5} alt="Coffret de thé" /> }
                    <p style={{fontWeight:"bold",margin:5}}>{lot}</p>
                    <small style={{ color: "grey" }}>
                      Rendez-vous dans votre <br></br> magasin pour venir le récuperer
