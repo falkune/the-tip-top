@@ -14,7 +14,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
-import {getToken} from '../fonctions/mail'
+// import {getToken} from '../fonctions/mail'
 
 
 export default function Home() {
@@ -24,7 +24,6 @@ export default function Home() {
 
 
   const particlesInit = useCallback(async engine => {
-     
     // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
     // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
     // starting from v2 you can add only the features you need reducing the bundle size
@@ -60,9 +59,11 @@ export default function Home() {
   };
 
   const goResult = () => {
-      router.push({
-        pathname: `connexion`,
-      });
+    if(Cookies.get('role')== "client")
+      router.push({ pathname: `bingo`},undefined, { shallow: true });
+      else 
+      router.push({ pathname: `connexion`},undefined, { shallow: true });
+
   };
 
 
@@ -95,13 +96,13 @@ export default function Home() {
 
           <div style =
           {{display:"flex",
-          flexDirection:"column",
-          alignItems:"center",
-          width:"100%",
-          maxWidth:250,
-          padding:10,
-          paddingTop:20,
-          borderRadius:20}} >
+            flexDirection:"column",
+            alignItems:"center",
+            width:"100%",
+            maxWidth:250,
+            padding:10,
+            paddingTop:20,
+            borderRadius:20}} >
                     <Link href="/regle" passHref>
                     <p style={{color:"white", textDecoration:"underline",fontWeight:"bold", margin:2,marginBottom:20}}> Voir les règles<br></br> de participation</p> 
                     </Link>

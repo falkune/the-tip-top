@@ -30,7 +30,7 @@ export default function coffret32() {
          flexDirection:"column",
          justifyContent:"flex-start",
          alignItems:"center",
-         background:" rgb(205, 224, 205)",
+         background:" rgb(221, 237, 221)",
          width:"100%" }}>
         <div 
         style={{display:"flex",alignItems:"center",flexWrap:"wrap",  alignItems:"start",}}>
@@ -50,7 +50,9 @@ export default function coffret32() {
           flexDirection:"column",
           alignItems:"center",
           borderRadius:10 }}>
-                        <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+                          <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
 
  
                   <h1 style={{margin:8}}>Coffret 32 euros</h1>

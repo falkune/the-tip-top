@@ -49,7 +49,10 @@ style={{
     }}>
     Comment participer ?
   </h2>
-  <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+    <Breadcrumbs useDefaultStyle={false}
+          containerClassName="darkLight
+" 
+          rootLabel="Accueil" />
 </div>
 
 <p style={{ color: "white" }}>Jouer en 4 étapes</p>

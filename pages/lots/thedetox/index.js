@@ -29,7 +29,7 @@ export default function thedetox() {
          flexDirection:"column",
          justifyContent:"flex-start",
          alignItems:"center",
-         background:" rgb(205, 224, 205)",
+         background:" rgb(221, 237, 221)",
          width:"100%" }}>
         <div style={{display:"flex",alignItems:"center",flexWrap:"wrap",  alignItems:"start",}}>
           <div 
@@ -47,7 +47,9 @@ export default function thedetox() {
           flexDirection:"column",
           alignItems:"center",
           borderRadius:10 }}>
-            <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+              <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
             <h1 style={{margin:8}}>100g thé detox </h1>
             <h2 style={{textAlign:"center",margin:8}}> Coffret matcha lover </h2>
           <p style={{padding:10,color:"#8E8E8E", maxWidth:500, lineHeight:1.8, paddingRight:25}} > 

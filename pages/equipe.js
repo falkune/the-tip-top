@@ -36,8 +36,9 @@ alignItems:"center",
 flex:1}}>
   <div style={{marginBottom:50,display:"flex",flexDirection:"column",alignItems:"center"}}>
       <h1 className="h1" >Qui sommes nous ?</h1>
-      <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
-  </div>
+      <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />  </div>
   <div className="team">  <Image  className="animate__animated  animate__backInUp"  style={{width:"50%"}} src={team} alt="team dev"/>
 </div>
 <div className="team2">

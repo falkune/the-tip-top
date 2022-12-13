@@ -37,6 +37,7 @@ export default function Connexion() {
       if (Cookies.get('role') == "admin")
         router.push({ pathname: "/stats" }, undefined, { shallow: true });
       else
+        if (Cookies.get('role') == "client")
         router.push({ pathname: "/bingo" }, undefined, { shallow: true });
     }
   };
@@ -181,7 +182,7 @@ export default function Connexion() {
                 fontWeight: "bold",
                 color: "#437BFF",
                 height: 60,
-                boxShadow: "0px 0px 6px 8px rgba(0,0,0,0.14)",
+                boxShadow: "0px 0px 6px 5px rgba(0,0,0,0.05)",
               }}
               onClick={googleLogin}
             >
