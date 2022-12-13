@@ -1,8 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from "js-cookie";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
+;
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import ButtonGrid from "../component/ButtonGrid";
@@ -16,8 +17,10 @@ import { useRouter } from "next/router";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import dayjs from "dayjs";
+import CookiesManagement from '../component/cookiesManagement';
 import "dayjs/locale/fr" 
 dayjs.locale('fr')
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 
 export default function Tickets() {
@@ -82,11 +85,15 @@ export default function Tickets() {
     try {
       context.backend.auth.tickets.post('tickets-by-client',
       {idClient:Cookies.get("idClient")}).then((value) =>
-      {value?.forEach(el => {
-        el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
-      }); 
-      setAlltickets(value)
-      
+      { if(value === undefined){
+        value?.forEach(el => {
+          el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
+        }); 
+        setAlltickets(value)
+      } else {
+         value = []
+         setAlltickets(value)
+      }   
     }
      )
     } catch (e) {
@@ -105,13 +112,15 @@ export default function Tickets() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header menu="tickets"/>
-        <h1 className={styles.h1}>Mes tickets</h1>
+        <div style={stylez.gain}>
+        <h1 className="h1">Mes tickets</h1>
+        <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+
         <p style={{ fontSize: 18, color: "grey" }}>
           Vous avez{" "}
           <strong style={{ color: " #38870D" }}>{number} </strong>
           {`tickets gagnants`}
         </p>
-        <div style={stylez.gain}>
           <div
             className="ag-theme-alpine"
             style={{
@@ -127,6 +136,7 @@ export default function Tickets() {
           </div>
         </div>
         <Footer />
+        <CookiesManagement/>
       </div>
     );
   }else{
@@ -142,6 +152,8 @@ const stylez = {
   gain: {
     display: "flex",
     flexDirection: "column",
+    paddingTop:100,
+    paddingBottom:50,
     alignItems: "center",
     width: "100vw",
     minHeight: "100vh",

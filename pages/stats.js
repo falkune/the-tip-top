@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -21,7 +22,8 @@ import sessions from  '../image/session.png'
 import users from  '../image/users.png'
 import search from  '../image/search.png'
 import load from  '../image/load.png'
-import graph from  '../image/graph.png'
+import graph from  '../image/graph.png';
+import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Stats() {
@@ -203,6 +205,7 @@ export default function Stats() {
           </div>
         </div>
         <Footer />
+        <CookiesManagement/>
       </div>
     );
   }
@@ -227,7 +230,6 @@ const stylez = {
   side: {
     width: "15%",
     paddingTop:100,
-    background:"rgb(56,135,13",
     background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 91%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
     display: "flex",
     flexDirection: "column",
@@ -266,14 +268,14 @@ const stylez = {
   stat: {
     backgroundColor: "#c7c7c7",
     padding: 25,
-    paddingTop:125,
+    paddingTop:120,
     width: "85%",
   },
 
   fullStat: {
     backgroundColor: "white",
     padding: 25,
-    paddingTop: 125,
+    paddingTop: 100,
     width: "100%",
   },
 

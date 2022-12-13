@@ -1,13 +1,12 @@
-import { useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import ApiContext from '../context/apiContext';
 import { resetPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
-
+import CookiesManagement from '../component/cookiesManagement';
 
 export default function Changepassword() {
     const [email, setEmail] = useState("");
@@ -36,12 +35,11 @@ export default function Changepassword() {
                     <link rel="icon" href="/favicon.ico" />
                 </Head>
                 <Header />
-                <section className={styles.login}>
+                <section >
                     <form
-                        className={styles.log}
                         style={{ borderBottom: "solid 1px #D2D2D2" }}
                     >
-                        <h1 className={styles.h1} style={{ fontSize: 25 }}>
+                        <h1 className="h1" style={{ fontSize: 25 }}>
                             Modification de mot de passe
                         </h1>
                         <input
@@ -63,7 +61,7 @@ export default function Changepassword() {
                         />
 
                         <button
-                            className={styles.action}
+
                             style={{ animation: "pulse 1sec infite" }}
                             onClick={e => modifierPassword(e)}
                         >
@@ -73,6 +71,7 @@ export default function Changepassword() {
                 </section>
             </div>
             <Footer />
+            <CookiesManagement/>
         </div>
     );
 }
