@@ -399,13 +399,8 @@ a {
 
 
  .lds-hourglass {
-<<<<<<< HEAD
-    display: inline-block;
-    position: relative;
-=======
     width: 250px;
     height: 250px;
->>>>>>> origin/dev
 }
 .lds-hourglass:after {
   content: " ";
