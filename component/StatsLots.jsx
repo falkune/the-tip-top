@@ -4,7 +4,6 @@ import Gauge from './gauge';
 import PieGraph from './Piecharte';
 
 const StatsLots = ({ allGroup }) => {
-  console.log(allGroup)
   return (
     <div>
       <div style={styles.lot}>
@@ -23,7 +22,7 @@ const StatsLots = ({ allGroup }) => {
       <div style={styles.pieBloc}>
         { 
           allGroup.map((l,index)=> (
-            <Gauge title={l.groupName} data={[{name: 'Tickets assignés', value: l.claimbedTicket},{name: 'Tickets livrés', value: l.deliveredTicket}]}/>
+            <Gauge key={index} title={l.groupName} data={[{name: 'Tickets assignés', value: l.claimbedTicket},{name: 'Tickets livrés', value: l.deliveredTicket}]}/>
           ))
         }
       </div>
@@ -31,7 +30,7 @@ const StatsLots = ({ allGroup }) => {
       <div style={styles.pieBloc}>
         { 
           allGroup.map((l,index)=> (
-            <PieGraph title={l.groupName} data={[{ name: 'Tickets assignés', value: l.claimbedTicket },{ name: 'Tickets livrés', value: l.deliveredTicket }]}/>
+            <PieGraph key={index} title={l.groupName} data={[{ name: 'Tickets assignés', value: l.claimbedTicket },{ name: 'Tickets livrés', value: l.deliveredTicket }]}/>
           ))
         }
       </div>
