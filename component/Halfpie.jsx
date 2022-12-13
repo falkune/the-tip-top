@@ -14,6 +14,7 @@ export default function HalfPie({title, data}) {
                     startAngle={180}
                     endAngle={0}
                     label
+                    textAnchor={"middle"}
                     innerRadius={60}
                     outerRadius={80}
                     fill="#8884d8"
