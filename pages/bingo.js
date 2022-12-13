@@ -89,7 +89,9 @@ export default function Bingo() {
      borderRadius:20
      }} >
           <h1 className="h1">Bingo ticket</h1>
-          <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+          <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
 
           <p style={{textAlign:"center"}}>Tester votre ticket <br></br>pour voir votre lot remporté (100% gagnant )</p>
           <form  target="#" style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>

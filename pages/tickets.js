@@ -114,7 +114,9 @@ export default function Tickets() {
         <Header menu="tickets"/>
         <div style={stylez.gain}>
         <h1 className="h1">Mes tickets</h1>
-        <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+          <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
 
         <p style={{ fontSize: 18, color: "grey" }}>
           Vous avez{" "}

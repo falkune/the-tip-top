@@ -21,34 +21,33 @@ export default function equipe() {
       </Head>
       <Header menu={"equipe"} />
       <section
-        className="rule"
-        style={{
-          color: " #38870D",
-          padding: 0,
-          paddingTop: 80
-        }}
-      >
-        <section style={{
-          marginTop: 50,
-          minHeight: "100vh",
-          width: "100%",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          flex: 1
-        }}>
-          <div style={{ marginBottom: 50, display: "flex", flexDirection: "column", alignItems: "center" }}>
-            <h1 className="h1" >Qui sommes nous ?</h1>
-            <Breadcrumbs useDefaultStyle={true} style={{ color: "white" }} rootLabel="Home" />
-          </div>
-          <div className="team">  <Image className="animate__animated  animate__backInUp" style={{ width: "50%" }} src={team} alt="team dev" />
-          </div>
-          <div className="team2">
-            <h2 className="animate__animated animate__fadeInUp">Une team soudé & passionné </h2>
-            <p className="animate__animated animate__fadeInUp" style={{ color: "white" }}> C'EST AVANT TOUT UNE ÉQUIPE DE FEMMES ET D'HOMMES PASSIONNÉS PAR LEUR MÉTIER, LEUR SPORT, LEUR FAMILLE ... LA VIE QUOI !
-              VOUS CONNAISSEZ PEUT-ÊTRE DÉJÀ LE PRODUIT, DÉCOUVREZ CEUX QUI EN SONT SUR PARIS!</p>
-          </div>
-        </section>
+className="rule"
+style={{
+  color: " #38870D",
+  padding: 0,
+  paddingTop:80
+}}
+>
+<section style={{marginTop:50,
+minHeight:"100vh",
+width:"100%",
+display:"flex",
+flexDirection:"column",
+alignItems:"center",
+flex:1}}>
+  <div style={{marginBottom:50,display:"flex",flexDirection:"column",alignItems:"center"}}>
+      <h1 className="h1" >Qui sommes nous ?</h1>
+      <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />  </div>
+  <div className="team">  <Image  className="animate__animated  animate__backInUp"  style={{width:"50%"}} src={team} alt="team dev"/>
+</div>
+<div className="team2">
+<h2 className="animate__animated animate__fadeInUp">Une team soudé & passionné </h2>
+<p className="animate__animated animate__fadeInUp" style={{color:"white"}}> C'EST AVANT TOUT UNE ÉQUIPE DE FEMMES ET D'HOMMES PASSIONNÉS PAR LEUR MÉTIER, LEUR SPORT, LEUR FAMILLE ... LA VIE QUOI ! 
+VOUS CONNAISSEZ PEUT-ÊTRE DÉJÀ LE PRODUIT, DÉCOUVREZ CEUX QUI EN SONT SUR PARIS!</p>
+</div>
+</section>
 
       </section>
       <Footer />
