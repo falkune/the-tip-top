@@ -14,6 +14,7 @@ import { loadFull } from "tsparticles";
 import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
 import { notifier } from '../fonctions/utils';
+import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Home() {
@@ -27,23 +28,25 @@ export default function Home() {
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    await console.log(container)
+    // await console.log(container)
   }, []);
 
   useEffect(() => {
     getCurrent(context)
   }, []);
+ 
+
 
   const getCurrent = async (context) => {
     getCurrentSession(context)
       .then((response) => {
         setCurrent(response[0]._id);
-        notifier(response[0].description, 'success')
       })
       .catch((error) => {
         notifier(error)
       })
   };
+
   const goResult = () => {
     router.push({
       pathname: `connexion`,
@@ -64,40 +67,36 @@ export default function Home() {
       <Header />
       <section
         className="homdiv"
-        style={{ paddingTop: 50, paddingBottom: 50 }} >
-        {current && <h3 style={{
-          color: "white", margin: 5,
-          fontSize: "1.4em",
-          border: "solid 2px",
-          borderRadius: 100,
-          padding: 15,
-          paddingLeft: 35,
-          paddingRight: 35
-        }}>
-          Du {dayjs(current.startDate).format('DD MMMM YYYY')} au  {dayjs(current.endDate).format('DD MMMM YYYY')}</h3>}
-
-        <span style={{ minWidth: 160, width: "12%", marginTop: 20 }}>
-          <Image className="animate__animated  animate__backInUp" src={teab} />
+        style={{ paddingTop: 50, paddingBottom: 50 }} >   
+        {current && <h3 style={{color:"white",margin:5,
+        fontSize:"1.4em",
+        border:"solid 2px",
+        borderRadius:100,
+        padding:15,
+        paddingLeft:35,
+        paddingRight:35}}>
+        Du {dayjs(current.startDate).format('DD MMMM YYYY')} au  {dayjs(current.endDate).format('DD MMMM YYYY')}</h3> }
+      
+        <span style={{minWidth:160,width:"12%",marginTop:20}}>
+          <Image className="animate__animated  animate__backInUp" src={teab} alt="teaBingo title"/>
         </span>
 
-        <div style=
-          {{
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            width: "100%",
-            maxWidth: 250,
-            padding: 10,
-            paddingTop: 20,
-            borderRadius: 20
-          }} >
-          <Link href="/regle">
-            <p style={{ color: "white", textDecoration: "underline", fontWeight: "bold", margin: 2 }}> Voir les règles<br></br> de participation</p>
-          </Link>
-          <span>
-            <Image src={show} height={50} width={50} alt="show finger" />
-          </span>
-        </div>
+          <div style =
+          {{display:"flex",
+          flexDirection:"column",
+          alignItems:"center",
+          width:"100%",
+          maxWidth:250,
+          padding:10,
+          paddingTop:20,
+          borderRadius:20}} >
+                    <Link href="/regle" passHref>
+                    <p style={{color:"white", textDecoration:"underline",fontWeight:"bold", margin:2,marginBottom:20}}> Voir les règles<br></br> de participation</p> 
+                    </Link>
+             <span>
+                   <Image src={show} height={50} width={50} alt="show finger"/>
+              </span> 
+          </div>
 
         <span className="animate__animated animate__heartBeat animate__infinite	infinite">
           <h1 className="h1">Jeu concours</h1></span>
@@ -105,18 +104,16 @@ export default function Home() {
         <h2>Tenter de gagner l'un de nos nombreux lots <br></br>
           Des infuseurs ou coffrets spéciaux !</h2>
         <button type="button" onClick={() => goResult()} className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
-          style={{
-            marginBottom: 20, marginTop: 20,
-            boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"
-          }} >
-          Participer
-        </button>
-        <h3 className='floating' style={{ color: "white", margin: 5 }}> ou </h3>
-        <Link href="/lots">
-          <button type="button" className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
-            style={{ marginBottom: 20, marginTop: 20, boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)" }}>
-            Voir les lots à gagner
-          </button>
+          style={{marginBottom:20,marginTop:20,
+            boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}} >
+            Participer
+        </button> 
+        <h3  className='floating' style={{color:"white",margin:5}}> ou </h3>
+        <Link href="/lots"  passHref >
+          <button type="button"  className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
+            style={{marginBottom:20,marginTop:20, boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}}>
+              Voir les lots à gagner
+          </button> 
         </Link>
 
       </section>
@@ -266,6 +263,7 @@ export default function Home() {
             }
           }} />
       <Footer />
+      <CookiesManagement/>
     </div>
   );
 }

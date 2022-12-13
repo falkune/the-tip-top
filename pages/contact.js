@@ -1,13 +1,47 @@
-import React from "react";
+import { useState } from 'react';
 import Head from "next/head";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-
+import CookiesManagement from '../component/cookiesManagement';
 
 
 
 export default function contact() {
+  const [open, setOpen] = useState(false);
+         
+
+    const SendMail = () =>{
+    const url = "https://api.sendpulse.com/smtp/emails"
+    const  email =  {
+      "email": {
+        "subject": "Contact",
+        "template": {
+          "id": 123456,
+          "variables": {
+            "name": "George",
+            "code": "123456"
+          }
+        },
+        "from": {
+          "name": "Teabingo",
+          "email": "mike.johnson@domain.com"
+        },
+        "to": [
+          {
+            "email": "recipient1@example.com",
+            "name": "George"
+          }
+        ]
+      }
+    }
+
+    axios.post(url, {"body":token}, {
+      headers: {
+      'Content-Type': 'application/json'
+      }}).then(response => setNewTicket(response.data.id));
+    }
+  
 
 
   return (
@@ -30,11 +64,8 @@ export default function contact() {
           alignItems:"center",
           height:"100vh" }}>
           <form className="login animate__animated animate__fadeInUp">
-          <h1 className="h1">
-              Contactez nous
-            </h1>
+          <h1 className="h1">Contactez nous</h1>
             <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
-
             <input type="text" placeholder="Nom"/>
             <input type="email" placeholder="Email"/>
             <textarea rows="10" placeholder="Décrire votre message"/>
@@ -42,6 +73,7 @@ export default function contact() {
           </form>
       </section>
       <Footer />
+      <CookiesManagement/>
     </div>
   );
 }

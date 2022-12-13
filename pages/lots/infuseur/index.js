@@ -6,7 +6,7 @@ import Footer from "../../../component/Footer";
 import tea4 from "../../../image/tea4.png";
 import Link from "next/link";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-
+import CookiesManagement from '../../../component/cookiesManagement';
 
 
 
@@ -78,6 +78,7 @@ export default function infuseur() {
        </div>
       </div>
     </section>
+    <CookiesManagement/>
     <Footer />
   </div>
  

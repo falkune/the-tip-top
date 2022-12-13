@@ -7,8 +7,7 @@ import { users } from "./Data"
 
 export default function MyEmails() {
 
-  const number = users.length
-
+s
   return (
     <div className="container">
     <button>Ticket cheaker</button>

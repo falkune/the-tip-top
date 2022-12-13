@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import Head from "next/head";
@@ -7,13 +8,12 @@ import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import gift from "../image/win.gif"
 import Cookies from "js-cookie";
-import { verifTicketApi } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import { notifier ,refreshToken} from "../fonctions/utils";
 import 'nextjs-breadcrumbs/dist/index.css'
 import Breadcrumbs from 'nextjs-breadcrumbs';
+import CookiesManagement from '../component/cookiesManagement';
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -136,7 +136,7 @@ export default function Bingo() {
             </button>
           )}
         
-               <Link href="/lots">
+               <Link href="/lots"  passHref>
             <small style={{ color: " #38870D", fontSize: "1.2em" }}>
               Voir les differents lots
             </small>
@@ -145,6 +145,7 @@ export default function Bingo() {
           </div>
         </section>
         <Footer />
+        <CookiesManagement/>
       </div>
     );
   }else{

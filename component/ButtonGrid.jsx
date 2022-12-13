@@ -17,7 +17,7 @@ const ButtonGrid = (props) => {
   const context = useContext(ApiContext)
   const [lot,setLot] = useState(false);
   const [open,setOpen] = useState(false);
-  const [isFinished, setIsFinished] = useState(isSessionFinished())
+  const [isFinished] = useState(isSessionFinished())
 
 
 const VerifyTicket = async (n) => {

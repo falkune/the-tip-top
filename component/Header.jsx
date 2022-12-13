@@ -66,26 +66,26 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-                   <li style={menu === "equipe" ? styles.liactive : styles.li}>
+                   <li style={menu == "equipe" ? styles.liactive : styles.li}>
                   <Link href="/equipe">
                       Qui sommes nous ?
                   </Link>
                   </li>
              
-                  <li style={menu === "regle" ? styles.liactive : styles.li}>
+                  <li style={menu == "regle" ? styles.liactive : styles.li}>
                     <Link href="/regle">
                       Règle du jeux
                     </Link>
                   </li>
 
-                  <li style={menu === "lots" ? styles.liactive : styles.li}>
+                  <li style={menu == "lots" ? styles.liactive : styles.li}>
                       <Link href="/lots">
                         Lot à gagner
                     </Link>
                   </li>
        
-                {role && role === "admin" && (
-                <li style={menu === "bingo" ? styles.liactive : styles.li}>
+                {role && role == "admin" && (
+                <li style={menu == "bingo" ? styles.liactive : styles.li}>
                   <Link href="/stats">
                         Administration  
                   </Link>
@@ -93,30 +93,29 @@ const Header = ({ menu, changemenu }) => {
                 )}
 
               
-              {role && role === "client" && (
-                <li style={menu === "bingo" ? styles.liactive : styles.li}>
+              {role && role == "client" && (
+                <li style={menu == "bingo" ? styles.liactive : styles.li}>
                   {" "}
                   <Link href="/bingo">Bingo ticket </Link>
                 </li>
               )}
 
-              {role && role === "client" && (
-                <li style={menu === "jeux" ? styles.liactive : styles.li}>
+              {role && role == "client" && (
+                <li style={menu == "jeux" ? styles.liactive : styles.li}>
                   {" "}
                   <Link href="/jeux">Grand jeux concours </Link>
                 </li>
               )}
 
-              {role && role === "client" && (
-                <li style={menu === "tickets" ? styles.liactive : styles.li}>
+              {role && role == "client" && (
+                <li style={menu == "tickets" ? styles.liactive : styles.li}>
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-              {Cookies.get('role') == null || Cookies.get('role') == 'client' ?
-                (<li style={menu === "contact" ? styles.liactive : styles.li}>
+              
+               <li style={menu == "contact" ? styles.liactive : styles.li}>
                   <Link href="/contact">Contactez nous </Link>
-                </li>):(<></>)
-              }
+                </li>
 
               {!role && (
                 <li style={styles.login}>
@@ -147,7 +146,7 @@ const Header = ({ menu, changemenu }) => {
       >
         <div style={styles.draw}>
           <ul className="responsiveMenu">
-            {!role || role === 'client' && (
+            {!role || role == 'client' && (
               <Link href="/equipe">
                 <li>Qui sommes nous</li>
               </Link>
@@ -156,35 +155,35 @@ const Header = ({ menu, changemenu }) => {
             <Link href="/lots">
               <li>Lot à gagner</li>
             </Link>
-            {role && role === "client" && (
+            {role && role == "client" && (
               <Link href="/bingo">
                 <li>Bingo ticket</li>
               </Link>
             )}
 
-            {role && role === "client" && (
+            {role && role == "client" && (
               <Link href="/jeux">
                 <li>Grand jeux concours</li>
               </Link>
             )}
 
-            {role && role === "client" && (
+            {role && role == "client" && (
               <Link href="/tickets">
                 <li>Mes tickets</li>
               </Link>
             )}
 
-            {role && role === "admin" && (
+            {role && role == "admin" && (
               <Link href="/stats">
                 <li>Mes stats</li>
               </Link>
             )}
-            {role && role === "admin" && (
+            {role && role == "admin" && (
               <div>
                 <button
                   value={"generator"}
                   style={
-                    menu === "generator"
+                    menu == "generator"
                       ? styles.DrawereButtonActive
                       : styles.DrawereButtonInactive
                   }
@@ -195,7 +194,7 @@ const Header = ({ menu, changemenu }) => {
                 <button
                   value={"ticket"}
                   style={
-                    menu === "ticket"
+                    menu == "ticket"
                       ? styles.DrawereButtonActive
                       : styles.DrawereButtonInactive
                   }
@@ -206,7 +205,7 @@ const Header = ({ menu, changemenu }) => {
                 <button
                   value={"users"}
                   style={
-                    menu === "users"
+                    menu == "users"
                       ? styles.DrawereButtonActive
                       : styles.DrawereButtonInactive
                   }
@@ -217,7 +216,7 @@ const Header = ({ menu, changemenu }) => {
                 <button
                   value={"sessions"}
                   style={
-                    menu === "sessions"
+                    menu == "sessions"
                       ? styles.DrawereButtonActive
                       : styles.DrawereButtonInactive
                   }

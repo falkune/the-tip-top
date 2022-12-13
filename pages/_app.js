@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/globals.css";
 import { ApiProvider } from "../context/apiContext";
 import ApiClient from '../api/api-client';
+import apiSendPulse from "../api/api-sendPulse"
 import Cookies from 'js-cookie';
 import Script from "next/script";
 import 'react-toastify/dist/ReactToastify.css';
@@ -24,9 +25,15 @@ function MyApp({ Component, pageProps }) {
         .setHeader("Accept", "Application/json")
         .setHeader("Content-Type", "application/json")
         .setBearerAuth(Cookies.get('authToken'))
-      : null
+      : null,
+    sender: new apiSendPulse()
+      .setHeader("lang", "en")
+      .setHeader("Accept", "Application/json")
+      .setHeader("Content-Type", "application/json")
+      .setHeader('Access-Control-Allow-Origin', '*')
+      .setBaseUrl(process.env.NEXT_PUBLIC_SENDPULSE_BASE_URL)
   });
-  
+
   return (
     <>
     <Script

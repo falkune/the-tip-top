@@ -6,6 +6,7 @@ import Footer from "../../../component/Footer";
 import Link from "next/link";
 import tea5 from "../../../image/tea5.png";
 import Breadcrumbs from 'nextjs-breadcrumbs';
+import CookiesManagement from '../../../component/cookiesManagement';
 
 
 
@@ -71,6 +72,7 @@ export default function thedetox() {
          </div>
         </div>
       </section>
+      <CookiesManagement/>
       <Footer />
     </div>
   );

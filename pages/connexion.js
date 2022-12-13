@@ -10,7 +10,7 @@ import ApiContext from '../context/apiContext';
 import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
 import Link from "next/link";
-
+import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Connexion() {
@@ -210,6 +210,7 @@ export default function Connexion() {
      
       </div>
       <Footer />
+      <CookiesManagement/>
     </div>
   );
 }
