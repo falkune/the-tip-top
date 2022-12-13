@@ -1,7 +1,8 @@
 import React from 'react';
 import Head from 'next/head'
 import Header from '../component/Header'
-import Footer from "../component/Footer"
+import Footer from "../component/Footer";
+import CookiesManagement from '../component/cookiesManagement';
 
 export default function Conditions() {
   return (
@@ -159,6 +160,7 @@ L’Éditeur peut être amené à recueillir des informations de navigation via 
       </section>
 
       <Footer/>
+      <CookiesManagement/>
     </div>
   )
 }

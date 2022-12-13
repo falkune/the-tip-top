@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import dayjs from "dayjs";
+import CookiesManagement from '../component/cookiesManagement';
 import "dayjs/locale/fr" 
 dayjs.locale('fr')
 import Breadcrumbs from 'nextjs-breadcrumbs';
@@ -137,6 +138,7 @@ export default function Tickets() {
           </div>
         </div>
         <Footer />
+        <CookiesManagement/>
       </div>
     );
   }else{

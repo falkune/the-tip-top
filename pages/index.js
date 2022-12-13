@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState ,useCallback,useContext } from "react";
+import React, { useEffect, useState, useCallback, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import teab from "../image/TeaBingo.png"
@@ -12,50 +11,40 @@ import Link from "next/link";
 import dayjs from "dayjs"
 import Particles from "react-particles";
 import { loadFull } from "tsparticles";
-import Cookies from 'js-cookie';
+import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
-// import {getToken} from '../fonctions/mail'
+import { notifier } from '../fonctions/utils';
+import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Home() {
   const [current, setCurrent] = useState("");
   const router = useRouter();
-  const context = useContext(ApiContext)
+  const context = useContext(ApiContext);
 
 
   const particlesInit = useCallback(async engine => {
-    // you can initiate the tsParticles instance (engine) here, adding custom shapes or presets
-    // this loads the tsparticles package bundle, it's the easiest method for getting everything ready
-    // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(engine);
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    await console.log(container)
+    // await console.log(container)
   }, []);
 
   useEffect(() => {
-    getCurrent()
+    getCurrent(context)
   }, []);
  
 
 
-
-  const getCurrent = async () => {
-    let sessions = context.backend.api.sessions.get('get-current-session', {
-      Accept: "Application/json",
-      "Content-Type": "application/json",
-    })
-    sessions.then((response) => {
-      if(response.statusCode){
-        console.log("vrai", response)
-      }else{
+  const getCurrent = async (context) => {
+    getCurrentSession(context)
+      .then((response) => {
         setCurrent(response[0]._id);
-        console.log("good", response)
-        Cookies.set('currentStart',response[0].startDate)
-        Cookies.set('currentEnd',response[0].endDate)
-      }
-    })
+      })
+      .catch((error) => {
+        notifier(error)
+      })
   };
 
   const goResult = () => {
@@ -77,7 +66,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <link rel="stylesheet" href="https://use.typekit.net/zdg4oks.css"></link>
       </Head>
-      <Header/>
+      <Header />
       <section
         className="homdiv"
         style={{ paddingTop: 50, paddingBottom: 50 }} >   
@@ -112,9 +101,9 @@ export default function Home() {
           </div>
 
         <span className="animate__animated animate__heartBeat animate__infinite	infinite">
-        <h1 className="h1">Jeu concours</h1></span>
+          <h1 className="h1">Jeu concours</h1></span>
 
-          <h2>Tenter de gagner l'un de nos nombreux lots <br></br>
+        <h2>Tenter de gagner l'un de nos nombreux lots <br></br>
           Des infuseurs ou coffrets spéciaux !</h2>
         <button type="button" onClick={() => goResult()} className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
           style={{marginBottom:20,marginTop:20,
@@ -131,9 +120,10 @@ export default function Home() {
 
       </section>
       <Particles init={particlesInit} loaded={particlesLoaded}
-          id="tsparticles"
-          options={
-            {"fullScreen": {
+        id="tsparticles"
+        options={
+          {
+            "fullScreen": {
               "zIndex": 1
             },
             "emitters": [
@@ -260,18 +250,22 @@ export default function Home() {
                 "distance": 30,
                 "enable": true,
                 "speed": {
-                  "min":0,
-                  "max":50
+                  "min": 0,
+                  "max": 50
                 }
               },
               "shape": {
                 "type": "circle",
-                "options": { confetti: {
-                  type: ["circle", "square"]
-                }}
+                "options": {
+                  confetti: {
+                    type: ["circle", "square"]
+                  }
+                }
               }
-            }}} />
+            }
+          }} />
       <Footer />
+      <CookiesManagement/>
     </div>
   );
 }

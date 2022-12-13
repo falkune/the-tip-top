@@ -6,7 +6,7 @@ import Header from "../../../component/Header";
 import Footer from "../../../component/Footer";
 import Link from "next/link";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-
+import CookiesManagement from '../../../component/cookiesManagement';
 
 
 export default function coffret32() {
@@ -78,6 +78,7 @@ export default function coffret32() {
        
     
       </section>
+      <CookiesManagement/>
       <Footer />
     </div>
   );

@@ -12,6 +12,7 @@ import ApiContext from '../context/apiContext';
 import { register, googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
 import Cookies from 'js-cookie';
 import { notifier } from "../fonctions/utils";
+import CookiesManagement from '../component/cookiesManagement';
 
 export default function Inscription() {
   const context = useContext(ApiContext);
@@ -95,7 +96,7 @@ export default function Inscription() {
             notifier("un mail vous a été envoyer pour valide votre compte", "success")
           }
         })
-        .catch((error) => notifier(error.message));
+        .catch((error) => console.log("ici ",error.message));
     }
   }
 
@@ -178,7 +179,7 @@ export default function Inscription() {
             </button>
           </form>
           <div className="social">
-            <button
+            {/* <button
               style={{
                 backgroundColor: "#437BFF",
                 fontWeight: "bold",
@@ -197,7 +198,7 @@ export default function Inscription() {
                 />
               </span>
               S'inscrire
-            </button>
+            </button> */}
             <button
               style={{
                 backgroundColor: "white",
@@ -228,9 +229,9 @@ export default function Inscription() {
             </strong>
           </small>
         </section>
-
       </div>
       <Footer />
+      <CookiesManagement/>
     </div>
   );
 }

@@ -5,6 +5,8 @@ import { CardSummary } from './CardSummary';
 import PieGraph from './Piecharte';
 import HalfPie from './Halfpie';
 import {notifier, refreshToken} from '../fonctions/utils';
+import {Pie3d} from './chart';
+import {NewPie} from './newpie';
 
 
 export default function ParticipationStat({ claimbedTicket, deliveredTicket, idSession }) {
@@ -33,8 +35,13 @@ export default function ParticipationStat({ claimbedTicket, deliveredTicket, idS
   return (
     <div style={styles.container}>
       <CardSummary title="Total inscription" totalInscrit={users} totalDay={2}/>
-      <HalfPie title="stats global" data={[{name: 'Tickets assignés', value: claimbedTicket},{name: 'Tickets livrés', value: deliveredTicket}]}/>
-      <PieGraph title="stats global" data={[{ name: 'Tickets assignés', value: claimbedTicket },{ name: 'Tickets livrés', value: deliveredTicket }]}/>
+      {/* <HalfPie title="stats global" data={[{name: 'Tickets assignés', value: claimbedTicket},{name: 'Tickets livrés', value: deliveredTicket}]}/> */}
+      
+      {/* <PieGraph title="stats global" data={[{ name: 'Tickets assignés', value: claimbedTicket },{ name: 'Tickets livrés', value: deliveredTicket }]}/> */}
+      <div style={styles.bloc}>
+        <Pie3d title="stats global" data={[["titre", 'stats global'],['Tickets assignés', claimbedTicket],['Tickets livrés',deliveredTicket]]}/>
+        <NewPie title="stats global" data={[["titre", 'stats global'],['Tickets assignés', claimbedTicket],['Tickets livrés',deliveredTicket]]}/>
+      </div>
   </div>
   );
 }
@@ -45,4 +52,8 @@ const styles = {
     justifyContent: "space-around",
     flexWrap: "wrap",
   },
+  bloc:{
+    display: 'flex',
+    justifyContent: "space-between"
+  }
 }

@@ -22,7 +22,8 @@ import sessions from  '../image/session.png'
 import users from  '../image/users.png'
 import search from  '../image/search.png'
 import load from  '../image/load.png'
-import graph from  '../image/graph.png'
+import graph from  '../image/graph.png';
+import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Stats() {
@@ -204,6 +205,7 @@ export default function Stats() {
           </div>
         </div>
         <Footer />
+        <CookiesManagement/>
       </div>
     );
   }

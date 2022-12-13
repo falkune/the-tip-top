@@ -18,6 +18,7 @@ import { refreshToken,isSessionFinished } from "../fonctions/utils";
 import ApiContext from '../context/apiContext';
 import Modal from "@mui/material/Modal";
 import Cookies from "js-cookie";
+import CookiesManagement from '../component/cookiesManagement';
 import dayjs from "dayjs";
 import "dayjs/locale/fr" 
 dayjs.locale('fr')
@@ -226,6 +227,7 @@ dayjs.extend(relativeTime)
               </button>
         </div>
       </Modal>
+      <CookiesManagement/>
       <Footer />
     </div>
   );

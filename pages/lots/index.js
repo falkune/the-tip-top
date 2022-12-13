@@ -11,6 +11,7 @@ import tea5 from "../../image/tea5.png";
 import Link from "next/link";
 import "animate.css";
 import Breadcrumbs from 'nextjs-breadcrumbs';
+import CookiesManagement from '../../component/cookiesManagement';
 
 
 export default function lots() {
@@ -94,6 +95,7 @@ export default function lots() {
         </div>
       </section>
       <Footer />
+      <CookiesManagement/>
     </div>
   );
 }

@@ -22,6 +22,8 @@ export default function LineGraph({ data, width }) {
         width={width}
         height={700}
         data={data}
+        fill={true}
+        color="green"
         margin={{
           top: 20,
           right: 30,
