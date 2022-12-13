@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import Head from "next/head";
@@ -134,7 +135,7 @@ export default function Bingo() {
             </button>
           )}
         
-               <Link href="/lots">
+               <Link href="/lots"  passHref>
             <small style={{ color: " #38870D", fontSize: "1.2em" }}>
               Voir les differents lots
             </small>

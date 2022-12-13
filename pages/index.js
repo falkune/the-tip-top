@@ -98,7 +98,7 @@ export default function Home() {
           padding:10,
           paddingTop:20,
           borderRadius:20}} >
-                    <Link href="/regle">
+                    <Link href="/regle" passHref>
                     <p style={{color:"white", textDecoration:"underline",fontWeight:"bold", margin:2}}> Voir les règles<br></br> de participation</p> 
                     </Link>
              <span>
@@ -117,7 +117,7 @@ export default function Home() {
             Participer
         </button> 
         <h3  className='floating' style={{color:"white",margin:5}}> ou </h3>
-        <Link href="/lots">
+        <Link href="/lots"  passHref >
           <button type="button"  className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
             style={{marginBottom:20,marginTop:20, boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}}>
               Voir les lots à gagner

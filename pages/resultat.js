@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
@@ -208,7 +209,7 @@ dayjs.extend(relativeTime)
             textAlign: "center" }} >
               
               <h2 style={{ color: " #38870D", marginBottom: 0 }}> Oops !</h2>
-              <Image src={confuse} />
+              <Image src={confuse} alt="confuse character" />
               <small>{error.description}</small>
               <button
                 onClick={handleClose}

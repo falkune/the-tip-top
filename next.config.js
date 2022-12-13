@@ -27,9 +27,6 @@ const nextConfig = {
       ],
     },
     {
-      "plugins": ["@babel/plugin-syntax-jsx"]
-    },
-    {
       test: /\.json5$/i,
       loader: 'json5-loader',
       options: {
