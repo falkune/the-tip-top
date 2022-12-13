@@ -1,19 +1,19 @@
 import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
-function OneLot({ title, totalTicket, limitTicket, claimbedTicket}) {
+function OneLot({ title, limitTicket, claimbedTicket, deliveredTicket}) {
   return (
     <Card style={styles.card}>
       <Typography style={styles.title}>{title}</Typography>
       <CardContent style={styles.box}>
         <div>
-          <p style={styles.titre}>Tickets générés</p>
-          <Typography > <span style={styles.generate}>{totalTicket}</span> / {limitTicket}</Typography>
+          <p style={styles.titre}>Tickets assignés</p>
+          <Typography > <span style={styles.generate}>{claimbedTicket}</span> / {limitTicket}</Typography>
         </div>
 
         <div>
-          <p style={styles.titre}>Tickets assignés</p>
-          <Typography> <span style={styles.generate}>{claimbedTicket}</span> / {totalTicket}</Typography>
+          <p style={styles.titre}>Tickets livrés</p>
+          <Typography> <span style={styles.generate}>{deliveredTicket}</span> / {claimbedTicket}</Typography>
         </div>
       </CardContent>
     </Card>
