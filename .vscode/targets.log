@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Dec  3 11:16:05 2022
+# Make data base, printed on Sat Dec 10 13:00:08 2022
 
 # Variables
 
@@ -51,7 +51,7 @@ VSCODE_NLS_CONFIG = {"locale":"fr","availableLanguages":{"*":"fr"},"_languagePac
 # environment
 _ = /usr/share/code/code
 # environment
-JOURNAL_STREAM = 8:56649
+JOURNAL_STREAM = 8:68972
 # environment
 XDG_CONFIG_DIRS = /etc/xdg/xdg-ubuntu:/etc/xdg
 # makefile
@@ -73,9 +73,9 @@ DBUS_SESSION_BUS_ADDRESS = unix:path=/run/user/1000/bus
 # environment
 VSCODE_VERBOSE_LOGGING = true
 # environment
-MANAGERPID = 2626
+MANAGERPID = 9779
 # environment
-VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-4225c310-6e1a-4a38-947f-3fa76453046a.sock
+VSCODE_IPC_HOOK_EXTHOST = /run/user/1000/vscode-ipc-86a61149-2f07-4815-8e3b-d6da2ae4cccb.sock
 # environment
 LC_NAME = fr_FR.UTF-8
 # environment
@@ -91,7 +91,7 @@ GJS_DEBUG_OUTPUT = stderr
 # environment
 LSCOLORS = Gxfxcxdxbxegedabagacad
 # environment
-SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/2850,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/2850
+SESSION_MANAGER = local/donald-inspiron-15-5518:@/tmp/.ICE-unix/10020,unix/donald-inspiron-15-5518:/tmp/.ICE-unix/10020
 # environment
 XDG_RUNTIME_DIR = /run/user/1000
 # environment
@@ -105,7 +105,7 @@ VSCODE_LOG_STACK = false
 # environment
 ELECTRON_RUN_AS_NODE = 1
 # environment
-INVOCATION_ID = f99ace54fb104c81bb1c5bedf3c1d30d
+INVOCATION_ID = a05922a5c84d46eab924e017ac3eee7a
 # default
 .FEATURES := target-specific order-only second-expansion else-if shortest-stem undefine oneshell archives jobserver output-sync check-symlink load
 # environment
@@ -115,7 +115,7 @@ XDG_SESSION_DESKTOP = ubuntu
 # environment
 SSH_AUTH_SOCK = /run/user/1000/keyring/ssh
 # environment
-GIO_LAUNCHED_DESKTOP_FILE_PID = 21162
+GIO_LAUNCHED_DESKTOP_FILE_PID = 37566
 # automatic
 %F = $(notdir $%)
 # environment
@@ -127,7 +127,7 @@ PWD = /home/donald/Documents/TheTipTop/front-end
 # default
 .LOADED := 
 # environment
-SSH_AGENT_PID = 2812
+SSH_AGENT_PID = 9965
 # environment
 ORIGINAL_XDG_CURRENT_DESKTOP = ubuntu:GNOME
 # environment
@@ -190,6 +190,7 @@ MAKE_COMMAND := make
 .VARIABLES := 
 # automatic
 *F = $(notdir $*)
+ 
 # environment
 LANGUAGE = fr_FR:en
 # environment
@@ -249,7 +250,7 @@ LC_ADDRESS = fr_FR.UTF-8
 # environment
 LANG = C
 # environment
-VSCODE_PID = 21162
+VSCODE_PID = 37566
 # variable set hash-table stats:
 # Load=119/1024=12%, Rehash=0, Collisions=17/141=12%
 
@@ -259,9 +260,9 @@ VSCODE_PID = 21162
 
 # Directories
 
-# . (device 66311, inode 10368061): 26 files, no impossibilities.
+# . (device 66311, inode 10368061): 32 files, no impossibilities.
 
-# 26 files, no impossibilities in 1 directories.
+# 32 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -304,7 +305,6 @@ GNUmakefile:
 #  Failed to be updated.
 
 # files hash-table stats:
- 
 # Load=6/1024=1%, Rehash=0, Collisions=0/15=0%
 # VPATH Search Paths
 
@@ -312,12 +312,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 34 / storage = 329 B / avg = 9 B
-# current buf: size = 8162 B / used = 329 B / count = 34 / avg = 9 B
+# strcache buffers: 1 (0) / strings = 40 / storage = 422 B / avg = 10 B
+# current buf: size = 8162 B / used = 422 B / count = 40 / avg = 10 B
 
-# strcache performance: lookups = 37 / hit rate = 8%
+# strcache performance: lookups = 43 / hit rate = 6%
 # hash-table stats:
-# Load=34/8192=0%, Rehash=0, Collisions=1/37=3%
-# Finished Make data base on Sat Dec  3 11:16:05 2022
+# Load=40/8192=0%, Rehash=0, Collisions=1/43=2%
+# Finished Make data base on Sat Dec 10 13:00:08 2022
 
  
