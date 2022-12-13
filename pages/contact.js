@@ -7,7 +7,7 @@ import CookiesManagement from '../component/cookiesManagement';
 
 
 
-export default function contact() {
+export default function Contact() {
   const [open, setOpen] = useState(false);
          
 
