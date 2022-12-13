@@ -14,6 +14,7 @@ import Particles from "react-particles";
 import { loadFull } from "tsparticles";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
+import {getToken} from '../fonctions/mail'
 
 
 export default function Home() {
@@ -37,6 +38,9 @@ export default function Home() {
   useEffect(() => {
     getCurrent()
   }, []);
+ 
+
+
 
   const getCurrent = async () => {
     let sessions = context.backend.api.sessions.get('get-current-session', {
@@ -99,7 +103,7 @@ export default function Home() {
           paddingTop:20,
           borderRadius:20}} >
                     <Link href="/regle" passHref>
-                    <p style={{color:"white", textDecoration:"underline",fontWeight:"bold", margin:2}}> Voir les règles<br></br> de participation</p> 
+                    <p style={{color:"white", textDecoration:"underline",fontWeight:"bold", margin:2,marginBottom:20}}> Voir les règles<br></br> de participation</p> 
                     </Link>
              <span>
                    <Image src={show} height={50} width={50} alt="show finger"/>

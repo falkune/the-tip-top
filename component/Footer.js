@@ -6,10 +6,38 @@ import Modal from '@mui/material/Modal';
 
 
 
+
 const Footer = () => {
     const [open, setOpen] = useState(false);
+    const [inscrip,setInscrip] = useState({
+        name:"",
+        email:"19397d025506a3c1fb44338340cfc6dc"
+    })
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const emails =   {
+        "email":inscrip.email,
+        "variables":{
+           "name":inscrip.name,
+        }
+     }
+    
+     const sendNewsletter = () => {
+        const id= '23726'
+        const keyAPI = ""
+        const url = `https://api.sendpulse.com/addressbooks/${id}/emails`
+        fetch(url, {
+            method: 'post',
+            headers: { 'Content-Type': 'application/json' },
+            body: {
+                emails:emails
+            },
+           })
+        .then((response) => response.json())
+        .then((data) => console.log(data));
+
+     }
+
     return (
         <footer>
             <button onClick={handleOpen}>
@@ -35,8 +63,10 @@ const Footer = () => {
                     <form style={styles.form}>
                         <h3>Newsletter</h3>
                         <small>Suivre notre actualité</small>
-                        <input style="input" placeholder="Nom" type="text" />
-                        <input style="input" placeholder="Email" type="email" />
+                        <input onChange={ (e)=> setInscrip( {...inscrip, name : e.target.value})}
+                        placeholder='Nom' type={"text"} value={inscrip.name} style={styles.input} />
+                        <input  onChange={ (e) => setInscrip( {...inscrip, email : e.target.value})} 
+                        placeholder='Email' type={"email"} value={inscrip.email} style={styles.input} />
                         <button style={styles.button}>S'inscrire</button>
                     </form>
                 </div>
@@ -74,9 +104,11 @@ const styles = {
         height: 50,
         marginTop: 10,
         marginBottom: 5,
+        outline:"none",
         border: "none",
         padding: 8,
         paddingLeft: 15,
+        fontSize:18,
         background: "#F9F9F9",
         width: "90%",
         fontWeight: "bold"

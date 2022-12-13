@@ -5,17 +5,20 @@ class HttpClient {
   constructor(options = {}) {
     this._baseURL = process.env.NEXT_PUBLIC_API_BASE_URL;
     this._headers = options.headers || {};
-
   }
 
   setHeader(key, value) {
     this._headers[key] = value;
     return this;
   }
+  setBaseUrl(value){
+    this._baseURL = value;
+    return this;
+  }
 
   setBearerAuth(token) {
     this._headers.Authorization = `Bearer ${token}`
-    return this
+    return this;
   }
 
 

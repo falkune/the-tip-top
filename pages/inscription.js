@@ -104,7 +104,6 @@ export default function Inscription() {
     <div>
       <div className="container"
         style={{
-          background: "rgb(56,135,13",
           background: "linear-gradient(83deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 50%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)"
         }} >
         <Head>
