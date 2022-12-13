@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 import { isSessionFinished } from "../fonctions/utils";
 import Breadcrumbs from 'nextjs-breadcrumbs';
 import ResultGame from "../component/ResultGame";
-import CookiesManagement from '../component/cookiesManagement';
+
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
@@ -146,7 +146,7 @@ export default function Jeux() {
       </section>
 
       <Footer />
-      <CookiesManagement/>
+
     </div>
   );
 }

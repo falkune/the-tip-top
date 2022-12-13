@@ -14,7 +14,6 @@ import { loadFull } from "tsparticles";
 import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
 import { notifier } from '../fonctions/utils';
-import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Home() {
@@ -265,7 +264,6 @@ export default function Home() {
             }
           }} />
       <Footer />
-      <CookiesManagement/>
     </div>
   );
 }

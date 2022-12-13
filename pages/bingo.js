@@ -13,7 +13,7 @@ import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import 'nextjs-breadcrumbs/dist/index.css'
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../component/cookiesManagement';
+
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -147,7 +147,7 @@ export default function Bingo() {
           </div>
         </section>
         <Footer />
-        <CookiesManagement/>
+
       </div>
     );
   }else{

@@ -10,7 +10,6 @@ import login from "../image/login.gif";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie'
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Regle() {
@@ -144,7 +143,7 @@ style={{
         </div>
       </section>
       <Footer />
-      <CookiesManagement/>
+
     </div>
   )
 }
