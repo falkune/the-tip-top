@@ -23,7 +23,7 @@ function CookiesManagement() {
         return (
             <div style={styles.container}>
                 <div>
-                    Ce site utilise des cookies <a href="#" style={styles.link}>  en savoir plus</a>
+                    Ce site utilise des cookies <a href="/condition" style={styles.link}>  en savoir plus</a>
                 </div>
                 <div>
                     <button onClick={cookiesAccept} style={styles.btn}><FontAwesomeIcon style={styles.check} icon={faCheck} /> accepter</button>
@@ -46,7 +46,7 @@ const styles = {
     container: {
         position: "fixed",
         bottom: 0,
-        background: "#cad2c5",
+        background: "#ffffff",
         display: "flex",
         width: "100%",
         justifyContent: "space-between",
