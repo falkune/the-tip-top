@@ -3,10 +3,7 @@ import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
 import ParticipationStat from './ParticipationStat';
 import ApiContext from '../context/apiContext';
-import { getDaysBetweenTwoDates } from "../fonctions/utils";
-import { getSessionDetails } from '../fonctions/sessions';
 import { statLots } from '../fonctions/tickets';
-import AgeStat from './AgeStat';
 
 const AllStats = ({idSession}) => {
   const [numberDay, setNumberDay] = useState([]);
