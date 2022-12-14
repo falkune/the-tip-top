@@ -20,6 +20,7 @@ export default function StatInscription({ idSession}) {
         refreshToken(response, context);
       }else{
         setRegistration(response);
+        console.log(response)
       }
     })
     .catch(() => notifier())

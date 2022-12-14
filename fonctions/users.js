@@ -170,7 +170,6 @@ export {
     login, 
     register, 
     googleLoginRegister, 
-    facebookLoginRegister, 
     forgotPassword, 
     resetPassword, 
     getLogout,
