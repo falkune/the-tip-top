@@ -150,7 +150,7 @@ export default function Connexion() {
               <span style={{ color: "#38870D", fontWeight: "bold" }} onClick={() => setResetPassword(true)}><Link href="#update-password" >Mot de passe oublié ?</Link></span>
             </div>)}
           <div className="social">
-            <button
+            {/* <button
               style={{
                 backgroundColor: "#437BFF",
                 fontWeight: "bold",
@@ -170,7 +170,7 @@ export default function Connexion() {
                 />
               </span>
               Connexion
-            </button>
+            </button> */}
             <button
               style={{
                 display: "flex",

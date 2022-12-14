@@ -51,12 +51,15 @@ export default function Stats() {
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
+
+    console.log("hello")
     getAllSessions(context);
     getAllLots(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [width]);
+    
+  }, []);
   
   const getAllSessions = async (context) => {
     getSessions(context)
@@ -187,9 +190,7 @@ export default function Stats() {
                 onChange={handleChangeSession}
                 style={{border:"solid 2px white",color:"white"}
            
-              }
-           
-              >
+              }>
                 {allsessions.map((s, index) => (
                   <MenuItem key={index} value={s._id}>
                     {s.name}
@@ -197,7 +198,7 @@ export default function Stats() {
                 ))}
               </Select>
             </div>
-            {menu === "stats" && <AllStats lots={lots} idSession={idSession} />}
+            {menu === "stats" && <AllStats idSession={idSession} />}
             {menu === "ticket" && <TicketChecker session={idSession} />}
             {menu === "users" && <Users idSession={idSession} />}
             {menu === "generator" && <TicketGenerator session_id={idSession} />}

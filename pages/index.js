@@ -14,7 +14,6 @@ import { loadFull } from "tsparticles";
 import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
 import { notifier } from '../fonctions/utils';
-import CookiesManagement from '../component/cookiesManagement';
 import Cookies from 'js-cookie';
 
 
@@ -29,11 +28,12 @@ export default function Home() {
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    // await console.log(container)
+    await console.log(container)
   }, []);
 
   useEffect(() => {
     getCurrent(context)
+    console.log("tester")
   }, []);
  
 
@@ -49,7 +49,7 @@ export default function Home() {
   };
 
   const goResult = () => {
-    if(Cookies.get('role')== "client")
+    if(Cookies.get('role') == "client")
       router.push({ pathname: `bingo`},undefined, { shallow: true });
       else 
       router.push({ pathname: `connexion`},undefined, { shallow: true });

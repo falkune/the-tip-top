@@ -206,7 +206,7 @@ const getRegistrationByDayBySession = async (context, idSession) => {
 const getuserBySession = async (context, idSession) => {
     console.log(idSession,"idsession")
     return new Promise((resolve, reject) => {
-        context.backend.auth.users.post('users-by-session/',{idSession:idSession})
+        context.backend.auth.users.get('users-by-session/'+idSession)
         .then(res => resolve(res))
         .catch(err => reject(err))
     })
