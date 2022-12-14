@@ -51,8 +51,7 @@ style={{
     Comment participer ?
   </h2>
     <Breadcrumbs useDefaultStyle={false}
-          containerClassName="darkLight
-" 
+          containerClassName="breakLight" 
           rootLabel="Accueil" />
 </div>
 
@@ -66,12 +65,12 @@ style={{
             <p><strong style={{ fontSize: 50, color: " #38870D" }}>1</strong></p>
             <h3 style={{ fontSize: "1.8em" }}>
               Récupérer votre code à  10 chiffres  </h3>
-            <p style={{ lineHeight: 1.7 }}>
+            <p style={{lineHeight: 1.7}}>
               Rendez-vous dans un magasin TiTop,<br></br>
               après avoir effectué un achat superieur à 90euros<br></br>
               vous obtiendrez automatiquement un numéro gagnant
             </p>
-            <span style={{ paddingTop: 50 }}>
+            <span style={{paddingTop: 50}}>
               <Image src={ticket} height={250} width={250} alt="logo" />
             </span>
 

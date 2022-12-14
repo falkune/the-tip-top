@@ -266,7 +266,7 @@ const stylez = {
     background: "none",
   },
   stat: {
-    backgroundColor: "#c7c7c7",
+    backgroundColor: "#ddeddd",
     padding: 25,
     paddingTop:120,
     width: "85%",

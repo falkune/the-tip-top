@@ -23,6 +23,7 @@ const AllStats = (props) => {
   }, [props.idSession])
 
   const getDetailsSession = (context, idSession) => {
+    console.log("detail session")
     getSessionDetails(context, idSession)
       .then((response) => {
         setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))

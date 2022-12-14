@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Header from '../component/Header'
 import Footer from "../component/Footer";
 import CookiesManagement from '../component/cookiesManagement';
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 export default function Conditions() {
   return (
@@ -15,6 +16,9 @@ export default function Conditions() {
       <Header/>
       <section className="part">
         <h1 className="h1">Mention légales</h1>
+        <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
         <h2>ARTICLE 1 DEFINITIONS</h2>
         <p>&nbsp;
             L’Éditeur : La personne, physique ou morale, qui édite les services de communication au public en ligne, c’est-à-dire : Médecine Roumanie Académie

@@ -11,7 +11,7 @@ import "animate.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fr" 
 dayjs.locale('fr')
-import 'nextjs-breadcrumbs/dist/index.css';
+import "animate.css";
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({

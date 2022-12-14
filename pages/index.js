@@ -15,6 +15,7 @@ import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
 import { notifier } from '../fonctions/utils';
 import CookiesManagement from '../component/cookiesManagement';
+import Cookies from 'js-cookie';
 
 
 export default function Home() {

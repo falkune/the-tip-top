@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
 import CookiesManagement from '../component/cookiesManagement';
+import Breadcrumbs from 'nextjs-breadcrumbs';
 
 export default function Politique() {
   return (
@@ -16,6 +17,9 @@ export default function Politique() {
       <Header/>
       <section className="part">
         <h1 className="h1">Politique de confidentialié</h1>
+        <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
         <h2 className='h2'>Nature des données collectées</h2>
         <p>
         Dans le cadre de l’utilisation des Sites, l’Editeur est susceptible de collecter
