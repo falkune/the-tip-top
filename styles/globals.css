@@ -462,7 +462,10 @@ a {
 
  
 
-
+.bigGift img{
+  height: 100%;
+  border-radius: 15px;
+}
 
 
 

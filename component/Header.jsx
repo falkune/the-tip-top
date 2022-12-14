@@ -66,11 +66,13 @@ const Header = ({ menu, changemenu }) => {
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-                   <li style={menu == "equipe" ? styles.liactive : styles.li}>
+
+              { !role || role =="client" &&  <>
+              <li style={menu == "equipe" ? styles.liactive : styles.li}>
                   <Link href="/equipe">
                       Qui sommes nous ?
                   </Link>
-                  </li>
+                  </li> 
              
                   <li style={menu == "regle" ? styles.liactive : styles.li}>
                     <Link href="/regle">
@@ -83,6 +85,8 @@ const Header = ({ menu, changemenu }) => {
                         Lot à gagner
                     </Link>
                   </li>
+              </> }
+                  
        
                 {role && role == "admin" && (
                 <li style={menu == "bingo" ? styles.liactive : styles.li}>
@@ -112,10 +116,11 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
+                { !role || role =="client" &&  
               
                <li style={menu == "contact" ? styles.liactive : styles.li}>
                   <Link href="/contact">Contactez nous </Link>
-                </li>
+                </li> }
 
               {!role && (
                 <li style={styles.login}>
@@ -175,12 +180,19 @@ const Header = ({ menu, changemenu }) => {
             )}
 
             {role && role == "admin" && (
-              <Link href="/stats">
-                <li>Mes stats</li>
-              </Link>
-            )}
-            {role && role == "admin" && (
               <div>
+                    <button
+                  value={"stats"}
+                  style={
+                    menu == "stats"
+                      ? styles.DrawereButtonActive
+                      : styles.DrawereButtonInactive
+                  }
+                  onClick={changemenu}
+                >
+                  Stats
+                </button>
+
                 <button
                   value={"generator"}
                   style={
@@ -192,6 +204,7 @@ const Header = ({ menu, changemenu }) => {
                 >
                   Ticket generator
                 </button>
+
                 <button
                   value={"ticket"}
                   style={

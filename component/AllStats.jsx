@@ -70,11 +70,8 @@ const AllStats = ({ idSession }) => {
 export default AllStats;
 
 const styles = {
-  stat: {
-    background: "none",
-  },
-  box: {
-    display: "flex",
-    justifyContent: "center",
+  stat:{
+    background:"none",
+    minHeight:"100vh"
   }
 }
