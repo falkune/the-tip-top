@@ -94,7 +94,7 @@ export default function Inscription() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <section className="login animate__animated animate__fadeInUp">
+        <section style={{marginTop:150}} className="login animate__animated animate__fadeInUp">
           <form
             className="part"
             style={{ borderBottom: "solid 1px #D2D2D2" }}
@@ -162,11 +162,16 @@ export default function Inscription() {
           <div className="social">
           
             <button
-              style={{
+               style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                fontSize: 18,
                 backgroundColor: "white",
                 fontWeight: "bold",
                 color: "#437BFF",
-                boxShadow: "0px 0px 6px 4px rgba(0,0,0,0.10)",
+                height: 60,
+                boxShadow: "0px 0px 6px 5px rgba(0,0,0,0.05)",
               }}
               onClick={googleRegister}
             >

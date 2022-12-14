@@ -1,10 +1,7 @@
 
 
 
-const DelivredButton = ({value}) => {
-
-console.log(value,"yey")
-
+const DelivredButton = ({delivred,DelivredLot}) => {
     
   return (
 
@@ -35,16 +32,3 @@ console.log(value,"yey")
 
 export default DelivredButton;
 
-const styles = {
-  stat: {
-    backgroundColor: "#F1F1F1",
-        padding: 25,
-    },
-    button: {
-        backgroundColor: " #38870D",
-        border: "none",
-        color: "white",
-        padding: 8,
-        borderRadius:5
-    }
-};
