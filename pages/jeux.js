@@ -13,7 +13,7 @@ import Cookies from 'js-cookie';
 import { isSessionFinished } from "../fonctions/utils";
 import Breadcrumbs from 'nextjs-breadcrumbs';
 import ResultGame from "../component/ResultGame";
-import CookiesManagement from '../component/cookiesManagement';
+
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
@@ -67,14 +67,18 @@ export default function Jeux() {
               isFinished ? 
               <>
               <h1 style={{color:"white",fontSize:35}}>Résultat du grand tirage au sort !</h1>
-              <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+                <Breadcrumbs useDefaultStyle={false}
+          containerClassName="darkLight" 
+          rootLabel="Accueil" />
               </> :  <>
                     <ClipLoader color={"white"} loading={true} size={100} />
 
         <h1 className="h1" style={{ color: "white" }}>
           Grand jeux concour
         </h1>
-        <Breadcrumbs useDefaultStyle={true} style={{color:"white"}} rootLabel="Home" />
+        <Breadcrumbs useDefaultStyle={false}
+          containerClassName="darkLight" 
+          rootLabel="Accueil" />
 
         <p style={{ fontSize: 20, color: "white" }}>
           Le tirage au sort dans :
@@ -142,7 +146,7 @@ export default function Jeux() {
       </section>
 
       <Footer />
-      <CookiesManagement/>
+
     </div>
   );
 }

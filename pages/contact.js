@@ -1,49 +1,13 @@
-import { useState } from 'react';
+import React from 'react';
 import Head from "next/head";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../component/cookiesManagement';
 
 
 
-export default function Contact() {
-  const [open, setOpen] = useState(false);
-         
 
-    const SendMail = () =>{
-    const url = "https://api.sendpulse.com/smtp/emails"
-    const  email =  {
-      "email": {
-        "subject": "Contact",
-        "template": {
-          "id": 123456,
-          "variables": {
-            "name": "George",
-            "code": "123456"
-          }
-        },
-        "from": {
-          "name": "Teabingo",
-          "email": "mike.johnson@domain.com"
-        },
-        "to": [
-          {
-            "email": "recipient1@example.com",
-            "name": "George"
-          }
-        ]
-      }
-    }
-
-    axios.post(url, {"body":token}, {
-      headers: {
-      'Content-Type': 'application/json'
-      }}).then(response => setNewTicket(response.data.id));
-    }
-  
-
-
+export default function contact() {        
   return (
     <div className="main2">
       <Head>
@@ -65,15 +29,16 @@ export default function Contact() {
           height:"100vh" }}>
           <form className="login animate__animated animate__fadeInUp">
           <h1 className="h1">Contactez nous</h1>
-            <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
-            <input type="text" placeholder="Nom"/>
-            <input type="email" placeholder="Email"/>
-            <textarea rows="10" placeholder="Décrire votre message"/>
+              <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
+            <input type="text" placeholder="Nom" value=""/>
+            <input type="email" placeholder="Email" value=""/>
+            <textarea rows="10" placeholder="Décrire votre message" value=""/>
             <button className="action">Envoyer</button>
           </form>
       </section>
       <Footer />
-      <CookiesManagement/>
     </div>
   );
 }

@@ -152,9 +152,10 @@ const Header = ({ menu, changemenu }) => {
               </Link>
             )}
 
-            <Link href="/lots">
+            {!role || role == 'client' && ( <Link href="/lots">
               <li>Lot à gagner</li>
             </Link>
+                 )}
             {role && role == "client" && (
               <Link href="/bingo">
                 <li>Bingo ticket</li>
@@ -279,6 +280,8 @@ const styles = {
 
   li: {
     marginLeft: 15,
+    display:"flex",
+    alignItems:"center",
     listStyleType: "none",
     textDecoration: "none",
     color: "gray",
@@ -286,6 +289,8 @@ const styles = {
   },
 
   liactive: {
+    display:"flex",
+    alignItems:"center",
     marginLeft: 15,
     listStyleType: "none",
     textDecoration: "none",
@@ -310,6 +315,9 @@ const styles = {
     fontWeight: "bold"
   },
   toLogin: {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: " #38870D",
     color: "white",
     padding: 10,

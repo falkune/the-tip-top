@@ -62,7 +62,9 @@ export default function lots() {
       <div style ={{paddingTop:100}}>   
         
          <h1 className="h1">Lots à gagner</h1>
-         <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+           <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
 
 
       </div>
@@ -74,6 +76,7 @@ export default function lots() {
      }}>
       <div  style={{ paddingTop:50,
       display:"flex",
+      justifyContent:"center",
       width:"100%",
       flexWrap:"wrap",
       paddingBottom: 50,

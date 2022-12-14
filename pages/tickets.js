@@ -17,7 +17,6 @@ import { useRouter } from "next/router";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
 import dayjs from "dayjs";
-import CookiesManagement from '../component/cookiesManagement';
 import "dayjs/locale/fr" 
 dayjs.locale('fr')
 import Breadcrumbs from 'nextjs-breadcrumbs';
@@ -114,7 +113,9 @@ export default function Tickets() {
         <Header menu="tickets"/>
         <div style={stylez.gain}>
         <h1 className="h1">Mes tickets</h1>
-        <Breadcrumbs useDefaultStyle={true}  style={{color:"white"}} rootLabel="Home" />
+          <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
 
         <p style={{ fontSize: 18, color: "grey" }}>
           Vous avez{" "}
@@ -136,7 +137,7 @@ export default function Tickets() {
           </div>
         </div>
         <Footer />
-        <CookiesManagement/>
+
       </div>
     );
   }else{

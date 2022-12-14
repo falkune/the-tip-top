@@ -11,7 +11,7 @@ const Footer = () => {
     const [open, setOpen] = useState(false);
     const [inscrip,setInscrip] = useState({
         name:"",
-        email:"19397d025506a3c1fb44338340cfc6dc"
+        email:"Email"
     })
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);

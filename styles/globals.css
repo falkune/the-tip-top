@@ -219,7 +219,7 @@ footer button{
   flex-direction: column;
   text-align: center;
   padding: 15px;
-  background: #F6F6F6;
+  background: #ddeddd;
   font-size: 16px;
   width: 100%;
   max-width: 350px;
@@ -391,11 +391,80 @@ a {
 
  }
 
- .breacrumb ol {
-    padding: 0px;
-    list-style-type: none;
-    display: flex;
- }
+ .darkLight {
+  padding: 10px;
+  margin: 20px;
+  display: flex;
+  justify-content: center;
+  background: green;
+  border-radius: 100px;
+  padding: 15px 25px;
+}
+
+.darkLight ol {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.darkLight ol li {
+  color:#B9CA05;
+
+}
+  
+  .darkLight li:not(:last-child)::after {
+  display: inline-block;
+    margin: 0 .50rem;
+    content: "→";
+  }
+
+    .darkLight li:last-child a {
+      text-transform: capitalize;
+      color:white;
+      opacity: 1;
+    }
+
+      .breakLight {
+      padding: 10px;
+      margin: 20px;
+      display: flex;
+      justify-content: center;
+      background: rgb(221, 237, 221);
+      border-radius: 100px;
+      padding: 15px 25px;
+      }
+
+        .breakLight ol {
+        display: flex;
+        flex-wrap: wrap;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        }
+
+          .breakLight ol li {
+          color: rgb(106, 142, 106);
+
+          }
+ 
+            .breakLight li:not(:last-child)::after {
+            display: inline-block;
+            margin: 0 .50rem;
+            content: "→";
+            }
+
+                .breakLight li:last-child a {
+                text-transform: capitalize;
+                color:#333433;
+                margin-left: 5px;
+                }
+
+ 
+
+
+
 
 
  .lds-hourglass {

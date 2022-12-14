@@ -14,7 +14,6 @@ import { loadFull } from "tsparticles";
 import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
 import { notifier } from '../fonctions/utils';
-import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Home() {
@@ -48,9 +47,11 @@ export default function Home() {
   };
 
   const goResult = () => {
-    router.push({
-      pathname: `connexion`,
-    });
+    if(Cookies.get('role')== "client")
+      router.push({ pathname: `bingo`},undefined, { shallow: true });
+      else 
+      router.push({ pathname: `connexion`},undefined, { shallow: true });
+
   };
 
 
@@ -83,13 +84,13 @@ export default function Home() {
 
           <div style =
           {{display:"flex",
-          flexDirection:"column",
-          alignItems:"center",
-          width:"100%",
-          maxWidth:250,
-          padding:10,
-          paddingTop:20,
-          borderRadius:20}} >
+            flexDirection:"column",
+            alignItems:"center",
+            width:"100%",
+            maxWidth:250,
+            padding:10,
+            paddingTop:20,
+            borderRadius:20}} >
                     <Link href="/regle" passHref>
                     <p style={{color:"white", textDecoration:"underline",fontWeight:"bold", margin:2,marginBottom:20}}> Voir les règles<br></br> de participation</p> 
                     </Link>
@@ -263,7 +264,6 @@ export default function Home() {
             }
           }} />
       <Footer />
-      <CookiesManagement/>
     </div>
   );
 }

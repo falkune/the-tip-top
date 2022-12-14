@@ -10,7 +10,6 @@ import login from "../image/login.gif";
 import { useRouter } from "next/router";
 import Cookies from 'js-cookie'
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../component/cookiesManagement';
 
 
 export default function Regle() {
@@ -34,24 +33,27 @@ export default function Regle() {
       </Head>
       <Header menu="regle" />
       <section
-        className="rule"
-        style={{
-          color: " #38870D",
-          padding: 0,
-        }}
-      >
-        <div style={{ padding: 50, background: " #38870D", width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <h2
-            className="h2"
-            style={{
-              color: "white",
-              marginBottom: 0,
-              fontSize: "2.4em",
-            }}>
-            Comment participer ?
-          </h2>
-          <Breadcrumbs useDefaultStyle={true} style={{ color: "white" }} rootLabel="Home" />
-        </div>
+className="rule"
+style={{
+  color: " #38870D",
+  padding: 0,
+}}
+>
+<div style={{ padding: 50, background: " #38870D", width: "100%" ,display:"flex",flexDirection:"column",alignItems:"center"}}>
+  <h2
+    className="h2"
+    style={{
+      color: "white",
+      marginBottom: 0,
+      fontSize: "2.4em",
+    }}>
+    Comment participer ?
+  </h2>
+    <Breadcrumbs useDefaultStyle={false}
+          containerClassName="darkLight
+" 
+          rootLabel="Accueil" />
+</div>
 
         <p style={{ color: "white" }}>Jouer en 4 étapes</p>
         <div style={{ width: "100%" }}>
@@ -141,7 +143,7 @@ export default function Regle() {
         </div>
       </section>
       <Footer />
-      <CookiesManagement/>
+
     </div>
   )
 }

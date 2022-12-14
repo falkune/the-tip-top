@@ -2,7 +2,7 @@ import React from 'react';
 import Head from 'next/head'
 import Header from '../component/Header'
 import Footer from "../component/Footer"
-import CookiesManagement from '../component/cookiesManagement';
+
 
 export default function Politique() {
   return (
@@ -51,7 +51,7 @@ export default function Politique() {
       </section>
 
       <Footer/>
-      <CookiesManagement/>
+
     </div>
   )
 }

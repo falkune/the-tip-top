@@ -28,6 +28,7 @@ export default function PieGraph({ title, data }) {
                     cx={150}
                     cy={150}
                     labelLine={false}
+                    textAlign="center"
                     label={renderCustomizedLabel}
                     outerRadius={80}
                     fill="#8884d8"
