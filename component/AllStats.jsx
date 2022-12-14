@@ -4,7 +4,6 @@ import StatInscription from './StatInscription';
 import ParticipationStat from './ParticipationStat';
 import ApiContext from '../context/apiContext';
 import { statLots } from '../fonctions/tickets';
-import AgeStat from './AgeStat';
 import {notifier, refreshToken} from '../fonctions/utils';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
