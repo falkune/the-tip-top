@@ -8,7 +8,7 @@ const nextConfig = {
       '/': { page: '/' },
     }
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   swcMinify: true,
   trailingSlash: true,
   webpack(config) {

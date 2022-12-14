@@ -59,26 +59,7 @@ export default function Inscription() {
         router.push({ pathname: "/bingo" }, undefined, { shallow: true });
     }
   }
-  // get register with facebook
-  const facebookRegistration = async () => {
-    let user = await facebookLoginRegister(context);
-
-    if (user.statusCode) {
-      console.log(user)
-      if (Array.isArray(user.message)) {
-        user.message.forEach(element => {
-          notifier(element, "error", "bottom-right", 5000);
-        });
-      } else {
-        notifier(user.message, "error", "bottom-right", 5000);
-      }
-    } else {
-      if (Cookies.get('role') == "admin")
-        router.push({ pathname: "/stats" }, undefined, { shallow: true });
-      else
-        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-    }
-  }
+  
 
 
   const inscription = async (e) => {
@@ -179,26 +160,7 @@ export default function Inscription() {
             </button>
           </form>
           <div className="social">
-            {/* <button
-              style={{
-                backgroundColor: "#437BFF",
-                fontWeight: "bold",
-                color: "white",
-                position: "relative",
-              }}
-              onClick={facebookRegistration}
-            >
-              <span style={{ position: "absolute", left: 20, bottom: 1 }}>
-                <Image
-                  src={facebook}
-                  width="16"
-                  height="40"
-                  objectFit="contain"
-                  alt="facebook logo"
-                />
-              </span>
-              S'inscrire
-            </button> */}
+          
             <button
               style={{
                 backgroundColor: "white",

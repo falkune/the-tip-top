@@ -1,30 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
-import ApiContext from '../context/apiContext';
+import React from "react";
 import Cookies from 'js-cookie';
 import LineGraph  from "./LineChart";
-import {notifier, refreshToken} from '../fonctions/utils';
-import { getRegistrationByDayBySession } from '../fonctions/users';
 
-export default function StatInscription({ idSession}) {
-  const [registration, setRegistration] = useState([]);
-  const context = useContext(ApiContext);
-
-  useEffect(() => {
-    getRegistrationByDay();
-  },[idSession]);
-
-  const getRegistrationByDay = async () => {
-    getRegistrationByDayBySession(context, idSession)
-    .then((response) => {
-      if(response.statusCode){
-        refreshToken(response, context);
-      }else{
-        setRegistration(response);
-      }
-    })
-    .catch(() => notifier())
-  }
-  
+export default function StatInscription({registration}) {
   return (
     <div style={styles.container}>
       <h3 style={{textAlign:"center", color: "#003e1f"}}>Nombre d'inscription par jour</h3>

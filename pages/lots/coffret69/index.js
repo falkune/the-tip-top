@@ -6,7 +6,6 @@ import Header from "../../../component/Header";
 import Footer from "../../../component/Footer";
 import Link from "next/link";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../../../component/cookiesManagement';
 
 
 export default function coffret69() {
@@ -76,7 +75,7 @@ Ce thé est disponible en vrac et en sachet, pour vous suivre partout. Avec notr
        
     
       </section>
-      <CookiesManagement/>
+
       <Footer />
     </div>
   );
