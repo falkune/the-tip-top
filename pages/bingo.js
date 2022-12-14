@@ -84,6 +84,7 @@ export default function Bingo() {
      alignItems:"center",
      width:"100%",
      maxWidth:500,
+     marginTop:50,
      background:"white",
      padding:13,
      borderRadius:20

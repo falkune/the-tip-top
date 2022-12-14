@@ -1,10 +1,12 @@
 import React, { useEffect, useState ,useContext} from "react";
 import ApiContext from '../context/apiContext';
+import Modal from "@mui/material/Modal";
 import Image from "next/image";
 import arrow from "../image/topArrow.png";
 import ClipLoader from "react-spinners/ClipLoader";
 import { DataGrid,GridToolbar } from "@mui/x-data-grid";
 import { refreshToken ,notifier } from "../fonctions/utils";
+import DeliveredInfos from "../component/DeliveredInfos"
 import {getuserBySession} from "../fonctions/users"
 import {getHistoryClient} from '../fonctions/tickets'
 import CsvDownloader from 'react-csv-downloader';
@@ -15,7 +17,9 @@ dayjs.locale('fr')
 export default function Users({ idSession }) {
   const context = useContext(ApiContext)
   const [loading, setLoading] = useState(false);
+  const [load, setload] = useState(false)
   const [allUsers, setAllusers] = useState([]);
+  const [open, setOpen] = useState(false)
   const [history,setHistory] = useState([])
   const [colDefs] = useState([
     {
@@ -68,12 +72,35 @@ export default function Users({ idSession }) {
     },
    
   ]);
+  const [columnsDefs] = useState([
+    { field: "ticketNumber",
+     headerName: "Numéro de ticket",
+     headerClassName: 'super-app-theme--header',
+     width: 150 }, 
+     {
+      field: "updatedAt",
+      headerName: "Date de participation",
+      headerClassName: 'super-app-theme--header',
 
+      width: 250,
+      editable: false,
+    },
+    {
+      field: "Delivred",
+      headerClassName: 'super-app-theme--header',
+      width: 250 ,
+      renderCell: (cellValues) => {
+        return (
+         <DeliveredInfos value={cellValues}/>
+        );
+      }
+    },
+   
+  ]);
 
 
   useEffect(() => {
     getAllUser();
-    console.log(allUsers,'userz')
   }, [idSession]);
 
   const getAllUser = async () => {
@@ -83,7 +110,6 @@ export default function Users({ idSession }) {
       if (allUsers.statusCode) {
         refreshToken(allUsers, context);
         console.error(allUsers);
-        console.log("yes");
         if (Array.isArray(allUsers.message)) {
           allUsers.message.forEach(element => {
             notifier(element, "error", "top-right", 5000);
@@ -101,12 +127,10 @@ export default function Users({ idSession }) {
 
 
   const getClientHistory =  async (e) =>{
-        console.log(e.id,"value cell")
         let histories = await getHistoryClient(context,e.id)
         if (histories.statusCode) {
           refreshToken(histories, context);
           console.error(histories);
-
           if (Array.isArray(histories.message)) {
             histories.message.forEach(element => {
               notifier(element, "error", "top-right", 5000);
@@ -119,9 +143,15 @@ export default function Users({ idSession }) {
             el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
           })
           setHistory(histories)
+          console.log(histories,"historie")
+          setOpen(true)
         }
   
 
+  }
+
+  const handleClose = () =>  {
+    setOpen(false)
   }
 
   return (
@@ -161,7 +191,7 @@ export default function Users({ idSession }) {
             rows={allUsers}
             columns={colDefs}
             components={{ Toolbar: GridToolbar }}
-            pageSize={15}
+            pageSize={5}
             sx={{
               textAlign:"center",
               width: '100%',
@@ -184,8 +214,73 @@ export default function Users({ idSession }) {
           /> }
           {!loading && allUsers <= 0  && <p>":c"</p>}
                  { loading && <ClipLoader color={" #38870D"} loading={true} size={100} />} 
-
       </div>
+      <Modal
+        open={open}
+        style={{ border: "none" }}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description">
+        <div style={{
+            position: "relative",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: 15,
+            fontSize: 18,
+            background:"red",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 360,
+            height:600,
+            border: "none",
+            borderRadius: 8,
+            backgroundColor: "white",
+            boxShadow: 24,
+            textAlign: "center" }} >
+              <button onClick={handleClose} 
+              style={{position:"absolute",
+              color:"white",
+              background:"green",
+              padding:10,
+              borderRadius:10,
+              border:"none",
+              top:5,
+              right:5,
+              zIndex:999999999999999}}>Fermer
+              </button>
+          {!load ? <DataGrid
+            getRowId={(row) => row._id}
+            rows={history}
+            columns={columnsDefs}
+            pageSize={15}
+            sx={{
+              textAlign:"center",
+              width: '100%',
+              '& .super-app-theme--header': {
+                backgroundColor: '#ddeddd',
+                color:"#38870d",
+                border:"solid 2px #ddeddd"
+              },  border: 2,
+              borderColor:'#ddeddd',
+              '& .MuiDataGrid-cell:hover': {
+                color: 'green',
+              },
+              '& .css-1knaqv7-MuiButtonBase-root-MuiButton-root':{
+                color:"#38870D"
+              }
+            }}
+            rowsPerPageOptions={[2]}
+            disableSelectionOnClick
+            experimentalFeatures={{ newEditingApi: true }}/> :
+            <ClipLoader color={" #38870D"} loading={true} size={100} />
+            
+            }
+              
+
+        </div>
+      </Modal>
     </div>
   );
 }

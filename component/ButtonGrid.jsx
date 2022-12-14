@@ -26,7 +26,6 @@ const VerifyTicket = async (n) => {
    refreshToken(ticket, context);
    notifier(ticket.message);
  } else {
-   console.log(ticket.lot,"t") 
    setLot(ticket.lot)
  }
 };

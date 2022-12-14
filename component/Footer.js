@@ -2,11 +2,6 @@ import { useState } from 'react';
 import Link from "next/link"
 import Modal from '@mui/material/Modal';
 
-
-
-
-
-
 const Footer = () => {
     const [open, setOpen] = useState(false);
     const [inscrip,setInscrip] = useState({
@@ -15,29 +10,8 @@ const Footer = () => {
     })
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const emails =   {
-        "email":inscrip.email,
-        "variables":{
-           "name":inscrip.name,
-        }
-     }
+
     
-     const sendNewsletter = () => {
-        const id= '23726'
-        const keyAPI = ""
-        const url = `https://api.sendpulse.com/addressbooks/${id}/emails`
-        fetch(url, {
-            method: 'post',
-            headers: { 'Content-Type': 'application/json' },
-            body: {
-                emails:emails
-            },
-           })
-        .then((response) => response.json())
-        .then((data) => console.log(data));
-
-     }
-
     return (
         <footer>
             <button onClick={handleOpen}>

@@ -96,7 +96,7 @@ export default function Connexion() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header />
-        <section className="login animate__animated animate__fadeInUp">
+        <section style={{marginTop:150}} className="login animate__animated animate__fadeInUp">
           <form
             className="log"
             style={{ borderBottom: "solid 1px #D2D2D2" }}>

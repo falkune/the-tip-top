@@ -46,6 +46,7 @@ export default function Regle() {
               color: "white",
               marginBottom: 0,
               fontSize: "2.4em",
+              marginTop:100,
             }}>
             Comment participer ?
           </h2>
