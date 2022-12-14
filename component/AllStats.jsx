@@ -16,9 +16,12 @@ const AllStats = ({idSession}) => {
 
   useEffect(() => {
     if(idSession){
-      getAsignTicket(context, idSession);
+      getAsignTicket(context,idSession);
     }
+    
   }, [idSession])
+
+  
 
   const getAsignTicket = (context, idSession) => {
     statLots(context, idSession)
@@ -36,7 +39,7 @@ const AllStats = ({idSession}) => {
   return (
     <div style={styles.stat}>
       <ParticipationStat sessionStat={sessionStat} idSession={idSession}/>
-      <StatInscription days={numberDay} idSession={idSession} />
+      <StatInscription idSession={idSession} />
       <StatsLots allGroup={allGroup}/>
     </div>
   )
