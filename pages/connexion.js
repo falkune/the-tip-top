@@ -48,7 +48,6 @@ export default function Connexion() {
   const googleLogin = async () => {
     setLoad(true)
     let user = await googleLoginRegister(context)
-    console.log("login")
     if (user.statusCode) {
       setLoad(false)
       if (Array.isArray(user.message)) {

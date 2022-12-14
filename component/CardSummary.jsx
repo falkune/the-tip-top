@@ -2,19 +2,19 @@ import React from "react";
 import { Card, CardContent, Typography } from "@material-ui/core";
 
 
-function CardSummary({ title, totalInscrit, totalDay }) {
+function CardSummary({ title, totalRegistrations, todaysNumberOfRegistration }) {
   return (
     <Card style={styles.card}>
       <Typography style={styles.title}>{title}</Typography>
       <CardContent style={styles.box}>
         <div>
           <p style={styles.titre}>Total</p>
-          <Typography style={styles.total}>{totalInscrit}</Typography>
+          <Typography style={styles.total}>{totalRegistrations}</Typography>
         </div>
 
         <div>
           <p style={styles.titre}>Aujourd'hui</p>
-          <Typography style={styles.today}>{totalDay}</Typography>
+          <Typography style={styles.today}>{todaysNumberOfRegistration}</Typography>
         </div>
       </CardContent>
     </Card>

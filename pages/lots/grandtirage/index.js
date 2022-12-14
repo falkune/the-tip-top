@@ -1,12 +1,10 @@
 import React from "react";
 import Head from "next/head";
-import Image from "next/image";
-import tea1 from "../../../image/tea1.png";
 import Header from "../../../component/Header";
 import Footer from "../../../component/Footer";
-import Link from "next/link";
+
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../../../component/cookiesManagement';
+
 
 
 export default function grandtirage() {
