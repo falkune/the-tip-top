@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
 import ClipLoader from "react-spinners/ClipLoader";
+import DelivredButton from "../component/DelivredButton"
 import clipboard from "../image/clipboard.png";
 import { checkTicketApi,delivredLot } from "../fonctions/tickets";
 import { refreshToken, notifier } from "../fonctions/utils";
@@ -25,11 +26,11 @@ export default function TicketChecker({ session }) {
   const checkTicket = async () => {
     //fonction pour créer un ticket
     setLoading(true);
-    console.log('input',input)
     let ticket = await checkTicketApi(context, input.toString());
      if (ticket.statusCode) {
       refreshToken(ticket, context);
       notifier(ticket.message);
+      setLoading(false);
     } else {
       setTicket(
         { deliverd:ticket?.isDelivered,
@@ -43,7 +44,6 @@ export default function TicketChecker({ session }) {
     }
   };
   const handleClose = () => setVisible(false);
-
   const DelivredLot = async () => {
     let ticket = await delivredLot( context, input)
     if ( ticket.statusCode  ){
@@ -169,32 +169,11 @@ export default function TicketChecker({ session }) {
               <p> Lot pas encore récupéré</p>
             )}
             {ticket.create_at ? (
-              <p>Date de création : <strong>{dayjs(ticket.create_at).format('MMMM D, YYYY')}</strong></p>
+              <p style={{textAlign:"center"}}>Date de création :<br></br> <strong>{dayjs(ticket.create_at).format('MMMM D, YYYY')}</strong></p>
             ) : (
               <p>invalide</p>
             )}
-            {!delivred ? (
-              <button
-                style={{
-                  width: 180,
-                  height: 50,
-                  border: "none",
-                  fontSize: 16,
-                  fontWeight: "bold",
-                  marginTop: 10,
-                  borderRadius: 5,
-                }}
-                onClick={DelivredLot}
-              >
-                Délivrer le cadeau
-              </button>
-            ) : (
-              <p
-                style={{ background: "#96D614", padding: 10, borderRadius: 8 }}
-              >
-                Lot délivré
-              </p>
-            )}
+              { ticket.assigned && <DelivredButton delivred={delivred} DelivredLot={DelivredLot}/>}
           </div>
           </Modal>
       </div>

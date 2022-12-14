@@ -99,4 +99,19 @@ const statLots = async (context, idSession) => {
         .catch((error) => reject(error))
     })
 }
-export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot,statLots};
+
+
+///////////////// GET HISTORY TICKET BY USER ID FUNCTION ////////////////////
+const getHistoryClient = async (context, idClient) => {
+    return new Promise((resolve, reject) => {
+        context.backend.auth.tickets.post('history-client',{idClient:idClient})
+        .then((response) => resolve(response))
+        .catch((error) => reject(error))
+    })
+}
+
+
+
+
+
+export { checkTicketApi, claimedTickeBySession ,verifTicketApi,verifyLot,generateTicketApi,delivredLot,statLots,getHistoryClient};

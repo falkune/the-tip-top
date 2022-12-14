@@ -2,10 +2,11 @@ import React, { useEffect, useState ,useContext} from "react";
 import ApiContext from '../context/apiContext';
 import Image from "next/image";
 import arrow from "../image/topArrow.png";
+import ClipLoader from "react-spinners/ClipLoader";
 import { DataGrid,GridToolbar } from "@mui/x-data-grid";
-import {users} from "../component/Data";
 import { refreshToken ,notifier } from "../fonctions/utils";
 import {getuserBySession} from "../fonctions/users"
+import {getHistoryClient} from '../fonctions/tickets'
 import CsvDownloader from 'react-csv-downloader';
 import dayjs from "dayjs";
 import "dayjs/locale/fr" 
@@ -13,8 +14,31 @@ dayjs.locale('fr')
 
 export default function Users({ idSession }) {
   const context = useContext(ApiContext)
-  const [userz, setUserz] = useState([]);
-  const [colDefs, setColDefs] = useState([
+  const [loading, setLoading] = useState(false);
+  const [allUsers, setAllusers] = useState([]);
+  const [history,setHistory] = useState([])
+  const [colDefs] = useState([
+    {
+      field: "Print",
+      headerClassName: 'super-app-theme--header',
+      width: 250 ,
+      renderCell: (cellValues) => {
+        return (
+          <button
+            style={{
+              border:"none",
+              color:"white",
+              background:"#38870D",
+              margin:5,
+              borderRadius:5,
+              padding:"10px 15px"
+            }}
+            onClick={() =>getClientHistory(cellValues)}>
+           Voir l'historique
+          </button>
+        );
+      }
+    },
     { field: "fullName",
      headerName: "Nom",
      headerClassName: 'super-app-theme--header',
@@ -42,43 +66,63 @@ export default function Users({ idSession }) {
       width: 250,
       editable: false,
     },
+   
   ]);
 
-  const number = userz.length;
+
 
   useEffect(() => {
     getAllUser();
+    console.log(allUsers,'userz')
   }, [idSession]);
 
   const getAllUser = async () => {
     //fonction pour récupérer tout les utilisateurs
+    setLoading(true)
     let allUsers = await getuserBySession(context,idSession)
       if (allUsers.statusCode) {
         refreshToken(allUsers, context);
+        console.error(allUsers);
+        console.log("yes");
         if (Array.isArray(allUsers.message)) {
           allUsers.message.forEach(element => {
             notifier(element, "error", "top-right", 5000);
           });
-        } else {
-          console.error(allUsers);
-          console.log(allUsers,"yes");
-          notifier(allUsers.message);
-          setUserz(allUsers)
-        }
+          setLoading(false)
+        }   
+      }else { 
+        setLoading(false)
+        allUsers?.forEach(el => {
+          el.allUsers = dayjs(el.birthday).format(" D MMMM YYYY ")
+          el.userLocation = el.userLocation?.city }); 
+        setAllusers(allUsers)
       }
-    // try {
-    //     context.backend.auth.users.post('users-by-session',{idSession:idSession}).then((value) =>
-    //   { setUserz(value)
-    //     value.forEach(el => {
-    //     el.birthday = dayjs(el.updatedAt).format(" DD/MM/YYYY ")
-    //     el.userLocation = el.userLocation.city
-    //   }); 
-    // })
-    // } catch (e) {
-
-       
-    // }
   };
+
+
+  const getClientHistory =  async (e) =>{
+        console.log(e.id,"value cell")
+        let histories = await getHistoryClient(context,e.id)
+        if (histories.statusCode) {
+          refreshToken(histories, context);
+          console.error(histories);
+
+          if (Array.isArray(histories.message)) {
+            histories.message.forEach(element => {
+              notifier(element, "error", "top-right", 5000);
+            });
+            setLoading(false)
+          }   
+        }else { 
+          setLoading(false)
+          histories?.forEach(el => {
+            el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
+          })
+          setHistory(histories)
+        }
+  
+
+  }
 
   return (
     <div
@@ -92,16 +136,16 @@ export default function Users({ idSession }) {
       }}
     >
       <h1 className="h1">Utilisateurs</h1>
-      <p style={{ fontSize: 18, color: "grey" }}>
-        <strong style={{ color: " #38870D" }}>{number} </strong>
+    { !loading && <p style={{ fontSize: 18, color: "grey" }}>
+        <strong style={{ color: " #38870D" }}>Totale: {allUsers.length} </strong>
         {`Utilisateur`}
-      </p>
+      </p> }
 
           <CsvDownloader
            filename="myemail"
            extension=".csv"
            separator=";"
-            datas={userz}>
+            datas={allUsers}>
                   <button style={stylez.export}>
                   Exporter 
                   <span style={{ margin: 5, position: "absolute", right: 15, top: 9 }}>
@@ -111,10 +155,10 @@ export default function Users({ idSession }) {
           </CsvDownloader>
     
       <div style={stylez.gain}>
-        {users.length > 0 ? (
+        {allUsers.length > 0 && !loading && 
           <DataGrid
             getRowId={(row) => row._id}
-            rows={users}
+            rows={allUsers}
             columns={colDefs}
             components={{ Toolbar: GridToolbar }}
             pageSize={15}
@@ -137,10 +181,10 @@ export default function Users({ idSession }) {
             rowsPerPageOptions={[2]}
             disableSelectionOnClick
             experimentalFeatures={{ newEditingApi: true }}
-          />
-        ) : (
-          <p> Pas de clients :'c </p>
-        )}
+          /> }
+          {!loading && allUsers <= 0  && <p>":c"</p>}
+                 { loading && <ClipLoader color={" #38870D"} loading={true} size={100} />} 
+
       </div>
     </div>
   );
@@ -150,6 +194,8 @@ const stylez = {
   gain: {
     width: "90%",
     height: "100vh",
+    display:"flex",
+    justifyContent:"center",
     padding: 15,
   },
 

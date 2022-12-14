@@ -23,11 +23,13 @@ function CookiesManagement() {
         return (
             <div style={styles.container}>
                 <div>
-                    <p>Ce site utilise des cookies <a href="/condition" style={styles.link}>  en savoir plus</a></p>
+                    <p style={styles.text}>Ce site utilise des cookies <a href="/condition" style={styles.link}>  en savoir plus</a></p>
                 </div>
                 <div>
-                    <span onClick={cookiesAccept} style={styles.btn}><FontAwesomeIcon style={styles.check} icon={faCheck} /> accepter</span>
-                    <span onClick={cookiesReject} style={styles.btn}><FontAwesomeIcon style={styles.mark} icon={faXmark} /> rejeter</span>
+                    <p>
+                        <span onClick={cookiesAccept} style={styles.btn}><FontAwesomeIcon style={styles.check} icon={faCheck} /> accepter</span>
+                        <span onClick={cookiesReject} style={styles.btn}><FontAwesomeIcon style={styles.mark} icon={faXmark} /> rejeter</span>
+                    </p>
                 </div>
             </div>
         )
@@ -51,7 +53,7 @@ const styles = {
         width: "100%",
         justifyContent: "space-between",
         height: 50,
-        padding: "15px 30px"
+        padding: "0 40px"
     },
     link: {
         color: "#0077b6"
@@ -69,5 +71,8 @@ const styles = {
     mark: {
         color: "#9a031e",
         fontSize: "1em"
+    },
+    text:{
+        
     }
 }
