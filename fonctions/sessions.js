@@ -75,5 +75,12 @@ const deleteSession = async (context, idSession) => {
     })
 }
 
+const getCurrentSession = async (context) => {
+    return new Promise((resolve, reject) => {
+        context.backend.api.sessions.get('get-current-session')
+            .then((response) => resolve(response))
+            .catch((error) => reject(error))
+    })
+}
 
-export { createSession, getSessions, getSessionDetails , updateSession,deleteSession,currentSession};
+export { createSession, getSessions, getSessionDetails , updateSession,deleteSession,currentSession, getCurrentSession};

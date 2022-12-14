@@ -1,16 +1,16 @@
 export const billets = [
-  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Jack atlas",email:"jacks@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:4 ,name:"Jack atlas",email:"jacks@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Jack atlas",email:"jacks@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:3 ,name:"Jack atlas",email:"jacks@gmail.com" },
+  { updatedAt: "20/08/2022", ticketNumber:128478979,lot:1 , isDelivered:true},
+  { updatedAt: "20/08/2022", ticketNumber:128478979,lot:1 , isDelivered:true},
+  { daupdatedAt: "20/08/2022", ticketNumber:128478979,lot:1 , isDelivered:true},
+
+
 ];
 
 
 export const users = [
-  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"jean du jardin",email:"jeandujardin@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:2 ,name:"Martin roul",email:"martin@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:4 ,name:"Samuel eoo",email:"samuel@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:1 ,name:"Idris elba",email:"idris@gmail.com" },
-  { date: "20/08/2022", number:128478979 ,lot:3 ,name:"Jack atlas",email:"jacks@gmail.com" },
+  { birthday: "20/08/2022", number:128478979 ,_id:1 ,fullName:"jean du jardin",email:"jeandujardin@gmail.com",userLocation:"Paris" },
+  { birthday: "20/08/2022", number:128478979 ,_id:2 ,fullName:"Martin roul",email:"martin@gmail.com",userLocation:"Marseille" },
+  { birthday: "20/08/2022", number:128478979 ,_id:4 ,fullName:"Samuel eoo",email:"samuel@gmail.com",userLocation:"Paris" },
+  { birthday: "20/08/2022", number:128478979 ,_id:7 ,fullName:"Idris elba",email:"idris@gmail.com",userLocation:"Paris" },
+  { birthday: "20/08/2022", number:128478979 ,_id:3 ,fullName:"Jack atlas",email:"jacks@gmail.com",userLocation:"Paris" },
 ];

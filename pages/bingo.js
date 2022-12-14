@@ -1,23 +1,19 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState, useContext } from "react";
 import Image from "next/image";
 import Head from "next/head";
 import Link from "next/link";
-import styles from "../styles/Home.module.css";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import { useRouter } from "next/router";
 import gift from "../image/win.gif"
-import 'nextjs-breadcrumbs/dist/index.css'
 import Cookies from "js-cookie";
-import "animate.css";
-import { verifTicketApi } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
-import Modal from "@mui/material/Modal";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
-import "animate.css";
-import { notifier ,refreshToken} from "../fonctions/utils";
-import dayjs from "dayjs";
+import 'nextjs-breadcrumbs/dist/index.css'
+import Breadcrumbs from 'nextjs-breadcrumbs';
+
 
 export default function Bingo() {
   const [num, setNum] = useState("");
@@ -32,8 +28,8 @@ export default function Bingo() {
     getCurrent();
   }, []);
 
-  const goResult = () => {
-    console.log("goresult")
+  const goResult = (e) => {
+    e.preventDefault();
     if (num.length === 10) {
       router.push({
         pathname: `resultat`,
@@ -41,21 +37,8 @@ export default function Bingo() {
       });
     }
   };
-
-  const VerifyTicket = async (n) => {
-    e.preventd
-    let ticket = await verifTicketApi( context, n.toString())
-    if (ticket.statusCode) {
-     refreshToken(ticket, context);
-     notifier(ticket.message);
-     console.log(ticket.message,"message error")
-   } else {
-     console.log(ticket,"t") 
-   }
- };
-
+  
   const getCurrent = async () => {
-    console.log("getcurrent")
     let sessions = context.backend.api.sessions.get('get-current-session', {
       Accept: "Application/json",
       "Content-Type": "application/json",
@@ -65,6 +48,7 @@ export default function Bingo() {
         console.log("vrai", response)
       }else{
         setCurrent(response[0]._id);
+        console.log("good", response)
         Cookies.set('currentStart',response[0].startDate)
         Cookies.set('currentEnd',response[0].endDate)
       }
@@ -98,13 +82,18 @@ export default function Bingo() {
      style={{display:"flex",
      flexDirection:"column",
      alignItems:"center",
+     width:"100%",
+     maxWidth:500,
      background:"white",
-     padding:30,
+     padding:13,
      borderRadius:20
      }} >
-          <h1 className={styles.h1}>Bingo ticket</h1>
-        
-          <p>Tester votre ticket pour voir votre lot remporté (100% gagnant )</p>
+          <h1 className="h1">Bingo ticket</h1>
+          <Breadcrumbs useDefaultStyle={false}
+          containerClassName="breakLight" 
+          rootLabel="Accueil" />
+
+          <p style={{textAlign:"center"}}>Tester votre ticket <br></br>pour voir votre lot remporté (100% gagnant )</p>
           <form  target="#" style={{minWidth:350,display:"flex",flexDirection:"column",alignItems:"center"}}>
             <div className="bingo">
             <input 
@@ -133,7 +122,6 @@ export default function Bingo() {
           {num !== null && num.length === 10 ? (
             <button
               type="submit"
-              // onClick={() =>VerifyTicket(num)}
               onClick={goResult}
               className="action"
               style={{ margin: 25 }}
@@ -150,7 +138,7 @@ export default function Bingo() {
             </button>
           )}
         
-               <Link href="/lots">
+               <Link href="/lots"  passHref>
             <small style={{ color: " #38870D", fontSize: "1.2em" }}>
               Voir les differents lots
             </small>
@@ -159,6 +147,7 @@ export default function Bingo() {
           </div>
         </section>
         <Footer />
+
       </div>
     );
   }else{

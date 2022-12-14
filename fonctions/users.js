@@ -53,11 +53,18 @@ const register = async (context, fullName, email, password, birthday) => {
         password: password,
         birthday: birthday
     };
+    // try{
+    //     let user = await context.backend.api.users.post('', params)
+    //     console.log("ok ",user)
+    //     return(user)
+    // }catch(e){
+    //     console.log("pas", e)
+    // }
 
     return new Promise((resolve, rejecte) => {
         context.backend.api.users.post('', params)
-            .then((response) => resolve(response))
-            .catch((error) => notifier(error));
+            .then((response) => {resolve(response)})
+            .catch((error) => {console.log(error)})
     })
 
 }
@@ -83,7 +90,6 @@ const googleLoginRegister = async (context) => {
 
                 context.backend.api.users.post('auth-from-social-network', user)
                     .then((response) => {
-                        console.log(response)
                         let logedUser = new ApiClient()
                             .setHeader("lang", "en")
                             .setHeader("Accept", "Application/json")
@@ -108,52 +114,6 @@ const googleLoginRegister = async (context) => {
 
 }
 
-///////////////// FACEBOOK LOGIN ////////////////////
-
-const facebookLoginRegister = async (context) => {
-    const firebaseAuth = getAuth(firebaseApp);
-    return new Promise((resolve, reject) => {
-        signInWithPopup(firebaseAuth, FacebookProvider)
-            .then((res) => {
-                const user = {
-                    email: res.user.email,
-                    fullName: res.user.displayName,
-                    socialNetworkUserId: res.user.uid,
-                    socialNetworkAccessToken: res.user.accessToken,
-                    socialNetworkProvider: res.user.providerId,
-                    password: "1234678910",
-                    birthday: "",
-                    verified:true
-
-                }
-
-
-                context.backend.api.users.post('auth-from-social-network', user)
-                    .then((response) => {
-                        console.log(response)
-                        let logedUser = new ApiClient()
-                            .setHeader("lang", "en")
-                            .setHeader("Accept", "Application/json")
-                            .setHeader("Content-Type", "application/json")
-                            .setBearerAuth(response.accessToken)
-                        context.setBacked({ api: context.backend.api, auth: logedUser })
-                        Cookies.set("authToken", response.accessToken);
-                        Cookies.set('role', response.roles);
-                        Cookies.set('idClient', response.refreshToken);
-
-                        resolve(logedUser)
-                    })
-                    .catch((error) => {
-                        reject(error)
-                    })
-            })
-            .catch((error) => {
-                console.log(error)
-                reject(error)
-            })
-    })
-
-}
 
 ///////////////// FORGOT PASSWORD FUNCTION ////////////////////
 
@@ -195,13 +155,24 @@ const getRegistrationByDayBySession = async (context, idSession) => {
     })
 }
 
+///////////////// GET USER BY SESSION  ////////////////////
+
+const getuserBySession = async (context, idSession) => {
+    console.log(idSession,"idsession")
+    return new Promise((resolve, reject) => {
+        context.backend.auth.users.get('users-by-session/'+idSession)
+        .then(res => resolve(res))
+        .catch(err => reject(err))
+    })
+}
+
 export { 
     login, 
     register, 
     googleLoginRegister, 
-    facebookLoginRegister, 
     forgotPassword, 
     resetPassword, 
     getLogout,
-    getRegistrationByDayBySession
+    getRegistrationByDayBySession,
+    getuserBySession
 };

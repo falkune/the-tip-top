@@ -1,6 +1,9 @@
 import { notifier } from "./utils";
 import Cookies from "js-cookie";
 
+
+///////////////// CHECK TICKET FUNCTION ////////////////////
+
 const checkTicketApi = async (context, input) => {
 
     return new Promise((resolve, reject) => {
@@ -16,6 +19,9 @@ const checkTicketApi = async (context, input) => {
     })
 };
 
+
+/////////////////  VERIFICATION TICKET FUNCTION ////////////////////
+
 const verifTicketApi = async (context, ticketNumber) => {
 
     return new Promise((resolve, reject) => {
@@ -29,6 +35,8 @@ const verifTicketApi = async (context, ticketNumber) => {
             });
     })
 };
+
+///////////////// DELIVRED TICKET FUNCTION ////////////////////
 
 const delivredLot = async (context, ticketNumber) => {
 
@@ -44,6 +52,8 @@ const delivredLot = async (context, ticketNumber) => {
     })
 };
 
+///////////////// VERIFICATION LOT FUNCTION ////////////////////
+
 const verifyLot = async (context, ticketNumber) => {
 
     return new Promise((resolve, reject) => {
@@ -53,7 +63,7 @@ const verifyLot = async (context, ticketNumber) => {
     })
 };
 
-
+///////////////// STATS CLAIMEDTICKET FUNCTION ////////////////////
 
 const claimedTickeBySession = async (context, idSession) => {
     return new Promise((resolve, reject) => {
@@ -66,6 +76,8 @@ const claimedTickeBySession = async (context, idSession) => {
         }) 
     })
 }
+
+///////////////// SELECT TICKET FUNCTION ////////////////////
 
 const generateTicketApi = async (context, idSession) => {
     return new Promise((resolve, reject) => {
