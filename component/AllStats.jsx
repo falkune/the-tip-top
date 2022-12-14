@@ -40,8 +40,8 @@ const AllStats = ({idSession}) => {
   if(allGroup){
     return (
       <div style={styles.stat}>
-        <ParticipationStat sessionStat={sessionStat} idSession={props.idSession}/>
-        {/* <StatInscription days={numberDay} idSession={props.idSession} /> */}
+        <ParticipationStat sessionStat={sessionStat} idSession={idSession}/>
+        <StatInscription days={numberDay} idSession={idSession} />
         <StatsLots allGroup={allGroup}/>
       </div>
     )
