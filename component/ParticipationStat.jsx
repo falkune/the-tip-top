@@ -12,23 +12,23 @@ export default function ParticipationStat({sessionStat, idSession }) {
   const [data, setData] = useState([{name: 'Tickets assignés', value: sessionStat.sessionTotalClaimbedTicket},{name: 'Tickets livrés', value: sessionStat.sessionTotalDeliveredTicket}])
   const context = useContext(ApiContext);
 
-  useEffect(() => {
-    if (idSession != "") {
-      getUsers(context, idSession)
-    }
-  }, [idSession]);
+  // useEffect(() => {
+  //   if (idSession != "") {
+  //     getUsers(context, idSession)
+  //   }
+  // }, [idSession]);
   
-  const getUsers = () => {
-    getuserBySession(context, idSession)
-    .then((response) => {
-      if(response.statusCode){
-        refreshToken(response, context);
-      }else{
-        setUser(response.length);
-      }
-    })
-    .catch(() => notifier())
-  }
+  // const getUsers = () => {
+  //   getuserBySession(context, idSession)
+  //   .then((response) => {
+  //     if(response.statusCode){
+  //       refreshToken(response, context);
+  //     }else{
+  //       setUser(response.length);
+  //     }
+  //   })
+  //   .catch(() => notifier())
+  // }
 
 
   return (
