@@ -7,9 +7,9 @@ import HalfPie from './Halfpie';
 import {notifier, refreshToken} from '../fonctions/utils';
 
 
-export default function ParticipationStat({ claimbedTicket, deliveredTicket, idSession }) {
+export default function ParticipationStat({sessionStat, idSession }) {
   const [users, setUser] = useState(0);
-  const [data, setData] = useState([{name: 'Tickets assignés', value: claimbedTicket},{name: 'Tickets livrés', value: deliveredTicket}])
+  const [data, setData] = useState([{name: 'Tickets assignés', value: sessionStat.sessionTotalClaimbedTicket},{name: 'Tickets livrés', value: sessionStat.sessionTotalDeliveredTicket}])
   const context = useContext(ApiContext);
 
   useEffect(() => {
@@ -17,7 +17,7 @@ export default function ParticipationStat({ claimbedTicket, deliveredTicket, idS
       getUsers(context, idSession)
     }
   }, [idSession]);
-
+  
   const getUsers = () => {
     getuserBySession(context, idSession)
     .then((response) => {

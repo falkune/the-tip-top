@@ -12,7 +12,7 @@ import ApiContext from '../context/apiContext';
 import { register, googleLoginRegister, facebookLoginRegister } from '../fonctions/users';
 import Cookies from 'js-cookie';
 import { notifier } from "../fonctions/utils";
-import CookiesManagement from '../component/cookiesManagement';
+
 
 export default function Inscription() {
   const context = useContext(ApiContext);
@@ -231,7 +231,7 @@ export default function Inscription() {
         </section>
       </div>
       <Footer />
-      <CookiesManagement/>
+
     </div>
   );
 }

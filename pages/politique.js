@@ -55,7 +55,7 @@ export default function Politique() {
       </section>
 
       <Footer/>
-      <CookiesManagement/>
+
     </div>
   )
 }

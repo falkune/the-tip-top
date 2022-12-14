@@ -6,7 +6,6 @@ import { useRouter } from "next/router";
 import ApiContext from '../context/apiContext';
 import { resetPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
-import CookiesManagement from '../component/cookiesManagement';
 
 export default function Changepassword() {
     const [email, setEmail] = useState("");
@@ -71,7 +70,7 @@ export default function Changepassword() {
                 </section>
             </div>
             <Footer />
-            <CookiesManagement/>
+
         </div>
     );
 }

@@ -29,8 +29,8 @@ const styles = {
   },
   card: {
     display: "flex",
-    minWidth: 200,
-    width: 344,
+    minWidth: 300,
+    width: 500,
     height:160,
     flexDirection: "column",
     padding: 25,

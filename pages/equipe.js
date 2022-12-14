@@ -6,7 +6,6 @@ import Header from "../component/Header";
 import Footer from "../component/Footer";
 import "animate.css";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../component/cookiesManagement';
 
 export default function equipe() {
 
@@ -51,7 +50,6 @@ VOUS CONNAISSEZ PEUT-ÊTRE DÉJÀ LE PRODUIT, DÉCOUVREZ CEUX QUI EN SONT SUR PA
 
       </section>
       <Footer />
-      <CookiesManagement/>
     </div>
   );
 }

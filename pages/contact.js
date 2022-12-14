@@ -3,7 +3,6 @@ import Head from "next/head";
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../component/cookiesManagement';
 
 
 
@@ -40,7 +39,6 @@ export default function contact() {
           </form>
       </section>
       <Footer />
-      <CookiesManagement/>
     </div>
   );
 }

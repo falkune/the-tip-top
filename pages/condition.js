@@ -164,7 +164,6 @@ L’Éditeur peut être amené à recueillir des informations de navigation via 
       </section>
 
       <Footer/>
-      <CookiesManagement/>
     </div>
   )
 }

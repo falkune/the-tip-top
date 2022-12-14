@@ -9,9 +9,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import "animate.css";
 import dayjs from "dayjs";
-import "dayjs/locale/fr" 
+import "dayjs/locale/fr"
 dayjs.locale('fr')
 import "animate.css";
+import 'nextjs-breadcrumbs/dist/index.css';
+import CookiesManagement from '../component/cookiesManagement';
 
 function MyApp({ Component, pageProps }) {
   const [backend, setBacked] = useState({
@@ -19,7 +21,7 @@ function MyApp({ Component, pageProps }) {
       .setHeader("lang", "en")
       .setHeader("Accept", "Application/json")
       .setHeader("Content-Type", "application/json"),
-    auth: Cookies.get('authToken') ? 
+    auth: Cookies.get('authToken') ?
       new ApiClient()
         .setHeader("lang", "en")
         .setHeader("Accept", "Application/json")
@@ -36,17 +38,17 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-    <Script
-    id='GoogleA'
-    strategy="lazyOnload"
-    src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
-  />
+      <Script
+        id='GoogleA'
+        strategy="lazyOnload"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}
+      />
 
-  <Script 
-      id='GoogleS'
+      <Script
+        id='GoogleS'
 
-      strategy="lazyOnload">
-    {`
+        strategy="lazyOnload">
+        {`
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
@@ -54,15 +56,16 @@ function MyApp({ Component, pageProps }) {
         page_path: window.location.pathname,
       });
     `}
-  </Script>
+      </Script>
 
-    <ApiProvider value={{backend, setBacked}}>
-      <Component {...pageProps} />
-      <ToastContainer />
-    </ApiProvider>
+      <ApiProvider value={{ backend, setBacked }}>
+        <Component {...pageProps} />
+        <ToastContainer />
+      </ApiProvider>
+      <CookiesManagement/>
     </>
   );
-  
+
 }
 
 export default MyApp;
