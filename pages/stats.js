@@ -198,10 +198,10 @@ export default function Stats() {
               </Select>
             </div>
             {menu === "stats" && <AllStats idSession={idSession} />}
+            {menu === "sessions" && <Sessions idSession={idSession} />}
             {menu === "ticket" && <TicketChecker session={idSession} />}
             {menu === "users" && <Users idSession={idSession} />}
             {menu === "generator" && <TicketGenerator session_id={idSession} />}
-            {menu === "sessions" && <Sessions idSession={idSession} />}
           </div>
         </div>
         <Footer />

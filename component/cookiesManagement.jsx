@@ -64,6 +64,7 @@ const styles = {
     },
     check: {
         color: "#008000",
+        fontSize: "1em"
     },
     mark: {
         color: "#9a031e"
