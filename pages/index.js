@@ -14,6 +14,10 @@ import { loadFull } from "tsparticles";
 import { getCurrentSession } from '../fonctions/sessions'
 import ApiContext from '../context/apiContext';
 import { notifier } from '../fonctions/utils';
+<<<<<<< HEAD
+=======
+import CookiesManagement from '../component/cookiesManagement';
+>>>>>>> 8f13ccd36fb77b4cba776939f8c69a7c8bd39ed4
 import Cookies from 'js-cookie';
 
 

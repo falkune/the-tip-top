@@ -74,24 +74,29 @@ export default function lots() {
       flexDirection:"column",
       alignItems:"center"
      }}>
-      <div  style={{ paddingTop:50,
+      <div  style={{ paddingTop:20,
       display:"flex",
-      justifyContent:"center",
-      width:"100%",
-      flexWrap:"wrap",
-      paddingBottom: 50,
-        minHeight:"100vh" }}>
+      flexWrap:"wrap" }}>
         {gift.map((g,i) => (
           <div key={i} className="lotsItems animate__animated  animate__backInUp" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
-                          <Link href={`lots${g.href}`}>En savoir plus</Link>    
-
-             <Image  src={g.src} alt={g.name}/>
-             <div style={{display:"flex",flexDirection:"column",}}>
+             <span style={{width:200,marginBottom:20,marginTop:20}}>
+                 <Image src={g.src} alt={g.name}/>
+             </span>
+             <div style={{display:"flex",flexDirection:"column",alignItems:"center"}}>
                 <h3>{g.name}</h3>
                 <p>{g.descrition}</p>
+                <Link href={`lots${g.href}`}>En savoir plus</Link>    
              </div> 
           </div>
             ))}
+        </div>
+
+        <div style={stylez.bigGame}>
+          <h2>Grand tirage au sort !</h2>
+          <p>Serez-vous l'heureux vainqueur ?</p>
+          <Link href="#">
+            En savoir plus
+          </Link>
         </div>
       </section>
       <Footer />
@@ -109,5 +114,17 @@ const stylez ={
     light:{
         background:"white",
         color :"#38870D"
+    },
+
+    bigGame:{
+      display:"flex",
+      borderRadius:10,
+      flexDirection:"column",
+      alignItems:"center",
+      width:"100%",
+      justifyContent:"center",
+      background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 28%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
+      color:"white",
+      minHeight:300
     }
 }

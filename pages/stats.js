@@ -37,7 +37,6 @@ export default function Stats() {
     limit: 15000,
     id: "",
   });
-
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
@@ -45,6 +44,7 @@ export default function Stats() {
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     Cookies.set("width", width);
+    console.log(allsessions,"allsessions")
   };
 
   useEffect(() => {
@@ -55,12 +55,13 @@ export default function Stats() {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, []);
+  }, [idSession]);
   
   const getAllSessions = async (context) => {
+    console.log("session")
     getSessions(context)
     .then((response) => {
-      setAllSessions(response);
+      setAllSessions(response[0]);
       setIdSession(response[0]._id);
     })
   };
@@ -257,7 +258,7 @@ const stylez = {
     background: "none",
   },
   stat: {
-    backgroundColor: "#c7c7c7",
+    backgroundColor: "#ddeddd",
     padding: 25,
     paddingTop:120,
     width: "85%",

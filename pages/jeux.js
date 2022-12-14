@@ -68,7 +68,7 @@ export default function Jeux() {
               <>
               <h1 style={{color:"white",fontSize:35}}>Résultat du grand tirage au sort !</h1>
                 <Breadcrumbs useDefaultStyle={false}
-          containerClassName="darkLight" 
+          containerClassName="breakLight" 
           rootLabel="Accueil" />
               </> :  <>
                     <ClipLoader color={"white"} loading={true} size={100} />
@@ -77,7 +77,7 @@ export default function Jeux() {
           Grand jeux concour
         </h1>
         <Breadcrumbs useDefaultStyle={false}
-          containerClassName="darkLight" 
+          containerClassName="breakLight" 
           rootLabel="Accueil" />
 
         <p style={{ fontSize: 20, color: "white" }}>
