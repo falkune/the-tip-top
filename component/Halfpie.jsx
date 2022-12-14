@@ -1,6 +1,6 @@
 import React, {useEffect} from "react";
 import { PieChart, Pie, Cell, Legend } from 'recharts';
-const COLORS = ['#d04142', '#053b06'];
+const COLORS = ['#053b06', '#d04142'];
 
 export default function HalfPie({title, data}) {
     useEffect(() => {}, [data])

@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import ClipLoader from "react-spinners/ClipLoader";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
-import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
+import { login, googleLoginRegister, forgotPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
 import Link from "next/link";
 
@@ -44,45 +44,19 @@ export default function Connexion() {
     }
   };
 
-  const goSignup = () => {
-    router.push({ pathname: "/inscription" }, undefined, { shallow: true });
-  };
-
-  const facebookLogin = async () => {
-    setLoad(true)
-    let user = await facebookLoginRegister(context)
-    if (user.statusCode) {
-      if (Array.isArray(user.message)) {
-        user.message.forEach(element => {
-          notifier(element, "error", "bottom-right", 5000);
-        });
-        setLoad(false)
-      } else {
-        setLoad(false)
-        notifier(user.message, "error", "bottom-right", 5000);
-      }
-    } else {
-      if (Cookies.get('role') == "admin")
-        router.push({ pathname: "/stats" }, undefined, { shallow: true });
-      else
-        router.push({ pathname: "/bingo" }, undefined, { shallow: true });
-    }
-  }
 
   const googleLogin = async () => {
     setLoad(true)
     let user = await googleLoginRegister(context)
-    console.log("login")
     if (user.statusCode) {
+      setLoad(false)
       if (Array.isArray(user.message)) {
-        console.log("whut")
         user.message.forEach(element => {
           notifier(element, "error", "bottom-right", 5000);
         });
         setLoad(false)
       } else {
         setLoad(false)
-        console.log("whut")
         notifier(user.message, "error", "bottom-right", 5000);
       }
     } else {
@@ -160,27 +134,6 @@ export default function Connexion() {
               <span style={{ color: "#38870D", fontWeight: "bold" }} onClick={() => setResetPassword(true)}><Link href="#update-password" >Mot de passe oublié ?</Link></span>
             </div>)}
           <div className="social">
-            {/* <button
-              style={{
-                backgroundColor: "#437BFF",
-                fontWeight: "bold",
-                color: "white",
-                position: "relative",
-                height: 60,
-              }}
-              onClick={facebookLogin}
-            >
-              <span style={{ position: "absolute", left: 20, bottom: 1 }}>
-                <Image
-                  src='/facebook.png'
-                  width="16"
-                  height="40"
-                  objectFit="contain"
-                  alt="facebook logo"
-                />
-              </span>
-              Connexion
-            </button> */}
             <button
               style={{
                 display: "flex",

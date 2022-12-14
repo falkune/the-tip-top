@@ -35,7 +35,7 @@ export default function LineGraph({ data, width }) {
         <XAxis dataKey="_id" height={70} tick={<CustomizedAxisTick />} />
         <YAxis />
         <Tooltip />
-        <Line type="monotone" dataKey="nomberOfRegitration" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="numberOfRegistration" stroke="#82ca9d" />
         <Legend />
       </LineChart>
     </ResponsiveContainer>

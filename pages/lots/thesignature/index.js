@@ -6,7 +6,7 @@ import Header from "../../../component/Header";
 import Footer from "../../../component/Footer";
 import Link from "next/link";
 import Breadcrumbs from 'nextjs-breadcrumbs';
-import CookiesManagement from '../../../component/cookiesManagement';
+
 
 
 
@@ -74,7 +74,7 @@ export default function thesignature() {
      
   
     </section>
-    <CookiesManagement/>
+
     <Footer />
   </div>
   );

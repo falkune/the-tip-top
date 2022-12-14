@@ -35,7 +35,7 @@ export default function Home() {
     getCurrent(context)
     console.log("tester")
   }, []);
- 
+
 
 
   const getCurrent = async (context) => {
@@ -49,10 +49,10 @@ export default function Home() {
   };
 
   const goResult = () => {
-    if(Cookies.get('role') == "client")
-      router.push({ pathname: `bingo`},undefined, { shallow: true });
-      else 
-      router.push({ pathname: `connexion`},undefined, { shallow: true });
+    if (Cookies.get('role') == "client")
+      router.push({ pathname: `bingo` }, undefined, { shallow: true });
+    else
+      router.push({ pathname: `connexion` }, undefined, { shallow: true });
 
   };
 
@@ -108,16 +108,18 @@ export default function Home() {
         <h2>Tenter de gagner l'un de nos nombreux lots <br></br>
           Des infuseurs ou coffrets spéciaux !</h2>
         <button type="button" onClick={() => goResult()} className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
-          style={{marginBottom:20,marginTop:20,
-            boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}} >
-            Participer
-        </button> 
-        <h3  className='floating' style={{color:"white",margin:5}}> ou </h3>
-        <Link href="/lots"  passHref >
-          <button type="button"  className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
-            style={{marginBottom:20,marginTop:20, boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"}}>
-              Voir les lots à gagner
-          </button> 
+          style={{
+            marginBottom: 20, marginTop: 20,
+            boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)"
+          }} >
+          Participer
+        </button>
+        <h3 className='floating' style={{ color: "white", margin: 5 }}> ou </h3>
+        <Link href="/lots" passHref >
+          <button type="button" className={"homebutton animate__animated animate__pulse animate__infinite	infinite"}
+            style={{ marginBottom: 20, marginTop: 20, boxShadow: "0px 0px 0px 5px rgba(255,255,255,0.34)" }}>
+            Voir les lots à gagner
+          </button>
         </Link>
 
       </section>

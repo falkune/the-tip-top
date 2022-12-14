@@ -18,11 +18,11 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { getSessions } from "../fonctions/sessions";
 import { getGroups } from "../fonctions/groups";
-import sessions from  '../image/session.png'
-import users from  '../image/users.png'
-import search from  '../image/search.png'
-import load from  '../image/load.png'
-import graph from  '../image/graph.png';
+import sessions from '../image/session.png'
+import users from '../image/users.png'
+import search from '../image/search.png'
+import load from '../image/load.png'
+import graph from '../image/graph.png';
 
 
 
@@ -33,29 +33,29 @@ export default function Stats() {
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
-  
+
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     Cookies.set("width", width);
   };
 
   useEffect(() => {
-    if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
+    if (!Cookies.get('authToken') || Cookies.get('role') != "admin") {
       router.push('/connexion')
     }
     getAllSessions(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-    
+
   }, []);
-  
+
   const getAllSessions = async (context) => {
     getSessions(context)
-    .then((response) => {
-      setAllSessions(response);
-      setIdSession(response[0]._id);
-    })
+      .then((response) => {
+        setAllSessions(response);
+        setIdSession(response[0]._id);
+      })
   };
 
   const handleChangeSession = (event) => {
@@ -66,7 +66,7 @@ export default function Stats() {
     setMenu(e.target.value);
   };
 
-  if(Cookies.get('authToken') && Cookies.get('role') == "admin"){
+  if (Cookies.get('authToken') && Cookies.get('role') == "admin") {
     return (
       <div className="container">
         <Head>
@@ -75,8 +75,8 @@ export default function Stats() {
           <link rel="icon" href="/favicon.ico" />
         </Head>
         <Header changemenu={changemenu} stylez={stylez} menu={menu} />
-  
-        <div style={{ display: "flex", width: "100%",background: "#c7c7c7" }}>
+
+        <div style={{ display: "flex", width: "100%", background: "#c7c7c7" }}>
           {width > 850 && (
             <div style={stylez.side}>
               <h2 style={{ color: "white", textAlign: "center" }}>Dashboard</h2>
@@ -85,10 +85,10 @@ export default function Stats() {
                 style={
                   menu === "stats"
                     ? stylez.sideButtonActive
-                    : stylez.sideButtonInactive } onClick={changemenu} >
-                       <span style={{marginRight:15}}>
-                          <Image src={graph} alt="session_logo" width={20} height={20} />
-                       </span>
+                    : stylez.sideButtonInactive} onClick={changemenu} >
+                <span style={{ marginRight: 15 }}>
+                  <Image src={graph} alt="session_logo" width={20} height={20} />
+                </span>
                 Mes stats
               </button>
               <button
@@ -99,10 +99,10 @@ export default function Stats() {
                     : stylez.sideButtonInactive
                 }
                 onClick={changemenu}>
-                  <span style={{marginRight:15}}>
-                      <Image src={load} alt="session_logo" width={20} height={20}  />
-                  </span>
-            Ticket generator
+                <span style={{ marginRight: 15 }}>
+                  <Image src={load} alt="session_logo" width={20} height={20} />
+                </span>
+                Ticket generator
               </button>
               <button
                 value={"ticket"}
@@ -113,10 +113,10 @@ export default function Stats() {
                 }
                 onClick={changemenu}
               >
-                <span style={{marginRight:15}}> 
-                <Image src={search} alt="session_logo" width={20} height={20} />
+                <span style={{ marginRight: 15 }}>
+                  <Image src={search} alt="session_logo" width={20} height={20} />
                 </span>
-                    Ticket checker
+                Ticket checker
               </button>
               <button
                 value={"users"}
@@ -127,10 +127,10 @@ export default function Stats() {
                 }
                 onClick={changemenu}
               >
-                <span style={{marginRight:15}}> 
-                    <Image src={users} alt="session_logo" width={20} height={20} />
+                <span style={{ marginRight: 15 }}>
+                  <Image src={users} alt="session_logo" width={20} height={20} />
                 </span>
-            Listes utilisateurs
+                Listes utilisateurs
               </button>
               <button
                 value={"sessions"}
@@ -140,38 +140,38 @@ export default function Stats() {
                     : stylez.sideButtonInactive
                 }
                 onClick={changemenu}>
-                <span style={{marginRight:15}}> 
+                <span style={{ marginRight: 15 }}>
                   <Image src={sessions} alt="session_logo" width={20} height={20} />
-                  </span>
-                   Gestions des sessions
+                </span>
+                Gestions des sessions
               </button>
             </div>
           )}
-  
+
           <div style={width > 850 ? stylez.stat : stylez.fullStat}>
             <div
 
               style={{
-                background:"rgb(56,135,13",
-                background:" linear-gradient(142deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 49%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
+                background: "rgb(56,135,13",
+                background: " linear-gradient(142deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 49%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
                 padding: 25,
                 display: "flex",
                 flexDirection: "column",
                 alignItems: "center",
-                marginBottom:20,
-                borderRadius:15
+                marginBottom: 20,
+                borderRadius: 15
               }}
             >
-              <h2 style={{color:"white"}}>Selectionner une session</h2>
+              <h2 style={{ color: "white" }}>Selectionner une session</h2>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
                 value={idSession}
                 label="session"
                 onChange={handleChangeSession}
-                style={{border:"solid 2px white",color:"white"}
-           
-              }>
+                style={{ border: "solid 2px white", color: "white" }
+
+                }>
                 {allsessions.map((s, index) => (
                   <MenuItem key={index} value={s._id}>
                     {s.name}
@@ -180,10 +180,10 @@ export default function Stats() {
               </Select>
             </div>
             {menu === "stats" && <AllStats idSession={idSession} />}
+            {menu === "sessions" && <Sessions idSession={idSession} />}
             {menu === "ticket" && <TicketChecker session={idSession} />}
             {menu === "users" && <Users idSession={idSession} />}
             {menu === "generator" && <TicketGenerator session_id={idSession} />}
-            {menu === "sessions" && <Sessions idSession={idSession} />}
           </div>
         </div>
         <Footer />
@@ -191,14 +191,14 @@ export default function Stats() {
       </div>
     );
   }
-  else{
-    return(
+  else {
+    return (
       <Box sx={{ width: '100%' }}>
         <LinearProgress />
       </Box>
     )
   }
-  
+
 }
 
 const stylez = {
@@ -211,16 +211,16 @@ const stylez = {
   },
   side: {
     width: "15%",
-    paddingTop:100,
-    background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 91%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
+    paddingTop: 100,
+    background: "linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 91%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
     display: "flex",
     flexDirection: "column",
   },
   sideButtonActive: {
-    display:"flex",
-    alignItems:"center",
+    display: "flex",
+    alignItems: "center",
     fontSize: 20,
-    textAlign:"left",
+    textAlign: "left",
     margin: 5,
     color: "white",
     marginLeft: 0,
@@ -233,12 +233,12 @@ const stylez = {
   },
   sideButtonInactive: {
     fontSize: 20,
-    textAlign:"left",
-    display:"flex",
-    alignItems:"center",
+    textAlign: "left",
+    display: "flex",
+    alignItems: "center",
     margin: 5,
     color: "white",
-    opacity:0.5,
+    opacity: 0.5,
     marginLeft: 0,
     marginRight: 0,
     padding: 10,
@@ -250,7 +250,7 @@ const stylez = {
   stat: {
     backgroundColor: "#ddeddd",
     padding: 25,
-    paddingTop:120,
+    paddingTop: 120,
     width: "85%",
     minHeight:"100vh"
   },
@@ -264,8 +264,8 @@ const stylez = {
 
   },
 
-  titleMenu:{
-    margin:0,
-    marginLeft:15
+  titleMenu: {
+    margin: 0,
+    marginLeft: 15
   }
 };
