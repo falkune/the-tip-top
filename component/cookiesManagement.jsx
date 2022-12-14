@@ -59,7 +59,7 @@ const styles = {
     btn: {
         border: "none",
         background: "none",
-        margin: "0 5px",
+        margin: "0 10px",
         cursor: "pointer"
     },
     check: {
