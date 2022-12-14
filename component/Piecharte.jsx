@@ -17,7 +17,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     );
 };
 
-export default function PieGraph({ title, data }) {
+export default function PieGraph({ title, data, color }) {
 
     return (
         <div style={styles.card} width="50%" height="100%">

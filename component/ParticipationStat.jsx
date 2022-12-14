@@ -10,8 +10,8 @@ export default function ParticipationStat({ sessionStat, totalRegistrations, tod
     <div style={styles.container}>
       <CardSummary title="Total inscription" totalRegistrations={totalRegistrations} todaysNumberOfRegistration={todaysNumberOfRegistration} />
       <HalfPie title="stats global" data={[{ name: 'Tickets assignés', value: sessionStat.sessionTotalClaimbedTicket }, { name: 'Tickets non assignés', value: sessionStat.sessionTotalNotClaimbedTicket }]} />
-      <PieGraph title="stats global" data={[{ name: 'Tickets assignés', value: sessionStat.sessionTotalClaimbedTicket }, { name: 'Tickets non assignés', value: sessionStat.sessionTotalNotClaimbedTicket }]} />
-      <PieGraph title="stats global" data={[{ name: 'Tickets livrés', value: sessionStat.sessionTotalDeliveredTicket }, { name: 'Tickets non livrés', value: sessionStat.sessionTotalNotDeliveredTicket }]} />
+      <PieGraph title="stats global" data={[{ name: 'Tickets assignés', value: sessionStat.sessionTotalClaimbedTicket }, { name: 'Tickets non assignés', value: sessionStat.sessionTotalNotClaimbedTicket }]} color={['#0088FE', '#FFBB28']}/>
+      <PieGraph title="stats global" data={[{ name: 'Tickets livrés', value: sessionStat.sessionTotalDeliveredTicket }, { name: 'Tickets non livrés', value: sessionStat.sessionTotalNotDeliveredTicket }]} color={['#00C49F', '#FF8042']}/>
     </div>
   );
 }
