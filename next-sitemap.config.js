@@ -1,7 +1,7 @@
 module.exports = {
     siteUrl: process.env.SITE_URL,
     generateRobotsTxt: true, // (optional)
-    // ...other options
+    sitemapSize : 7000 , 
   }
 
    
