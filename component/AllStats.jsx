@@ -20,21 +20,18 @@ const AllStats = ({ idSession }) => {
 
   }, [idSession])
 
-
-
   const getAsignTicket = (context, idSession) => {
     statLots(context, idSession)
       .then((response) => {
         if (!response.statusCode) {
           setSessionStats(response.sessionStats)
           setAllGroup(response.groupStats);
-
         }
 
       })
       .catch((error) => console.log(error))
   }
-  
+
   if (allGroup) {
     return (
       <div style={styles.stat}>

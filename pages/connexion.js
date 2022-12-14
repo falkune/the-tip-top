@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import ClipLoader from "react-spinners/ClipLoader";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
-import { login, googleLoginRegister, facebookLoginRegister, forgotPassword } from '../fonctions/users';
+import { login, googleLoginRegister, forgotPassword } from '../fonctions/users';
 import { notifier } from "../fonctions/utils";
 import Link from "next/link";
 
@@ -25,11 +25,14 @@ export default function Connexion() {
     setLoad(true)
     let user = await login(context, email, password)
     if (user.statusCode) {
+       setLoad(false)
       if (Array.isArray(user.message)) {
         user.message.forEach(element => {
           notifier(element, "error", "top-right", 5000);
         });
+        setLoad(false)
       } else {
+        setLoad(false)
         notifier(user.message)
       }
     } else {
@@ -45,13 +48,14 @@ export default function Connexion() {
   const googleLogin = async () => {
     setLoad(true)
     let user = await googleLoginRegister(context)
-    
+    console.log("login")
     if (user.statusCode) {
       setLoad(false)
       if (Array.isArray(user.message)) {
         user.message.forEach(element => {
           notifier(element, "error", "bottom-right", 5000);
         });
+        setLoad(false)
       } else {
         setLoad(false)
         notifier(user.message, "error", "bottom-right", 5000);
@@ -62,6 +66,7 @@ export default function Connexion() {
       else
         router.push({ pathname: "/bingo" }, undefined, { shallow: true });
     }
+    setLoad(false)
   }
 
   const resetPasswor = async () => {

@@ -37,6 +37,7 @@ export default function Stats() {
     limit: 15000,
     id: "",
   });
+  const [lots, setLots] = useState([]);
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
@@ -52,6 +53,7 @@ export default function Stats() {
     }
     
     getAllSessions(context);
+    getAllLots(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
@@ -66,6 +68,12 @@ export default function Stats() {
     })
   };
 
+  const getAllLots = async (context) => {
+    getGroups(context)
+    .then((response) => {
+      setLots(response);
+    })
+  };
 
   const handleChangeSession = (event) => {
     setIdSession(event.target.value);

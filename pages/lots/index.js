@@ -8,6 +8,7 @@ import tea2 from "../../image/tea2.png";
 import tea3 from "../../image/tea3.png";
 import tea4 from "../../image/tea4.png";
 import tea5 from "../../image/tea5.png";
+import gift from "../../image/gift.gif"
 import Link from "next/link";
 import "animate.css";
 import Breadcrumbs from 'nextjs-breadcrumbs';
@@ -16,7 +17,7 @@ import CookiesManagement from '../../component/cookiesManagement';
 
 export default function lots() {
 
-    const gift = [
+    const gifts = [
         {
           name: "Coffret 32 euros",
           src: tea2,
@@ -77,7 +78,7 @@ export default function lots() {
       <div  style={{ paddingTop:20,
       display:"flex",
       flexWrap:"wrap" }}>
-        {gift.map((g,i) => (
+        {gifts.map((g,i) => (
           <div key={i} className="lotsItems animate__animated  animate__backInUp" style= { i/2 == Math.round(i/2) ?stylez.dark :stylez.light }>
              <span style={{width:200,marginBottom:20,marginTop:20}}>
                  <Image src={g.src} alt={g.name}/>
@@ -92,11 +93,15 @@ export default function lots() {
         </div>
 
         <div style={stylez.bigGame}>
-          <h2>Grand tirage au sort !</h2>
+          <h2 style={{fontSize:35,margin:5,textAlign:"center"}}>Un grand tirage au sort vous attend !</h2>
+          <Image  height={250} width={250} src={gift} alt="gift" />
           <p>Serez-vous l'heureux vainqueur ?</p>
-          <Link href="#">
+          <span style={{padding:"15px 25px",borderRadius:100,border:"solid 2px white"}}>
+          <Link  href={{ pathname: '/lots/grandtirage'}}>
             En savoir plus
           </Link>
+          </span>
+        
         </div>
       </section>
       <Footer />
@@ -119,12 +124,13 @@ const stylez ={
     bigGame:{
       display:"flex",
       borderRadius:10,
+      margin:20,
       flexDirection:"column",
       alignItems:"center",
       width:"100%",
       justifyContent:"center",
       background:"linear-gradient(48deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 28%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
       color:"white",
-      minHeight:300
+      padding:"60px 25px" 
     }
 }
