@@ -40,7 +40,7 @@ export default function Jeux() {
   return (
     <div className="container">
       <Head>
-        <title>TeaBingo - Jeux concours thé tiptop</title>
+        <title>Grand jeux tirage au sort </title>
         <meta name="thé tiptop" content="titop thé" />
         <meta name="google-site-verification" content="iDBitZ99_g4ELVANaUEpnh57Tum7BZhycjYf21Zxy-M" />
         <link rel="icon" href="/favicon.ico" />

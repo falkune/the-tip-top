@@ -1,9 +1,9 @@
 
 
 
-const DelivredButton = ({delivred,DelivredLot}) => {
+const DelivredButton = ({value}) => {
 
-console.log(delivred)
+console.log(value,"yey")
 
     
   return (

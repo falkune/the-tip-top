@@ -10,7 +10,6 @@ import {getHistoryClient} from '../fonctions/tickets'
 import CsvDownloader from 'react-csv-downloader';
 import dayjs from "dayjs";
 import "dayjs/locale/fr" 
-import { async } from "@firebase/util";
 dayjs.locale('fr')
 
 export default function Users({ idSession }) {
