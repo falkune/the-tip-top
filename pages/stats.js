@@ -51,14 +51,16 @@ export default function Stats() {
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
+
+    console.log("hello")
     getAllSessions(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [idSession]);
+    
+  }, []);
   
   const getAllSessions = async (context) => {
-    console.log("session")
     getSessions(context)
     .then((response) => {
       setAllSessions(response[0]);

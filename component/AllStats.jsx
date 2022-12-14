@@ -8,26 +8,26 @@ import { getSessionDetails } from '../fonctions/sessions';
 import { statLots } from '../fonctions/tickets';
 import AgeStat from './AgeStat';
 
-const AllStats = (props) => {
+const AllStats = ({idSession}) => {
   const [numberDay, setNumberDay] = useState([]);
   const [sessionStat, setSessionStats] = useState({});
   const [allGroup, setAllGroup] = useState([]);
   const context = useContext(ApiContext);
-  console.log(props.startDate,props.endDate,"date")
+
   useEffect(() => {
-    if(props.idSession){
+    if(idSession){
       getAsignTicket(context, props.idSession);
     }
-    getDetailsSession(context, props.idSession);
-  }, [])
+    // getDetailsSession(context, props.idSession);
+  }, [idSession])
 
-  const getDetailsSession = (context, idSession) => {
-    console.log("detail session")
-    getSessionDetails(context, idSession)
-      .then((response) => {
-        setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
-      })
-  }
+  // const getDetailsSession = (context, idSession) => {
+  //   console.log("detail session")
+  //   getSessionDetails(context, idSession)
+  //     .then((response) => {
+  //       setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
+  //     })
+  // }
 
   const getAsignTicket = (context, idSession) => {
     statLots(context, idSession)
@@ -44,7 +44,7 @@ const AllStats = (props) => {
 
   return (
     <div style={styles.stat}>
-      <ParticipationStat sessionStat={sessionStat} idSession={props.idSession}/>
+      <ParticipationStat sessionStat={sessionStat} idSession={idSession}/>
       <StatInscription days={numberDay} idSession={props.idSession} />
       <StatsLots allGroup={allGroup}/>
     </div>
