@@ -4,8 +4,6 @@ import ApiContext from '../context/apiContext';
 import ClipLoader from "react-spinners/ClipLoader";
 import { generateTicketApi } from "../fonctions/tickets";
 import { refreshToken, notifier } from "../fonctions/utils";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 export default function TicketGenerator({ session_id }) {
   const context = useContext(ApiContext)
@@ -22,7 +20,7 @@ export default function TicketGenerator({ session_id }) {
     {
       navigator.clipboard.writeText(e.target.value);
     }
-    toast("Copié !");
+    notifier("Copié !","info");
   };
 
   const generateTicket = async () => {
@@ -36,7 +34,6 @@ export default function TicketGenerator({ session_id }) {
     } 
 
    else {
-     console.log(ticket,'ticket')
      setTicket(ticket.ticketNumber);
      setLoading(false);
      setGenerate(true);}  
@@ -162,19 +159,6 @@ export default function TicketGenerator({ session_id }) {
             </div>
           </div> }
       </div>
-      
-      <ToastContainer
-                      position="bottom-center"
-                      autoClose={1250}
-                      hideProgressBar
-                      newestOnTop={false}
-                      closeOnClick
-                      rtl={false}
-                      pauseOnFocusLoss={false}
-                      draggable={false}
-                      pauseOnHover={false}
-                      theme="colored"
-                    />    
     </div>
   );
 }

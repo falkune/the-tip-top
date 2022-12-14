@@ -1,7 +1,7 @@
 import React from "react";
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 
-const COLORS = ['#0088FE', '#595959', '#FB8500'];
+const COLORS = ['#0088FE', '#595959'];
 
 
 export default function Gauge({ title, data }) {
@@ -11,7 +11,7 @@ export default function Gauge({ title, data }) {
             <PieChart width={300} height={300}>
                 <Pie
                     data={data}
-                    cx={150}
+                    cx={160}
                     cy={150}
                     label
                     innerRadius={60}

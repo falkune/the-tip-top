@@ -22,7 +22,7 @@ const StatsLots = ({ allGroup }) => {
       <div style={styles.pieBloc}>
         { 
           allGroup.map((l,index)=> (
-            <Gauge key={index} title={l.groupName} data={[{name: 'Tickets assignés', value: l.claimbedTicket},{name: 'Tickets livrés', value: l.deliveredTicket}]}/>
+            <Gauge key={index} title={l.groupName} data={[{name: 'Lots délivrés', value: l.deliveredTicket},{name: 'Lots non délivrés', value: l.notDeliveredTicket}]}/>
           ))
         }
       </div>
@@ -30,7 +30,15 @@ const StatsLots = ({ allGroup }) => {
       <div style={styles.pieBloc}>
         { 
           allGroup.map((l,index)=> (
-            <PieGraph key={index} title={l.groupName} data={[{ name: 'Tickets assignés', value: l.claimbedTicket },{ name: 'Tickets livrés', value: l.deliveredTicket }]}/>
+            <PieGraph key={index} title={l.groupName} data={[{ name: 'Tickets assignés', value: l.claimbedTicket },{ name: 'Tickets non assignés', value: l.notClaimbedTicket}]}/>
+          ))
+        }
+      </div>
+
+      <div style={styles.pieBloc}>
+        { 
+          allGroup.map((l,index)=> (
+            <PieGraph key={index} title={l.groupName} data={[{ name: 'Lots délivrés', value: l.deliveredTicket}, { name: 'Lots non délivrés', value: l.notDeliveredTicket }]}/>
           ))
         }
       </div>

@@ -6,7 +6,7 @@ import ApiContext from '../context/apiContext';
 import { statLots } from '../fonctions/tickets';
 import {notifier, refreshToken} from '../fonctions/utils';
 import Box from '@mui/material/Box';
-import CircularProgress from '@mui/material/CircularProgress';
+import LinearProgress from '@mui/material/LinearProgress';
 import { getRegistrationByDayBySession } from '../fonctions/users';
 
 const AllStats = ({ idSession }) => {
@@ -31,11 +31,11 @@ const AllStats = ({ idSession }) => {
         if (!response.statusCode) {
           setSessionStats(response.sessionStats)
           setAllGroup(response.groupStats);
+          console.log(response.sessionStats)
         }
       })
       .catch((error) => console.log(error))
   }
-
 
   const getRegistrationByDay = (context, idSession) => {
     getRegistrationByDayBySession(context, idSession)
@@ -62,7 +62,7 @@ const AllStats = ({ idSession }) => {
   } else {
     return (
       <Box style={styles.box} sx={{ width: '100%' }}>
-        <CircularProgress color="success" />
+        <LinearProgress color="success"/>
       </Box>
     )
   }
@@ -70,11 +70,8 @@ const AllStats = ({ idSession }) => {
 export default AllStats;
 
 const styles = {
-  stat: {
-    background: "none",
-  },
-  box: {
-    display: "flex",
-    justifyContent: "center",
+  stat:{
+    background:"none",
+    minHeight:"100vh"
   }
 }

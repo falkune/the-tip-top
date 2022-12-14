@@ -2,7 +2,7 @@ import React from "react";
 import { PieChart, Pie, Cell, Legend } from 'recharts';
 
 
-const COLORS = ['#197278', '#0091ad', '#c8553d'];
+const COLORS = ['#00C49F', '#FF8042'];
 
 const RADIAN = Math.PI / 180;
 const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, percent, index }) => {
@@ -17,7 +17,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     );
 };
 
-export default function PieGraph({ title, data }) {
+export default function PieGraph({ title, data, color }) {
 
     return (
         <div style={styles.card} width="50%" height="100%">

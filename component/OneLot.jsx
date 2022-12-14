@@ -12,7 +12,7 @@ function OneLot({ title, limitTicket, claimbedTicket, deliveredTicket}) {
         </div>
 
         <div>
-          <p style={styles.titre}>Tickets livrés</p>
+          <p style={styles.titre}>Lots délivrés</p>
           <Typography> <span style={styles.generate}>{deliveredTicket}</span> / {claimbedTicket}</Typography>
         </div>
       </CardContent>
@@ -30,7 +30,7 @@ const styles = {
   card: {
     display: "flex",
     minWidth: 300,
-    width: 500,
+    width: 510,
     height:160,
     flexDirection: "column",
     padding: 25,
