@@ -16,8 +16,8 @@ export default function ParticipationStat({sessionStat, idSession }) {
     if (idSession != "") {
       getUsers(context, idSession)
     }
-  }, [sessionStat]);
-
+  }, [idSession]);
+  
   const getUsers = () => {
     getuserBySession(context, idSession)
     .then((response) => {
