@@ -16,18 +16,12 @@ const AllStats = ({idSession}) => {
 
   useEffect(() => {
     if(idSession){
-      getAsignTicket(context, props.idSession);
+      getAsignTicket(context,idSession);
     }
-    // getDetailsSession(context, props.idSession);
+    
   }, [idSession])
 
-  // const getDetailsSession = (context, idSession) => {
-  //   console.log("detail session")
-  //   getSessionDetails(context, idSession)
-  //     .then((response) => {
-  //       setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
-  //     })
-  // }
+  
 
   const getAsignTicket = (context, idSession) => {
     statLots(context, idSession)
@@ -45,7 +39,7 @@ const AllStats = ({idSession}) => {
   return (
     <div style={styles.stat}>
       <ParticipationStat sessionStat={sessionStat} idSession={idSession}/>
-      <StatInscription days={numberDay} idSession={props.idSession} />
+      <StatInscription days={numberDay} idSession={idSession} />
       <StatsLots allGroup={allGroup}/>
     </div>
   )
