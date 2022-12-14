@@ -63,7 +63,8 @@ export default function Stats() {
   const getAllSessions = async (context) => {
     getSessions(context)
     .then((response) => {
-      setAllSessions(response[0]);
+      console.log("hello",response)
+      setAllSessions(response);
       setIdSession(response[0]._id);
     })
   };
