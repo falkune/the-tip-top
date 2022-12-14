@@ -19,7 +19,7 @@ export default function Resetpassword() {
                 notifier(response.message);
             })
             .catch((error) => {
-                notifier(error.message);
+                notifier(error.message, "success");
             })
     }
 
