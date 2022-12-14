@@ -114,52 +114,6 @@ const googleLoginRegister = async (context) => {
 
 }
 
-///////////////// FACEBOOK LOGIN ////////////////////
-
-const facebookLoginRegister = async (context) => {
-    const firebaseAuth = getAuth(firebaseApp);
-    return new Promise((resolve, reject) => {
-        signInWithPopup(firebaseAuth, FacebookProvider)
-            .then((res) => {
-                const user = {
-                    email: res.user.email,
-                    fullName: res.user.displayName,
-                    socialNetworkUserId: res.user.uid,
-                    socialNetworkAccessToken: res.user.accessToken,
-                    socialNetworkProvider: res.user.providerId,
-                    password: "1234678910",
-                    birthday: "",
-                    verified:true
-
-                }
-
-
-                context.backend.api.users.post('auth-from-social-network', user)
-                    .then((response) => {
-                        console.log(response)
-                        let logedUser = new ApiClient()
-                            .setHeader("lang", "en")
-                            .setHeader("Accept", "Application/json")
-                            .setHeader("Content-Type", "application/json")
-                            .setBearerAuth(response.accessToken)
-                        context.setBacked({ api: context.backend.api, auth: logedUser })
-                        Cookies.set("authToken", response.accessToken);
-                        Cookies.set('role', response.roles);
-                        Cookies.set('idClient', response.refreshToken);
-
-                        resolve(logedUser)
-                    })
-                    .catch((error) => {
-                        reject(error)
-                    })
-            })
-            .catch((error) => {
-                console.log(error)
-                reject(error)
-            })
-    })
-
-}
 
 ///////////////// FORGOT PASSWORD FUNCTION ////////////////////
 

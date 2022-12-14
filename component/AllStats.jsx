@@ -3,27 +3,24 @@ import StatsLots from './StatsLots';
 import StatInscription from './StatInscription';
 import ParticipationStat from './ParticipationStat';
 import ApiContext from '../context/apiContext';
-import { getDaysBetweenTwoDates } from "../fonctions/utils";
-import { getSessionDetails } from '../fonctions/sessions';
 import { statLots } from '../fonctions/tickets';
 import AgeStat from './AgeStat';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const AllStats = ({idSession}) => {
-  const [numberDay, setNumberDay] = useState([]);
+const AllStats = ({ idSession }) => {
   const [sessionStat, setSessionStats] = useState({});
   const [allGroup, setAllGroup] = useState(null);
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    if(idSession){
-      getAsignTicket(context,idSession);
+    if (idSession) {
+      getAsignTicket(context, idSession);
     }
-    
+
   }, [idSession])
 
-  
+
 
   const getAsignTicket = (context, idSession) => {
     statLots(context, idSession)
@@ -31,41 +28,36 @@ const AllStats = ({idSession}) => {
         if (!response.statusCode) {
           setSessionStats(response.sessionStats)
           setAllGroup(response.groupStats);
-        
+
         }
-        
+
       })
       .catch((error) => console.log(error))
   }
-  if(allGroup){
+  
+  if (allGroup) {
     return (
       <div style={styles.stat}>
-        <ParticipationStat sessionStat={sessionStat} idSession={props.idSession}/>
-        {/* <StatInscription days={numberDay} idSession={props.idSession} /> */}
-        <StatsLots allGroup={allGroup}/>
+        <ParticipationStat sessionStat={sessionStat} idSession={idSession} />
+        <StatInscription idSession={idSession} />
+        <StatsLots allGroup={allGroup} />
       </div>
     )
-  }return(
+  } else {
+    return (
       <Box style={styles.box} sx={{ width: '100%' }}>
         <CircularProgress color="success" />
       </Box>
     )
-
-  return (
-    <div style={styles.stat}>
-      <ParticipationStat sessionStat={sessionStat} idSession={idSession}/>
-      <StatInscription idSession={idSession} />
-      <StatsLots allGroup={allGroup}/>
-    </div>
-  )
+  }
 }
 export default AllStats;
 
 const styles = {
-  stat:{
-    background:"none",
+  stat: {
+    background: "none",
   },
-  box:{
+  box: {
     display: "flex",
     justifyContent: "center"
   }

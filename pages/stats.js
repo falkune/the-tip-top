@@ -44,15 +44,13 @@ export default function Stats() {
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     Cookies.set("width", width);
-    console.log(allsessions,"allsessions")
   };
 
   useEffect(() => {
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
-
-    console.log("hello")
+    
     getAllSessions(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
