@@ -78,7 +78,6 @@ export default function Tickets() {
 
   const getAllTickets = async () => {
     //fonction pour créer un ticket
-    console.log('hot tickets')
     try {
       context.backend.auth.tickets.post('tickets-by-client',
       {idClient:Cookies.get("idClient")}).then((value) =>
@@ -90,7 +89,6 @@ export default function Tickets() {
          value?.forEach(el => {
           el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
         }); 
-        console.log("hi",value)
         setAlltickets(value)
       }   
     }

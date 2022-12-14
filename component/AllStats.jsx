@@ -46,5 +46,6 @@ export default AllStats;
 const styles = {
   stat:{
     background:"none",
+    minHeight:"100vh"
   }
 }

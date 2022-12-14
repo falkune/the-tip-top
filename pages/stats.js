@@ -29,15 +29,7 @@ import graph from  '../image/graph.png';
 export default function Stats() {
   const context = useContext(ApiContext)
   const router = useRouter();
-  const [menu, setMenu] = useState("stats");
-  const [session, setSession] = useState({
-    name: "",
-    start: "",
-    end: "",
-    limit: 15000,
-    id: "",
-  });
-  const [lots, setLots] = useState([]);
+  const [menu, setMenu] = useState("ticket");
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
@@ -51,10 +43,7 @@ export default function Stats() {
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
-
-    console.log("hello")
     getAllSessions(context);
-    getAllLots(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
@@ -69,16 +58,8 @@ export default function Stats() {
     })
   };
 
-  const getAllLots = async (context) => {
-    getGroups(context)
-    .then((response) => {
-      setLots(response);
-    })
-  };
-
   const handleChangeSession = (event) => {
     setIdSession(event.target.value);
-    setSession(event.target.value);
   };
 
   const changemenu = (e) => {
@@ -271,6 +252,7 @@ const stylez = {
     padding: 25,
     paddingTop:120,
     width: "85%",
+    minHeight:"100vh"
   },
 
   fullStat: {
@@ -278,6 +260,8 @@ const stylez = {
     padding: 25,
     paddingTop: 100,
     width: "100%",
+    minHeight:"100vh"
+
   },
 
   titleMenu:{
