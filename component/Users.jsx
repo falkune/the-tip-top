@@ -52,7 +52,6 @@ export default function Users({ idSession }) {
 
   const getAllUser = async () => {
     //fonction pour récupérer tout les utilisateurs
-    console.log("ok",idSession)
     let allUsers = await getuserBySession(context,idSession)
       if (allUsers.statusCode) {
         refreshToken(allUsers, context);
