@@ -5,9 +5,7 @@ import Link from "next/link";
 import gift from "../../../image/teahall.jpeg";
 import Header from "../../../component/Header";
 import Footer from "../../../component/Footer";
-
 import Breadcrumbs from 'nextjs-breadcrumbs';
-
 
 
 export default function grandtirage() {

@@ -28,12 +28,11 @@ export default function Home() {
   }, []);
 
   const particlesLoaded = useCallback(async (container) => {
-    await console.log(container)
+    // await console.log(container)
   }, []);
 
   useEffect(() => {
     getCurrent(context)
-    console.log("tester")
   }, []);
 
 
