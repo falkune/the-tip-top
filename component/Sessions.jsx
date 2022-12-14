@@ -1,8 +1,7 @@
 import React, { useEffect, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import ApiContext from '../context/apiContext';
-import { notifier } from "../fonctions/utils";
-import { refreshToken } from "../fonctions/utils";
+import { refreshToken ,notifier } from "../fonctions/utils";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { createSession ,updateSession , deleteSession,currentSession} from "../fonctions/sessions";
@@ -46,6 +45,7 @@ const Sessions = ({ idSession }) => {
   }, [idSession]);
 
   const getSession = async () => {
+    console.log("session test")
     //fonction pour créer un ticket
     try {
       context.backend.auth.sessions.get(idSession).then((value) => {

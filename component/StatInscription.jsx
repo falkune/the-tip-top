@@ -5,15 +5,13 @@ import LineGraph  from "./LineChart";
 import {notifier, refreshToken} from '../fonctions/utils';
 import { getRegistrationByDayBySession } from '../fonctions/users';
 
-export default function StatInscription({ days,  idSession}) {
+export default function StatInscription({ idSession}) {
   const [registration, setRegistration] = useState([]);
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    if(idSession != ""){
-      getRegistrationByDay();
-    }
-  },[]);
+    getRegistrationByDay();
+  },[idSession]);
 
   const getRegistrationByDay = async () => {
     getRegistrationByDayBySession(context, idSession)

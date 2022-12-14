@@ -3,16 +3,15 @@ import React, { useEffect, useState, useContext } from "react";
 import ApiContext from '../context/apiContext';
 import Cookies from "js-cookie";
 import Head from "next/head";
-;
 import Header from "../component/Header";
 import Footer from "../component/Footer";
 import ButtonGrid from "../component/ButtonGrid";
 import DeliveredInfos from "../component/DeliveredInfos"
-import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles//ag-grid.css";
 import "ag-grid-community/styles//ag-theme-alpine.css";
-import "animate.css";
+import { AgGridReact } from 'ag-grid-react';
 import { notifier } from "../fonctions/utils";
+import {billets} from "../component/Data"
 import { useRouter } from "next/router";
 import Box from '@mui/material/Box';
 import LinearProgress from '@mui/material/LinearProgress';
@@ -50,8 +49,7 @@ export default function Tickets() {
  
   ]);
 
-
-
+  
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -85,13 +83,15 @@ export default function Tickets() {
       context.backend.auth.tickets.post('tickets-by-client',
       {idClient:Cookies.get("idClient")}).then((value) =>
       { if(value === undefined){
-        value?.forEach(el => {
+        value = []
+        setAlltickets(value)
+     
+      } else {
+         value?.forEach(el => {
           el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
         }); 
+        console.log("hi",value)
         setAlltickets(value)
-      } else {
-         value = []
-         setAlltickets(value)
       }   
     }
      )
@@ -112,14 +112,14 @@ export default function Tickets() {
         </Head>
         <Header menu="tickets"/>
         <div style={stylez.gain}>
-        <h1 className="h1">Mes tickets</h1>
+        <h1 className="h1" style={{color:"white"}}>Mes tickets</h1>
           <Breadcrumbs useDefaultStyle={false}
           containerClassName="breakLight" 
           rootLabel="Accueil" />
 
-        <p style={{ fontSize: 18, color: "grey" }}>
+        <p style={{ fontSize: 18, color: "white" }}>
           Vous avez{" "}
-          <strong style={{ color: " #38870D" }}>{number} </strong>
+          <strong style={{ color: " yellow" }}>{number} </strong>
           {`tickets gagnants`}
         </p>
           <div
@@ -152,6 +152,7 @@ export default function Tickets() {
 const stylez = {
   gain: {
     display: "flex",
+    background:" linear-gradient(83deg, rgba(56,135,13,1) 0%, rgba(56,135,13,1) 50%, rgba(144,203,6,1) 100%, rgba(211,255,0,1) 100%)",
     flexDirection: "column",
     paddingTop:100,
     paddingBottom:50,

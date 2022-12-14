@@ -37,7 +37,6 @@ export default function Stats() {
     limit: 15000,
     id: "",
   });
-
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
@@ -45,16 +44,20 @@ export default function Stats() {
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     Cookies.set("width", width);
+    console.log(allsessions,"allsessions")
   };
 
   useEffect(() => {
     if(!Cookies.get('authToken') || Cookies.get('role') != "admin"){
       router.push('/connexion')
     }
+
+    console.log("hello")
     getAllSessions(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
+    
   }, []);
   
   const getAllSessions = async (context) => {
@@ -257,7 +260,7 @@ const stylez = {
     background: "none",
   },
   stat: {
-    backgroundColor: "#c7c7c7",
+    backgroundColor: "#ddeddd",
     padding: 25,
     paddingTop:120,
     width: "85%",

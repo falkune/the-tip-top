@@ -10,25 +10,20 @@ import AgeStat from './AgeStat';
 import Box from '@mui/material/Box';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const AllStats = (props) => {
+const AllStats = ({idSession}) => {
   const [numberDay, setNumberDay] = useState([]);
   const [sessionStat, setSessionStats] = useState({});
   const [allGroup, setAllGroup] = useState(null);
   const context = useContext(ApiContext);
 
   useEffect(() => {
-    if(props.idSession){
-      getAsignTicket(context, props.idSession);
+    if(idSession){
+      getAsignTicket(context,idSession);
     }
-    getDetailsSession(context, props.idSession);
-  }, [])
+    
+  }, [idSession])
 
-  const getDetailsSession = (context, idSession) => {
-    getSessionDetails(context, idSession)
-      .then((response) => {
-        setNumberDay(getDaysBetweenTwoDates(new Date(response.endDate), new Date(response.startDate)))
-      })
-  }
+  
 
   const getAsignTicket = (context, idSession) => {
     statLots(context, idSession)
@@ -56,7 +51,13 @@ const AllStats = (props) => {
       </Box>
     )
 
-  
+  return (
+    <div style={styles.stat}>
+      <ParticipationStat sessionStat={sessionStat} idSession={idSession}/>
+      <StatInscription idSession={idSession} />
+      <StatsLots allGroup={allGroup}/>
+    </div>
+  )
 }
 export default AllStats;
 

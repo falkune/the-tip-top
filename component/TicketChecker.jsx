@@ -101,7 +101,7 @@ export default function TicketChecker({ session }) {
             <h2 className="h2">Vérification du ticket</h2>
             <input
               onChange={UpdateInput}
-              className="input"
+              className="inputChecker"
               maxLength={10}
               value={input}
               type="number"

@@ -33,6 +33,7 @@ export default function Home() {
 
   useEffect(() => {
     getCurrent(context)
+    console.log("tester")
   }, []);
  
 

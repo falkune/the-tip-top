@@ -11,6 +11,7 @@ import "animate.css";
 import dayjs from "dayjs";
 import "dayjs/locale/fr"
 dayjs.locale('fr')
+import "animate.css";
 import 'nextjs-breadcrumbs/dist/index.css';
 import CookiesManagement from '../component/cookiesManagement';
 
