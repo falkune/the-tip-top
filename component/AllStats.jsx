@@ -34,8 +34,11 @@ const AllStats = (props) => {
         if (!response.statusCode) {
           setSessionStats(response.sessionStats)
           setAllGroup(response.groupStats);
+        
         }
+        
       })
+      .catch((error) => console.log(error))
   }
 
   return (

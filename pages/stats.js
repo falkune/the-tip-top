@@ -37,7 +37,7 @@ export default function Stats() {
     limit: 15000,
     id: "",
   });
-  const [lots, setLots] = useState([]);
+
   const [allsessions, setAllSessions] = useState([]);
   const [idSession, setIdSession] = useState("");
   const [width, setWidth] = useState(0);
@@ -52,11 +52,10 @@ export default function Stats() {
       router.push('/connexion')
     }
     getAllSessions(context);
-    getAllLots(context);
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
-  }, [width]);
+  }, []);
   
   const getAllSessions = async (context) => {
     getSessions(context)
@@ -66,12 +65,6 @@ export default function Stats() {
     })
   };
 
-  const getAllLots = async (context) => {
-    getGroups(context)
-    .then((response) => {
-      setLots(response);
-    })
-  };
 
   const handleChangeSession = (event) => {
     setIdSession(event.target.value);
@@ -187,9 +180,7 @@ export default function Stats() {
                 onChange={handleChangeSession}
                 style={{border:"solid 2px white",color:"white"}
            
-              }
-           
-              >
+              }>
                 {allsessions.map((s, index) => (
                   <MenuItem key={index} value={s._id}>
                     {s.name}
@@ -197,7 +188,7 @@ export default function Stats() {
                 ))}
               </Select>
             </div>
-            {menu === "stats" && <AllStats lots={lots} idSession={idSession} />}
+            {menu === "stats" && <AllStats idSession={idSession} />}
             {menu === "ticket" && <TicketChecker session={idSession} />}
             {menu === "users" && <Users idSession={idSession} />}
             {menu === "generator" && <TicketGenerator session_id={idSession} />}
