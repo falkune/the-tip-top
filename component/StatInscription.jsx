@@ -13,7 +13,7 @@ export default function StatInscription({ days,  idSession}) {
     if(idSession != ""){
       getRegistrationByDay();
     }
-  },[days]);
+  },[]);
 
   const getRegistrationByDay = async () => {
     getRegistrationByDayBySession(context, idSession)

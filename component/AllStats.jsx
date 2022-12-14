@@ -7,11 +7,13 @@ import { getDaysBetweenTwoDates } from "../fonctions/utils";
 import { getSessionDetails } from '../fonctions/sessions';
 import { statLots } from '../fonctions/tickets';
 import AgeStat from './AgeStat';
+import Box from '@mui/material/Box';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const AllStats = (props) => {
   const [numberDay, setNumberDay] = useState([]);
   const [sessionStat, setSessionStats] = useState({});
-  const [allGroup, setAllGroup] = useState([]);
+  const [allGroup, setAllGroup] = useState(null);
   const context = useContext(ApiContext);
 
   useEffect(() => {
@@ -19,7 +21,7 @@ const AllStats = (props) => {
       getAsignTicket(context, props.idSession);
     }
     getDetailsSession(context, props.idSession);
-  }, [props.idSession])
+  }, [])
 
   const getDetailsSession = (context, idSession) => {
     getSessionDetails(context, idSession)
@@ -40,19 +42,30 @@ const AllStats = (props) => {
       })
       .catch((error) => console.log(error))
   }
+  if(allGroup){
+    return (
+      <div style={styles.stat}>
+        <ParticipationStat sessionStat={sessionStat} idSession={props.idSession}/>
+        {/* <StatInscription days={numberDay} idSession={props.idSession} /> */}
+        <StatsLots allGroup={allGroup}/>
+      </div>
+    )
+  }return(
+      <Box style={styles.box} sx={{ width: '100%' }}>
+        <CircularProgress color="success" />
+      </Box>
+    )
 
-  return (
-    <div style={styles.stat}>
-      <ParticipationStat sessionStat={sessionStat} idSession={props.idSession}/>
-      <StatInscription days={numberDay} idSession={props.idSession} />
-      <StatsLots allGroup={allGroup}/>
-    </div>
-  )
+  
 }
 export default AllStats;
 
 const styles = {
   stat:{
     background:"none",
+  },
+  box:{
+    display: "flex",
+    justifyContent: "center"
   }
 }
