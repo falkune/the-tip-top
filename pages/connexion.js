@@ -25,11 +25,14 @@ export default function Connexion() {
     setLoad(true)
     let user = await login(context, email, password)
     if (user.statusCode) {
+       setLoad(false)
       if (Array.isArray(user.message)) {
         user.message.forEach(element => {
           notifier(element, "error", "top-right", 5000);
         });
+        setLoad(false)
       } else {
+        setLoad(false)
         notifier(user.message)
       }
     } else {
@@ -53,7 +56,9 @@ export default function Connexion() {
         user.message.forEach(element => {
           notifier(element, "error", "bottom-right", 5000);
         });
+        setLoad(false)
       } else {
+        setLoad(false)
         notifier(user.message, "error", "bottom-right", 5000);
       }
     } else {
@@ -67,13 +72,17 @@ export default function Connexion() {
   const googleLogin = async () => {
     setLoad(true)
     let user = await googleLoginRegister(context)
-    
+    console.log("login")
     if (user.statusCode) {
       if (Array.isArray(user.message)) {
+        console.log("whut")
         user.message.forEach(element => {
           notifier(element, "error", "bottom-right", 5000);
         });
+        setLoad(false)
       } else {
+        setLoad(false)
+        console.log("whut")
         notifier(user.message, "error", "bottom-right", 5000);
       }
     } else {
@@ -82,6 +91,7 @@ export default function Connexion() {
       else
         router.push({ pathname: "/bingo" }, undefined, { shallow: true });
     }
+    setLoad(false)
   }
 
   const resetPasswor = async () => {
