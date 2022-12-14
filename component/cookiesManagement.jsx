@@ -26,8 +26,8 @@ function CookiesManagement() {
                     Ce site utilise des cookies <a href="/condition" style={styles.link}>  en savoir plus</a>
                 </div>
                 <div>
-                    <button onClick={cookiesAccept} style={styles.btn}><FontAwesomeIcon style={styles.check} icon={faCheck} /> accepter</button>
-                    <button onClick={cookiesReject} style={styles.btn}><FontAwesomeIcon style={styles.mark} icon={faXmark} /> rejeter</button>
+                    <span onClick={cookiesAccept} style={styles.btn}><FontAwesomeIcon style={styles.check} icon={faCheck} /> accepter</span>
+                    <span onClick={cookiesReject} style={styles.btn}><FontAwesomeIcon style={styles.mark} icon={faXmark} /> rejeter</span>
                 </div>
             </div>
         )
