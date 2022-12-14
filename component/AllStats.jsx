@@ -13,13 +13,13 @@ const AllStats = (props) => {
   const [sessionStat, setSessionStats] = useState({});
   const [allGroup, setAllGroup] = useState([]);
   const context = useContext(ApiContext);
-
+  console.log(props.startDate,props.endDate,"date")
   useEffect(() => {
     if(props.idSession){
       getAsignTicket(context, props.idSession);
     }
     getDetailsSession(context, props.idSession);
-  }, [props.idSession])
+  }, [])
 
   const getDetailsSession = (context, idSession) => {
     console.log("detail session")
