@@ -23,7 +23,7 @@ function CookiesManagement() {
         return (
             <div style={styles.container}>
                 <div>
-                    Ce site utilise des cookies <a href="/condition" style={styles.link}>  en savoir plus</a>
+                    <p>Ce site utilise des cookies <a href="/condition" style={styles.link}>  en savoir plus</a></p>
                 </div>
                 <div>
                     <span onClick={cookiesAccept} style={styles.btn}><FontAwesomeIcon style={styles.check} icon={faCheck} /> accepter</span>
@@ -67,6 +67,7 @@ const styles = {
         fontSize: "1em"
     },
     mark: {
-        color: "#9a031e"
+        color: "#9a031e",
+        fontSize: "1em"
     }
 }
