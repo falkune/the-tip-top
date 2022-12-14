@@ -8,8 +8,7 @@ import Footer from "../component/Footer";
 import ButtonGrid from "../component/ButtonGrid";
 import DeliveredInfos from "../component/DeliveredInfos"
 import ClipLoader from "react-spinners/ClipLoader";
-import { DataGrid,GridToolbar } from "@mui/x-data-grid";
-
+import { DataGrid } from "@mui/x-data-grid";
 import { notifier } from "../fonctions/utils";
 import { useRouter } from "next/router";
 import Box from '@mui/material/Box';
@@ -20,12 +19,13 @@ dayjs.locale('fr')
 import Breadcrumbs from 'nextjs-breadcrumbs';
 
 
+
 export default function Tickets() {
   const context = useContext(ApiContext)
-  const [loading,setLoading] = useState(false)
   const [alltickets, setAlltickets] = useState([]);
   const [width, setWidth] = useState(0);
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [colDefs] = useState([
     { field: "ticketNumber",
      headerName: "Numéro de ticket",
@@ -63,11 +63,11 @@ export default function Tickets() {
    
   ]);
 
+
   const updateDimensions = () => {
     setWidth(window.innerWidth);
     localStorage.setItem("width", width);
   };
-
   useEffect(() => {
     if(Cookies.get('role') == undefined || Cookies.get('role') != 'client') {
       notifier("vous n'avez pas acces a cette page !")
@@ -94,14 +94,16 @@ export default function Tickets() {
       { if(value === undefined){
         value = []
         setAlltickets(value)
-        setLoading(false)
-
+        setLoading(false)  
       } else {
          value?.forEach(el => {
           el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
         }); 
         setAlltickets(value)
-        setLoading(false)}})
+        setLoading(false)
+      }   
+    }
+     )
     } catch (e) {
        
     }
@@ -130,22 +132,22 @@ export default function Tickets() {
           {`tickets gagnants`}
         </p>
           <div
+          className="animate__animated animate__fadeInUp"
             style={{
               height: "800px",
               background:'white',
               display:"flex",
-              alignItems:"center",
               justifyContent:"center",
+              padding:10,
+              borderRadius:15,
+              alignItems:"center",
               width: width < 650 ? "90%" : 800,
             }}
           >
-           {
-             loading ? <ClipLoader color={" #38870D"} loading={true} size={100} /> :
-            <DataGrid
+          { !loading ? <DataGrid
           getRowId={(row) => row._id}
           rows={alltickets}
           columns={colDefs}
-          components={{ Toolbar: GridToolbar }}
           pageSize={15}
           sx={{
             textAlign:"center",
@@ -153,9 +155,7 @@ export default function Tickets() {
             '& .super-app-theme--header': {
               backgroundColor: '#ddeddd',
               color:"#38870d",
-              border:"solid 2px #ddeddd"
-            },  border: 2,
-            borderColor:'#ddeddd',
+            },  border: 0,
             '& .MuiDataGrid-cell:hover': {
               color: 'green',
             },
@@ -165,7 +165,10 @@ export default function Tickets() {
           }}
           rowsPerPageOptions={[2]}
           disableSelectionOnClick
-          experimentalFeatures={{ newEditingApi: true }}/> }
+          experimentalFeatures={{ newEditingApi: true }}/>
+          : <ClipLoader color={" #38870D"} loading={true} size={100} />
+
+          }
        
           </div>
         </div>

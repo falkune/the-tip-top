@@ -48,7 +48,7 @@ export default function Jeux() {
       <Header menu="jeux" />
       <section
         className="block"
-        style={{ borderBottom: "solid 1px white" }}
+        style={{paddingTop:100}}
       >
         <div
           style={{

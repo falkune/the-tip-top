@@ -73,7 +73,6 @@ nav li a:hover {
 .container {
   font-family:'Open Sans', sans-serif; 
   min-height: 100vh;
-  padding-top: 90px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,7 +90,6 @@ nav li a:hover {
   border-radius: 10px;
   width: 90%;
   max-width:500px ;
-  
   }
   
   .login textarea{

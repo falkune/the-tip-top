@@ -17,7 +17,6 @@ import LinearProgress from '@mui/material/LinearProgress';
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import { getSessions } from "../fonctions/sessions";
-import { getGroups } from "../fonctions/groups";
 import sessions from '../image/session.png'
 import users from '../image/users.png'
 import search from '../image/search.png'
@@ -44,11 +43,15 @@ export default function Stats() {
       router.push('/connexion')
     }
     getAllSessions(context);
+  }, []);
+
+  useEffect(() => {
     updateDimensions();
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
 
-  }, []);
+  }, [width]);
+
 
   const getAllSessions = async (context) => {
     getSessions(context)
