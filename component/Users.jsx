@@ -127,6 +127,8 @@ export default function Users({ idSession }) {
 
 
   const getClientHistory =  async (e) =>{
+        setload(true)
+        setOpen(true)
         let histories = await getHistoryClient(context,e.id)
         if (histories.statusCode) {
           refreshToken(histories, context);
@@ -136,6 +138,7 @@ export default function Users({ idSession }) {
               notifier(element, "error", "top-right", 5000);
             });
             setLoading(false)
+            setOpen(false)
           }   
         }else { 
           setLoading(false)
@@ -144,7 +147,6 @@ export default function Users({ idSession }) {
           })
           setHistory(histories)
           console.log(histories,"historie")
-          setOpen(true)
         }
   
 
@@ -267,7 +269,7 @@ export default function Users({ idSession }) {
               '& .MuiDataGrid-cell:hover': {
                 color: 'green',
               },
-              '& .css-1knaqv7-MuiButtonBase-root-MuiButton-root':{
+              '& .css-1rtnrqa':{
                 color:"#38870D"
               }
             }}

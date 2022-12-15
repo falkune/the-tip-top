@@ -135,7 +135,7 @@ export default function Stats() {
                 </span>
                 Listes utilisateurs
               </button>
-              <button
+              {/* <button
                 value={"sessions"}
                 style={
                   menu === "sessions"
@@ -147,7 +147,7 @@ export default function Stats() {
                   <Image src={sessions} alt="session_logo" width={20} height={20} />
                 </span>
                 Gestions des sessions
-              </button>
+              </button> */}
             </div>
           )}
 

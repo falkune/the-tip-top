@@ -60,7 +60,7 @@ export default function Home() {
   return (
     <div className="main">
       <Head>
-        <title>Thé TipTop by TeaBingo - Jeux concours</title>
+        <title>Thé TipTop by TeaBingo - Jeux concours!</title>
         <meta name="Jeux concours par thé tiptop" content="Jeux ticket tiptop" />
         <meta name="google-site-verification" content="iDBitZ99_g4ELVANaUEpnh57Tum7BZhycjYf21Zxy-M" />
         <link rel="icon" href="/favicon.ico" />

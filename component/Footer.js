@@ -27,6 +27,8 @@ const Footer = () => {
                         <li style={styles.li}>Mention légales</li>
                     </Link>
                 </ul>
+                <Link href={"https://dsp-archiwebo21-ct-df-an-cd.fr/sitemap-0.xml"}>
+                sitemap</Link>
             </nav>
             <Modal
                 open={open}
