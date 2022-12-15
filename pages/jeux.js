@@ -1,4 +1,4 @@
- import React, { useEffect, useState, useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 
 import Head from "next/head";
 import Image from "next/image";
@@ -19,7 +19,7 @@ import ApiContext from '../context/apiContext';
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
-  const [isFinished, setIsFinished] = useState(isSessionFinished())
+  const [isFinished, setIsFinished] = useState(false)
   const context = useContext(ApiContext)
 
 
@@ -27,20 +27,26 @@ export default function Jeux() {
     getCurrent();
   }, []);
 
-  // const getCurrent = async () => {
-  //   const api =
-  //     "http://localhost:3000/session/get-current-session";
-  //   try {
-  //     let currenSession = await axios.get(api);
-  //     setCurrent(currenSession?.data);
-  //     Cookies.set("current", currenSession?.data);
-
-  //   } catch (e) {
-
-  //   }
-  // };
 
 
+ 
+  const isSessionFinished = (date) => {
+
+
+    console.log(date);
+    const end = new Date(date)
+    const now = new Date ()
+    
+    
+
+    
+    if(now >= end){
+      setIsFinished(true);
+    }else{
+      setIsFinished(false);
+
+    }
+}
 
   const getCurrent = async () => {
     let sessions = context.backend.api.sessions.get('get-current-session', {
@@ -48,15 +54,15 @@ export default function Jeux() {
       "Content-Type": "application/json",
     })
     sessions.then((response) => {
-      if(response.statusCode){
+      if (response.statusCode) {
         console.log("vrai", response)
-      }else{
-        console.log("mauvaise", response) 
-        console.log("good", response)
+      } else {
+
 
         setCurrent(response[0]);
-        Cookies.set('currentStart',response[0].startDate)
-        Cookies.set('currentEnd',response[0].endDate)
+        Cookies.set('currentStart', response[0].startDate)
+        Cookies.set('currentEnd', response[0].endDate)
+        isSessionFinished(response[0].endDate);
       }
     })
   };
@@ -72,7 +78,7 @@ export default function Jeux() {
       <Header menu="jeux" />
       <section
         className="block"
-        style={{paddingTop:100}}
+        style={{ paddingTop: 100 }}
       >
         <div
           style={{
@@ -96,14 +102,14 @@ export default function Jeux() {
                 <ClipLoader color={"white"} loading={true} size={100} />
 
                 <h1 className="h1" style={{ color: "white" }}>
-                  Grand jeux concour
+                  Grand jeux concours
                 </h1>
                 <Breadcrumbs useDefaultStyle={false}
                   containerClassName="breakLight"
                   rootLabel="Accueil" />
 
                 <p style={{ fontSize: 20, color: "white" }}>
-                  Le tirage au sort dans :   
+                  Le tirage au sort dans :
                 </p>
                 {current && <Count current={current} />}</>
           }
@@ -117,7 +123,7 @@ export default function Jeux() {
             justifyContent: "center",
           }}
         >
-          {isFinished ?
+          { isFinished ?
 
 
             <ResultGame /> :

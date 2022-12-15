@@ -127,7 +127,7 @@ export default function Users({ idSession }) {
 
 
   const getClientHistory =  async (e) =>{
-        setload(true)
+        //setLoading(true)
         setOpen(true)
         let histories = await getHistoryClient(context,e.id)
         if (histories.statusCode) {
@@ -137,11 +137,11 @@ export default function Users({ idSession }) {
             histories.message.forEach(element => {
               notifier(element, "error", "top-right", 5000);
             });
-            setLoading(false)
+            //setLoading(false)
             setOpen(false)
           }   
         }else { 
-          setLoading(false)
+          //setLoading(false)
           histories?.forEach(el => {
             el.updatedAt = dayjs(el.updatedAt).format(" D MMMM YYYY ")
           })

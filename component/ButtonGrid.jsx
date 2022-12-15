@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import Modal from "@mui/material/Modal";
 import Image from "next/image";
+import {notifier, refreshToken} from '../fonctions/utils';
 import { verifyLot } from "../fonctions/tickets";
 import ApiContext from '../context/apiContext';
 import { isSessionFinished } from "../fonctions/utils";
@@ -21,18 +22,25 @@ const ButtonGrid = (props) => {
 
 
 const VerifyTicket = async (n) => {
-  let ticket = await verifyLot( context, n.toString())
+  let ticket = await verifyLot( context, n?.toString())
   if (ticket.statusCode) {
    refreshToken(ticket, context);
-   notifier(ticket.message);
+   if(Array.isArray(ticket.message)){
+   ticket.message.forEach((el)=>{
+    notifier(el);
+   })
+  } 
+
+  
  } else {
    setLot(ticket.lot)
  }
 };
 
-  const buttonClicked = () => {
-        VerifyTicket(props.data.ticketNumber)
-        console.log(props.data.ticketNumber)
+  const buttonClicked = (ticketNumber) => {
+    console.log(ticketNumber);
+        VerifyTicket(ticketNumber)
+        console.log(ticketNumber)
         setOpen(true)
     };
 
@@ -45,7 +53,7 @@ const VerifyTicket = async (n) => {
      <span>
      { isFinished ? <>
    
-          {<button style={styles.button} onClick={() => buttonClicked()}>Voir le lot </button>} 
+          {<button style={styles.button} onClick={() => buttonClicked(props?.value?.row?.ticketNumber)}>Voir le lot </button>} 
           <Modal
         open={open}
         style={{ border: "none" }}
@@ -76,7 +84,7 @@ const VerifyTicket = async (n) => {
           { lot == "thé signature" && <Image src={tea3} alt ="Coffret Tea"/> }
           { lot == "Infuseur à thé" && <Image src={tea4} alt ="Coffret Tea" /> }
           { lot == "100g thé detox" && <Image src={tea5} alt ="Coffret Tea" /> }
-       { props.data.isDelivred ? <p style={{fontWeight:"bold",marginTop:15}}> Vous pouvez aller <br>
+          { props.data?.isDelivred ? <p style={{fontWeight:"bold",marginTop:15}}> Vous pouvez aller <br>
           </br>le chercher en magasin</p> :<p>Lot délivré</p> }
          
   

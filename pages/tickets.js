@@ -46,7 +46,7 @@ export default function Tickets() {
       width: 250 ,
       renderCell: (cellValues) => {
         return (
-          <ButtonGrid value={cellValues}/>
+         <ButtonGrid value={cellValues}/>
         );
       },
     },
@@ -56,7 +56,7 @@ export default function Tickets() {
       width: 250 ,
       renderCell: (cellValues) => {
         return (
-         <DeliveredInfos value={cellValues}/>
+        <DeliveredInfos value={cellValues}/> 
         );
       }
     },

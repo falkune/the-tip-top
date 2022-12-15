@@ -65,6 +65,17 @@ class HttpClient {
     )
   }
 
+  put(endpoint, body, options = {}) {
+    return this._fetchJSON(
+      endpoint,
+      {
+        ...options,
+        body: JSON.stringify(body),
+        method: 'PUT'
+      }
+    )
+  }
+
 
   delete(endpoint, options = {}) {
     return this._fetchJSON(

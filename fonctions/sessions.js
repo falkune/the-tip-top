@@ -17,8 +17,10 @@ const createSession = async (context, body) => {
 
 
 const updateSession = async (context, body) => {
+
+    console.log(`updateSession`, body);
     return new Promise((resolve, reject) => {
-        context.backend.auth.sessions.update('', body)
+        context.backend.auth.sessions.update(body)
             .then((response) => {
                 if (response.statusCode) {
                     resolve(response);
