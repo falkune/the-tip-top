@@ -47,6 +47,7 @@ export default function Bingo() {
       if(response.statusCode){
         console.log("vrai", response)
       }else{
+        console.log("mauvaise", response)
         setCurrent(response[0]._id);
         console.log("good", response)
         Cookies.set('currentStart',response[0].startDate)

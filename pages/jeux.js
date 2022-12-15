@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+ import React, { useEffect, useState, useContext } from "react";
+
 import Head from "next/head";
 import Image from "next/image";
 import Header from "../component/Header";
@@ -13,28 +14,51 @@ import Cookies from 'js-cookie';
 import { isSessionFinished } from "../fonctions/utils";
 import Breadcrumbs from 'nextjs-breadcrumbs';
 import ResultGame from "../component/ResultGame";
+import ApiContext from '../context/apiContext';
 
 
 export default function Jeux() {
   const [current, setCurrent] = useState("");
   const [isFinished, setIsFinished] = useState(isSessionFinished())
+  const context = useContext(ApiContext)
 
 
   useEffect(() => {
     getCurrent();
   }, []);
 
+  // const getCurrent = async () => {
+  //   const api =
+  //     "http://localhost:3000/session/get-current-session";
+  //   try {
+  //     let currenSession = await axios.get(api);
+  //     setCurrent(currenSession?.data);
+  //     Cookies.set("current", currenSession?.data);
+
+  //   } catch (e) {
+
+  //   }
+  // };
+
+
+
   const getCurrent = async () => {
-    const api =
-      "https://api.dev.dsp-archiwebo21-ct-df-an-cd.fr/Session/get-current-session";
-    try {
-      let currenSession = await axios.get(api);
-      setCurrent(currenSession?.data);
-      Cookies.set("current", currenSession?.data);
+    let sessions = context.backend.api.sessions.get('get-current-session', {
+      Accept: "Application/json",
+      "Content-Type": "application/json",
+    })
+    sessions.then((response) => {
+      if(response.statusCode){
+        console.log("vrai", response)
+      }else{
+        console.log("mauvaise", response) 
+        console.log("good", response)
 
-    } catch (e) {
-
-    }
+        setCurrent(response[0]);
+        Cookies.set('currentStart',response[0].startDate)
+        Cookies.set('currentEnd',response[0].endDate)
+      }
+    })
   };
 
   return (
@@ -79,7 +103,7 @@ export default function Jeux() {
                   rootLabel="Accueil" />
 
                 <p style={{ fontSize: 20, color: "white" }}>
-                  Le tirage au sort dans :
+                  Le tirage au sort dans :   
                 </p>
                 {current && <Count current={current} />}</>
           }
