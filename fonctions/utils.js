@@ -31,7 +31,7 @@ const getDaysBetweenTwoDates = (startDate, endDate) => {
 const isSessionFinished = () => {
     const end = new Date(Cookies.get("currentEnd"))
     const now = new Date ()
-    const isfished = now.getTime() > end.getTime() 
+    const isfished = now.getTime() >= end.getTime() 
     return isfished
 }
 
