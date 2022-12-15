@@ -227,7 +227,7 @@ const Header = ({ menu, changemenu }) => {
                 >
                   Listes utilisateurs
                 </button>
-                <button
+                {/* <button
                   value={"sessions"}
                   style={
                     menu == "sessions"
@@ -238,7 +238,7 @@ const Header = ({ menu, changemenu }) => {
                 >
                   {" "}
                   Gestions des sessions
-                </button>
+                </button> */}
               </div>
             )}
           </ul>
