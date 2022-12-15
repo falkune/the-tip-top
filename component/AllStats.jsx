@@ -31,10 +31,9 @@ const AllStats = ({ idSession }) => {
         if (!response.statusCode) {
           setSessionStats(response.sessionStats)
           setAllGroup(response.groupStats);
-          console.log(response.sessionStats)
         }
       })
-      .catch((error) => console.log(error))
+      .catch((error) => console.log(""))
   }
 
   const getRegistrationByDay = (context, idSession) => {
