@@ -6,14 +6,14 @@ import { useRouter } from "next/router";
 import Cookies from 'js-cookie';
 import ApiContext from '../context/apiContext';
 import { notifier } from "../fonctions/utils";
-import {getLogout} from '../fonctions/users';
+import { getLogout } from '../fonctions/users';
 
 const Header = ({ menu, changemenu }) => {
   const router = useRouter();
   const [width, setWidth] = useState(0);
   const [role, setRole] = useState(null);
   const context = useContext(ApiContext);
-
+  console.log("test", role);
   const [open, setOpen] = useState(false);
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -27,22 +27,23 @@ const Header = ({ menu, changemenu }) => {
   useEffect(() => {
     updateDimensions();
     setRole(Cookies.get('role'))
+    console.log(Cookies.get('role'))
     window.addEventListener("resize", updateDimensions);
     return () => window.removeEventListener("resize", updateDimensions);
   }, [width]);
 
   const logOut = () => {
     getLogout(context)
-    .then((response) => {
-      notifier(response.message, "success");
-      Cookies.remove('authToken');
-      Cookies.remove('role');
-      Cookies.remove('idClient');
-      router.push("/connexion")
-    })
-    .catch((error) => {
-      notifier(error);
-    })
+      .then((response) => {
+        notifier(response.message, "success");
+        Cookies.remove('authToken');
+        Cookies.remove('role');
+        Cookies.remove('idClient');
+        router.push("/connexion")
+      })
+      .catch((error) => {
+        notifier(error);
+      })
   }
 
   return (
@@ -53,27 +54,27 @@ const Header = ({ menu, changemenu }) => {
           height: "100%",
           position: "relative",
           display: "flex",
-          alignItems:"center",
+          alignItems: "center",
           padding: 15,
           justifyContent: "space-between",
         }}
       >
         <Link href="/">
-          <span style={{width:56,height:56}}>
-          <Image src='/logo.png' width={56} height={56} alt="logo" />
+          <span style={{ width: 56, height: 56 }}>
+            <Image src='/logo.png' width={56} height={56} alt="logo" />
           </span>
         </Link>
         {width > 850 ? (
           <nav>
             <ul style={styles.nav}>
-
-              { !role || role =="client" &&  <>
-              <li style={menu == "equipe" ? styles.liactive : styles.li}>
-                  <Link href="/equipe">
+              {!role || role == "client" ? (
+                <>
+                  <li style={menu == "equipe" ? styles.liactive : styles.li}>
+                    <Link href="/equipe">
                       Qui sommes nous ?
-                  </Link>
-                  </li> 
-             
+                    </Link>
+                  </li>
+
                   <li style={menu == "regle" ? styles.liactive : styles.li}>
                     <Link href="/regle">
                       Règle du jeux
@@ -81,22 +82,22 @@ const Header = ({ menu, changemenu }) => {
                   </li>
 
                   <li style={menu == "lots" ? styles.liactive : styles.li}>
-                      <Link href="/lots">
-                        Lot à gagner
+                    <Link href="/lots">
+                      Lot à gagner
                     </Link>
                   </li>
-              </> }
-                  
-       
-                {role && role == "admin" && (
+                </>
+              ):(<></>)}
+
+              {role && role == "admin" && (
                 <li style={menu == "bingo" ? styles.liactive : styles.li}>
                   <Link href="/stats">
-                        Administration  
+                    Administration
                   </Link>
-                  </li>
-                )}
+                </li>
+              )}
 
-              
+
               {role && role == "client" && (
                 <li style={menu == "bingo" ? styles.liactive : styles.li}>
                   {" "}
@@ -116,11 +117,11 @@ const Header = ({ menu, changemenu }) => {
                   <Link href="/tickets">Mes tickets </Link>
                 </li>
               )}
-                { !role || role =="client" &&  
-              
-               <li style={menu == "contact" ? styles.liactive : styles.li}>
+              {!role || role == "client" &&
+
+                <li style={menu == "contact" ? styles.liactive : styles.li}>
                   <Link href="/contact">Contactez nous </Link>
-                </li> }
+                </li>}
 
               {!role && (
                 <li style={styles.login}>
@@ -157,10 +158,10 @@ const Header = ({ menu, changemenu }) => {
               </Link>
             )}
 
-            {!role || role == 'client' && ( <Link href="/lots">
+            {!role || role == 'client' && (<Link href="/lots">
               <li>Lot à gagner</li>
             </Link>
-                 )}
+            )}
             {role && role == "client" && (
               <Link href="/bingo">
                 <li>Bingo ticket</li>
@@ -181,7 +182,7 @@ const Header = ({ menu, changemenu }) => {
 
             {role && role == "admin" && (
               <div>
-                    <button
+                <button
                   value={"stats"}
                   style={
                     menu == "stats"
@@ -293,8 +294,8 @@ const styles = {
 
   li: {
     marginLeft: 15,
-    display:"flex",
-    alignItems:"center",
+    display: "flex",
+    alignItems: "center",
     listStyleType: "none",
     textDecoration: "none",
     color: "gray",
@@ -302,8 +303,8 @@ const styles = {
   },
 
   liactive: {
-    display:"flex",
-    alignItems:"center",
+    display: "flex",
+    alignItems: "center",
     marginLeft: 15,
     listStyleType: "none",
     textDecoration: "none",
