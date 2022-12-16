@@ -87,7 +87,7 @@ const Header = ({ menu, changemenu }) => {
                     </Link>
                   </li>
                 </>
-              ):(<></>)}
+              ) : (<></>)}
 
               {role && role == "admin" && (
                 <li style={menu == "bingo" ? styles.liactive : styles.li}>
@@ -152,16 +152,27 @@ const Header = ({ menu, changemenu }) => {
       >
         <div style={styles.draw}>
           <ul className="responsiveMenu">
-            {!role || role == 'client' && (
-              <Link href="/equipe">
-                <li>Qui sommes nous</li>
-              </Link>
-            )}
+            {!role || role == "client" ? (
+              <>
+                <li style={menu == "equipe" ? styles.liactive : styles.li}>
+                  <Link href="/equipe">
+                    Qui sommes nous ?
+                  </Link>
+                </li>
 
-            {!role || role == 'client' && (<Link href="/lots">
-              <li>Lot à gagner</li>
-            </Link>
-            )}
+                <li style={menu == "regle" ? styles.liactive : styles.li}>
+                  <Link href="/regle">
+                    Règle du jeux
+                  </Link>
+                </li>
+
+                <li style={menu == "lots" ? styles.liactive : styles.li}>
+                  <Link href="/lots">
+                    Lot à gagner
+                  </Link>
+                </li>
+              </>
+            ) : (<></>)}
             {role && role == "client" && (
               <Link href="/bingo">
                 <li>Bingo ticket</li>
